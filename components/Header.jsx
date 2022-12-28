@@ -38,6 +38,7 @@ const Header = () => {
             <li className='header-link'>
               <Link href='/#projects'>projects</Link>
             </li>
+            -
           </ul>
           <div className='btn btn-square btn-ghost md:hidden'>
             <RxHamburgerMenu onClick={sideBarHandle} size={25} />
@@ -51,7 +52,7 @@ const Header = () => {
               <Link href='/'>
                 <Image src={NavLogoWhite} alt='/' width='32' />
               </Link>
-              <div onClick={sideBarHandle}>
+              <div className='btn btn-square btn-ghost' onClick={sideBarHandle}>
                 <AiOutlineClose size={25} />
               </div>
             </div>
