@@ -14,7 +14,7 @@ const Header = () => {
     setSideBar(!sideBar)
   }
   return (
-    <header className='navbar'>
+    <header className='navbar font-raleway'>
       <div className='flex w-full justify-between'>
         <Link className='ml-4 hover:scale-105 duration-200' href='/'>
           <Image
@@ -38,7 +38,6 @@ const Header = () => {
             <li className='header-link'>
               <Link href='/#projects'>projects</Link>
             </li>
-            -
           </ul>
           <div className='btn btn-square btn-ghost md:hidden'>
             <RxHamburgerMenu onClick={sideBarHandle} size={25} />
@@ -80,7 +79,7 @@ const Header = () => {
                 </Link>
               </ul>
               <div className='pt-40'>
-                <p className='uppercase tracking-widest text-secondary'>
+                <p className='uppercase tracking-widest text-primary'>
                   Let&#39;s Connect
                 </p>
                 <div className='flex items-center justify-between my-4 w-full sm:w-[80%]'>
