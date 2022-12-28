@@ -33,3 +33,25 @@ html {
     @apply cursor-pointer;
   }
 }
+
+@layer components {
+  .header-link {
+    @apply hover:border-b hover:text-primary hover:border-primary;
+  }
+
+  .sidebar-overlay {
+    @apply md:hidden fixed duration-100 ease-in left-0 top-0 w-full h-screen bg-black/70;
+  }
+
+  .sidebar-open {
+    @apply fixed left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-base-100 p-10 ease-in duration-200;
+  }
+
+  .sidebar-close {
+    @apply fixed left-[-100%] top-0 p-10 ease-in;
+  }
+
+  .sidebar-btn {
+    @apply rounded-full text-secondary-content p-3 cursor-pointer bg-secondary hover:scale-105 ease-in duration-200;
+  }
+}
