@@ -53,4 +53,8 @@ html {
   .sidebar-btn {
     @apply rounded-full text-primary-content p-3 cursor-pointer bg-primary hover:scale-105 ease-in duration-200;
   }
+
+  .home-icon {
+    @apply rounded-full text-xl text-secondary-content hover:bg-secondary-focus bg-secondary p-6 cursor-pointer hover:scale-110 ease-in duration-100;
+  }
 }

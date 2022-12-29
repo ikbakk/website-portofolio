@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import MainScreen from '../components/MainScreen'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           rel='stylesheet'
         />
       </Head>
+      <MainScreen />
     </>
   )
 }
