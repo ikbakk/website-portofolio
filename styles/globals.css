@@ -35,11 +35,15 @@ html {
 
 @layer components {
   .header-link {
-    @apply hover:border-b hover:text-primary hover:border-primary;
+    @apply hover:border-b hover:text-secondary hover:border-secondary;
+  }
+
+  .home-icon {
+    @apply rounded-full text-xl text-secondary-content hover:bg-secondary-focus bg-secondary p-6 cursor-pointer hover:scale-110 ease-in duration-100;
   }
 
   .sidebar-overlay {
-    @apply md:hidden fixed duration-100 ease-in left-0 top-0 w-full h-screen bg-black/70;
+    @apply md:hidden fixed duration-100 ease-in z-10 left-0 top-0 w-full h-screen bg-black/70;
   }
 
   .sidebar-open {
@@ -51,10 +55,6 @@ html {
   }
 
   .sidebar-btn {
-    @apply rounded-full text-primary-content p-3 cursor-pointer bg-primary hover:scale-105 ease-in duration-200;
-  }
-
-  .home-icon {
-    @apply rounded-full text-xl text-secondary-content hover:bg-secondary-focus bg-secondary p-6 cursor-pointer hover:scale-110 ease-in duration-100;
+    @apply rounded-full hover:bg-secondary-focus text-secondary-content p-3 cursor-pointer bg-secondary hover:scale-105 ease-in duration-100;
   }
 }

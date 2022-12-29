@@ -15,7 +15,7 @@ const MainScreen = () => {
           <h1>
             Hi, I&#39;m Iqbal<span className='text-secondary'> Firdaus</span>
           </h1>
-          <p className='text-justify sm:max-[70%] m-auto'>
+          <p className='sm:max-[70%] m-auto text-center'>
             I'm focused on building responsive front-end web applications, and
             will do cross platform applications in the near future
           </p>
