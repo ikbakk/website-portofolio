@@ -1,5 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
+import AboutMe from '../public/assets/aboutMe.png'
+import Image from 'next/image'
 
 const About = () => {
   return (
@@ -35,6 +37,14 @@ const About = () => {
               Check out some of my simple projects.
             </p>
           </Link>
+        </div>
+        <div className='w-full h-auto m-auto items-center justify-center p-4 hover:scale-105 ease-in duration-100'>
+          <Image
+            className='hidden md:flex'
+            src={AboutMe}
+            width='auto'
+            alt='/'
+          />
         </div>
       </div>
     </div>
