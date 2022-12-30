@@ -7,7 +7,7 @@ const ProjectItem = ({ title, bg, tech, id }) => {
     <div className='relative p-3 shadow-xl shadow-base-300 flex bg-base-300 items-center justify-center h-auto w-full  rounded-xl group hover:bg-gradient-to-r from-secondary to-accent'>
       <Image
         className='rounded-xl group-hover:opacity-10'
-        src={`/../public/assets/projects/${bg}`}
+        src={`/assets/projects/${bg}`}
         width={650}
         height={1}
         alt='/'
