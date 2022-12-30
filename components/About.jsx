@@ -34,18 +34,13 @@ const About = () => {
             especially in the Front-End side so far.
           </p>
           <Link href='/#projects'>
-            <p className='py-4 text-accent hover:text-secondary-focus underline underline-offset-8 cursor-pointer'>
+            <p className='py-4 text-accent w-fit hover:text-accent-focus underline underline-offset-8 cursor-pointer'>
               Check out some of my simple projects.
             </p>
           </Link>
         </div>
         <div className='w-full h-auto m-auto items-center justify-center p-4 hover:scale-105 ease-in duration-100'>
-          <Image
-            className='hidden md:flex'
-            src={AboutMe}
-            width='auto'
-            alt='/'
-          />
+          <Image className=' md:flex' src={AboutMe} width='auto' alt='/' />
         </div>
       </div>
     </div>

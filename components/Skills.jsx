@@ -24,9 +24,7 @@ const Skills = () => {
             : value.data().data[1].skill.map((skill) => {
                 return (
                   <>
-                    <div
-                      key={skill.name}
-                      className='p-6 rounded-xl text-accent hover:text-accent-content hover:bg-gradient-to-r from-secondary to-accent bg-base-300 shadow-xl shadow-base-200 space-y-4 flex flex-col items-center hover:scale-105 ease-in duration-100'>
+                    <div key={skill.name} className='skill-card'>
                       <div className='m-auto '>
                         <Image
                           src={`/..${skill.img}`}

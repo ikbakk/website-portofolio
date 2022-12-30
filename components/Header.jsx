@@ -14,7 +14,7 @@ const Header = () => {
     setSideBar(!sideBar)
   }
   return (
-    <header className='navbar font-raleway'>
+    <header className='navbar fixed z-10 bg-base-100 font-raleway'>
       <div className='flex w-full justify-between'>
         <Link className='ml-4 hover:scale-105 duration-200' href='/'>
           <Image
