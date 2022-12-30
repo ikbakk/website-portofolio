@@ -4,17 +4,24 @@ import { useState } from 'react'
 import { RxHamburgerMenu, RxLinkedinLogo, RxGithubLogo } from 'react-icons/rx'
 import { AiOutlineClose, AiOutlineMail } from 'react-icons/ai'
 import { BsFillPersonLinesFill } from 'react-icons/bs'
+import { useRouter } from 'next/router'
 
 import NavLogoWhite from '../public/assets/logo/logoFillWhite.png'
 
 const Header = () => {
   const [sideBar, setSideBar] = useState(false)
 
+  const router = useRouter()
   const sideBarHandle = () => {
     setSideBar(!sideBar)
   }
   return (
-    <header className='navbar fixed z-10 bg-base-100 font-raleway'>
+    <header
+      className={
+        router.pathname === '/projects/[projectId]'
+          ? 'navbar fixed z-10 font-raleway'
+          : 'navbar fixed bg-base-100 z-10 font-raleway'
+      }>
       <div className='flex w-full justify-between'>
         <Link className='ml-4 hover:scale-105 duration-200' href='/'>
           <Image
