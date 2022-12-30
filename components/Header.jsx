@@ -38,6 +38,9 @@ const Header = () => {
             <li className='header-link'>
               <Link href='/#projects'>projects</Link>
             </li>
+            <li className='header-link'>
+              <Link href='/#contact'>contact</Link>
+            </li>
           </ul>
           <div className='btn btn-square btn-ghost md:hidden'>
             <RxHamburgerMenu onClick={sideBarHandle} size={25} />
@@ -62,7 +65,7 @@ const Header = () => {
                     Home
                   </li>
                 </Link>
-                <Link href='/#about'>
+                <Link href='#about'>
                   <li className='py-4' onClick={() => setSideBar(false)}>
                     About
                   </li>
