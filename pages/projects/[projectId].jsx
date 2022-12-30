@@ -9,12 +9,9 @@ import { useDocument } from 'react-firebase-hooks/firestore'
 const projectId = () => {
   const router = useRouter()
   const id = router.query.projectId
-  const [value, loading, error] = useDocument(
-    doc(db, 'porto', 'projectDetail'),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true }
-    }
-  )
+  const [value, loading] = useDocument(doc(db, 'porto', 'projectDetail'), {
+    snapshotListenOptions: { includeMetadataChanges: true }
+  })
   return (
     <>
       <div className='h-screen'>
