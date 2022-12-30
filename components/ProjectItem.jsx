@@ -26,7 +26,7 @@ const ProjectItem = ({ title, bg, tech, id }) => {
             )
           })}
         </p>
-        <Link href={`/${id}`}>
+        <Link href={`/projects/${id}`}>
           <p className='text-center py-3 rounded-lg bg-base-100 text-secondary font-bold text-lg cursor-pointer'>
             More Info
           </p>

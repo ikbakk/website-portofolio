@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply tracking-wide;
+    @apply tracking-wide font-raleway;
   }
 
   h1,

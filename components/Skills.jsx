@@ -23,8 +23,8 @@ const Skills = () => {
             ? null
             : value.data().data[1].skill.map((skill) => {
                 return (
-                  <>
-                    <div key={skill.name} className='skill-card'>
+                  <div key={skill.name}>
+                    <div className='skill-card'>
                       <div className='m-auto '>
                         <Image src={skill.img} width={64} height={64} alt='/' />
                       </div>
@@ -32,7 +32,7 @@ const Skills = () => {
                         <h3>{skill.name}</h3>
                       </div>
                     </div>
-                  </>
+                  </div>
                 )
               })}
         </div>
