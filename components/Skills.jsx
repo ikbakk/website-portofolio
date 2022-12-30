@@ -27,7 +27,7 @@ const Skills = () => {
                     <div key={skill.name} className='skill-card'>
                       <div className='m-auto '>
                         <Image
-                          src={`/..${skill.img}`}
+                          src={`..${skill.img}`}
                           width={64}
                           height={64}
                           alt='/'
