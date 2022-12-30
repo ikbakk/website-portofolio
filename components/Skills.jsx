@@ -13,11 +13,11 @@ const Skills = () => {
   )
   return (
     <div id='skills' className='w-full lg:h-screen p-2 font-raleway'>
-      <div className=' max-w-7xl mx-auto flex flex-col justify-center h-full'>
+      <div className=' max-w-7xl mx-auto flex space-y-4 flex-col justify-center h-full'>
         <p className='text-xl tracking-widest uppercase text-secondary'>
           Skills
         </p>
-        <h2 className='py-4'>What I can do</h2>
+        <h2 className='py-4 text-accent'>What I can do</h2>
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-8'>
           {loading
             ? null
@@ -26,8 +26,8 @@ const Skills = () => {
                   <>
                     <div
                       key={skill.name}
-                      className='p-6 rounded-xl space-y-4 flex flex-col items-center hover:scale-105 ease-in duration-100'>
-                      <div className='m-auto'>
+                      className='p-6 rounded-xl text-accent hover:text-accent-content hover:bg-gradient-to-r from-secondary to-accent bg-base-300 shadow-xl shadow-base-200 space-y-4 flex flex-col items-center hover:scale-105 ease-in duration-100'>
+                      <div className='m-auto '>
                         <Image
                           src={`/..${skill.img}`}
                           width={64}

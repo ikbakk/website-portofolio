@@ -42,6 +42,10 @@ html {
     @apply rounded-full text-xl text-secondary-content hover:bg-secondary-focus bg-secondary p-6 cursor-pointer hover:scale-110 ease-in duration-100;
   }
 
+  .contact-icon {
+    @apply rounded-full text-xl text-accent-content hover:bg-accent-focus bg-accent p-6 cursor-pointer hover:scale-110 ease-in duration-100;
+  }
+
   .sidebar-overlay {
     @apply md:hidden fixed duration-100 ease-in z-10 left-0 top-0 w-full h-screen bg-black/70;
   }

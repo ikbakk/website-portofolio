@@ -8,12 +8,13 @@ const About = () => {
     <div
       id='about'
       className='w-full font-raleway md:h-screen p-2 flex items-center py-16'>
-      <div className=' max-w-7xl m-auto md:grid md:grid-cols-3 gap-8'>
-        <div className='col-span-2'>
+      <div className='max-w-7xl m-auto md:grid md:grid-cols-3 gap-8'>
+        <div className='col-span-2 space-y-6'>
           <p className='uppercase text-xl text-justify tracking-widest text-secondary'>
             About
           </p>
-          <p className='py-2'>
+          <h2 className='text-accent'>Who I Am</h2>
+          <p>
             I currently a newcomer in buiding responsive Front-End UI
             applications that connect with firebase so far. I'm passionate about
             learning new stuff and understand there is more than one way to
@@ -23,7 +24,7 @@ const About = () => {
             just like i try to learn NextJS to make this website portfolio for
             starter.
           </p>
-          <p className='py-2'>
+          <p>
             I started web development back in 2021 when i try to make my final
             year project for my Electrical Engineering degree, a hospital
             monitoring app which read patient's heartrate, oxygen saturation and
@@ -33,7 +34,7 @@ const About = () => {
             especially in the Front-End side so far.
           </p>
           <Link href='/#projects'>
-            <p className='py-2 text-secondary hover:text-secondary-focus underline underline-offset-8 cursor-pointer'>
+            <p className='py-4 text-accent hover:text-secondary-focus underline underline-offset-8 cursor-pointer'>
               Check out some of my simple projects.
             </p>
           </Link>
