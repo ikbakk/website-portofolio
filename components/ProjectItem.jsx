@@ -13,10 +13,10 @@ const ProjectItem = ({ title, bg, tech, id }) => {
         alt='/'
       />
       <div className='hidden ease-in-out duration-100 group-hover:block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
-        <h3 className='text-accent-content tracking-wider text-center'>
+        <h3 className='text-accent-content md:text-2xl tracking-wider text-center'>
           {title}
         </h3>
-        <p className='text-xs md:text-2xl md:flex md:pb-4 md:pt-2 text-accent-content text-center'>
+        <p className='text-xs md:text-md md:pb-4 md:pt-2 text-accent-content text-center'>
           {tech.map((t, i) => {
             return (
               <span key={t}>
