@@ -11,7 +11,7 @@ html {
   }
 
   body {
-    @apply tracking-wide font-raleway;
+    @apply font-raleway tracking-wide;
   }
 
   h1,
@@ -38,23 +38,23 @@ html {
 
 @layer components {
   .header-link {
-    @apply hover:border-b hover:text-secondary hover:border-secondary;
+    @apply hover:border-b hover:border-secondary hover:text-secondary;
   }
 
   .home-icon {
-    @apply rounded-full text-xl text-secondary-content hover:bg-secondary-focus bg-secondary p-6 cursor-pointer hover:scale-110 ease-in duration-100;
+    @apply cursor-pointer rounded-full bg-secondary p-6 text-xl text-secondary-content duration-100 ease-in hover:scale-110 active:bg-secondary-focus;
   }
 
   .contact-icon {
-    @apply rounded-full text-xl text-accent-content hover:bg-accent-focus bg-accent p-6 cursor-pointer hover:scale-110 ease-in duration-100;
+    @apply cursor-pointer rounded-full bg-accent p-6 text-xl text-accent-content duration-100 ease-in hover:scale-110 active:bg-accent-focus;
   }
 
   .sidebar-overlay {
-    @apply md:hidden fixed duration-100 ease-in z-10 left-0 top-0 w-full h-screen bg-black/70;
+    @apply fixed left-0 top-0 z-10 h-screen w-full bg-black/70 duration-100 ease-in md:hidden;
   }
 
   .sidebar-open {
-    @apply fixed left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-base-100 p-10 ease-in duration-200;
+    @apply fixed left-0 top-0 h-screen w-[75%] bg-base-100 p-10 duration-200 ease-in sm:w-[60%] md:w-[45%];
   }
 
   .sidebar-close {
@@ -62,10 +62,10 @@ html {
   }
 
   .sidebar-btn {
-    @apply rounded-full hover:bg-secondary-focus text-secondary-content p-3 cursor-pointer bg-secondary hover:scale-105 ease-in duration-100;
+    @apply cursor-pointer rounded-full bg-secondary p-3 text-secondary-content duration-100 ease-in hover:scale-105 active:bg-secondary-focus;
   }
 
   .skill-card {
-    @apply p-6 rounded-xl text-accent hover:text-accent-content hover:bg-gradient-to-r from-secondary to-accent bg-base-300 shadow-xl shadow-base-200 space-y-4 flex flex-col items-center hover:scale-105 ease-in duration-100;
+    @apply flex flex-col items-center space-y-4 rounded-xl bg-base-300 from-secondary to-accent p-6 text-accent shadow-xl shadow-base-200 duration-100 ease-in hover:scale-105 hover:bg-gradient-to-r hover:text-accent-content;
   }
 }

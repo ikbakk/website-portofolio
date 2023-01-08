@@ -28,5 +28,5 @@ module.exports = {
       }
     }
   },
-  plugins: [require('daisyui'), require('autoprefixer')]
+  plugins: [require('daisyui'), require('autoprefixer'), require('prettier-plugin-tailwindcss')]
 }
