@@ -18,12 +18,12 @@ const Header = () => {
   return (
     <header
       className={
-        router.pathname === '/projects/[projectId]'
+        router.pathname === '/projects/[slug]'
           ? 'navbar fixed z-10 font-raleway'
-          : 'navbar fixed bg-base-100 z-10 font-raleway'
+          : 'navbar fixed z-10 bg-base-100 font-raleway'
       }>
       <div className='flex w-full justify-between'>
-        <Link className='ml-4 hover:scale-105 duration-200' href='/'>
+        <Link className='ml-4 duration-200 hover:scale-105' href='/'>
           <Image
             src={NavLogoWhite}
             alt='/'
@@ -49,7 +49,7 @@ const Header = () => {
               <Link href='/#contact'>contact</Link>
             </li>
           </ul>
-          <div className='btn btn-square btn-ghost md:hidden'>
+          <div className='btn-ghost btn-square btn md:hidden'>
             <RxHamburgerMenu onClick={sideBarHandle} size={25} />
           </div>
         </div>
@@ -61,12 +61,12 @@ const Header = () => {
               <Link href='/'>
                 <Image src={NavLogoWhite} alt='/' width='32' />
               </Link>
-              <div className='btn btn-square btn-ghost' onClick={sideBarHandle}>
+              <div className='btn-ghost btn-square btn' onClick={sideBarHandle}>
                 <AiOutlineClose size={25} />
               </div>
             </div>
-            <div className='py-4 flex flex-col'>
-              <ul className='uppercase text-sm'>
+            <div className='flex flex-col py-4'>
+              <ul className='text-sm uppercase'>
                 <Link href='/'>
                   <li className='py-4' onClick={() => setSideBar(false)}>
                     Home
@@ -92,7 +92,7 @@ const Header = () => {
                 <p className='uppercase tracking-widest text-secondary'>
                   Let&#39;s Connect
                 </p>
-                <div className='flex items-center justify-between my-4 w-full sm:w-[80%]'>
+                <div className='my-4 flex w-full items-center justify-between sm:w-[80%]'>
                   <a
                     href='https://www.linkediin.com/in/ikbak'
                     target='_blank'

@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'next/link'
 
 const ProjectItem = ({ image, slug, techs, title }) => {
-  console.log(slug.current)
   return (
     <div className='group relative flex h-auto w-full items-center justify-center rounded-xl bg-base-300 from-secondary  to-accent p-3 shadow-xl shadow-base-300 hover:bg-gradient-to-r'>
       <img className='rounded-xl group-hover:opacity-10' src={image} alt='/' />
@@ -20,7 +19,7 @@ const ProjectItem = ({ image, slug, techs, title }) => {
             )
           })}
         </p>
-        <Link href={slug.current}>
+        <Link href={`/projects/${slug.current}`}>
           <p className='cursor-pointer rounded-lg bg-base-100 py-3 text-center text-sm font-bold text-secondary md:text-lg'>
             More Info
           </p>
