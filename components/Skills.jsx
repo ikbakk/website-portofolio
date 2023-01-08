@@ -1,8 +1,4 @@
-import React, { useState } from 'react'
-import { db } from './config/firebase'
-import { doc } from 'firebase/firestore'
-import { useDocument } from 'react-firebase-hooks/firestore'
-import Image from 'next/image'
+import React from 'react'
 import { imgUrl } from '../utils/sanity'
 
 const Skills = ({ data }) => {

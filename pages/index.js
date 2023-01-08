@@ -26,7 +26,9 @@ export default function Home({ data }) {
 export const getStaticProps = async () => {
   const query = `*[_type =='info' ][0]{
     _id,
-    name,
+    firstName,
+    lastName,
+    description,
     'skills': *[_type == 'skills']{
       name,logo
     },

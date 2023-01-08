@@ -5,6 +5,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { BsFillPersonLinesFill } from 'react-icons/bs'
 
 const MainScreen = ({ data }) => {
+  const { firstName, lastName, description } = data
   return (
     <div id='home' className='hero h-screen'>
       <div className='max-w-[80rem] flex items-center justify-center p-2 mx-auto'>
@@ -13,12 +14,10 @@ const MainScreen = ({ data }) => {
             build anything you want
           </p>
           <h1>
-            Hi, I&#39;m Iqbal<span className='text-secondary'> Firdaus</span>
+            Hi, I&#39;m {firstName}
+            <span className='text-secondary'> {lastName}</span>
           </h1>
-          <p className='sm:max-[70%] m-auto text-center'>
-            I'm focused on building responsive front-end web applications, and
-            will do cross platform applications in the near future
-          </p>
+          <p className='sm:max-[70%] m-auto text-center'>{description}</p>
           <div className='flex item-center justify-between max-w-xs m-auto py-4'>
             <a
               href='https://www.linkedin.com/in/ikbak'
