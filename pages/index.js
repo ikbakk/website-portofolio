@@ -4,6 +4,7 @@ import About from '../components/About'
 import Skills from '../components/Skills'
 import Projects from '../components/Projects'
 import Contact from '../components/Contact'
+import { sanityClient } from '../utils/sanity'
 
 export default function Home() {
   return (
@@ -20,4 +21,25 @@ export default function Home() {
       <Contact />
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const query = `*[_type =='info' ][0]{
+    _id,
+    name,
+    description,
+    skills,
+    image,
+    place,
+    'socials': *[_type == 'socials']{
+      name,link
+    }
+  }`
+
+  const data = sanityClient.fetch(query)
+  return {
+    props: {
+      data
+    }
+  }
 }
