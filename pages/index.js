@@ -6,7 +6,7 @@ import Projects from '../components/Projects'
 import Contact from '../components/Contact'
 import { sanityClient } from '../utils/sanity'
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Head>
@@ -14,10 +14,10 @@ export default function Home() {
         <meta name='description' content="I'm a front-end web developer " />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <MainScreen />
+      <MainScreen data={data} />
       <About />
-      <Skills />
-      <Projects />
+      <Skills data={data} />
+      {/* <Projects /> */}
       <Contact />
     </>
   )
@@ -27,16 +27,16 @@ export const getStaticProps = async () => {
   const query = `*[_type =='info' ][0]{
     _id,
     name,
-    description,
-    skills,
+    'skills': *[_type == 'skills']{
+      name,logo
+    },
     image,
-    place,
     'socials': *[_type == 'socials']{
       name,link
     }
   }`
 
-  const data = sanityClient.fetch(query)
+  const data = await sanityClient.fetch(query)
   return {
     props: {
       data

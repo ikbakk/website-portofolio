@@ -4,7 +4,7 @@ import { RxLinkedinLogo, RxGithubLogo } from 'react-icons/rx'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsFillPersonLinesFill } from 'react-icons/bs'
 
-const MainScreen = () => {
+const MainScreen = ({ data }) => {
   return (
     <div id='home' className='hero h-screen'>
       <div className='max-w-[80rem] flex items-center justify-center p-2 mx-auto'>
