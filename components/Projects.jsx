@@ -1,37 +1,29 @@
 import React from 'react'
-import { db } from './config/firebase'
-import { doc } from 'firebase/firestore'
-import { useDocument } from 'react-firebase-hooks/firestore'
 import ProjectItem from './ProjectItem'
+import { imgUrl } from '../utils/sanity'
 
-const Projects = () => {
-  const [value, loading, error] = useDocument(
-    doc(db, 'porto', 'iqbalFirdaus'),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true }
-    }
-  )
+const Projects = ({ data }) => {
+  const { projects } = data
   return (
     <div id='projects' className='w-full font-raleway'>
-      <div className='max-w-7xl mx-auto px-2 py-16'>
-        <p className='text-xl tracking-widest uppercase text-secondary'>
+      <div className='mx-auto max-w-7xl px-2 py-16'>
+        <p className='text-xl uppercase tracking-widest text-secondary'>
           Projects
         </p>
         <h2 className='py-4 text-accent'>What I&apos;ve Built</h2>
-        <div className='grid md:grid-cols-2 gap-8'>
-          {loading
-            ? null
-            : value.data().projects.map((project) => {
-                return (
-                  <ProjectItem
-                    key={project.id}
-                    id={project.id}
-                    title={project.title}
-                    bg={project.bg}
-                    tech={project.tech}
-                  />
-                )
-              })}
+        <div className='grid gap-8 md:grid-cols-2'>
+          {projects.flatMap((project, i) => {
+            return (
+              <ProjectItem
+                key={i}
+                slug={project.slug}
+                image={imgUrl(project.image).url()}
+                title={project.title}
+                techs={project.tech}
+                overview={project.overview}
+              />
+            )
+          })}
         </div>
       </div>
     </div>

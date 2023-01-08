@@ -17,7 +17,7 @@ export default function Home({ data }) {
       <MainScreen data={data} />
       <About />
       <Skills data={data} />
-      {/* <Projects /> */}
+      <Projects data={data} />
       <Contact />
     </>
   )
@@ -32,7 +32,9 @@ export const getStaticProps = async () => {
     'skills': *[_type == 'skills']{
       name,logo
     },
-    image,
+    'projects': *[_type == 'projects']{
+      title,image,tech,overview,slug
+    },
     'socials': *[_type == 'socials']{
       name,link
     }

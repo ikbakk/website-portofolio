@@ -1,33 +1,27 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 
-const ProjectItem = ({ title, bg, tech, id }) => {
+const ProjectItem = ({ image, slug, techs, title }) => {
+  console.log(slug.current)
   return (
-    <div className='relative p-3 shadow-xl shadow-base-300 flex bg-base-300 items-center justify-center h-auto w-full  rounded-xl group hover:bg-gradient-to-r from-secondary to-accent'>
-      <Image
-        className='rounded-xl group-hover:opacity-10'
-        src={`/assets/projects/${bg}`}
-        width={650}
-        height={1}
-        alt='/'
-      />
-      <div className='hidden ease-in-out duration-100 group-hover:block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
-        <h3 className='text-accent-content md:text-2xl tracking-wider text-center'>
+    <div className='group relative flex h-auto w-full items-center justify-center rounded-xl bg-base-300 from-secondary  to-accent p-3 shadow-xl shadow-base-300 hover:bg-gradient-to-r'>
+      <img className='rounded-xl group-hover:opacity-10' src={image} alt='/' />
+      <div className='absolute top-[50%] left-[50%] hidden translate-x-[-50%] translate-y-[-50%] duration-100 ease-in-out group-hover:block'>
+        <h3 className='text-center tracking-wider text-accent-content md:text-2xl'>
           {title}
         </h3>
-        <p className='text-xs md:text-md md:pb-4 md:pt-2 text-accent-content text-center'>
-          {tech.map((t, i) => {
+        <p className='md:text-md text-center text-xs text-accent-content md:pb-4 md:pt-2'>
+          {techs.map((tech, index) => {
             return (
-              <span key={t}>
-                {t}
-                {i < tech.length - 1 ? ', ' : ''}
+              <span key={index}>
+                {tech}
+                {index < techs.length - 1 ? ', ' : ''}
               </span>
             )
           })}
         </p>
-        <Link href={`/projects/${id}`}>
-          <p className='text-center py-3 text-sm rounded-lg bg-base-100 text-secondary font-bold md:text-lg cursor-pointer'>
+        <Link href={slug.current}>
+          <p className='cursor-pointer rounded-lg bg-base-100 py-3 text-center text-sm font-bold text-secondary md:text-lg'>
             More Info
           </p>
         </Link>
