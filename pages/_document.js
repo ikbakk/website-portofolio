@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html className='font-raleway' data-theme='mytheme' lang='en'>
+    <Html className='scroll-smooth font-raleway' data-theme='mytheme' lang='en'>
       <Head />
       <body>
         <Main />

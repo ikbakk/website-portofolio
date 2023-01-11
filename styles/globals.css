@@ -7,7 +7,7 @@ html {
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    @apply scroll-smooth !important;
   }
 
   body {
