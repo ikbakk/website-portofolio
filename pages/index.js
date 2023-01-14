@@ -14,14 +14,13 @@ export default function Home({ data }) {
         <title>Iqbal | Front-End Developer</title>
         <meta
           name='description'
-          content='A personal website portfolio with Next.js'
-        />
-        <meta
-          property='og:description'
-          content='A personal website portfolio with Next.js'
+          content='A personal website portfolio with Next.js, place to showcase simple projects i have built so far.'
         />
         <meta property='og:image' content={metaImg} />
-        <meta property='og:title' content='Iqbal Firdaus | Web Portfolio' />
+        <meta
+          property='og:title'
+          content='Iqbal Firdaus | Front-End Web Developer'
+        />
         <meta property='og:url' content='https://ikbak.vercel.app/' />
         <meta property='og:type' content='article' />
         <meta property='og:image:secure_url' content={metaImg} />
