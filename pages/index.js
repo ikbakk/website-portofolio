@@ -12,8 +12,15 @@ export default function Home({ data }) {
     <>
       <Head>
         <title>Iqbal | Front-End Developer</title>
-        <meta name='description' content="I'm a front-end web developer " />
+        <meta
+          property='og:description'
+          content='A personal website portfolio with Next.js'
+        />
         <meta property='og:image' content={metaImg} />
+        <meta property='og:title' content='Iqbal Firdaus | Web Portfolio' />
+        <meta property='og:url' content='https://ikbak.vercel.app/' />
+        <meta property='og:type' content='article' />
+        <meta property='og:image:secure_url' content={metaImg} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainScreen data={data} />
