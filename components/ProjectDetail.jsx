@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { RiRadioButtonFill } from 'react-icons/ri'
 import { imgUrl } from '../utils/sanity'

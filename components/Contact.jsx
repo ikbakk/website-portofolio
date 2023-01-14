@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
-import { AiOutlineMail } from 'react-icons/ai'
+import React from 'react'
 import { BsFillPersonLinesFill } from 'react-icons/bs'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { HiOutlineChevronDoubleUp } from 'react-icons/hi'
 import ContactImg from '../public/assets/contact.png'
 
 const Contact = () => {
-  const a = [{ icon: 'FaGithub' }]
   return (
     <div id='contact' className='w-full lg:h-screen font-raleway'>
       <div className='max-w-[1240px] m-auto px-2 py-16 w-full '>

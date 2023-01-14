@@ -4,14 +4,16 @@ import About from '../components/About'
 import Skills from '../components/Skills'
 import Projects from '../components/Projects'
 import Contact from '../components/Contact'
-import { sanityClient } from '../utils/sanity'
+import { sanityClient, imgUrl } from '../utils/sanity'
 
 export default function Home({ data }) {
+  const metaImg = imgUrl(data.image).url()
   return (
     <>
       <Head>
         <title>Iqbal | Front-End Developer</title>
         <meta name='description' content="I'm a front-end web developer " />
+        <meta property='og:image' content={metaImg} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainScreen data={data} />
@@ -28,6 +30,7 @@ export const getStaticProps = async () => {
     _id,
     firstName,
     lastName,
+    image,
     description,
     'skills': *[_type == 'skills']{
       name,logo
