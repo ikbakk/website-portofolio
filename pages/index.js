@@ -13,6 +13,10 @@ export default function Home({ data }) {
       <Head>
         <title>Iqbal | Front-End Developer</title>
         <meta
+          name='description'
+          content='A personal website portfolio with Next.js'
+        />
+        <meta
           property='og:description'
           content='A personal website portfolio with Next.js'
         />
