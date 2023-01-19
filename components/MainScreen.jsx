@@ -1,14 +1,92 @@
 import React from 'react'
 import Link from 'next/link'
-import { RxLinkedinLogo, RxGithubLogo } from 'react-icons/rx'
+import { RxLinkedinLogo, RxGithubLogo, RxDownload } from 'react-icons/rx'
+import { RiExternalLinkLine } from 'react-icons/ri'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsFillPersonLinesFill } from 'react-icons/bs'
 
 const MainScreen = ({ data }) => {
   const { firstName, lastName, description } = data
+  const navList = [
+    { name: 'Skills', link: '#/skills' },
+    { name: 'Projects', link: '#/projects' },
+    { name: 'Resume', link: '#/resume' },
+    { name: 'Contact', link: '#/contact' }
+  ]
   return (
-    <div id='home' className='hero h-screen'>
-      <div className='max-w-[80rem] flex items-center justify-center p-2 mx-auto'>
+    <section id='home' className='flex h-screen flex-col md:flex-row-reverse '>
+      <section className='flex h-full flex-col justify-between p-8 outline md:basis-1/2 md:p-10'>
+        <div>
+          <hgroup className='py-2'>
+            <h1>
+              Hello, I&#39;m {firstName}
+              <span className='text-secondary'> {lastName}</span>
+            </h1>
+            <h3 className='pt-1'>AAAAAAAAAAA</h3>
+          </hgroup>
+          <p className='pt-5'>{description}</p>
+        </div>
+        <nav className='py-5'>
+          <ul className='hidden md:flex md:flex-col'>
+            {navList.map((list, index) => (
+              <li key={index} className='nav-li group'>
+                <div className='nav-li-bar' />
+                <Link className='px-5' href={list.link}>
+                  {list.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <footer>
+          <nav>
+            <ul className='flex flex-col space-y-2 md:flex-row md:justify-between md:space-y-0'>
+              <li className='group w-fit active:scale-95'>
+                <a
+                  target='_blank'
+                  className='flex items-center space-x-3 duration-200 hover:text-secondary'
+                  href='https://github.com/ikbakk'>
+                  <figure>
+                    <RxGithubLogo size={32} />
+                  </figure>
+                  <p className='pt-1'>Github</p>
+                  <figure className='duration-75 group-hover:translate-x-3'>
+                    <RiExternalLinkLine size={22} />
+                  </figure>
+                </a>
+              </li>
+              <li className='group w-fit active:scale-95'>
+                <a
+                  target='_blank'
+                  className='flex items-center space-x-3 duration-200 hover:text-secondary'
+                  href='https://linkedin/in/ikbakk'>
+                  <figure>
+                    <RxLinkedinLogo size={32} />
+                  </figure>
+                  <p className='pt-1'>LinkedIn</p>
+                  <figure className='duration-75 group-hover:translate-x-3'>
+                    <RiExternalLinkLine size={22} />
+                  </figure>
+                </a>
+              </li>
+              <li className='group w-fit active:scale-95'>
+                <a
+                  target='_blank'
+                  className='flex items-center space-x-3 duration-200 hover:text-secondary'
+                  href='#'>
+                  <figure>
+                    <RxDownload size={32} />
+                  </figure>
+                  <p className='pt-1'>Resume</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </footer>
+      </section>
+      <section className='h-full w-full md:basis-1/2'>a</section>
+
+      {/* <div className='max-w-[80rem] flex items-center justify-center p-2 mx-auto'>
         <div className='space-y-8 text-center mx-4 p-4'>
           <p className='uppercase text-sm tracking-widest'>
             build anything you want
@@ -55,8 +133,8 @@ const MainScreen = ({ data }) => {
             </Link>
           </div>
         </div>
-      </div>
-    </div>
+      </div> */}
+    </section>
   )
 }
 

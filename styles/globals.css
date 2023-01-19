@@ -68,4 +68,11 @@ html {
   .skill-card {
     @apply flex flex-col items-center space-y-4 rounded-xl bg-base-300 from-secondary to-accent p-6 text-accent shadow-xl shadow-base-200 duration-100 ease-in hover:scale-105 hover:bg-gradient-to-r hover:text-accent-content;
   }
+
+  .nav-li {
+    @apply flex w-auto items-center py-2 text-xl font-semibold tracking-widest;
+  }
+  .nav-li-bar {
+    @apply h-[2px] w-[10%] rounded-full bg-white delay-100 duration-300 group-hover:w-[20%];
+  }
 }

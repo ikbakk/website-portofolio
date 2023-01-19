@@ -12,10 +12,7 @@ export default function Home({ data }) {
     <>
       <Head>
         <title>Iqbal | Front-End Developer</title>
-        <meta
-          name='description'
-          content='A personal website portfolio with Next.js, place to showcase simple projects i have built so far.'
-        />
+        <meta name='description' content='A personal website portfolio' />
         <meta property='og:image' content={metaImg} />
         <meta
           property='og:title'
@@ -26,11 +23,13 @@ export default function Home({ data }) {
         <meta property='og:image:secure_url' content={metaImg} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <MainScreen data={data} />
-      <About />
-      <Skills data={data} />
-      <Projects data={data} />
-      <Contact />
+      <main>
+        <MainScreen data={data} />
+        {/* <About />
+        <Skills data={data} />
+        <Projects data={data} />
+        <Contact /> */}
+      </main>
     </>
   )
 }
