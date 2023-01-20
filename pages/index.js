@@ -23,7 +23,7 @@ export default function Home({ data }) {
         <meta property='og:image:secure_url' content={metaImg} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
+      <main className='h-screen'>
         <MainScreen data={data} />
         {/* <About />
         <Skills data={data} />

@@ -1,20 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { imgUrl } from '../utils/sanity'
 
 const Skills = ({ data }) => {
   const { skills } = data
+  const [isDim, setIsDim] = useState(false)
+  const dim = isDim ? 'group-hover:opacity-100 opacity-30' : 'opacity-100'
   return (
-    <div id='skills' className='w-full lg:h-screen p-2 font-raleway'>
-      <div className=' max-w-7xl mx-auto flex space-y-4 flex-col justify-center h-full'>
-        <p className='text-xl tracking-widest uppercase text-secondary'>
+    <div id='skills' className='w-full font-raleway md:py-16'>
+      <div className=' mx-auto flex h-full max-w-7xl flex-col justify-center space-y-4 px-2'>
+        <p className='sticky top-5 z-10 text-xl uppercase tracking-widest text-accent'>
           Skills
         </p>
-        <h2 className='py-4 text-accent'>What I can do</h2>
-        <div className='grid grid-cols-2 lg:grid-cols-4 gap-8'>
+        <h2 className='py-4 text-secondary'>What I can do</h2>
+        <div className='grid grid-cols-2 gap-2 md:grid-cols-3'>
           {skills.map((skill) => {
             return (
-              <div key={skill.name}>
-                <div className='skill-card'>
+              <div
+                onMouseOver={() => setIsDim(true)}
+                onMouseLeave={() => setIsDim(false)}
+                className='group relative'
+                key={skill.name}>
+                <div
+                  className={`flex ${dim} scale-90 flex-col items-center space-y-4 bg-primary p-6 text-secondary duration-200 ease-in hover:scale-110 md:scale-100`}>
                   <div className='m-auto '>
                     <img
                       src={imgUrl(skill.logo).url()}
