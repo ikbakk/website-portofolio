@@ -72,9 +72,10 @@ const MainScreen = ({ data }) => {
                 </li>
                 <li className='group w-fit active:scale-95'>
                   <a
+                    download
                     target='_blank'
                     className='flex items-center space-x-3 duration-200 hover:text-secondary'
-                    href='#'>
+                    href='/assets/CV_Muhammad_Iqbal_Firdaus.pdf'>
                     <figure>
                       <RxDownload size={32} />
                     </figure>
