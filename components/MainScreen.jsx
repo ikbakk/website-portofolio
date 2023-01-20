@@ -28,14 +28,12 @@ const MainScreen = ({ data }) => {
           <nav className='py-5'>
             <ul className='hidden md:flex md:flex-col'>
               {navList.map((list, index) => (
-                <li key={index} className='nav-li group'>
+                <Link href={list.link} key={index} className='nav-li group'>
                   <div className='nav-li-bar' />
-                  <Link
-                    className='px-5 duration-300 group-hover:text-secondary'
-                    href={list.link}>
+                  <li className='px-5 duration-300 group-hover:text-secondary'>
                     {list.name}
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               ))}
             </ul>
           </nav>
