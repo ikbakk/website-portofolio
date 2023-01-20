@@ -9,16 +9,6 @@ const Contact = () => {
         <p className='text-xl uppercase tracking-widest text-accent'>Contact</p>
         <h2 className='py-4 text-secondary'>Get In Touch</h2>
         <div className='flex flex-col'>
-          <div className='col-span-3 h-full w-full  bg-primary p-4 shadow-xl shadow-base-200 lg:col-span-2'>
-            <div className='h-full lg:p-4 '>
-              <hgroup>
-                <h2 className='py-2 text-secondary'>Muhammad Iqbal Firdaus</h2>
-                <h3 className=''>Front-End Developer</h3>
-              </hgroup>
-            </div>
-          </div>
-
-          {/* right */}
           <div className='shadow-bg-base-200 col-span-3 h-auto w-full bg-primary pb-4 shadow-xl lg:px-4'>
             <div className='px-4'>
               <form
