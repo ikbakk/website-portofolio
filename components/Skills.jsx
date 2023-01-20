@@ -8,9 +8,11 @@ const Skills = ({ data }) => {
   return (
     <div id='skills' className='w-full font-raleway md:py-16'>
       <div className=' mx-auto flex h-full max-w-7xl flex-col justify-center space-y-4 px-2'>
-        <p className='sticky top-5 z-10 text-xl uppercase tracking-widest text-accent'>
-          Skills
-        </p>
+        <div className='bg-base-100'>
+          <p className=' py-5 text-xl uppercase tracking-widest text-accent'>
+            Skills
+          </p>
+        </div>
         <h2 className='py-4 text-secondary'>What I can do</h2>
         <div className='grid grid-cols-2 gap-2 md:grid-cols-3'>
           {skills.map((skill) => {

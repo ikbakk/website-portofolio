@@ -1,10 +1,7 @@
 import Head from 'next/head'
 import MainScreen from '../components/MainScreen'
-import About from '../components/About'
-import Skills from '../components/Skills'
-import Projects from '../components/Projects'
-import Contact from '../components/Contact'
 import { sanityClient, imgUrl } from '../utils/sanity'
+import { HiOutlineChevronDoubleUp } from 'react-icons/hi'
 
 export default function Home({ data }) {
   const metaImg = imgUrl(data.image).url()
@@ -25,10 +22,13 @@ export default function Home({ data }) {
       </Head>
       <main className='h-screen'>
         <MainScreen data={data} />
-        {/* <About />
-        <Skills data={data} />
-        <Projects data={data} />
-        <Contact /> */}
+        <div className={`fixed bottom-0 right-5 z-30 py-12 md:hidden`}>
+          <a onclick='return false;' href='#'>
+            <div className='cursor-pointer rounded-full bg-primary p-4 outline outline-secondary duration-100 ease-in hover:scale-110'>
+              <HiOutlineChevronDoubleUp className='text-secondary' size={22} />
+            </div>
+          </a>
+        </div>
       </main>
     </>
   )

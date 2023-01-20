@@ -9,10 +9,12 @@ const Projects = ({ data }) => {
 
   return (
     <div id='projects' className='w-full font-raleway '>
-      <div className='mx-auto max-w-7xl px-2 py-16'>
-        <p className='sticky top-5 z-10 text-xl uppercase tracking-widest text-accent'>
-          Projects
-        </p>
+      <div className='max-w-7xl px-2 py-16'>
+        <div className='w-full bg-base-100'>
+          <p className='py-5 text-xl uppercase tracking-widest text-accent'>
+            Projects
+          </p>
+        </div>
         <h2 className='py-4 text-secondary'>What I&apos;ve Built</h2>
         <div className='grid grid-cols-1 gap-2'>
           {projects.flatMap((project, i) => {
