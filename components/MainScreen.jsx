@@ -6,6 +6,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { BsFillPersonLinesFill } from 'react-icons/bs'
 import Skills from './Skills'
 import Projects from './Projects'
+import Contact from './Contact'
 
 const MainScreen = ({ data }) => {
   const { firstName, lastName, description } = data
@@ -91,6 +92,7 @@ const MainScreen = ({ data }) => {
       <section className='left-0 top-0 h-full w-full p-8 md:basis-1/2 md:p-10'>
         <Skills data={data} />
         <Projects data={data} />
+        <Contact />
       </section>
 
       {/* <div className='max-w-[80rem] flex items-center justify-center p-2 mx-auto'>
