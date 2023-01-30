@@ -16,9 +16,7 @@
     "next-sanity": "^4.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-firebase-hooks": "^5.1.1",
-    "react-icons": "^4.7.1",
-    "react-loader-spinner": "^5.3.4"
+    "react-icons": "^4.7.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

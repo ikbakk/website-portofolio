@@ -2,6 +2,7 @@ import Head from 'next/head'
 import MainScreen from '../components/MainScreen'
 import { sanityClient, imgUrl } from '../utils/sanity'
 import { HiOutlineChevronDoubleUp } from 'react-icons/hi'
+import Link from 'next/link'
 
 export default function Home({ data }) {
   const metaImg = imgUrl(data.image).url()
@@ -23,11 +24,11 @@ export default function Home({ data }) {
       <main className='h-screen'>
         <MainScreen data={data} />
         <div className={`fixed bottom-0 right-5 z-30 py-12 md:hidden`}>
-          <a onclick='return false;' href='#'>
+          <Link onclick='return false;' href='/'>
             <div className='cursor-pointer rounded-full bg-primary p-4 outline outline-secondary duration-100 ease-in hover:scale-110'>
               <HiOutlineChevronDoubleUp className='text-secondary' size={22} />
             </div>
-          </a>
+          </Link>
         </div>
       </main>
     </>

@@ -1,7 +1,3 @@
-import Image from 'next/image'
-import React from 'react'
-import ContactImg from '../public/assets/contact.png'
-
 const Contact = () => {
   return (
     <section id='contact' className='w-full font-raleway lg:h-screen'>

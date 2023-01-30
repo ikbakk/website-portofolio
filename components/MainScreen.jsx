@@ -9,7 +9,7 @@ import Contact from './Contact'
 const MainScreen = ({ data }) => {
   const { firstName, lastName, description } = data
   const navList = [
-    { name: 'Skills', link: '/#skills' },
+    { name: 'Skills', link: '/' },
     { name: 'Projects', link: '/#projects' },
     { name: 'Contact', link: '/#contact' }
   ]
@@ -22,18 +22,20 @@ const MainScreen = ({ data }) => {
               {firstName}
               <span className='text-secondary'> {lastName}</span>
             </h1>
-            <h3 className='pt-1 text-secondary '>Front-End Web Developer</h3>
+            <h2 className='pt-1 text-secondary '>Front-End Web Developer</h2>
             <p className='prose pt-5'>{description}</p>
           </div>
           <nav className='py-5'>
             <ul className='hidden md:flex md:flex-col'>
               {navList.map((list, index) => (
-                <Link href={list.link} key={index} className='nav-li group'>
-                  <div className='nav-li-bar' />
-                  <li className='px-5 duration-300 group-hover:text-secondary'>
-                    {list.name}
-                  </li>
-                </Link>
+                <li>
+                  <Link href={list.link} key={index} className='nav-li group'>
+                    <div className='nav-li-bar' />
+                    <p className='px-5 duration-300 group-hover:text-secondary'>
+                      {list.name}
+                    </p>
+                  </Link>
+                </li>
               ))}
             </ul>
           </nav>

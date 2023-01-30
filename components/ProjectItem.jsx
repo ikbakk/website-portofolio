@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const ProjectItem = ({ image, slug, techs, title, dim }) => {
   return (
@@ -6,10 +7,12 @@ const ProjectItem = ({ image, slug, techs, title, dim }) => {
       <section
         className={`scale-90 bg-primary group-hover:z-10 group-hover:scale-110 md:scale-100 ${dim} card relative flex w-full flex-col rounded-none duration-300`}>
         <figure className='object-cover'>
-          <img
+          <Image
             className='duration-300 group-hover:scale-105'
             src={image}
             alt='background-card'
+            width='1366'
+            height='768'
           />
         </figure>
         <div className='card-body'>

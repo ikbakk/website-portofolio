@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { RiRadioButtonFill } from 'react-icons/ri'
 import { imgUrl } from '../utils/sanity'
+import Image from 'next/image'
 
 const ProjectDetail = ({ data }) => {
   const { title, overview, tech, image, demo, code } = data
@@ -9,10 +10,12 @@ const ProjectDetail = ({ data }) => {
       <section className='relative z-[-1] w-full'>
         <div className='absolute top-0 left-0 z-[2] h-[30vh] w-full bg-black/70 '></div>
         <figure className='h-[30vh] overflow-hidden'>
-          <img
+          <Image
             className='h-full w-full object-cover'
             src={imgUrl(image).url()}
             alt='background-image'
+            width={1366}
+            height={768}
           />
         </figure>
         <div className='absolute bottom-0 z-[2] w-full  max-w-7xl p-4'>

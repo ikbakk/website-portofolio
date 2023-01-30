@@ -10,10 +10,6 @@ html {
     @apply scroll-smooth !important;
   }
 
-  body {
-    @apply font-raleway tracking-wide;
-  }
-
   h1,
   h2,
   h3,
