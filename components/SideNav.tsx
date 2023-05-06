@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 
 const navList = [
-  { name: 'Skills', link: '/#' },
+  { name: 'Skills', link: '/#skills' },
   { name: 'Projects', link: '/#projects' },
   { name: 'Contact', link: '/#contact' }
 ];

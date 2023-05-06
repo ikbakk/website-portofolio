@@ -40,7 +40,7 @@ const Skills: FC<Props> = ({ data }) => {
                     />
                   </div>
                   <div>
-                    <h3>{data.name}</h3>
+                    <h3 className='text-center'>{data.name}</h3>
                   </div>
                 </div>
               </div>

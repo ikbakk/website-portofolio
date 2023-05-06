@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Loading = () => {
-  return <p>Loading...</p>;
+  return (
+    <div className='flex h-screen w-full items-center justify-center'>
+      <p>Please Wait...</p>
+    </div>
+  );
 };
 
 export default Loading;

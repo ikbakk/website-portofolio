@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import './globals.css';
 import { Quicksand } from 'next/font/google';
 
@@ -6,10 +7,20 @@ const quicksand = Quicksand({
   preload: false
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Iqbal Firdaus | Frontend Developer',
-  desription:
-    'A webstite portfolio as my online resume and to showcase my simple projects that has been built'
+  description: 'Website portfolio built on top of NextJS and Sanity.Io',
+  colorScheme: 'dark',
+  themeColor: '#37AA9C',
+  authors: [{ name: 'Iqbal Firdaus' }],
+  openGraph: {
+    type: 'website',
+    description: 'Website portfolio built on top of NextJS and Sanity.Io',
+    title: 'Iqbal Firdaus | Frontend Developer',
+    images:
+      'https://cdn.sanity.io/images/ife8w0nb/production/b3e28c521be19094b5f48314d5a34502259a7f35-1348x653.png'
+  },
+  viewport: { width: 'device-width', initialScale: 1, userScalable: true }
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
