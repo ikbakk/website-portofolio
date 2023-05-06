@@ -5,7 +5,7 @@ import { schemaTypes } from './schemas';
 
 export default defineConfig({
   basePath: '/studio',
-  name: 'Portfolio__Sanity_Studio',
+  name: 'Portfolio_Sanity_Studio',
   title: 'Portfolio Sanity Studio',
 
   projectId: 'ife8w0nb',

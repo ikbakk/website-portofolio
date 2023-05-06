@@ -6,13 +6,13 @@ export const mainInfoQuery = `*[_type =='info' ][0]{
   description,
   'skills': *[_type == 'skills']{
     name,logo
-  },
+  } | order(name asc),
   'projects': *[_type == 'projects']{
     title,image,tech,overview,slug
   },
   'socials': *[_type == 'socials']{
-    name,link
-  }
+    name,link, _createdAt
+  } | order(_createdAt desc)
 }`;
 
 export const projectDetailQuery = `*[_type == 'projects' && slug.current == $slug][0]{
