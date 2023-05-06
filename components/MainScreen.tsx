@@ -1,12 +1,9 @@
 import { FC } from 'react';
-import Link from 'next/link';
 import { MainScreenProps } from '../types';
 
 import Skills from './Skills';
 import Contact from './Contact';
 import Projects from './Projects';
-import { RiExternalLinkLine } from 'react-icons/ri';
-import { RxLinkedinLogo, RxGithubLogo, RxDownload } from 'react-icons/rx';
 import SidePanel from './Side';
 
 interface Props {

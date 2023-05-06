@@ -25,7 +25,7 @@ const SideSocials: FC = () => {
             <a
               target='_blank'
               className='flex items-center space-x-3 duration-200 hover:text-secondary'
-              href='https://linkedin/in/ikbakk'>
+              href='https://linkedin.com/in/ikbak'>
               <figure>
                 <RxLinkedinLogo size={32} />
               </figure>
