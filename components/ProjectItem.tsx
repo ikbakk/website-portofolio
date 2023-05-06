@@ -1,13 +1,25 @@
-import Link from 'next/link'
-import Image from 'next/image'
+import { FC } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-const ProjectItem = ({ image, slug, techs, title, dim }) => {
+interface Props {
+  image: string;
+  slug: {
+    current: string;
+  };
+  techs: string[];
+  title: string;
+  dim: string;
+}
+
+const ProjectItem: FC<Props> = ({ image, slug, techs, title, dim }) => {
   return (
     <div className='group'>
       <section
-        className={`scale-90 bg-primary group-hover:z-10 group-hover:scale-110 md:scale-100 ${dim} card relative flex w-full flex-col rounded-none duration-300`}>
+        className={`scale-80 bg-primary group-hover:z-10 group-hover:scale-100 md:scale-95 ${dim} card relative flex w-full flex-col rounded-none duration-300`}>
         <figure className='object-cover'>
           <Image
+            priority
             className='duration-300 group-hover:scale-105'
             src={image}
             alt='background-card'
@@ -25,12 +37,12 @@ const ProjectItem = ({ image, slug, techs, title, dim }) => {
                   {tech}
                   {index < techs.length - 1 ? ' | ' : ''}
                 </span>
-              )
+              );
             })}
           </p>
           <div className='card-actions justify-start'>
             <Link href={`/projects/${slug.current}`}>
-              <button className='bg-secondary px-5 py-2 font-bold tracking-widest text-base-100 duration-100 hover:bg-secondary-focus/80 active:scale-95 active:bg-secondary-focus'>
+              <button className='bg-secondary px-5 py-2 font-bold  text-base-100 duration-100 hover:bg-secondary-focus/80 active:scale-95 active:bg-secondary-focus'>
                 More Info
               </button>
             </Link>
@@ -38,7 +50,7 @@ const ProjectItem = ({ image, slug, techs, title, dim }) => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectItem
+export default ProjectItem;

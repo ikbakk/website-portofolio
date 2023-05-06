@@ -60,7 +60,7 @@ const Contact = () => {
                   <textarea
                     placeholder='Message'
                     className='textarea-secondary textarea rounded-none'
-                    rows='10'
+                    rows={10}
                     required
                     name='message'></textarea>
                 </div>
@@ -73,7 +73,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

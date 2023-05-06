@@ -1,4 +1,10 @@
 import './globals.css';
+import { Quicksand } from 'next/font/google';
+
+const quicksand = Quicksand({
+  weight: ['300', '500', '700'],
+  preload: false
+});
 
 export const metadata = {
   title: 'Iqbal Firdaus | Frontend Developer',
@@ -8,8 +14,8 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html>
-      <body>{children}</body>
+    <html lang='en'>
+      <body className={quicksand.className}>{children}</body>
     </html>
   );
 };

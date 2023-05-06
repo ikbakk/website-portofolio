@@ -1,16 +1,24 @@
-import Link from 'next/link'
-import { RiRadioButtonFill } from 'react-icons/ri'
-import { imgUrl } from '../utils/sanity'
-import Image from 'next/image'
+import { FC } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { imgUrl } from '../utils/sanity';
+import { ProjectDetail } from '../types';
+import { RiRadioButtonFill } from 'react-icons/ri';
 
-const ProjectDetail = ({ data }) => {
-  const { title, overview, tech, image, demo, code } = data
+interface Props {
+  data: ProjectDetail;
+}
+
+const ProjectDetail: FC<Props> = ({ data }) => {
+  const { code, demo, image, overview, slug, tech, title } = data;
+
   return (
     <section className='flex w-full flex-col'>
       <section className='relative z-[-1] w-full'>
         <div className='absolute top-0 left-0 z-[2] h-[30vh] w-full bg-black/70 '></div>
         <figure className='h-[30vh] overflow-hidden'>
           <Image
+            priority
             className='h-full w-full object-cover'
             src={imgUrl(image).url()}
             alt='background-image'
@@ -58,8 +66,8 @@ const ProjectDetail = ({ data }) => {
               Technologies
             </p>
             <div className='grid grid-cols-3 md:grid-cols-1'>
-              {tech.map((tech) => (
-                <p className='flex items-center py-2'>
+              {tech.map((tech, index) => (
+                <p key={index} className='flex items-center py-2'>
                   <RiRadioButtonFill className='pr-1' /> {tech}
                 </p>
               ))}
@@ -74,7 +82,7 @@ const ProjectDetail = ({ data }) => {
         </Link>
       </article>
     </section>
-  )
-}
+  );
+};
 
-export default ProjectDetail
+export default ProjectDetail;
