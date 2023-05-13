@@ -3,7 +3,7 @@ import { sanityClient } from '../utils/sanity';
 import { mainInfoQuery } from '../utils/queries';
 import MainScreen from '../components/MainScreen';
 
-export const revalidate = 60;
+export const revalidate = 10;
 
 const RootPage = async () => {
   const mainInfo = await sanityClient.fetch(mainInfoQuery);
