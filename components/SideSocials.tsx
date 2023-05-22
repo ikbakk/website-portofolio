@@ -1,8 +1,13 @@
 import { FC } from 'react';
+import Link from 'next/link';
 import { RiExternalLinkLine } from 'react-icons/ri';
 import { RxDownload, RxGithubLogo, RxLinkedinLogo } from 'react-icons/rx';
 
-const SideSocials: FC = () => {
+interface Props {
+  resumeLink: string;
+}
+
+const SideSocials: FC<Props> = ({ resumeLink }) => {
   return (
     <>
       <nav className='w-full'>
@@ -40,7 +45,7 @@ const SideSocials: FC = () => {
               download
               target='_blank'
               className='flex items-center space-x-3 duration-200 hover:text-secondary'
-              href='/assets/CV_Muhammad_Iqbal_Firdaus.pdf'>
+              href={`${resumeLink}?dl=`}>
               <figure>
                 <RxDownload size={32} />
               </figure>

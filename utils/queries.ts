@@ -2,6 +2,7 @@ export const mainInfoQuery = `*[_type =='info' ][0]{
   _id,
   firstName,
   lastName,
+  "resumeLink": resume.asset -> url,
   image,
   description,
   'skills': *[_type == 'skills']{

@@ -7,9 +7,15 @@ interface Props {
   firstName: string;
   lastName: string;
   description?: string | null;
+  resumeLink: string;
 }
 
-const SidePanel: FC<Props> = ({ firstName, lastName, description }) => {
+const SidePanel: FC<Props> = ({
+  firstName,
+  lastName,
+  description,
+  resumeLink
+}) => {
   return (
     <section className='flex h-full w-full flex-col justify-around p-8 md:p-10'>
       <SideIntro
@@ -18,7 +24,7 @@ const SidePanel: FC<Props> = ({ firstName, lastName, description }) => {
         description={description}
       />
       <SideNav />
-      <SideSocials />
+      <SideSocials resumeLink={resumeLink} />
     </section>
   );
 };

@@ -45,4 +45,5 @@ export interface MainScreenProps {
   projects: Project[];
   skills: Skill[];
   socials: Social[];
+  resumeLink: string;
 }
