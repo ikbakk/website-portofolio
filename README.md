@@ -35,16 +35,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - **app/studio:**
   This directory is for host sanity studio inside your app instead of separate Sanity studio. Inside this directory another route must be created `app/studio/[[...index]]/page.tsx` for the sanity studio to be hosted in your app. This is basic example from [Documentation](https://www.npmjs.com/package/next-sanity#next-sanitystudio)
 
-```
-'use client'
+```ts
+'use client';
 
-import {NextStudio} from 'next-sanity/studio'
+import { NextStudio } from 'next-sanity/studio';
 
-import config from '../../../sanity.config'
+import config from '../../../sanity.config';
 
 export function Studio() {
   //  Supports the same props as `import {Studio} from 'sanity'`, `config` is required
-  return <NextStudio config={config} />
+  return <NextStudio config={config} />;
 }
 ```
 
@@ -56,15 +56,15 @@ export function Studio() {
 
 ## Environment Variables
 
-NEXT_PUBLIC_SANITY_DATASET=_sanity project dataset_
-NEXT_PUBLIC_SANITY_PROJECTID=_sanity project id_
+NEXT*PUBLIC_SANITY_DATASET=\_sanity project dataset*
+NEXT*PUBLIC_SANITY_PROJECTID=\_sanity project id*
 
 ## Sanity Config
 
 - `sanity.config.ts`
   Config for sanity studio
 
-```
+```ts
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
@@ -84,5 +84,4 @@ export default defineConfig({
     types: schemaTypes
   }
 });
-
 ```
