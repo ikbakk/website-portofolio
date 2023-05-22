@@ -8,8 +8,8 @@ export default defineConfig({
   name: 'Portfolio_Sanity_Studio',
   title: 'Portfolio Sanity Studio',
 
-  projectId: 'ife8w0nb',
-  dataset: 'production',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECTID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
 
   plugins: [deskTool(), visionTool()],
 
