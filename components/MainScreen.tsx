@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { MainScreenProps } from '../types';
 
 import Skills from './Skills';
-import Contact from './Contact';
 import Projects from './Projects';
 import SidePanel from './Side';
 
@@ -18,7 +17,7 @@ const MainScreen: FC<Props> = ({ data }) => {
       <section className='h-full w-full justify-start p-8 md:w-1/2 md:p-10'>
         <Skills data={data.skills} />
         <Projects data={data.projects} />
-        <Contact />
+        {/* <Contact /> */}
       </section>
       <section className='right-0 hidden h-full w-1/2 items-center md:fixed md:block md:basis-1/2'>
         <SidePanel

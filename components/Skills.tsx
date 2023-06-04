@@ -2,6 +2,7 @@
 
 import { useState, FC } from 'react';
 import { imgUrl } from '../utils/sanity';
+import { motion } from 'framer-motion';
 import { Skill } from '../types';
 
 interface Props {
@@ -13,24 +14,44 @@ const Skills: FC<Props> = ({ data }) => {
   const dim = isDim ? 'group-hover:opacity-100 opacity-30' : 'opacity-100';
 
   return (
-    <div id='skills' className='w-full md:py-16'>
-      <div className=' mx-auto flex h-full max-w-7xl flex-col justify-center space-y-4 px-2'>
-        <div className='bg-base-100'>
-          <p className=' py-5 text-xl uppercase tracking-widest text-accent'>
-            Skills
-          </p>
-        </div>
-        <h2 className='py-4 text-secondary'>What I can do</h2>
-        <div className='grid grid-cols-2 gap-2 md:grid-cols-3'>
-          {data.map((data) => {
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      // animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 'some' }}
+      id='skills'
+      className='w-full md:h-screen md:py-16'>
+      <div className=' mx-auto flex h-full max-w-7xl flex-col justify-center px-2'>
+        <p className=' text-xl uppercase tracking-widest text-accent md:py-5'>
+          Skills
+        </p>
+        <motion.h2
+          initial={{ opacity: 0, y: '-100%' }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className='py-4 text-secondary'>
+          What I can do
+        </motion.h2>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className='grid grid-cols-2 gap-2 md:grid-cols-3'>
+          {data.map((data, index) => {
             return (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: '50%' }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: (index + 1) * 0.1,
+                  duration: 0.2
+                }}
                 onMouseOver={() => setIsDim(true)}
                 onMouseLeave={() => setIsDim(false)}
                 className='group relative'
                 key={data.name}>
                 <div
-                  className={`flex ${dim} scale-90 flex-col items-center space-y-4 bg-primary p-6 text-secondary duration-200 ease-in hover:scale-110 md:scale-100`}>
+                  className={`flex ${dim} scale-90 flex-col items-center gap-y-4 bg-primary p-6 text-secondary duration-200 ease-in hover:scale-105 md:scale-100`}>
                   <div className='m-auto '>
                     <img
                       src={imgUrl(data.logo).url()}
@@ -43,12 +64,12 @@ const Skills: FC<Props> = ({ data }) => {
                     <h3 className='text-center'>{data.name}</h3>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

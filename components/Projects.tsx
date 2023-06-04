@@ -4,6 +4,7 @@ import ProjectItem from './ProjectItem';
 import { imgUrl } from '../utils/sanity';
 import { useState, FC } from 'react';
 import { Project } from '../types';
+import { motion } from 'framer-motion';
 
 interface Props {
   data: Project[];
@@ -14,7 +15,13 @@ const Projects: FC<Props> = ({ data }) => {
   const dim = isDim ? 'group-hover:opacity-100 opacity-30' : 'opacity-100';
 
   return (
-    <div id='projects' className='w-full'>
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, delay: 0.5 }}
+      viewport={{ once: true, amount: 'some' }}
+      id='projects'
+      className='w-full'>
       <div className='max-w-7xl px-2 py-16'>
         <div className='w-full bg-base-100'>
           <p className='py-5 text-xl uppercase tracking-widest text-accent'>
@@ -41,7 +48,7 @@ const Projects: FC<Props> = ({ data }) => {
           })}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
