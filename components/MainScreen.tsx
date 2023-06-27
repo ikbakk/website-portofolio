@@ -4,6 +4,8 @@ import { MainScreenProps } from '../types';
 import Skills from './Skills';
 import Projects from './Projects';
 import SidePanel from './Side';
+import MobileNavbar from './MobileNavbar';
+import MobileIntro from './MobileIntro';
 
 interface Props {
   data: MainScreenProps;
@@ -15,6 +17,7 @@ const MainScreen: FC<Props> = ({ data }) => {
   return (
     <section id='home' className='flex h-screen flex-col md:flex-row'>
       <section className='h-full w-full justify-start p-8 md:w-1/2 md:p-10'>
+        <MobileIntro data={data} />
         <Skills data={data.skills} />
         <Projects data={data.projects} />
         {/* <Contact /> */}
@@ -27,6 +30,8 @@ const MainScreen: FC<Props> = ({ data }) => {
           resumeLink={resumeLink}
         />
       </section>
+
+      <MobileNavbar resumeLink={resumeLink} />
     </section>
   );
 };

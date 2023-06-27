@@ -2,6 +2,7 @@ import React from 'react';
 import { sanityClient } from '../utils/sanity';
 import { mainInfoQuery } from '../utils/queries';
 import MainScreen from '../components/MainScreen';
+import MobileNavbar from '../components/MobileNavbar';
 
 export const revalidate = 10;
 

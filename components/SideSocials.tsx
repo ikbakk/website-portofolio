@@ -33,7 +33,7 @@ const SideSocials: FC<Props> = ({ resumeLink }) => {
                 <RxGithubLogo size={32} />
               </figure>
               <p className='pt-1'>Github</p>
-              <figure className='duration-75 group-hover:translate-x-3'>
+              <figure className='hidden duration-75 group-hover:translate-x-3 md:block'>
                 <RiExternalLinkLine size={22} />
               </figure>
             </a>
@@ -53,7 +53,7 @@ const SideSocials: FC<Props> = ({ resumeLink }) => {
                 <RxLinkedinLogo size={32} />
               </figure>
               <p className='pt-1'>LinkedIn</p>
-              <figure className='duration-75 group-hover:translate-x-3'>
+              <figure className='hidden duration-75 group-hover:translate-x-3 md:block'>
                 <RiExternalLinkLine size={22} />
               </figure>
             </a>
