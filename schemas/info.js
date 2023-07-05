@@ -32,7 +32,7 @@ export default {
     },
     {
       name: 'resume',
-      type: 'file',
+      type: 'string',
       title: 'Resume'
     },
     {

@@ -39,13 +39,13 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ resumeLink }) => {
       <ul className='flex w-full items-center justify-around'>
         {NavItem.map((item, index) => (
           <Link
-            className='group flex flex-col items-center gap-1 bg-transparent p-2 text-secondary'
+            className='group tooltip tooltip-secondary flex flex-col items-center gap-1 bg-transparent p-2 text-secondary'
+            data-tip={item.title}
             href={item.title === 'Resume' ? `${resumeLink}?dl=` : item.href}
             key={index}>
             <div className='text-2xl duration-100 group-hover:scale-125 group-focus:scale-125 group-active:scale-125 '>
               {item.icon}
             </div>
-            <p className='text-sm'>{item.title}</p>
           </Link>
         ))}
       </ul>

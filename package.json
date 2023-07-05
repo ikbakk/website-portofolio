@@ -15,7 +15,7 @@
     "@sanity/vision": "^3.0.0",
     "daisyui": "^2.46.0",
     "framer-motion": "^10.12.16",
-    "next": "^13.4.1",
+    "next": "^13.4.8",
     "next-sanity": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
