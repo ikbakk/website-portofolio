@@ -10,20 +10,25 @@ interface Props {
 }
 
 const SideIntro: FC<Props> = ({ firstName, lastName, description }) => {
+  const motionInitial = {
+    opacity: 0,
+    y: -30
+  };
+
+  const motionFinal = {
+    opacity: 1,
+    y: 0
+  };
+
   return (
     <div>
-      <motion.h1
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}>
+      <motion.h1 initial={motionInitial} animate={motionFinal}>
         {firstName}
         <span className='text-secondary'> {lastName}</span>
       </motion.h1>
       <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        animate={{
-          opacity: 1,
-          y: 0
-        }}
+        initial={motionInitial}
+        animate={motionFinal}
         transition={{
           delay: 0.1
         }}
@@ -31,8 +36,8 @@ const SideIntro: FC<Props> = ({ firstName, lastName, description }) => {
         Front-End Developer
       </motion.h2>
       <motion.p
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={motionInitial}
+        animate={motionFinal}
         transition={{
           delay: 0.3
         }}

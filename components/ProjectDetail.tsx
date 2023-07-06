@@ -16,6 +16,9 @@ interface Props {
 const ProjectDetail: FC<Props> = ({ data }) => {
   const { code, demo, image, overview, slug, tech, title } = data;
 
+  const motionInitial = { opacity: 0, y: -50 };
+  const motionFinal = { opacity: 1, y: 0 };
+
   return (
     <section className='flex h-full w-full flex-col'>
       <section className='relative z-[-1] w-full'>
@@ -32,8 +35,8 @@ const ProjectDetail: FC<Props> = ({ data }) => {
         </figure>
         <div className='absolute bottom-0 z-[2] w-full  max-w-7xl p-4'>
           <motion.h1
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={motionInitial}
+            animate={motionFinal}
             transition={{ duration: 0.2 }}
             className='py-2'>
             {title}
@@ -46,16 +49,16 @@ const ProjectDetail: FC<Props> = ({ data }) => {
             <ProjectDetailBreadCrumbs title={title} />
           </div>
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={motionInitial}
+            animate={motionFinal}
             transition={{ duration: 0.2, delay: 0.1 }}
             className='lg:justify-self-start'>
             <h2 className='text-secondary'>Overview</h2>
             <p>{overview}</p>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={motionInitial}
+            animate={motionFinal}
             transition={{ duration: 0.2, delay: 0.2 }}
             className='flex flex-col gap-4 lg:justify-self-end'>
             <div className='flex gap-x-4 py-2'>
@@ -81,8 +84,8 @@ const ProjectDetail: FC<Props> = ({ data }) => {
           </motion.div>
         </section>
         <motion.section
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={motionInitial}
+          animate={motionFinal}
           transition={{ duration: 0.2, delay: 0.1 }}
           className='flex h-fit w-full flex-col rounded-xl bg-base-300 p-2 lg:basis-1/5'>
           <p className='pb-2 text-center font-bold text-accent'>Technologies</p>

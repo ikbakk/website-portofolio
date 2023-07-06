@@ -30,10 +30,13 @@ const MobileNavbar: FC<MobileNavbarProps> = ({ resumeLink }) => {
     }
   ];
 
+  const motionInitial = { opacity: 0, y: 50, translateX: '-50%' };
+  const motionFinal = { opacity: 1, y: 0, translateX: '-50%' };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, translateX: '-50%' }}
-      animate={{ opacity: 1, y: 0, translateX: '-50%' }}
+      initial={motionInitial}
+      animate={motionFinal}
       transition={{ delay: 1 }}
       className='fixed bottom-[2%] left-1/2 z-30 w-10/12 -translate-x-1/2 bg-base-300/50 px-1 backdrop-blur-sm md:hidden '>
       <ul className='flex w-full items-center justify-around'>

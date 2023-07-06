@@ -10,27 +10,43 @@ interface ProjectDetailBreadCrumbsProps {
 const ProjectDetailBreadCrumbs: FC<ProjectDetailBreadCrumbsProps> = ({
   title
 }) => {
+  const motionInitial = { opacity: 0, x: '-50%' };
+  const motionFinal = { opacity: 1, x: 0 };
+  const motionDuration = (index: number) => {
+    return { duration: 0.2, delay: index * 0.15 };
+  };
+
+  const breadcrumbItem = [
+    {
+      title: 'Home',
+      href: '/'
+    },
+    {
+      title: 'Project',
+      href: '/#projects'
+    },
+    {
+      title: title,
+      href: null
+    }
+  ];
+
   return (
     <div className='breadcrumbs overflow-hidden text-sm text-accent'>
       <ul className=''>
-        <motion.li
-          initial={{ opacity: 0, x: '-50%' }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.2 }}>
-          <Link href='/'>Home</Link>
-        </motion.li>
-        <motion.li
-          initial={{ opacity: 0, x: '-50%' }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.2, delay: 0.15 }}>
-          <Link href='/#projects'>Project</Link>
-        </motion.li>
-        <motion.li
-          initial={{ opacity: 0, x: '-30%' }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.2, delay: 0.3 }}>
-          {title}
-        </motion.li>
+        {breadcrumbItem.map((item, index) => (
+          <motion.li
+            key={index}
+            initial={motionInitial}
+            animate={motionFinal}
+            transition={motionDuration(index)}>
+            {item.href === null ? (
+              title
+            ) : (
+              <Link href={item.href}>{item.title}</Link>
+            )}
+          </motion.li>
+        ))}
       </ul>
     </div>
   );
