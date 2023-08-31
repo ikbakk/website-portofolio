@@ -1,0 +1,28 @@
+---
+import { useSanityClient } from "@sanity/astro";
+import { mainInfoQuery, projectDetailQuery } from "../../libs/sanityQueries";
+import type { MainInfo, ProjectDetails } from "../../../types";
+
+type Props = {
+  projectProps: ProjectDetails;
+};
+
+export async function getStaticPaths() {
+  const info: MainInfo = await useSanityClient().fetch(mainInfoQuery);
+  const projects = info.projects;
+
+  return projects.map((project) => {
+    return {
+      params: {
+        project: project.slug.current,
+      },
+    };
+  });
+}
+
+const { project } = Astro.params;
+
+const projectProps = await useSanityClient().fetch(projectDetailQuery, {
+  slug: project,
+});
+---
