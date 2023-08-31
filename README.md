@@ -1,87 +1,54 @@
-This [Website portfolio](https://ikbak.vercel.app/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and [Sanity](https://sanity.io). The primary purpose of this portfolio is to provide an interactive and visually appealing showcase of my projects, skills, experience also as my personal playground to try something new
-
-## Getting Started
-
-Clone the repo:
+# Astro Starter Kit: Basics
 
 ```
-git clone https://github.com/ikbakk/NextJS-portofolio.git
+npm create astro@latest -- --template basics
 ```
 
-then run:
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
 
 ```
-npm install
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-Run the development server:
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-```bash
-npm run dev
-# or
-yarn deva
-```
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Any static assets, like images, can be placed in the `public/` directory.
 
-## Project Structure
+## 🧞 Commands
 
-- **app:**
-  This directory contains the routes of this app
+All commands are run from the root of the project, from a terminal:
 
-- **components:**
-  In the components directory, you'll find reusable UI components that are used throughout your website portfolio. These components can include headers, footers, navigation menus, project cards, and any other UI elements that appear on multiple pages.
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-- **app/studio:**
-  This directory is for host sanity studio inside your app instead of separate Sanity studio. Inside this directory another route must be created `app/studio/[[...index]]/page.tsx` for the sanity studio to be hosted in your app. This is basic example from [Documentation](https://www.npmjs.com/package/next-sanity#next-sanitystudio)
+## 👀 Want to learn more?
 
-```ts
-'use client';
-
-import { NextStudio } from 'next-sanity/studio';
-
-import config from '../../../sanity.config';
-
-export function Studio() {
-  //  Supports the same props as `import {Studio} from 'sanity'`, `config` is required
-  return <NextStudio config={config} />;
-}
-```
-
-- **schemas:**
-  This folder contain contains the schema definitions for your content models. [Learn how to create schemas](https://www.sanity.io/docs/schema-types)
-
-- **utils:**
-  This folder include GROQ queries to fetch needed data also config for [`next-sanity`](https://www.npmjs.com/package/next-sanity)
-
-## Environment Variables
-
-NEXT*PUBLIC_SANITY_DATASET=\_sanity project dataset*
-NEXT*PUBLIC_SANITY_PROJECTID=\_sanity project id*
-
-## Sanity Config
-
-- `sanity.config.ts`
-  Config for sanity studio
-
-```ts
-import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
-import { visionTool } from '@sanity/vision';
-import { schemaTypes } from './schemas';
-
-export default defineConfig({
-  basePath: '/studio', //This is config basepath for sanity studio, must be same as route in app folder
-  name: 'Portfolio_Sanity_Studio',
-  title: 'Portfolio Sanity Studio',
-
-  projectId: 'projectid',
-  dataset: 'dataset',
-
-  plugins: [deskTool(), visionTool()],
-
-  schema: {
-    types: schemaTypes
-  }
-});
-```
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
