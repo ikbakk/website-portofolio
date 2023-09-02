@@ -6,6 +6,7 @@ import { useSanityClient } from '@sanity/astro';
 import { mainInfoQuery } from '@/lib/sanityQueries';
 import LeftSide from '@/components/LeftSide.astro';
 import RightSide from '@/components/RightSide.astro';
+import MobileNavbar from '@/components/react/MobileNavbar.tsx';
 
 const data: MainInfo = await useSanityClient().fetch(mainInfoQuery);
 ---
@@ -13,4 +14,5 @@ const data: MainInfo = await useSanityClient().fetch(mainInfoQuery);
 <Layout title='Welcome to Astro.'>
   <LeftSide data={data} />
   <RightSide data={data} />
+  <MobileNavbar resumeLink={data.resumeLink} client:visible />
 </Layout>
