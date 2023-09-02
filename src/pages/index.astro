@@ -14,5 +14,5 @@ const data: MainInfo = await useSanityClient().fetch(mainInfoQuery);
 <Layout title='Welcome to Astro.'>
   <LeftSide data={data} />
   <RightSide data={data} />
-  <MobileNavbar resumeLink={data.resumeLink} client:visible />
+  <MobileNavbar resumeLink={data.resumeLink} client:load />
 </Layout>
