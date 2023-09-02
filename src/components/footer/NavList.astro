@@ -1,0 +1,45 @@
+---
+import NavItems from "./NavItems.astro";
+const socials = [
+  {
+    name: "github",
+    href: "https://github.com/ikbakk",
+  },
+  {
+    name: "linkedin",
+    href: "https://linkedin.com/ikbak",
+  },
+];
+
+const pages = [
+  {
+    name: "home",
+    href: "/",
+  },
+  {
+    name: "projects",
+    href: "/projects",
+  },
+  {
+    name: "about",
+    href: "/about",
+  },
+];
+
+const extras = [
+  {
+    name: "resume",
+    href: "https://drive.google.com/file/d/1meU3wk5iqDGZJlasDeKUfekL2QEj-rbU/view?usp=sharing",
+  },
+  {
+    name: "source code",
+    href: "https://github.com/ikbakk/NextJS-portofolio",
+  },
+];
+---
+
+<div class="flex items-start gap-4">
+  <NavItems title="social" items={socials} />
+  <NavItems title="general" items={pages} />
+  <NavItems title="extra" items={extras} />
+</div>

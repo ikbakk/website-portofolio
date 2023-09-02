@@ -1,0 +1,23 @@
+---
+import NavList from "./NavList.astro";
+import { SiAstro } from "react-icons/si";
+---
+
+<footer
+  class="flex w-full flex-col-reverse items-center gap-2 px-4 py-2 lg:flex-row lg:justify-evenly"
+>
+  <div class="flex pt-2 text-white/60">
+    <p>Powered by&nbsp;</p>
+    <a
+      href="https://astro.build"
+      target="_blank"
+      class="group flex items-center hover:text-primary hover:underline"
+    >
+      Astro
+      <span class="pt-1">
+        <SiAstro className="group-hover:text-primary group-hover:underline" />
+      </span>
+    </a>
+  </div>
+  <NavList />
+</footer>

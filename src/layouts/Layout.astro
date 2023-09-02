@@ -1,7 +1,8 @@
 ---
-import { mainInfoQuery } from '@/lib/sanityQueries';
-import { useSanityClient } from '@sanity/astro';
-import type { MainInfo } from 'types';
+import Footer from "@/components/footer/Footer.astro";
+import { mainInfoQuery } from "@/lib/sanityQueries";
+import { useSanityClient } from "@sanity/astro";
+import type { MainInfo } from "types";
 
 interface Props {
   title: string;
@@ -12,25 +13,26 @@ const { description }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
 ---
 
 <!doctype html>
-<html lang='en'>
+<html class="dark" lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name={description} content='Astro description' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='open-graph:title' content={title} />
-    <meta name='open-graph:description' content={description} />
-    <meta name='open-graph:url' content={Astro.url} />
+    <meta charset="UTF-8" />
+    <meta name={description} content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="open-graph:title" content={title} />
+    <meta name="open-graph:description" content={description} />
+    <meta name="open-graph:url" content={Astro.url} />
     <meta
-      name='open-graph:image'
-      content={'https://cdn.sanity.io/images/ife8w0nb/production/b3e28c521be19094b5f48314d5a34502259a7f35-1348x653.png'}
+      name="open-graph:image"
+      content={"https://cdn.sanity.io/images/ife8w0nb/production/b3e28c521be19094b5f48314d5a34502259a7f35-1348x653.png"}
     />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='generator' content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="mx-auto max-w-6xl">
     <main>
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
