@@ -15,6 +15,7 @@ const ProjectItem = ({ image, slug, techs, title, dim }: Props) => {
         className={`scale-80 bg-primary group-hover:z-10 group-hover:scale-100 md:scale-95 ${dim} card relative flex w-full flex-col rounded-none duration-300`}>
         <figure className='object-cover'>
           <img
+            loading='eager'
             className='duration-300 group-hover:scale-105'
             src={image}
             alt={title}

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { getImage } from 'astro:assets';
 
 type Props = {
   firstName: string;
@@ -21,7 +22,7 @@ const SideIntro = ({ firstName, lastName, description }: Props) => {
     <div>
       <motion.h1 initial={motionInitial} animate={motionFinal}>
         {firstName}
-        <span className='text-secondary'> {lastName}</span>
+        <span className='text-primary'> {lastName}</span>
       </motion.h1>
       <motion.h2
         initial={motionInitial}

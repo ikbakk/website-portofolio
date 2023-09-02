@@ -52,10 +52,11 @@ const Skills = ({ data }: Props) => {
                   className={`flex ${dim} scale-90 flex-col items-center gap-y-4 bg-primary p-6 text-secondary duration-200 ease-in hover:scale-105 md:scale-100`}>
                   <div className='m-auto '>
                     <img
+                      loading='lazy'
                       src={urlFor(data.logo).url()}
                       width={64}
                       height={64}
-                      alt={data.name}
+                      alt='/'
                     />
                   </div>
                   <div>
