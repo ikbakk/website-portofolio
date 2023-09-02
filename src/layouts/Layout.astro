@@ -29,7 +29,7 @@ const { description }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
     <title>{title}</title>
   </head>
   <body>
-    <main id='home' class='w-full h-screen flex-col md:flex-row flex'>
+    <main>
       <slot />
     </main>
   </body>
