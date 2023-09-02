@@ -1,15 +1,16 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import "@/styles/globals.css";
+import Layout from '../layouts/Layout.astro';
+import '@/styles/globals.css';
 import type { MainInfo } from 'types';
 import { useSanityClient } from '@sanity/astro';
 import { mainInfoQuery } from '@/lib/sanityQueries';
 import LeftSide from '@/components/LeftSide.astro';
+import RightSide from '@/components/RightSide.astro';
 
 const data: MainInfo = await useSanityClient().fetch(mainInfoQuery);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title='Welcome to Astro.'>
   <LeftSide data={data} />
+  <RightSide data={data} />
 </Layout>

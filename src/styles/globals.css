@@ -57,3 +57,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .contact-icon {
+    @apply cursor-pointer rounded-full bg-accent p-6 text-xl text-accent-content duration-100 ease-in hover:scale-110 active:bg-accent-focus;
+  }
+
+  .nav-li {
+    @apply flex w-auto items-center py-2 text-xl font-semibold tracking-widest;
+  }
+  .nav-li-bar {
+    @apply h-[1px] w-[10%] rounded-full bg-white delay-100 duration-300 group-hover:w-[20%] group-hover:bg-secondary;
+  }
+}
