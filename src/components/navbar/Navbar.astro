@@ -1,0 +1,48 @@
+---
+const { pathname } = Astro.url;
+const { title } = Astro.props;
+
+type NavItem = {
+  name: string;
+  href: string;
+};
+
+const navItems = [
+  {
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "Projects",
+    href: "/projects",
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+];
+
+const isActive = (item: NavItem) => item.href === pathname;
+const activeClass = "font-semibold text-primary underline underline-offset-4";
+const inactiveClass =
+  "text-white/60 hover:text-primary hover:underline hover:underline-offset-4";
+---
+
+<nav class="flex w-full justify-center py-3">
+  <ul class="flex gap-8">
+    {
+      navItems.map((item) => (
+        <li>
+          <a
+            class={`${
+              isActive(item) ? activeClass : inactiveClass
+            } tracking-wider`}
+            href={item.href}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

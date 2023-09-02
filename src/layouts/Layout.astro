@@ -1,8 +1,11 @@
 ---
-import Footer from "@/components/footer/Footer.astro";
 import { mainInfoQuery } from "@/lib/sanityQueries";
 import { useSanityClient } from "@sanity/astro";
 import type { MainInfo } from "types";
+import "@/styles/globals.css";
+
+import Navbar from "@/components/navbar/Navbar.astro";
+import Footer from "@/components/footer/Footer.astro";
 
 interface Props {
   title: string;
@@ -30,6 +33,7 @@ const { description }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
     <title>{title}</title>
   </head>
   <body class="mx-auto max-w-6xl px-12 py-8">
+    <Navbar />
     <main>
       <slot />
     </main>
