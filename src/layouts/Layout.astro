@@ -32,7 +32,7 @@ const { description }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="mx-auto max-w-6xl px-12 py-8">
+  <body class="mx-auto flex h-screen max-w-6xl flex-col gap-16 px-12 py-8">
     <Navbar />
     <main>
       <slot />

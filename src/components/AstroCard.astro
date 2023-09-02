@@ -2,26 +2,32 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "./ui/card";
 
-const { title } = Astro.props;
+type Props = {
+  title: string;
+  techs: string[];
+  overview: string;
+};
+
+const { title, techs, overview } = Astro.props;
 ---
 
-<Card className="w-full cursor-pointer h-60">
+<Card className="w-full cursor-pointer">
   <CardHeader>
     <CardTitle className="text-primary text-xl line-clamp-2">
       {title}
     </CardTitle>
-    <CardDescription>Card Description</CardDescription>
   </CardHeader>
   <CardContent>
-    <p>Card Content</p>
+    <p class="line-clamp-3">
+      {overview}
+    </p>
   </CardContent>
   <CardFooter>
-    <p>Card Footer</p>
+    {techs.map((tech, index) => <p>{tech}</p>)}
   </CardFooter>
 </Card>

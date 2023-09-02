@@ -1,10 +1,27 @@
 ---
-import "@/styles/globals.css";
+import { mainInfoQuery } from "@/lib/sanityQueries";
+import { useSanityClient } from "@sanity/astro";
+import type { MainInfo } from "types";
 
-import Layout from "../layouts/Layout.astro";
-import Hero from "@/components/hero/Hero.astro";
+import Overview from "@/components/hero/Overview.astro";
+import Featured from "@/components/hero/Featured.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const { firstName, lastName, description, projects, resumeLink }: MainInfo =
+  await useSanityClient().fetch(mainInfoQuery);
+const featureds = projects.slice(0, 4);
 ---
 
-<Layout title="Welcome to Astro.">
-  <Hero />
+<Layout title="Welcome to astro">
+  <section
+    class="flex flex-col items-center justify-center gap-8 lg:flex-row lg:justify-between"
+  >
+    <Overview
+      firstName={firstName}
+      lastName={lastName}
+      description={description}
+      resumeLink={resumeLink}
+    />
+    <Featured featureds={featureds} />
+  </section>
 </Layout>

@@ -13,5 +13,13 @@ const { featureds } = Astro.props;
 <section
   class="grid grid-cols-1 place-content-center gap-4 md:grid-cols-2 lg:basis-1/2"
 >
-  {featureds.map((featured) => <AstroCard title={featured.title} />)}
+  {
+    featureds.map((featured) => (
+      <AstroCard
+        title={featured.title}
+        techs={featured.tech}
+        overview={featured.overview}
+      />
+    ))
+  }
 </section>
