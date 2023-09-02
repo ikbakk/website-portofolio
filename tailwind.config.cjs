@@ -1,12 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx,astro}',
-    './components/**/*.{ts,tsx,astro}',
-    './app/**/*.{ts,tsx,astro}',
-    './src/**/*.{ts,tsx,astro}',
-	],
+  content: ["./src/**/*.{ts,tsx,astro}"],
   theme: {
     container: {
       center: true,
@@ -73,4 +68,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
@@ -10,5 +11,6 @@
       }
     ]
   },
+  "include": ["src/**/*"],
   "extends": "astro/tsconfigs/strict"
 }

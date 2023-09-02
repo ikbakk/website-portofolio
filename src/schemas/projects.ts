@@ -1,30 +1,30 @@
 export default {
-  name: 'projects',
-  type: 'document',
-  title: 'Projects',
+  name: "projects",
+  type: "document",
+  title: "Projects",
   fields: [
-    { name: 'title', type: 'string', title: 'Title' },
-    { name: 'code', type: 'string', title: 'Code' },
-    { name: 'demo', type: 'string', title: 'Live Demo' },
+    { name: "title", type: "string", title: "Title" },
+    { name: "code", type: "string", title: "Code" },
+    { name: "demo", type: "string", title: "Live Demo" },
     {
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug',
+      name: "slug",
+      type: "slug",
+      title: "Slug",
       options: {
-        source: 'title',
+        source: "title",
         maxLength: 25,
         slugify: (input: string) =>
-          input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)
-      }
+          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
+      },
     },
 
-    { name: 'overview', type: 'string', title: 'Overview' },
-    { name: 'image', type: 'image', title: 'Image' },
+    { name: "overview", type: "string", title: "Overview" },
+    { name: "image", type: "image", title: "Image" },
     {
-      name: 'tech',
-      type: 'array',
-      title: 'Tech Used',
-      of: [{ type: 'string' }]
-    }
-  ]
+      name: "tech",
+      type: "array",
+      title: "Tech Used",
+      of: [{ type: "string" }],
+    },
+  ],
 };
