@@ -24,7 +24,18 @@ export default {
       name: "tech",
       type: "array",
       title: "Tech Used",
-      of: [{ type: "string" }],
+      of: [
+        {
+          type: "reference",
+          to: { type: "techs" },
+        },
+      ],
+    },
+    {
+      name: "description",
+      type: "array",
+      title: "Description",
+      of: [{ type: "block" }],
     },
   ],
 };
