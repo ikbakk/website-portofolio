@@ -7,11 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+
+const { title } = Astro.props;
 ---
 
-<Card>
+<Card className="w-full cursor-pointer h-60">
   <CardHeader>
-    <CardTitle>Card Title</CardTitle>
+    <CardTitle className="text-primary text-xl line-clamp-2">
+      {title}
+    </CardTitle>
     <CardDescription>Card Description</CardDescription>
   </CardHeader>
   <CardContent>

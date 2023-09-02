@@ -1,14 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import "@/styles/globals.css";
-import type { MainInfo } from "types";
-import { useSanityClient } from "@sanity/astro";
-import { mainInfoQuery } from "@/lib/sanityQueries";
-import AstroCard from "@/components/AstroCard.astro";
 
-const data: MainInfo = await useSanityClient().fetch(mainInfoQuery);
+import Layout from "../layouts/Layout.astro";
+import Hero from "@/components/hero/Hero.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <h1 class="bg-white dark:bg-background">Hello new ui</h1>
+  <Hero />
 </Layout>

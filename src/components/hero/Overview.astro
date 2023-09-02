@@ -1,0 +1,24 @@
+---
+import { Button } from "../ui/button";
+type Props = {
+  firstName: string;
+  lastName: string;
+  description: string | null;
+};
+
+const { firstName, lastName, description } = Astro.props;
+---
+
+<section class="flex flex-col gap-8 text-center lg:basis-1/2 lg:text-start">
+  <div>
+    <h1 class="mb-2">Hey there! I&apos;m</h1>
+    <h1 class="text-primary">{firstName}&nbsp;{lastName}</h1>
+  </div>
+  <div class="px-16 lg:px-0">
+    {description}
+  </div>
+  <div class="flex justify-center gap-4 lg:justify-start">
+    <Button>Resume</Button>
+    <Button variant="secondary">About Me</Button>
+  </div>
+</section>
