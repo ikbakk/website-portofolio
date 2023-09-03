@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+
+type Props = {
+  title: string;
+  techs: string[];
+  image: string;
+};
+
+const { title, techs, image } = Astro.props;
+---
+
+<Card className="w-full group cursor-pointer">
+  <CardHeader className="text-center ">
+    <CardTitle
+      className="group-hover:text-primary duration-200 text-white text-xl line-clamp-2"
+    >
+      {title}
+    </CardTitle>
+    <CardDescription
+      className="flex outline mx-auto duration-200 rounded-md p-1 group-hover:outline-primary group-hover:opacity-100 outline-1 w-fit opacity-60 justify-center items-center gap-2"
+    >
+      {
+        techs.map((tech) => (
+          <Image src={tech} alt={tech} width={24} height={24} />
+        ))
+      }
+    </CardDescription>
+  </CardHeader>
+  <CardContent className="pb-0 mt-2 w-full h-[150px] overflow-hidden">
+    <Image
+      quality="high"
+      class="w-full translate-y-8 rounded-t-lg object-cover shadow-md shadow-background duration-300 group-hover:translate-y-2"
+      src={image}
+      alt={title}
+      width={600}
+      height={150}
+    />
+  </CardContent>
+</Card>

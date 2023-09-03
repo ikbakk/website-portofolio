@@ -1,9 +1,42 @@
 ---
-// const { slug } = Astro.params;
+import { urlFor } from "@/lib/sanity";
+import type { Image, ProjectOverview, Tech } from "types";
+import { useSanityClient } from "@sanity/astro";
+import { projectOverviewQuery } from "@/lib/sanityQueries";
 
 import Layout from "@/layouts/Layout.astro";
+import ProjectHeader from "@/components/projects/ProjectHeader.astro";
+import ProjectCard from "@/components/projects/ProjectCard.astro";
+
+const projects: ProjectOverview[] =
+  await useSanityClient().fetch(projectOverviewQuery);
+const imageUrl = (image: Image) => {
+  return urlFor(image).url();
+};
+const techsLogoUrlBuilder = (techs: Tech[]) => {
+  return techs.map((tech) => {
+    return urlFor(tech.logo).url();
+  });
+};
 ---
 
 <Layout title="Projects">
-  <h1>Projects</h1>
+  <section class="flex flex-col items-center justify-center gap-8">
+    <ProjectHeader />
+    <section
+      class="grid w-full grid-cols-1 place-items-center gap-4 md:grid-cols-2 xl:grid-cols-3"
+    >
+      {
+        projects.map((project) => (
+          <a href={project.slug.current}>
+            <ProjectCard
+              title={project.title}
+              image={imageUrl(project.image)}
+              techs={techsLogoUrlBuilder(project.techs)}
+            />
+          </a>
+        ))
+      }
+    </section>
+  </section>
 </Layout>

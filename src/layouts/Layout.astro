@@ -34,8 +34,12 @@ const { description }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
   </head>
   <body class="mx-auto flex h-screen max-w-6xl flex-col gap-16 px-12 py-8">
     <Navbar />
-    <main>
+    <main class="mt-16 md:mt-4">
       <slot />
+      <div
+        class="fixed bottom-0 left-1/2 z-20 h-12 w-full -translate-x-1/2 bg-gradient-to-b from-background/0 via-background/90 to-background md:hidden"
+      >
+      </div>
     </main>
     <Footer />
   </body>
