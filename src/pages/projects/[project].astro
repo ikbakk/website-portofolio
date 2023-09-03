@@ -1,28 +1,33 @@
 ---
 import { useSanityClient } from "@sanity/astro";
-import { mainInfoQuery, projectDetailQuery } from "../../lib/sanityQueries";
-import type { MainInfo, ProjectDetails } from "../../../types";
-
-type Props = {
-  projectProps: ProjectDetails;
-};
+import {
+  projectDetailQuery,
+  projectOverviewQuery,
+} from "../../lib/sanityQueries";
+import type { ProjectDetails, ProjectOverview } from "../../../types";
+import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const info: MainInfo = await useSanityClient().fetch(mainInfoQuery);
-  const projects = info.projects;
+  const projects: ProjectOverview[] =
+    await useSanityClient().fetch(projectOverviewQuery);
 
-  return projects.map((project) => {
-    return {
-      params: {
-        project: project.slug.current,
-      },
-    };
-  });
+  return projects.map((project) => ({
+    params: {
+      project: project.slug.current,
+    },
+  }));
 }
 
 const { project } = Astro.params;
 
-const projectProps = await useSanityClient().fetch(projectDetailQuery, {
-  slug: project,
-});
+const projectProps: ProjectDetails = await useSanityClient().fetch(
+  projectDetailQuery,
+  {
+    slug: project,
+  },
+);
 ---
+
+<Layout title={projectProps.title}>
+  {JSON.stringify(projectProps)}
+</Layout>

@@ -18,3 +18,14 @@ export const projectOverviewQuery = `
   overview,
   slug
 }`;
+
+export const featuredQuery = `
+*[_type == 'featured'][0]{
+  'featured': featured[]->{
+    title, 
+    'techs': tech[]->{name,logo},
+    overview,
+    slug
+  }
+}
+`
