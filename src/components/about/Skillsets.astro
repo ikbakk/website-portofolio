@@ -1,0 +1,46 @@
+---
+import Skillset from "./Skillset.astro";
+
+const languages = [
+  "simple-icons:arduino",
+  "mdi:language-javascript",
+  "mdi:language-typescript",
+];
+
+const webs = ["mdi:react", "teenyicons:nextjs-solid", "simple-icons:astro"];
+
+const tools = ["simple-icons:tailwindcss", "simple-icons:prisma"];
+
+const backend = [
+  "mdi:nodejs",
+  "simple-icons:express",
+  "mdi:firebase",
+  "teenyicons:mongodb-outline",
+];
+
+const skillsets = [
+  {
+    title: "Programming Languages",
+    skills: languages,
+  },
+  {
+    title: "Web Development",
+    skills: webs,
+  },
+  {
+    title: "Tools",
+    skills: tools,
+  },
+  {
+    title: "Backend Development",
+    skills: backend,
+  },
+];
+---
+
+<div class="flex flex-col items-center gap-4">
+  <h2 class="text-center">My skillsets</h2>
+  <div class="flex w-full flex-col gap-4">
+    {skillsets.map((skillset) => <Skillset {...skillset} />)}
+  </div>
+</div>

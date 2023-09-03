@@ -1,0 +1,25 @@
+---
+import Icon from "astro-icon";
+
+type Props = {
+  title: string;
+  skills: string[];
+};
+
+const { skills, title } = Astro.props;
+---
+
+<div class="flex w-full flex-col items-center gap-2 md:flex-row md:gap-4">
+  <p class="text-primary">{title}:</p>
+  <div class="flex items-center">
+    {
+      skills.map((skill) => (
+        <Icon
+          size={32}
+          name={skill}
+          class="mx-1 text-white/60 duration-200 hover:text-primary"
+        />
+      ))
+    }
+  </div>
+</div>

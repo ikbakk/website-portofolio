@@ -7,7 +7,7 @@ import Overview from "@/components/hero/Overview.astro";
 import Featured from "@/components/hero/Featured.astro";
 import Layout from "@/layouts/Layout.astro";
 
-const { firstName, lastName, description, resume }: MainInfo =
+const { firstName, lastName, resume }: MainInfo =
   await useSanityClient().fetch(mainInfoQuery);
 const { featured }: { featured: ProjectOverview[] } =
   await useSanityClient().fetch(featuredQuery);
@@ -20,7 +20,7 @@ const { featured }: { featured: ProjectOverview[] } =
     <Overview
       firstName={firstName}
       lastName={lastName}
-      description={description}
+      description={""}
       resumeLink={resume}
     />
     <Featured featureds={featured} />

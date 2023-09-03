@@ -29,3 +29,10 @@ export const featuredQuery = `
   }
 }
 `
+
+export const skillsQuery = `
+*[_type == 'skills']{
+  name,
+  logo
+}
+`
