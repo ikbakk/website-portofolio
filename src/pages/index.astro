@@ -1,5 +1,5 @@
 ---
-import { mainInfoQuery, projectOverviewQuery } from "@/lib/sanityQueries";
+import { featuredQuery, mainInfoQuery } from "@/lib/sanityQueries";
 import { useSanityClient } from "@sanity/astro";
 import type { MainInfo, ProjectOverview } from "types";
 
@@ -9,10 +9,8 @@ import Layout from "@/layouts/Layout.astro";
 
 const { firstName, lastName, description, resume }: MainInfo =
   await useSanityClient().fetch(mainInfoQuery);
-const projects: ProjectOverview[] =
-  await useSanityClient().fetch(projectOverviewQuery);
-
-const featureds = projects.slice(0, 4);
+const { featured }: { featured: ProjectOverview[] } =
+  await useSanityClient().fetch(featuredQuery);
 ---
 
 <Layout title="Welcome to astro">
@@ -25,6 +23,6 @@ const featureds = projects.slice(0, 4);
       description={description}
       resumeLink={resume}
     />
-    <Featured featureds={featureds} />
+    <Featured featureds={featured} />
   </section>
 </Layout>

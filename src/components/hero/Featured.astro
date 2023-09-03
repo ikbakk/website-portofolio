@@ -15,11 +15,13 @@ const { featureds } = Astro.props;
 >
   {
     featureds.map((featured) => (
-      <AstroCard
-        title={featured.title}
-        techs={featured.techs}
-        overview={featured.overview}
-      />
+      <a href={`/projects/${featured.slug.current}`}>
+        <AstroCard
+          title={featured.title}
+          techs={featured.techs}
+          overview={featured.overview}
+        />
+      </a>
     ))
   }
 </section>
