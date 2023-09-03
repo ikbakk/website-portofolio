@@ -1,13 +1,9 @@
 export type MainInfo = {
-  _id: string;
-  description: string | null;
+  description: string;
   firstName: string;
   lastName: string;
   image: Image;
-  projects: ProjectOverview[];
-  skills: Skill[];
-  socials: Social[];
-  resumeLink: string;
+  resume: string;
 };
 
 export type ProjectDetails = ProjectOverview & {
@@ -21,7 +17,7 @@ export type ProjectOverview = {
   slug: {
     current: string;
   };
-  tech: string[];
+  techs: Tech[];
   title: string;
 };
 
@@ -39,4 +35,9 @@ type Image = {
 type Social = {
   name: string;
   link: string;
+};
+
+export type Tech = {
+  name: string;
+  logo: Image;
 };
