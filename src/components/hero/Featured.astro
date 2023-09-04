@@ -1,0 +1,27 @@
+---
+import type { ProjectOverview } from "types";
+
+import AstroCard from "../AstroCard.astro";
+
+type Props = {
+  featureds: ProjectOverview[];
+};
+
+const { featureds } = Astro.props;
+---
+
+<section
+  class="grid grid-cols-1 place-content-center gap-4 md:grid-cols-2 lg:basis-1/2"
+>
+  {
+    featureds.map((featured) => (
+      <a href={`/projects/${featured.slug.current}`}>
+        <AstroCard
+          title={featured.title}
+          techs={featured.techs}
+          overview={featured.overview}
+        />
+      </a>
+    ))
+  }
+</section>

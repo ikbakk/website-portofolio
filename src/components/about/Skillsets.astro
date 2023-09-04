@@ -1,0 +1,20 @@
+---
+import { skillsQuery } from "@/lib/sanityQueries";
+import { useSanityClient } from "@sanity/astro";
+import type { Skillset as SkillsetType } from "types";
+
+import Skillset from "./Skillset.astro";
+
+const skillsets: SkillsetType[] = await useSanityClient().fetch(skillsQuery);
+---
+
+<div class="flex flex-col items-center gap-4">
+  <h2 class="text-center">My skillsets</h2>
+  <div class="flex w-full flex-col gap-4">
+    {
+      skillsets.map((skillset) => (
+        <Skillset title={skillset.title} techs={skillset.techs} />
+      ))
+    }
+  </div>
+</div>

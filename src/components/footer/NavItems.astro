@@ -1,0 +1,28 @@
+---
+type Props = {
+  title: string;
+  items: {
+    name: string;
+    href: string;
+  }[];
+};
+
+const { title, items } = Astro.props;
+---
+
+<div
+  class="flex w-1/3 flex-col items-center justify-start gap-2 p-2 text-center lg:items-end lg:text-end"
+>
+  <h3 class="mb-1 capitalize text-primary">{title}</h3>
+  {
+    items.map((item) => (
+      <a
+        href={item.href}
+        target="_blank"
+        class="w-fit capitalize text-white/60 duration-200 hover:text-primary hover:underline"
+      >
+        {item.name}
+      </a>
+    ))
+  }
+</div>

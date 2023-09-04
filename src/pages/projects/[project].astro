@@ -1,0 +1,38 @@
+---
+import { useSanityClient } from "@sanity/astro";
+import {
+  projectDetailQuery,
+  projectOverviewQuery,
+} from "../../lib/sanityQueries";
+import type { ProjectDetails, ProjectOverview } from "types";
+import { urlFor } from "@/lib/sanity";
+
+import DetailProjectLayout from "@/layouts/DetailProjectLayout.astro";
+import Technologies from "@/components/project/Technologies.astro";
+import Details from "@/components/project/Details.astro";
+
+export async function getStaticPaths() {
+  const projects: ProjectOverview[] =
+    await useSanityClient().fetch(projectOverviewQuery);
+
+  return projects.map((project) => ({
+    params: {
+      project: project.slug.current,
+    },
+  }));
+}
+
+const { project } = Astro.params;
+
+const { image, title, overview, demo, code, techs }: ProjectDetails =
+  await useSanityClient().fetch(projectDetailQuery, {
+    slug: project,
+  });
+---
+
+<DetailProjectLayout src={urlFor(image).url()} title={title}>
+  <section class="flex h-full flex-col-reverse gap-8 p-4 py-8 lg:flex-row">
+    <Details overview={overview} code={code} demo={demo} />
+    <Technologies techs={techs} />
+  </section>
+</DetailProjectLayout>

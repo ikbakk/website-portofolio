@@ -1,34 +1,16 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "plugins": [
       {
-        "name": "next"
+        "name": "@astrojs/ts-plugin"
       }
-    ],
-    "strictNullChecks": true
+    ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "environtment.d.ts",
-    "pagesss/index.js",
-    "pagesss/_document.js",
-    "pagesss/_app.js"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "extends": "astro/tsconfigs/strict"
 }

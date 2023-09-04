@@ -1,0 +1,52 @@
+---
+import { urlFor } from "@/lib/sanity";
+
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Image } from "astro:assets";
+import type { Tech } from "types";
+
+type Props = {
+  title: string;
+  techs: Tech[];
+  overview: string;
+};
+
+const { title, techs, overview } = Astro.props;
+---
+
+<Card className="w-full h-full group cursor-pointer">
+  <CardHeader>
+    <CardTitle
+      className="group-hover:text-primary duration-200 text-white text-xl line-clamp-2"
+    >
+      {title}
+    </CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p class="line-clamp-3 text-white/60 duration-200 group-hover:text-white">
+      {overview}
+    </p>
+  </CardContent>
+  <CardFooter>
+    <div
+      class="flex items-center gap-1 rounded-md p-1 opacity-60 outline outline-1 duration-200 group-hover:opacity-100 group-hover:outline-primary"
+    >
+      {
+        techs.map((tech) => (
+          <Image
+            src={urlFor(tech.logo).url()}
+            alt={tech.name}
+            width={24}
+            height={24}
+          />
+        ))
+      }
+    </div>
+  </CardFooter>
+</Card>

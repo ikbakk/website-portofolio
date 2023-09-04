@@ -1,0 +1,19 @@
+---
+import Buttons from "./Buttons.astro";
+import Overview from "./Overview.astro";
+
+type Props = {
+  code: string;
+  demo: string;
+  overview: string;
+};
+
+const { code, demo, overview } = Astro.props;
+---
+
+<section
+  class="flex h-full flex-col justify-between gap-y-4 lg:basis-4/5 lg:justify-start"
+>
+  <Overview overview={overview} />
+  <Buttons code={code} demo={demo} />
+</section>

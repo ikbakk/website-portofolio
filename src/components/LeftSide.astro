@@ -1,0 +1,19 @@
+---
+import type { MainInfo } from 'types';
+
+import Skills from './react/Skills.tsx';
+import Projects from './react/Projects.tsx';
+import MobileIntro from './react/MobileIntro.tsx';
+
+type Props = {
+  data: MainInfo;
+};
+
+const { data } = Astro.props;
+---
+
+<section class='h-full w-full justify-start p-8 md:w-1/2 md:p-10'>
+  <MobileIntro data={data} client:visible />
+  <Skills data={data.skills} client:visible />
+  <Projects data={data.projects} client:visible />
+</section>

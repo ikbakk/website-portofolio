@@ -1,0 +1,32 @@
+---
+import { Button } from "../ui/button";
+
+type Props = {
+  firstName: string;
+  lastName: string;
+  description: string | null;
+  resumeLink: string;
+};
+
+const { firstName, lastName, description, resumeLink } = Astro.props;
+---
+
+<section class="flex flex-col gap-8 text-center lg:basis-1/2 lg:text-start">
+  <div>
+    <h1 class="mb-2 text-4xl font-bold md:text-6xl">Hey there! I&apos;m</h1>
+    <h1 class="text-5xl font-bold text-primary md:text-6xl">
+      {firstName}&nbsp;{lastName}
+    </h1>
+  </div>
+  <p class="px-4 lg:px-0">
+    {description}
+  </p>
+  <div class="flex justify-center gap-4 lg:justify-start">
+    <a href={resumeLink} target="_blank">
+      <Button>Resume</Button>
+    </a>
+    <a href="/about">
+      <Button variant="outline">About Me</Button>
+    </a>
+  </div>
+</section>

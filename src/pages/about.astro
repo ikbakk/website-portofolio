@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Separator } from "@/components/ui/separator";
+import Skillsets from "@/components/about/Skillsets.astro";
+import TechStack from "@/components/about/TechStack.astro";
+---
+
+<Layout title="About">
+  <section class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-center text-primary">About me</h1>
+      <h3 class="text-center text-white/80">
+        I'm a Fullstack Developer focused on Frontend development
+      </h3>
+      <Separator className="w-4/5 self-center bg-primary" />
+      <p class="text-justify text-white/60">
+        On my path to becoming a better coder, I have acquired hands-on
+        experience in the building blocks of the web - HTML, CSS, and
+        JavaScript. These foundational technologies have been the backbone of my
+        practices, empowering me to learn more and more about Software
+        development. For now, I've embraced a narrow range of web development
+        tools. From leveraging popular libraries and frameworks like React and
+        Next.js to some other tools and libraries that can help the development
+        process.
+      </p>
+      <p class="text-justify text-white/60">
+        My eagerness to learn and grow as a Web Developer knows no bounds. I
+        thrive on pushing my boundaries and embracing new challenges, which has
+        recently led me to delve into the world of Backend Development as well.
+        Additionally, I am dedicated to refining my skills, exploring cleaner
+        code writing practices, grasping the principles of system design to
+        create robust and scalable applications, and other similar things that I
+        still don't know yet.
+      </p>
+    </div>
+    <Separator className="bg-primary" />
+    <TechStack />
+    <Skillsets />
+  </section>
+</Layout>
