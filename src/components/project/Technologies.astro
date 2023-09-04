@@ -1,0 +1,23 @@
+---
+import { RiRadioButtonFill } from "react-icons/ri";
+import type { Tech } from "types";
+type Props = {
+  techs: Tech[];
+};
+
+const { techs } = Astro.props;
+---
+
+<section class="flex h-fit w-full flex-col rounded-xl bg-card p-2 lg:basis-1/5">
+  <p class="pb-2 text-center font-bold text-primary">Technologies</p>
+  <div class="flex flex-wrap justify-between lg:flex-col">
+    {
+      techs.map((tech) => (
+        <p class="flex items-center py-2">
+          <RiRadioButtonFill class="pr-1" />
+          &nbsp;{tech.name}
+        </p>
+      ))
+    }
+  </div>
+</section>

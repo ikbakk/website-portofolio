@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+
+type Props = {
+  src: string;
+  title: string;
+};
+
+const { src, title } = Astro.props;
+---
+
+<section class="relative z-[-1] w-full">
+  <div class="absolute left-0 top-0 z-[2] h-[30vh] w-full bg-black/70"></div>
+  <figure class="h-[30vh] overflow-hidden">
+    <Image
+      quality="high"
+      src={src}
+      class="h-full w-full object-cover"
+      alt={title}
+      width={1366}
+      height={768}
+    />
+    <div class="absolute bottom-0 z-[2] w-full max-w-7xl p-4">
+      <h1 class="py-2">{title}</h1>
+    </div>
+  </figure>
+</section>

@@ -1,0 +1,14 @@
+---
+import { Button } from "@/components/ui/button";
+
+type Props = {
+  href: string;
+  title: string;
+};
+
+const { href, title } = Astro.props;
+---
+
+<a target="_blank" href={href}>
+  <Button>{title}</Button>
+</a>

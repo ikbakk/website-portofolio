@@ -1,0 +1,28 @@
+---
+import "@/styles/globals.css";
+
+import Navbar from "@/components/navbar/Navbar.astro";
+import ImageCover from "@/components/project/ImageCover.astro";
+import Footer from "@/components/footer/Footer.astro";
+type Props = {
+  title: string;
+  src: string;
+};
+
+const { title, src } = Astro.props;
+---
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <ImageCover src={src} title={title} />
+    <main class="mx-auto max-w-6xl">
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>

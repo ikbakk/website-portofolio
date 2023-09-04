@@ -1,0 +1,12 @@
+---
+type Props = {
+  overview: string;
+};
+
+const { overview } = Astro.props;
+---
+
+<div class="lg:justify-self-start">
+  <h2 class="mb-3 text-primary">Overview</h2>
+  <p>{overview}</p>
+</div>
