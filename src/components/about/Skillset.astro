@@ -1,23 +1,27 @@
 ---
-import Icon from "astro-icon";
+import { Image } from "astro:assets";
+import { urlFor } from "@/lib/sanity";
+import type { Tech } from "types";
 
 type Props = {
   title: string;
-  skills: string[];
+  techs: Tech[];
 };
 
-const { skills, title } = Astro.props;
+const { techs, title } = Astro.props;
 ---
 
 <div class="flex w-full flex-col items-center gap-2 md:flex-row md:gap-4">
   <p class="text-primary">{title}:</p>
-  <div class="flex items-center">
+  <div class="flex items-center gap-3 rounded-md bg-card px-4 py-2 shadow-md">
     {
-      skills.map((skill) => (
-        <Icon
-          size={32}
-          name={skill}
-          class="mx-1 text-white/60 duration-200 hover:text-primary"
+      techs.map((tech) => (
+        <Image
+          src={urlFor(tech.logo).url()}
+          width={24}
+          height={24}
+          quality="high"
+          alt={tech.name}
         />
       ))
     }

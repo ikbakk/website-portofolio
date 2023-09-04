@@ -28,11 +28,17 @@ export const featuredQuery = `
     slug
   }
 }
-`
+`;
 
 export const skillsQuery = `
-*[_type == 'skills']{
-  name,
-  logo
+*[_type == 'skillsets']{
+  title,
+  'techs': techs[]->{name, logo}
 }
-`
+`;
+
+export const techsQuery = `
+*[_type == 'techs']{
+  name, logo
+}
+`;

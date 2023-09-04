@@ -1,0 +1,46 @@
+---
+import { useSanityClient } from "@sanity/astro";
+import { urlFor } from "@/lib/sanity";
+import { techsQuery } from "@/lib/sanityQueries";
+import type { Tech } from "types";
+import { Image } from "astro:assets";
+
+const favStack = [
+  "Next",
+  "Typescript",
+  "Tailwind CSS",
+  "Prisma",
+  "Node",
+  "Express",
+];
+
+const techs: Tech[] = await useSanityClient().fetch(techsQuery);
+const findTech = (names: string[]) => {
+  const tech = names.map((name) => {
+    return techs.find((tech) => tech.name === name);
+  });
+
+  return tech;
+};
+const stacks = findTech(favStack);
+---
+
+<section class="my-2 flex flex-col items-center gap-4">
+  <h2 class="text-center">My Current Favorite Stack</h2>
+  <div class="flex items-center gap-4 rounded-md bg-card p-4 shadow-md">
+    {
+      stacks.map(
+        (tech) =>
+          tech && (
+            <Image
+              src={urlFor(tech.logo).url()}
+              width={32}
+              height={32}
+              quality="high"
+              alt={tech.name}
+            />
+          ),
+      )
+    }
+  </div>
+</section>

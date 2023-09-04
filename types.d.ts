@@ -21,9 +21,9 @@ export type ProjectOverview = {
   title: string;
 };
 
-export type Skill = {
-  name: string;
-  logo: Image;
+export type Skillset = {
+  title: string;
+  techs: Tech[];
 };
 
 type Image = {
