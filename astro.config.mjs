@@ -1,21 +1,22 @@
-import { defineConfig } from 'astro/config';
-import sanity from '@sanity/astro';
-import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
-import mdx from "@astrojs/mdx";
+import { defineConfig } from "astro/config";
+import sanity from "@sanity/astro";
+import react from "@astrojs/react";
+import tailwind from "@astrojs/tailwind";
+import vercel from "@astrojs/vercel/serverless";
 const sanityConfig = {
-  projectId: 'ife8w0nb',
-  dataset: 'production',
+  projectId: "ife8w0nb",
+  dataset: "production",
   useCdn: false,
-  studioBasePath: '/studio'
+  studioBasePath: "/studio"
 };
 
 
 // https://astro.build/config
 export default defineConfig({
   image: {
-    domains: ['cdn.sanity.io']
+    domains: ["cdn.sanity.io"]
   },
-  output: 'hybrid',
-  integrations: [sanity(sanityConfig), react(), tailwind(), mdx()]
+  output: "server",
+  integrations: [sanity(sanityConfig), react(), tailwind()],
+  adapter: vercel()
 });
