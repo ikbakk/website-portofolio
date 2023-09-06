@@ -4,6 +4,7 @@ import { useSanityClient } from "@sanity/astro";
 import type { MainInfo } from "types";
 import "@/styles/globals.css";
 
+import { ViewTransitions, fade } from 'astro:transitions';
 import Navbar from "@/components/navbar/Navbar.astro";
 import Footer from "@/components/footer/Footer.astro";
 
@@ -31,10 +32,12 @@ const { description }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <ViewTransitions />
   </head>
-  <body class="mx-auto flex h-screen max-w-6xl flex-col gap-16 px-12 py-8">
+  <body transition:animate={fade({ duration: '0.5s'})} class="mx-auto flex h-screen max-w-6xl flex-col gap-16 px-12 py-8">
     <Navbar />
-    <main class="mt-16 md:mt-4">
+    <main  class="mt-16 md:mt-4">
       <slot />
       <div
         class="fixed bottom-0 left-1/2 z-20 h-12 w-full -translate-x-1/2 bg-gradient-to-b from-background/0 via-background/90 to-background md:hidden"

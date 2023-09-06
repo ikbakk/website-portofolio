@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 
 import ImageCover from "@/components/project/ImageCover.astro";
 import Footer from "@/components/footer/Footer.astro";
+import { ViewTransitions, fade } from 'astro:transitions';
 type Props = {
   title: string;
   src: string;
@@ -16,8 +17,9 @@ const { title, src } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
-  <body>
+  <body transition:animate={fade({ duration: '0.5s'})}>
     <ImageCover src={src} title={title} />
     <main class="mx-auto max-w-6xl">
       <slot />
