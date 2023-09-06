@@ -4,18 +4,27 @@ import "@/styles/globals.css";
 import ImageCover from "@/components/project/ImageCover.astro";
 import Footer from "@/components/footer/Footer.astro";
 import { ViewTransitions, fade } from 'astro:transitions';
+import type { Image } from 'types';
+import { urlFor } from '@/lib/sanity';
+
 type Props = {
   title: string;
   src: string;
+  description: string
+  image: Image
 };
 
-const { title, src } = Astro.props;
+const { title, src, description, image } = Astro.props;
 ---
 
 <html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={urlFor(image).url()} />
+
     <title>{title}</title>
     <ViewTransitions />
   </head>

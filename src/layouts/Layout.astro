@@ -7,28 +7,26 @@ import "@/styles/globals.css";
 import { ViewTransitions, fade } from 'astro:transitions';
 import Navbar from "@/components/navbar/Navbar.astro";
 import Footer from "@/components/footer/Footer.astro";
+import { urlFor } from '@/lib/sanity';
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-const { description }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
+const { description, image }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
 ---
 
 <!doctype html>
 <html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name={description} content="Astro description" />
+    <meta name='description' content={description} />
     <meta name="viewport" content="width=device-width" />
-    <meta name="open-graph:title" content={title} />
-    <meta name="open-graph:description" content={description} />
-    <meta name="open-graph:url" content={Astro.url} />
-    <meta
-      name="open-graph:image"
-      content={"https://cdn.sanity.io/images/ife8w0nb/production/b3e28c521be19094b5f48314d5a34502259a7f35-1348x653.png"}
-    />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={urlFor(image).url()} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>

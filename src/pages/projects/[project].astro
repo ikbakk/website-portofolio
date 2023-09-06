@@ -32,9 +32,14 @@ const { image, title, overview, demo, code, techs }: ProjectDetails =
   });
 ---
 
-<DetailProjectLayout src={urlFor(image).url()} title={title}>
-  <section class="flex h-full flex-col-reverse gap-8 p-4 py-8 lg:flex-row">
-    <Details overview={overview} code={code} demo={demo} />
-    <Technologies techs={techs} />
-  </section>
+<DetailProjectLayout 
+  src={urlFor(image).url()} 
+  title={title}
+  description={overview}
+  image={image}
+  >
+    <section class="flex h-full flex-col-reverse gap-8 p-4 py-8 lg:flex-row">
+      <Details overview={overview} code={code} demo={demo} />
+      <Technologies techs={techs} />
+    </section>
 </DetailProjectLayout>
