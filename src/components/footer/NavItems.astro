@@ -17,6 +17,7 @@ const { title, items } = Astro.props;
   {
     items.map((item) => (
       <a
+        rel='prefetch'
         href={item.href}
         target="_blank"
         class="w-fit capitalize text-white/60 duration-200 hover:text-primary hover:underline"

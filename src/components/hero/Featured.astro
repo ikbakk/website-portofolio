@@ -15,7 +15,7 @@ const { featureds } = Astro.props;
 >
   {
     featureds.map((featured) => (
-      <a href={`/projects/${featured.slug.current}`}>
+      <a rel='prefetch' href={`/projects/${featured.slug.current}`}>
         <AstroCard
           title={featured.title}
           techs={featured.techs}

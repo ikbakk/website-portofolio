@@ -28,7 +28,7 @@ const techsLogoUrlBuilder = (techs: Tech[]) => {
     >
       {
         projects.map((project) => (
-          <a href={`/projects/${project.slug.current}`}>
+          <a rel='prefetch' href={`/projects/${project.slug.current}`}>
             <ProjectCard
               title={project.title}
               image={imageUrl(project.image)}
