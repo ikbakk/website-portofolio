@@ -17,7 +17,7 @@ export default defineConfig({
   image: {
     domains: ["cdn.sanity.io"]
   },
-  output: "hybrid",
+  output: "server",
   integrations: [sanity(sanityConfig), react(), tailwind(), prefetch()],
   adapter: vercel()
 });

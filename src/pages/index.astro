@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { featuredQuery, mainInfoQuery } from "@/lib/sanityQueries";
 import { useSanityClient } from "@sanity/astro";
 import type { MainInfo, ProjectOverview } from "types";
@@ -6,7 +8,6 @@ import type { MainInfo, ProjectOverview } from "types";
 import Overview from "@/components/hero/Overview.astro";
 import Featured from "@/components/hero/Featured.astro";
 import Layout from "@/layouts/Layout.astro";
-import { slide } from 'astro:transitions';
 
 const { firstName, lastName, resume }: MainInfo =
   await useSanityClient().fetch(mainInfoQuery);

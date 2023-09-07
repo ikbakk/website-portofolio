@@ -2,7 +2,7 @@
 import type { ProjectOverview } from "types";
 
 import AstroCard from "../AstroCard.astro";
-import { fade } from 'astro:transitions';
+import { fade } from "astro:transitions";
 
 type Props = {
   featureds: ProjectOverview[];
@@ -16,16 +16,16 @@ const { featureds } = Astro.props;
 >
   {
     featureds.map((featured, index) => (
-      <a 
-        rel='prefetch' 
+      <a
+        rel="prefetch"
         href={`/projects/${featured.slug.current}`}
-        transition:animate={fade({ duration: `${(index+1)*0.5}s`})}
-        >
-          <AstroCard
-            title={featured.title}
-            techs={featured.techs}
-            overview={featured.overview}
-          />
+        transition:animate={fade({ duration: `${(index + 1) * 0.1}s` })}
+      >
+        <AstroCard
+          title={featured.title}
+          techs={featured.techs}
+          overview={featured.overview}
+        />
       </a>
     ))
   }
