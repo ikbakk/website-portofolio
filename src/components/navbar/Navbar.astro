@@ -28,7 +28,10 @@ const inactiveClass =
 ---
 
 <!-- desktop nav -->
-<nav transition:animate='none' class="hidden w-full justify-center py-3 md:flex">
+<nav
+  transition:animate="none"
+  class="hidden w-full justify-center py-3 md:flex"
+>
   <ul class="flex gap-8">
     {
       navItems.map((item) => (
@@ -38,6 +41,7 @@ const inactiveClass =
               isActive(item) ? activeClass : inactiveClass
             } tracking-wider`}
             href={item.href}
+            rel="prefetch"
           >
             {item.name}
           </a>
