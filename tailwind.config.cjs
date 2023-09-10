@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   darkMode: ["class"],
   content: ["./src/**/*.{ts,tsx,astro}"],
@@ -11,6 +13,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Quicksand Variable", "Inter", ...defaultTheme.fontFamily.sans]
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

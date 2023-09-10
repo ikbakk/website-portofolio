@@ -3,29 +3,31 @@ import { mainInfoQuery } from "@/lib/sanityQueries";
 import { useSanityClient } from "@sanity/astro";
 import type { MainInfo } from "types";
 import "@/styles/globals.css";
+import "@fontsource-variable/quicksand";
 
-import { ViewTransitions, fade } from 'astro:transitions';
+import { ViewTransitions, fade } from "astro:transitions";
 import Navbar from "@/components/navbar/Navbar.astro";
 import Footer from "@/components/footer/Footer.astro";
-import { urlFor } from '@/lib/sanity';
+import { urlFor } from "@/lib/sanity";
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-const { description, image }: MainInfo = await useSanityClient().fetch(mainInfoQuery);
+const { description, image }: MainInfo =
+  await useSanityClient().fetch(mainInfoQuery);
 ---
 
 <!doctype html>
 <html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name='description' content={description} />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={urlFor(image).url()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={urlFor(image).url()} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -33,9 +35,12 @@ const { description, image }: MainInfo = await useSanityClient().fetch(mainInfoQ
 
     <ViewTransitions />
   </head>
-  <body transition:animate={fade({ duration: '0.5s'})} class="mx-auto flex h-screen max-w-6xl flex-col gap-16 px-12 py-8">
+  <body
+    transition:animate={fade({ duration: "0.5s" })}
+    class="mx-auto flex h-screen max-w-6xl flex-col gap-16 px-12 py-8"
+  >
     <Navbar />
-    <main  class="mt-16 md:mt-4">
+    <main class="mt-16 md:mt-4">
       <slot />
       <div
         class="fixed bottom-0 left-1/2 z-20 h-12 w-full -translate-x-1/2 bg-gradient-to-b from-background/0 via-background/90 to-background md:hidden"

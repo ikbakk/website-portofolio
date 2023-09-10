@@ -1,17 +1,18 @@
 ---
 import "@/styles/globals.css";
+import "@fontsource-variable/quicksand";
 
 import ImageCover from "@/components/project/ImageCover.astro";
 import Footer from "@/components/footer/Footer.astro";
-import { ViewTransitions, fade } from 'astro:transitions';
-import type { Image } from 'types';
-import { urlFor } from '@/lib/sanity';
+import { ViewTransitions, fade } from "astro:transitions";
+import type { Image } from "types";
+import { urlFor } from "@/lib/sanity";
 
 type Props = {
   title: string;
   src: string;
-  description: string
-  image: Image
+  description: string;
+  image: Image;
 };
 
 const { title, src, description, image } = Astro.props;
@@ -21,14 +22,14 @@ const { title, src, description, image } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={urlFor(image).url()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={urlFor(image).url()} />
 
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body transition:animate={fade({ duration: '0.5s'})}>
+  <body transition:animate={fade({ duration: "0.5s" })}>
     <ImageCover src={src} title={title} />
     <main class="mx-auto max-w-6xl">
       <slot />
