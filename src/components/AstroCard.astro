@@ -41,9 +41,10 @@ const { title, techs, overview } = Astro.props;
         techs.map((tech) => (
           <Image
             src={urlFor(tech.logo).url()}
+            class="h-6 w-6 object-contain"
             alt={tech.name}
-            width={24}
-            height={24}
+            width={64}
+            height={64}
           />
         ))
       }
