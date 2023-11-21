@@ -7,7 +7,7 @@ export const mainInfoQuery = `*[_type == 'info'][0]{
 }`;
 
 export const projectDetailQuery = `*[_type == 'projects' && slug.current == $slug][0]{
-  title, overview, 'techs':tech[]->{name,logo}, image, demo, code
+  title, overview, 'techs':tech[]->{name,logo}, image, demo, code, description,
 }`;
 
 export const projectOverviewQuery = `

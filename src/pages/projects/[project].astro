@@ -10,10 +10,17 @@ import Details from "@/components/project/Details.astro";
 
 const { project } = Astro.params;
 
-const { image, title, overview, demo, code, techs }: ProjectDetails =
-  await useSanityClient().fetch(projectDetailQuery, {
-    slug: project,
-  });
+const {
+  image,
+  title,
+  overview,
+  demo,
+  code,
+  techs,
+  description,
+}: ProjectDetails = await useSanityClient().fetch(projectDetailQuery, {
+  slug: project,
+});
 ---
 
 <DetailProjectLayout
@@ -23,7 +30,7 @@ const { image, title, overview, demo, code, techs }: ProjectDetails =
   image={image}
 >
   <section class="flex h-full flex-col-reverse gap-8 p-4 py-8 lg:flex-row">
-    <Details overview={overview} code={code} demo={demo} />
+    <Details description={description} code={code} demo={demo} />
     <Technologies techs={techs} />
   </section>
 </DetailProjectLayout>

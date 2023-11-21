@@ -59,6 +59,9 @@ dependencies:
   astro-icon:
     specifier: ^0.8.1
     version: 0.8.1
+  astro-portabletext:
+    specifier: ^0.9.6
+    version: 0.9.6
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -2539,6 +2542,13 @@ packages:
       node-fetch: 3.3.2
       resolve-pkg: 2.0.0
       svgo: 2.8.0
+    dev: false
+
+  /astro-portabletext@0.9.6:
+    resolution: {integrity: sha512-v8YKRgjCpaxr94NefXRsH5ti9YoXqCrYah46epdJ4AdwtvIiLZA8vONFQjk5Y2cJ2UEEeGd+/8lo+tWmlo3aPw==}
+    dependencies:
+      '@portabletext/toolkit': 2.0.10
+      '@portabletext/types': 2.0.8
     dev: false
 
   /astro@3.5.6:

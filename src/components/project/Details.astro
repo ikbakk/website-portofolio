@@ -1,19 +1,21 @@
 ---
+import type { Description } from "types";
+import TextRender from "./TextRender.astro";
 import Buttons from "./Buttons.astro";
 import Overview from "./Overview.astro";
 
 type Props = {
   code: string;
   demo: string;
-  overview: string;
+  description: Description[];
 };
 
-const { code, demo, overview } = Astro.props;
+const { code, demo, description } = Astro.props;
 ---
 
 <section
   class="flex h-full flex-col justify-between gap-y-4 lg:basis-4/5 lg:justify-start"
 >
-  <Overview overview={overview} />
+  <TextRender value={description} />
   <Buttons code={code} demo={demo} />
 </section>

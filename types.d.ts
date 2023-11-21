@@ -9,6 +9,7 @@ export type MainInfo = {
 export type ProjectDetails = ProjectOverview & {
   demo: string;
   code: string;
+  description: Description[];
 };
 
 export type ProjectOverview = {
@@ -35,6 +36,21 @@ type Image = {
 type Social = {
   name: string;
   link: string;
+};
+
+type Description = {
+  _key: string;
+  _type: string;
+  children: {
+    _key: string;
+    _type: string;
+    marks: string[];
+    text: string;
+  }[];
+  markDefs: {
+    _key: string;
+    _type: string;
+  }[];
 };
 
 export type Tech = {
