@@ -37,6 +37,7 @@ const inactiveClass =
       navItems.map((item) => (
         <li>
           <a
+            data-astro-prefetch="viewport"
             class={`${
               isActive(item) ? activeClass : inactiveClass
             } tracking-wider`}

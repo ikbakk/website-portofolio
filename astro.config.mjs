@@ -19,5 +19,6 @@ export default defineConfig({
   },
   output: "server",
   integrations: [sanity(sanityConfig), react(), tailwind(), prefetch()],
-  adapter: vercel()
+  adapter: vercel(),
+  prefetch: true
 });

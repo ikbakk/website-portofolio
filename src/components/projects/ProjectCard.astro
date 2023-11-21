@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import {
   Card,
   CardContent,
@@ -29,20 +29,19 @@ const { title, techs, image } = Astro.props;
     >
       {
         techs.map((tech) => (
-          <Picture format="avif" src={tech} alt={tech} width={24} height={24} />
+          <Image src={tech} alt={tech} width={24} height={24} />
         ))
       }
     </CardDescription>
   </CardHeader>
   <CardContent className="h-[150px] w-full overflow-hidden pb-0 md:mt-2">
-    <Picture
+    <Image
       quality="high"
       class="w-full translate-y-16 rounded-t-lg object-cover shadow-md shadow-background duration-300 group-hover:translate-y-8 md:translate-y-8 group-hover:md:translate-y-4"
       src={image}
       alt={title}
       width={1366}
       height={768}
-      format="avif"
     />
   </CardContent>
 </Card>
