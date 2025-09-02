@@ -11,7 +11,6 @@ export default function ClientWrapper({
 	const [activeSection, setActiveSection] = useState("");
 	const sectionsRef = useRef<(HTMLElement | null)[]>([]);
 
-	// Theme toggle
 	useEffect(() => {
 		document.documentElement.classList.toggle("dark", isDark);
 	}, [isDark]);
