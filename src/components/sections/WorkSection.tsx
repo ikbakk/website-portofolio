@@ -41,12 +41,7 @@ export default function WorkSection({ experience, onRef }: WorkSectionProps) {
 
 							<div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end">
 								{job.tech.map((tech) => (
-									<SkillTag
-										key={tech}
-										skill={tech}
-										variant="minimal"
-										className="group-hover:border-muted-foreground/50"
-									/>
+									<SkillTag key={tech} skill={tech} variant="outline" />
 								))}
 							</div>
 						</article>
