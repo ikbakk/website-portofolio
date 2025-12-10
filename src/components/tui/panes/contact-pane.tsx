@@ -1,17 +1,15 @@
-/**
- * Contact Pane - Contact information and form
- * With stagger animations
- */
-
 import { useState } from "react"
 import { StaggerContainer, StaggerItem, motion } from "../animations"
 
+const contacts = [
+  { label: "Email", value: "hello@devnull.dev", href: "mailto:hello@devnull.dev" },
+  { label: "GitHub", value: "@devnull", href: "https://github.com" },
+  { label: "Twitter", value: "@devnull_dev", href: "https://twitter.com" },
+  { label: "LinkedIn", value: "/in/devnull", href: "https://linkedin.com" },
+]
+
 export function ContactPane() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,16 +19,8 @@ export function ContactPane() {
     setTimeout(() => setSubmitted(false), 3000)
   }
 
-  const contacts = [
-    { label: "Email", value: "hello@devnull.dev", href: "mailto:hello@devnull.dev" },
-    { label: "GitHub", value: "@devnull", href: "https://github.com" },
-    { label: "Twitter", value: "@devnull_dev", href: "https://twitter.com" },
-    { label: "LinkedIn", value: "/in/devnull", href: "https://linkedin.com" },
-  ]
-
   return (
     <StaggerContainer className="space-y-8">
-      {/* Header */}
       <StaggerItem>
         <section className="space-y-2">
           <div className="flex items-center gap-3">
@@ -43,7 +33,6 @@ export function ContactPane() {
         </section>
       </StaggerItem>
 
-      {/* Quick contacts */}
       <StaggerItem>
         <section className="space-y-4">
           <div className="flex items-center gap-3">
@@ -61,10 +50,7 @@ export function ContactPane() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{
-                  borderColor: "var(--accent)",
-                  x: 4,
-                }}
+                whileHover={{ borderColor: "var(--accent)", x: 4 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="text-xs text-muted-foreground uppercase">{contact.label}</span>
@@ -77,7 +63,6 @@ export function ContactPane() {
         </section>
       </StaggerItem>
 
-      {/* Contact form */}
       <StaggerItem>
         <section className="space-y-4">
           <div className="flex items-center gap-3">
@@ -92,11 +77,7 @@ export function ContactPane() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <motion.p
-                className="text-[var(--accent)] font-bold"
-                initial={{ y: 10 }}
-                animate={{ y: 0 }}
-              >
+              <motion.p className="text-[var(--accent)] font-bold" initial={{ y: 10 }} animate={{ y: 0 }}>
                 ✓ Message sent successfully!
               </motion.p>
               <p className="text-sm text-muted-foreground mt-2">I'll get back to you soon.</p>
@@ -110,10 +91,7 @@ export function ContactPane() {
               transition={{ delay: 0.3 }}
             >
               <div className="grid gap-4 sm:grid-cols-2">
-                <motion.div
-                  className="space-y-2"
-                  whileFocus-within={{ scale: 1.01 }}
-                >
+                <div className="space-y-2">
                   <label className="text-xs text-muted-foreground uppercase">Name</label>
                   <motion.input
                     type="text"
@@ -124,7 +102,7 @@ export function ContactPane() {
                     required
                     whileFocus={{ borderColor: "var(--accent)" }}
                   />
-                </motion.div>
+                </div>
                 <div className="space-y-2">
                   <label className="text-xs text-muted-foreground uppercase">Email</label>
                   <motion.input
@@ -164,7 +142,6 @@ export function ContactPane() {
         </section>
       </StaggerItem>
 
-      {/* Footer note */}
       <StaggerItem>
         <motion.section
           className="text-xs text-muted-foreground border-t border-border pt-4"
@@ -173,7 +150,7 @@ export function ContactPane() {
           transition={{ delay: 0.5 }}
         >
           <p>
-            <span className="text-[var(--accent)]">TIP:</span> You can also type{" "}
+            <span className="text-[var(--accent)]">TIP:</span> Type{" "}
             <code className="bg-[var(--bg-elevated)] px-1">'email'</code> in the terminal to copy my email.
           </p>
         </motion.section>

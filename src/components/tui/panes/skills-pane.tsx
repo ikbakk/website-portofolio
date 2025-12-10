@@ -1,52 +1,24 @@
-/**
- * Skills Pane - Technical skills and expertise
- * With stagger animations and counter
- */
-
 import { StaggerContainer, StaggerItem, Counter, motion } from "../animations"
 
+const skillCategories = [
+  { name: "Languages", skills: ["TypeScript", "JavaScript", "Python", "Go", "Rust", "SQL"] },
+  { name: "Frontend", skills: ["React", "Next.js", "Vue.js", "TailwindCSS", "Framer Motion", "GSAP"] },
+  { name: "Backend", skills: ["Node.js", "Express", "Hono", "PostgreSQL", "MongoDB", "Redis"] },
+  { name: "DevOps", skills: ["Docker", "Git", "Linux", "CI/CD", "AWS", "Vercel"] },
+]
+
+const tools = ["VS Code", "Neovim", "Figma", "Postman", "TablePlus", "Warp", "Arc Browser", "Notion", "Linear"]
+
+const stats = [
+  { label: "Years Coding", value: "5+" },
+  { label: "Projects Shipped", value: "20+" },
+  { label: "Open Source Repos", value: "12" },
+  { label: "Keyboards Survived", value: "3" },
+]
+
 export function SkillsPane() {
-  const skillCategories = [
-    {
-      name: "Languages",
-      skills: ["TypeScript", "JavaScript", "Python", "Go", "Rust", "SQL"],
-    },
-    {
-      name: "Frontend",
-      skills: ["React", "Next.js", "Vue.js", "TailwindCSS", "Framer Motion", "GSAP"],
-    },
-    {
-      name: "Backend",
-      skills: ["Node.js", "Express", "Hono", "PostgreSQL", "MongoDB", "Redis"],
-    },
-    {
-      name: "DevOps",
-      skills: ["Docker", "Git", "Linux", "CI/CD", "AWS", "Vercel"],
-    },
-  ]
-
-  const tools = [
-    "VS Code",
-    "Neovim",
-    "Figma",
-    "Postman",
-    "TablePlus",
-    "Warp",
-    "Arc Browser",
-    "Notion",
-    "Linear",
-  ]
-
-  const stats = [
-    { label: "Years Coding", value: "5+" },
-    { label: "Projects Shipped", value: "20+" },
-    { label: "Open Source Repos", value: "12" },
-    { label: "Keyboards Survived", value: "3" },
-  ]
-
   return (
     <StaggerContainer className="space-y-8">
-      {/* Header */}
       <StaggerItem>
         <section className="space-y-2">
           <div className="flex items-center gap-3">
@@ -56,7 +28,6 @@ export function SkillsPane() {
         </section>
       </StaggerItem>
 
-      {/* Skills by category */}
       <StaggerItem>
         <section className="grid gap-6 md:grid-cols-2">
           {skillCategories.map((category, catIndex) => (
@@ -90,7 +61,6 @@ export function SkillsPane() {
         </section>
       </StaggerItem>
 
-      {/* Tools */}
       <StaggerItem>
         <section className="space-y-4">
           <div className="flex items-center gap-3">
@@ -114,7 +84,6 @@ export function SkillsPane() {
         </section>
       </StaggerItem>
 
-      {/* Stats with counter animation */}
       <StaggerItem>
         <section className="space-y-4">
           <div className="flex items-center gap-3">

@@ -1,8 +1,3 @@
-/**
- * Terminal Command Input Component
- * Supports both text commands and numbered navigation
- */
-
 import { useState, useRef, useEffect } from "react"
 import type { PaneType } from "./terminal-nav"
 
@@ -18,6 +13,8 @@ const navMap: Record<string, PaneType> = {
   "3": "skills",
   "4": "contact",
 }
+
+const commands = ["about", "projects", "skills", "contact", "help", "clear", "navigate"]
 
 export function TerminalInput({ onCommand, onNavigate, commandHistory = [] }: TerminalInputProps) {
   const [input, setInput] = useState("")
@@ -52,7 +49,6 @@ export function TerminalInput({ onCommand, onNavigate, commandHistory = [] }: Te
       }
     } else if (e.key === "Tab") {
       e.preventDefault()
-      const commands = ["about", "projects", "skills", "contact", "help", "clear", "navigate"]
       const match = commands.find((cmd) => cmd.startsWith(input.toLowerCase()))
       if (match) setInput(match)
     }

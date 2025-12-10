@@ -1,8 +1,3 @@
-/**
- * Terminal Header Component
- * Two-row layout: Identity + Navigation
- */
-
 import { GlitchText, motion } from "./animations"
 import type { PaneType } from "./terminal-nav"
 
@@ -27,6 +22,12 @@ interface TerminalHeaderProps {
   onNavigate: (pane: PaneType) => void
 }
 
+const statusColors = {
+  online: "bg-[var(--accent)]",
+  away: "bg-yellow-500",
+  busy: "bg-red-500",
+}
+
 export function TerminalHeader({
   name = "DEVNULL",
   status = "online",
@@ -34,12 +35,6 @@ export function TerminalHeader({
   activePane,
   onNavigate,
 }: TerminalHeaderProps) {
-  const statusColors = {
-    online: "bg-[var(--accent)]",
-    away: "bg-yellow-500",
-    busy: "bg-red-500",
-  }
-
   return (
     <motion.header
       className="border-b-2 border-foreground bg-[var(--bg)]"
@@ -47,31 +42,21 @@ export function TerminalHeader({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Row 1: Identity */}
       <div className="px-4 py-3 flex items-center border-b border-border">
         <div className="flex items-center gap-4 flex-1">
-          {/* Name bracket with glitch effect */}
           <div className="flex items-center gap-2">
             <span className="text-foreground/50">[</span>
-            <GlitchText className="font-bold tracking-wider text-foreground">
-              {name}
-            </GlitchText>
+            <GlitchText className="font-bold tracking-wider text-foreground">{name}</GlitchText>
             <span className="text-foreground/50">]</span>
           </div>
-
-          {/* Decorative line */}
           <div className="tui-line hidden sm:block" />
-
-          {/* Title */}
           <div className="hidden md:flex items-center gap-2">
             <span className="text-[var(--accent)]">::</span>
             <span className="text-sm text-muted-foreground">{title}</span>
           </div>
-
           <div className="tui-line hidden md:block" />
         </div>
 
-        {/* Status */}
         <div className="flex items-center gap-2">
           <span className="text-foreground/50">[</span>
           <motion.span
@@ -84,7 +69,6 @@ export function TerminalHeader({
         </div>
       </div>
 
-      {/* Row 2: Navigation */}
       <nav className="px-4 py-2 flex flex-wrap items-center gap-2 bg-[var(--bg-elevated)]">
         <span className="text-xs text-muted-foreground uppercase tracking-wider mr-1 hidden sm:inline">
           nav:

@@ -1,35 +1,36 @@
-/**
- * About Pane - Personal info and experience
- * With typewriter and stagger animations
- */
-
 import { StaggerContainer, StaggerItem, Typewriter, motion } from "../animations"
 
-export function AboutPane() {
-  const experience = [
-    {
-      role: "Senior Fullstack Developer",
-      company: "TechCorp Inc.",
-      period: "2022 — Present",
-      description: "Leading development of scalable web applications",
-    },
-    {
-      role: "Software Engineer",
-      company: "StartupXYZ",
-      period: "2020 — 2022",
-      description: "Built microservices architecture and APIs",
-    },
-    {
-      role: "Junior Developer",
-      company: "Digital Agency Co.",
-      period: "2018 — 2020",
-      description: "Frontend development and UI implementation",
-    },
-  ]
+const experience = [
+  {
+    role: "Senior Fullstack Developer",
+    company: "TechCorp Inc.",
+    period: "2022 — Present",
+    description: "Leading development of scalable web applications",
+  },
+  {
+    role: "Software Engineer",
+    company: "StartupXYZ",
+    period: "2020 — 2022",
+    description: "Built microservices architecture and APIs",
+  },
+  {
+    role: "Junior Developer",
+    company: "Digital Agency Co.",
+    period: "2018 — 2020",
+    description: "Frontend development and UI implementation",
+  },
+]
 
+const bioItems = [
+  "Based in Jakarta, Indonesia",
+  "5+ years of professional experience",
+  "Open source contributor",
+  "Coffee-driven development enthusiast",
+]
+
+export function AboutPane() {
   return (
     <StaggerContainer className="space-y-8">
-      {/* Intro with typewriter */}
       <StaggerItem>
         <section className="space-y-4">
           <div className="flex items-center gap-3">
@@ -55,7 +56,6 @@ export function AboutPane() {
         </section>
       </StaggerItem>
 
-      {/* Bio */}
       <StaggerItem>
         <section className="space-y-4">
           <div className="flex items-center gap-3">
@@ -63,12 +63,7 @@ export function AboutPane() {
             <div className="tui-line" />
           </div>
           <StaggerContainer className="space-y-3 text-sm">
-            {[
-              "Based in Jakarta, Indonesia",
-              "5+ years of professional experience",
-              "Open source contributor",
-              "Coffee-driven development enthusiast",
-            ].map((item, i) => (
+            {bioItems.map((item, i) => (
               <StaggerItem key={i}>
                 <p className="text-foreground/90">
                   <span className="text-[var(--accent)]">&gt;</span> {item}
@@ -79,7 +74,6 @@ export function AboutPane() {
         </section>
       </StaggerItem>
 
-      {/* Experience */}
       <StaggerItem>
         <section className="space-y-4">
           <div className="flex items-center gap-3">
