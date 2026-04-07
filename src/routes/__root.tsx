@@ -13,11 +13,11 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "DEVNULL | Fullstack Developer",
+        title: "IKBAKK | Fullstack Developer",
       },
       {
         name: "description",
-        content: "Terminal-style portfolio of a fullstack developer",
+        content: "Terminal-style portfolio of Iqbal Firdaus — Fullstack Developer from Mataram, Indonesia",
       },
       {
         name: "theme-color",

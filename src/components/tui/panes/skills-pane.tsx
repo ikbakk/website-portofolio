@@ -1,19 +1,19 @@
 import { StaggerContainer, StaggerItem, Counter, motion } from "../animations"
 
 const skillCategories = [
-  { name: "Languages", skills: ["TypeScript", "JavaScript", "Python", "Go", "Rust", "SQL"] },
-  { name: "Frontend", skills: ["React", "Next.js", "Vue.js", "TailwindCSS", "Framer Motion", "GSAP"] },
-  { name: "Backend", skills: ["Node.js", "Express", "Hono", "PostgreSQL", "MongoDB", "Redis"] },
-  { name: "DevOps", skills: ["Docker", "Git", "Linux", "CI/CD", "AWS", "Vercel"] },
+  { name: "Languages", skills: ["JavaScript", "TypeScript", "Golang", "Python", "Java"] },
+  { name: "Frontend", skills: ["React", "Next.js", "Remix", "Astro.js", "Tailwind CSS", "React Native", "ReCharts", "React Query"] },
+  { name: "Backend", skills: ["Node.js", "Express.js", "NestJS", "Go Gin", "Firebase", "Firestore", "MQTT", "REST APIs", "BFF Pattern"] },
+  { name: "CMS & Tools", skills: ["Sanity CMS", "WordPress", "Elementor", "GitHub Projects", "Figma"] },
 ]
 
-const tools = ["VS Code", "Neovim", "Figma", "Postman", "TablePlus", "Warp", "Arc Browser", "Notion", "Linear"]
+const tools = ["VS Code", "Figma", "GitHub Projects", "Firebase", "Sanity CMS", "WordPress", "Elementor", "Postman"]
 
 const stats = [
-  { label: "Years Coding", value: "5+" },
-  { label: "Projects Shipped", value: "20+" },
-  { label: "Open Source Repos", value: "12" },
-  { label: "Keyboards Survived", value: "3" },
+  { label: "Years Coding", value: "3+" },
+  { label: "Projects Shipped", value: "15+" },
+  { label: "Sectors Worked", value: "6" },
+  { label: "Keyboards Survived", value: "2" },
 ]
 
 export function SkillsPane() {

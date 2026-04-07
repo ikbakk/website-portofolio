@@ -2,10 +2,9 @@ import { useState } from "react"
 import { StaggerContainer, StaggerItem, motion } from "../animations"
 
 const contacts = [
-  { label: "Email", value: "hello@devnull.dev", href: "mailto:hello@devnull.dev" },
-  { label: "GitHub", value: "@devnull", href: "https://github.com" },
-  { label: "Twitter", value: "@devnull_dev", href: "https://twitter.com" },
-  { label: "LinkedIn", value: "/in/devnull", href: "https://linkedin.com" },
+  { label: "Email", value: "ikbakfir@gmail.com", href: "mailto:ikbakfir@gmail.com" },
+  { label: "GitHub", value: "@ikbakk", href: "https://github.com/ikbakk" },
+  { label: "Location", value: "Mataram, Indonesia", href: "#" },
 ]
 
 export function ContactPane() {
@@ -151,7 +150,8 @@ export function ContactPane() {
         >
           <p>
             <span className="text-[var(--accent)]">TIP:</span> Type{" "}
-            <code className="bg-[var(--bg-elevated)] px-1">'email'</code> in the terminal to copy my email.
+            <code className="bg-[var(--bg-elevated)] px-1">'email'</code> in the terminal to copy my email, or{" "}
+            <code className="bg-[var(--bg-elevated)] px-1">'github'</code> to visit my profile.
           </p>
         </motion.section>
       </StaggerItem>

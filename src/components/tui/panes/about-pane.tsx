@@ -2,30 +2,50 @@ import { StaggerContainer, StaggerItem, Typewriter, motion } from "../animations
 
 const experience = [
   {
-    role: "Senior Fullstack Developer",
-    company: "TechCorp Inc.",
+    role: "Fullstack Developer",
+    company: "Freelance / Outsourced",
     period: "2022 — Present",
-    description: "Leading development of scalable web applications",
+    description: "Delivered end-to-end web applications for clients across analytics, restaurant, and automotive sectors",
   },
   {
-    role: "Software Engineer",
-    company: "StartupXYZ",
-    period: "2020 — 2022",
-    description: "Built microservices architecture and APIs",
+    role: "Fullstack Developer",
+    company: "IoT & Real-time Systems",
+    period: "2021 — 2022",
+    description: "Developed real-time IoT monitoring dashboards using React, MQTT, and Firebase",
   },
   {
-    role: "Junior Developer",
-    company: "Digital Agency Co.",
-    period: "2018 — 2020",
-    description: "Frontend development and UI implementation",
+    role: "Apprentice Fullstack Developer",
+    company: "Training Program",
+    period: "6 months",
+    description: "Completed intensive apprenticeship focused on scalable and maintainable fullstack systems",
+  },
+  {
+    role: "Team Lead / Fullstack Developer",
+    company: "Project-Based",
+    period: "2022 — Present",
+    description: "Led team projects integrating REST APIs and coordinating workflows through GitHub Projects",
+  },
+  {
+    role: "Software Developer",
+    company: "Bongkarin",
+    period: "2021 — 2022",
+    description: "Developed end-to-end IoT system for monitoring patient vitals with live visualization",
+  },
+  {
+    role: "Electrical Engineer",
+    company: "Previous Career",
+    period: "Pre-2021",
+    description: "Technical background in electrical engineering before transitioning to software development",
   },
 ]
 
 const bioItems = [
-  "Based in Jakarta, Indonesia",
-  "5+ years of professional experience",
-  "Open source contributor",
-  "Coffee-driven development enthusiast",
+  "Based in Mataram, Indonesia",
+  "3+ years of professional coding experience",
+  "Builds end-to-end web applications from UI to backend",
+  "Experienced with real-time dashboards and IoT systems",
+  "Comfortable modernizing legacy codebases",
+  "Works across web, mobile, CMS, and admin platforms",
 ]
 
 export function AboutPane() {
@@ -39,7 +59,7 @@ export function AboutPane() {
           </div>
           <div className="tui-box-accent">
             <h1 className="text-xl font-bold mb-2">
-              <Typewriter text="Hey, I'm Devnull" speed={60} />
+              <Typewriter text="Hey, I'm Iqbal Firdaus" speed={60} />
             </h1>
             <motion.p
               className="text-muted-foreground leading-relaxed"
@@ -47,10 +67,11 @@ export function AboutPane() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.5 }}
             >
-              Fullstack developer crafting digital experiences with code. I build
-              things for the web — from pixel-perfect interfaces to robust backend
-              systems. Currently obsessed with TypeScript, React, and making
-              terminals look cool.
+              Fullstack Developer with experience delivering end-to-end web applications across
+              analytics, restaurant, automotive, IoT, and government sectors. Strong in building
+              responsive frontend interfaces, scalable backend services, and real-time dashboards
+              using modern JavaScript and TypeScript ecosystems. Electrical Engineer turned
+              developer — I bring a systems-thinking approach to software problems.
             </motion.p>
           </div>
         </section>

@@ -68,12 +68,12 @@ export function Terminal() {
       if (command === "history" || command === "hist") return setShowHistory((prev) => !prev)
 
       if (command === "email") {
-        navigator.clipboard?.writeText("hello@devnull.dev")
-        return addLine("success", "✓ Email copied: hello@devnull.dev")
+        navigator.clipboard?.writeText("ikbakfir@gmail.com")
+        return addLine("success", "✓ Email copied: ikbakfir@gmail.com")
       }
 
       if (command === "github" || command === "gh") {
-        window.open("https://github.com", "_blank")
+        window.open("https://github.com/ikbakk", "_blank")
         return addLine("success", "✓ Opening GitHub...")
       }
 
@@ -86,14 +86,14 @@ export function Terminal() {
         return
       }
 
-      if (command === "whoami") return addLine("output", "devnull — fullstack developer")
+      if (command === "whoami") return addLine("output", "ikbakk — fullstack developer from Mataram, Indonesia")
       if (command === "date") return addLine("output", new Date().toLocaleString())
 
       if (command === "neofetch" || command === "fetch") {
         addLine("output", "  ╭──────────────╮")
-        addLine("output", "  │   DEVNULL    │  OS: Web Browser")
-        addLine("output", "  │    ╭───╮     │  Host: portfolio.dev")
-        addLine("output", "  │    │ ◉ │     │  Uptime: 5+ years")
+        addLine("output", "  │    IKBAKK    │  OS: Web Browser")
+        addLine("output", "  │    ╭───╮     │  Host: ikbakk.dev")
+        addLine("output", "  │    │ ◉ │     │  Uptime: 3+ years")
         addLine("output", "  │    ╰───╯     │  Shell: TypeScript")
         addLine("output", "  ╰──────────────╯  Theme: Neo-Brutal")
         return
@@ -130,7 +130,7 @@ export function Terminal() {
       <div className="tui-scanlines" />
 
       <TerminalHeader
-        name="DEVNULL"
+        name="IKBAKK"
         status="online"
         title="fullstack developer"
         activePane={activePane}
