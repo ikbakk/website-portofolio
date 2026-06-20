@@ -34,6 +34,7 @@ export default function PortfolioClient({ data }: PortfolioClientProps) {
 
 					<WorkSection
 						experience={data.experience}
+						projects={data.projects}
 						onRef={(el) => observeSection("work", el)}
 					/>
 

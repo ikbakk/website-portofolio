@@ -11,10 +11,10 @@ const inter = Inter({
 export const metadata: Metadata = {
 	title: {
 		default: "Muhammad Iqbal Firdaus - Portfolio",
-		template: "%s | Iqbal Firdaus",
+		template: "%s | Muhammad Iqbal Firdaus",
 	},
 	description:
-		"Frontend developer crafting digital experiences at the intersection of design, technology, and human behavior.",
+		"Frontend & mobile developer building modern web and mobile experiences with performance-focused UI and clean developer workflows.",
 	keywords: [
 		"software engineer",
 		"frontend developer",
@@ -23,22 +23,22 @@ export const metadata: Metadata = {
 		"next.js",
 		"design systems",
 	],
-	authors: [{ name: "Iqbal Firdausk" }],
-	creator: "Iqbal Firdaus",
+	authors: [{ name: "Muhammad Iqbal Firdaus" }],
+	creator: "Muhammad Iqbal Firdaus",
 	openGraph: {
 		type: "website",
 		locale: "en_US",
 		url: "https://ikbak.vercel.app",
-		title: "Iqbal Firdaus - Portfolio",
+		title: "Muhammad Iqbal Firdaus - Portfolio",
 		description:
-			"Frontend developer crafting digital experiences at the intersection of design, technology, and human behavior.",
-		siteName: "Iqbal Firdaus Portfolio",
+			"Frontend & mobile developer building modern web and mobile experiences with performance-focused UI and clean developer workflows.",
+		siteName: "Muhammad Iqbal Firdaus Portfolio",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Iqbal Firdaus - Portfolio",
+		title: "Muhammad Iqbal Firdaus - Portfolio",
 		description:
-			"Frontend developer crafting digital experiences at the intersection of design, technology, and human behavior.",
+			"Frontend & mobile developer building modern web and mobile experiences with performance-focused UI and clean developer workflows.",
 	},
 	robots: {
 		index: true,
