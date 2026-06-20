@@ -29,7 +29,7 @@ export default function ConnectSection({
 	onRef,
 }: ConnectSectionProps) {
 	return (
-		<section id="connect" ref={onRef} className="py-32 opacity-0">
+		<section id="connect" ref={onRef} className="py-32">
 			<div className="grid lg:grid-cols-2 gap-16">
 				<div className="space-y-8">
 					<h2 className="text-4xl font-light">Let's Connect</h2>
