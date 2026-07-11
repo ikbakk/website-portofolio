@@ -1,0 +1,29 @@
+---
+/**
+ * ToolkitItem. One item on /toolkit. Numbered list, mono number,
+ * display-face category, body paragraph, mono tag row.
+ */
+import type { ToolkitItem as ToolkitItemData } from "../data/toolkit";
+
+interface Props {
+  item: ToolkitItemData;
+  index: number;
+}
+
+const { item, index } = Astro.props;
+const delay = (index * 60).toString();
+---
+
+<li
+  class="toolkit-item"
+  data-od-id={`toolkit-${item.number}`}
+  data-od-reveal="entry"
+  style={`--i:${delay}`}
+>
+  <span class="toolkit-no">{item.number}</span>
+  <div class="toolkit-body">
+    <div class="toolkit-cat">{item.category}</div>
+    <p>{item.body}</p>
+    <div class="toolkit-tags">{item.tag}</div>
+  </div>
+</li>

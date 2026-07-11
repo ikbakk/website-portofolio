@@ -1,0 +1,31 @@
+---
+/**
+ * FolioBar. The sticky strip immediately under the topbar that names
+ * the current folio. Has a visually-hidden h2 for the page landmark.
+ *
+ *  folioNumber   -  the printed "01" / "02" etc.
+ *  folioTag      -  the printed "01 / Field note" tag
+ *  folioMeta     -  the printed "2026 / present" or "three projects, ..."
+ *  h2Label       -  the screen-reader-only h2 text. Optional.
+ *  folioId       -  used in the data-od-id attribute (folio-01 etc.)
+ */
+interface Props {
+  folioNumber: string;
+  folioTag: string;
+  folioMeta: string;
+  folioId: string;
+  h2Label?: string;
+}
+
+const { folioNumber, folioTag, folioMeta, folioId, h2Label } = Astro.props;
+---
+
+<header class="folio-bar" data-od-id={folioId}>
+  <div class="folio-bar-inner">
+    {h2Label && <h2 class="vh">{h2Label}</h2>}
+    <div class="folio">
+      <span class="folio-tag">{folioTag}</span>
+      <span>{folioMeta}</span>
+    </div>
+  </div>
+</header>

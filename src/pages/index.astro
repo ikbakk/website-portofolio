@@ -1,17 +1,55 @@
 ---
+/**
+ * /   -  page-01 Field note.
+ *
+ * Hero with the manifesto h1 and the marginalia aside. The clock
+ * slot in the marginalia is filled by the live clock on the client.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Folio from "@/components/Folio.astro";
+import { folios } from "@/data/nav";
+import { hero } from "@/data/hero";
 
+const currentSection = folios[0];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout currentSection={currentSection} homeHref="/">
+  <Folio
+    folioNumber="01 / field note"
+    folioBarNumber="01"
+    folioBarTag={hero.folioTag}
+    folioBarMeta={hero.folioMeta}
+    folioBarId="folio-01"
+    id="page-01"
+    odId="page-01-hero"
+  >
+    <h1 class="manifesto" data-od-id="hero-manifesto" data-od-reveal="entry">
+      {hero.title.map((seg) =>
+        typeof seg === "string" ? seg : <em>{seg.em}</em>,
+      )}
+    </h1>
+
+    <div class="manifesto-sub">
+      <p data-od-id="hero-subhead" data-od-reveal="entry">
+        {hero.lede}
+      </p>
+      <aside
+        class="marginalia"
+        aria-label="At a glance"
+        data-od-id="hero-marginalia"
+        data-od-reveal="entry"
+      >
+        {hero.marginalia.map((row) => (
+          <p>
+            <span class="mk">{row.label}</span>
+            {row.live ? (
+              <span class="js-local-slot">{row.value}</span>
+            ) : (
+              row.value
+            )}
+          </p>
+        ))}
+      </aside>
+    </div>
+  </Folio>
+</BaseLayout>

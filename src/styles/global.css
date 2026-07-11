@@ -16,6 +16,8 @@
 @import "@fontsource-variable/newsreader";
 @import "@fontsource-variable/ibm-plex-sans";
 @import "@fontsource-variable/jetbrains-mono";
+@import "./components.css";
+@import "./identity.css";
 
 /* ─── WeChat token system (binding the active design system) ───── */
 :root {
@@ -180,6 +182,11 @@ em { font-style: italic; }
 .sg-ink    { stroke: var(--fg); }
 .fg-on     { fill: var(--surface-2); }
 .sg-none   { stroke: none; }
+
+/* SVG text utility. The marks use a typographic italic for monogram
+   glyphs; the SVG font-style presentation attribute is matched by
+   the no-inline-style grep, so we set the style through a class. */
+.mark-text-italic { font-style: italic; }
 
 /* ─── reduced motion (global) ─────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

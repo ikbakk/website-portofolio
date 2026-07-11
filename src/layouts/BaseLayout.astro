@@ -1,0 +1,118 @@
+---
+/**
+ * BaseLayout. The single source of truth for <html>, <head>, and
+ * the global chrome. Every page passes through here.
+ *
+ *   profile         -  Profile from src/data/profile
+ *   currentSection  -  NavFolio for the active route (drives topbar + spine)
+ *   homeHref        -  anchor for the topbar-mark (back to top), usually "/"
+ *   title           -  <title> for this page
+ *   description     -  meta description for this page
+ *
+ *   The layout renders the topbar, the main slot, the spine, the
+ *   tweaks panel, and an inline pre-paint script that restores the
+ *   mark direction from localStorage before first paint.
+ */
+import { ClientRouter } from "astro:transitions";
+import "@/styles/global.css";
+
+import { profile } from "@/data/profile";
+import { seo } from "@/data/seo";
+import { defaultDirection } from "@/data/marks";
+import type { NavFolio } from "@/data/nav";
+
+import Topbar from "@/components/Topbar.astro";
+import Spine from "@/components/Spine.astro";
+import TweaksPanel from "@/components/TweaksPanel.astro";
+import SkipLink from "@/components/SkipLink.astro";
+
+interface Props {
+  currentSection: NavFolio;
+  homeHref: string;
+  title?: string;
+  description?: string;
+  /** Mark direction to render in the topbar. Server-side default
+   *  is "a"  -  the client-side script overrides it on first paint. */
+  initialDirection?: "a" | "b" | "c" | "d";
+}
+
+const {
+  currentSection,
+  homeHref,
+  title = seo.title,
+  description = seo.description,
+  initialDirection = defaultDirection,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL(seo.ogImage, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={seo.themeColor} media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content={seo.themeColorDark} media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={profile.name} />
+
+    <meta name="twitter:card" content={seo.twitter.card} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <ClientRouter fallback="swap" />
+  </head>
+  <body data-direction={initialDirection}>
+    <SkipLink href="#main" label="Skip to main content" />
+
+    <div class="shell">
+      <Topbar
+        profile={profile}
+        currentSection={currentSection}
+        homeHref={homeHref}
+        direction={initialDirection}
+      />
+
+      <main id="main" class="pages" data-od-id="pages">
+        <slot />
+      </main>
+
+      <Spine currentId={currentSection.id} />
+      <TweaksPanel initialDirection={initialDirection} />
+    </div>
+
+    {/* Pre-paint script: apply the saved mark direction before the
+        first frame, so the topbar mark shows the right glyph without
+        a flash. No-op on the server; ships as a tiny inline script. */}
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem("mark-direction");
+          if (saved && (saved === "a" || saved === "b" || saved === "c" || saved === "d")) {
+            document.body.dataset.direction = saved;
+          }
+        } catch (e) { /* localStorage unavailable, ignore */ }
+      })();
+    </script>
+
+    {/* View transitions glue. Attaches handlers for
+        astro:before-swap + astro:page-load on every page. */}
+    <script>
+      import { attachViewTransitions } from "@/lib/view-transitions";
+      attachViewTransitions();
+    </script>
+  </body>
+</html>

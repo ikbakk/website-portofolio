@@ -1,0 +1,41 @@
+---
+/**
+ * /contact  -  page-05 Contact.
+ *
+ * Six ContactRow components in a terminal-style list. The 4
+ * disabled rows render aria-disabled="true" and are not interactive.
+ * The colophon appears at the very bottom of the page (outside the
+ * folio so the page footer is the colophon itself).
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Folio from "@/components/Folio.astro";
+import ContactRow from "@/components/ContactRow.astro";
+import Colophon from "@/components/Colophon.astro";
+import { folios } from "@/data/nav";
+import { contact, contactFolioTag, contactFolioMeta, contactLede } from "@/data/contact";
+import { colophon as colophonData } from "@/data/colophon";
+
+const currentSection = folios[4];
+---
+
+<BaseLayout currentSection={currentSection} homeHref="/">
+  <Folio
+    folioNumber="05 / contact"
+    folioBarNumber="05"
+    folioBarTag={contactFolioTag}
+    folioBarMeta={contactFolioMeta}
+    folioBarId="folio-05"
+    folioBarH2="Contact: reply window 1 to 2 business days"
+    id="page-05"
+    odId="page-05-contact"
+  >
+    <p class="page-lede" data-od-id="contact-lede" data-od-reveal="entry">
+      {contactLede}
+    </p>
+    <ul class="contact-list" data-od-id="contact-list">
+      {contact.map((row) => <ContactRow row={row} />)}
+    </ul>
+  </Folio>
+
+  <Colophon data={colophonData} />
+</BaseLayout>

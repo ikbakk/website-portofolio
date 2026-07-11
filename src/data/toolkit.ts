@@ -2,10 +2,10 @@
  * Five toolkit items (the kinds of work the engineer does). Listed
  * in the order the engineer would reach for them.
  *
- *  number  — printed in mono, accent color
- *  category — h2 of the item (display face)
- *  body    — short paragraph
- *  tag     — mono uppercase "React · TypeScript · ..." row
+ *  number   -  printed in mono, accent color
+ *  category  -  h2 of the item (display face)
+ *  body     -  short paragraph
+ *  tag      -  mono uppercase "React · TypeScript · ..." row
  */
 export interface ToolkitItem {
   number: string;

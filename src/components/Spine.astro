@@ -1,0 +1,55 @@
+---
+/**
+ * Spine. The bottom-fixed pill of 5 markers that mirrors the
+ * document's scroll progress. Two layers: the grey line (always
+ * there) and the accent line (scaled by --progress). Each marker
+ * links to the corresponding route.
+ *
+ *  folios    -  ReadonlyArray<NavFolio> for the 5 folios
+ *  currentId  -  the id of the active folio (e.g. "page-02")
+ */
+import type { NavFolio } from "../data/nav";
+import { folios } from "../data/nav";
+
+interface Props {
+  folios?: ReadonlyArray<NavFolio>;
+  currentId?: string;
+}
+
+const { folios: list = folios, currentId = "page-01" } = Astro.props;
+const currentIndex = list.findIndex((f) => f.id === currentId);
+---
+
+<nav
+  class="spine"
+  data-od-id="progress-spine"
+  aria-label="Page progress and section navigation"
+  transition:persist="spine"
+>
+  <div class="spine-track" data-js="spine-track">
+    <span class="spine-line" aria-hidden="true"></span>
+    <span class="spine-line-fill" aria-hidden="true"></span>
+    {list.map((folio, i) => {
+      const isCurrent = folio.id === currentId;
+      const isPast = currentIndex >= 0 && i < currentIndex;
+      return (
+        <a
+          class:list={[
+            "spine-marker",
+            isCurrent && "is-current",
+            isPast && "is-past",
+          ]}
+          href={folio.route}
+          data-spine-id={folio.id}
+          data-od-id={`spine-${folio.number}`}
+          aria-label={`Folio ${folio.number}: ${folio.name}`}
+          aria-current={isCurrent ? "true" : undefined}
+          data-set-spine={folio.id}
+        >
+          <span class="spine-tip">{folio.name}</span>
+          {folio.number}
+        </a>
+      );
+    })}
+  </div>
+</nav>

@@ -1,0 +1,38 @@
+---
+/**
+ * /toolkit  -  page-03 Toolkit.
+ *
+ * Five ToolkitItem components in source order. The list animates
+ * in with a 60ms stagger (data-i index for the GSAP entry).
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Folio from "@/components/Folio.astro";
+import ToolkitItem from "@/components/ToolkitItem.astro";
+import { folios } from "@/data/nav";
+import { toolkit, toolkitFolioTag, toolkitFolioMeta, toolkitLede } from "@/data/toolkit";
+
+const currentSection = folios[2];
+---
+
+<BaseLayout currentSection={currentSection} homeHref="/">
+  <Folio
+    folioNumber="03 / toolkit"
+    folioBarNumber="03"
+    folioBarTag={toolkitFolioTag}
+    folioBarMeta={toolkitFolioMeta}
+    folioBarId="folio-03"
+    folioBarH2="Toolkit: the kinds of work I do, in my own words"
+    id="page-03"
+    odId="page-03-toolkit"
+  >
+    <p class="page-lede" data-od-id="toolkit-lede" data-od-reveal="entry">
+      {toolkitLede}
+    </p>
+
+    <ol class="toolkit">
+      {toolkit.map((item, i) => (
+        <ToolkitItem item={item} index={i} />
+      ))}
+    </ol>
+  </Folio>
+</BaseLayout>

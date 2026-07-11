@@ -1,0 +1,13 @@
+---
+/**
+ * FolioNumber. The bottom-right marker on every page-inner:
+ * "01 / field note" in mono, --muted color, pointer-events: none.
+ */
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<span class="folio-number" aria-hidden="true">{text}</span>

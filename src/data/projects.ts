@@ -4,16 +4,16 @@
  * through the ProjectEntry component. This file is the *summary* that
  * drives the folio bar, the meta dl, and the lede.
  *
- *  number     — printed as "01 / 2025" on the entry head
- *  year       — used to derive the right column of the entry-no
- *  title      — h2 of the entry
- *  role       — short role line
- *  stack      — comma-separated tools, used in the dl and the tag row
- *  team       — short team line
- *  outcome    — short outcome line
- *  note       — the marginal "what I'd do differently" block
- *  noteLabel  — label for the marginal note (e.g. "What I'd do differently")
- *  slug       — file name in src/content/projects
+ *  number      -  printed as "01 / 2025" on the entry head
+ *  year        -  used to derive the right column of the entry-no
+ *  title       -  h2 of the entry
+ *  role        -  short role line
+ *  stack       -  comma-separated tools, used in the dl and the tag row
+ *  team        -  short team line
+ *  outcome     -  short outcome line
+ *  note        -  the marginal "what I'd do differently" block
+ *  noteLabel   -  label for the marginal note (e.g. "What I'd do differently")
+ *  slug        -  file name in src/content/projects
  */
 export interface ProjectSummary {
   number: string;
@@ -23,6 +23,7 @@ export interface ProjectSummary {
   stack: string;
   team: string;
   outcome: string;
+  lede: string;
   note: string;
   noteLabel: string;
   slug: "01" | "02" | "03";
@@ -39,6 +40,8 @@ export const projects: ReadonlyArray<ProjectSummary> = [
     team: "2 frontend, 1 designer, 1 PM",
     outcome:
       "Replaced 6 fragmented libraries with one tokenized system. Release cycle from weeks to days.",
+    lede:
+      "A two-quarter consolidation across B2B and B2C surfaces. Designed the token taxonomy with the design lead, shipped the primitives, then wrote the migration playbook so five product teams could move without freezing their roadmaps.",
     note:
       "Start with a thin vertical slice in one product first, instead of building the full primitive library up front. The full library came together faster once two teams had already adopted the tokens.",
     noteLabel: "What I'd do differently",
@@ -53,6 +56,8 @@ export const projects: ReadonlyArray<ProjectSummary> = [
     team: "Embedded with ops + design",
     outcome:
       "Replaced three spreadsheets and two internal scripts. One workspace, keyboard-first, accessible to the ops QA process.",
+    lede:
+      "An internal tool for a 30-person ops team processing thousands of records a day. The constraint was information density and keyboard speed, not visual delight. Built a small component kit, a keyboard layer over react-aria, and a query system that survived bad data.",
     note:
       "Tables with 50+ columns, 100ms column resize, and a save model that couldn't lose work to a network blip. Wrote a draft + commit layer that turned the page into a stable editing surface.",
     noteLabel: "Constraint that shaped it",
@@ -67,6 +72,8 @@ export const projects: ReadonlyArray<ProjectSummary> = [
     team: "Solo, working with the founder",
     outcome:
       "Marketing site + docs + first-touch onboarding. Core Web Vitals green, 100 on accessibility, on a small hosting budget.",
+    lede:
+      "A small developer-tool company needed a marketing site, a docs site, and a getting-started flow that didn't feel like marketing. Built it with Astro for shipping the static surface fast, kept the interactive parts in vanilla TS so there was no framework overhead for a one-engineer team.",
     note:
       "No design system. Three surfaces, three scopes, the system came after the launch when the team grew. Doing it again I'd plant a token file from day one even if it's just CSS custom properties.",
     noteLabel: "Tradeoff",

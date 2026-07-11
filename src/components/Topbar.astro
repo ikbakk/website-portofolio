@@ -1,0 +1,68 @@
+---
+/**
+ * Topbar. Sticky at top of the viewport, scroll-aware, three-column
+ * grid: brand / status / current section. The progress hairline is
+ * rendered as the last child of the topbar so the GSAP / scroll
+ * progress math in src/lib/progress.ts scales it via --progress.
+ *
+ *  profile        -  Profile from src/data/profile
+ *  currentSection  -  NavFolio for the active route
+ *  homeHref       -  anchor for the topbar-mark (back to top)
+ */
+import type { Profile } from "../data/profile";
+import type { NavFolio } from "../data/nav";
+import { marks, markById, defaultDirection } from "../data/marks";
+import Mark from "./Mark.astro";
+
+interface Props {
+  profile: Profile;
+  currentSection: NavFolio;
+  homeHref: string;
+  /** The direction to render in the topbar mark. The body data-direction
+   *  is set client-side from localStorage, but on first paint the
+   *  topbar mark needs a default. */
+  direction?: "a" | "b" | "c" | "d";
+}
+
+const { profile, currentSection, homeHref, direction = defaultDirection } = Astro.props;
+const activeMark = markById(direction) ?? marks[0];
+const roleLine = profile.role;
+---
+
+<header
+  class="topbar"
+  data-od-id="topbar"
+  role="banner"
+  transition:persist="topbar"
+>
+  <div class="topbar-inner">
+    <div class="topbar-brand">
+      <a
+        class="topbar-mark"
+        href={homeHref}
+        aria-label={`${profile.name} / back to top`}
+        data-od-id="topbar-mark"
+      >
+        <Mark mark={activeMark} size={24} monogram={profile.monogram} />
+      </a>
+      <div class="topbar-name">
+        {profile.name}
+        <span class="topbar-role">{roleLine}</span>
+      </div>
+    </div>
+
+    <div class="topbar-status" data-od-id="topbar-status" aria-live="polite">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span class="topbar-status-text">{profile.status}</span>
+    </div>
+
+    <div class="topbar-section" data-od-id="topbar-section" aria-live="polite">
+      <span class="topbar-section-no" data-js="section-no">{currentSection.number}</span>
+      <span class="topbar-section-name" data-js="section-name">{currentSection.name}</span>
+    </div>
+  </div>
+
+  <div class="topbar-progress" aria-hidden="true">
+    <div class="topbar-progress-fill" data-js="progress-fill"></div>
+  </div>
+</header>

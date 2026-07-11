@@ -2,11 +2,11 @@
  * Nav. The five folios that anchor the page. Each entry maps 1-to-1
  * to a page route and a spine marker.
  *
- *   id     — the page id used in the original artifact (page-01 etc.)
- *   number — the printed folio number on the folio bar (01 / 02 / ...)
- *   name   — the printed section name (Field note / Selected work / ...)
- *   slug   — the URL segment, also the Astro file name
- *   route  — the absolute route, including the leading slash
+ *   id      -  the page id used in the original artifact (page-01 etc.)
+ *   number  -  the printed folio number on the folio bar (01 / 02 / ...)
+ *   name    -  the printed section name (Field note / Selected work / ...)
+ *   slug    -  the URL segment, also the Astro file name
+ *   route   -  the absolute route, including the leading slash
  */
 export interface NavFolio {
   id: string;

@@ -1,0 +1,60 @@
+---
+/**
+ * ProjectEntry. One project on /work. Renders the entry-head (number,
+ * title, meta dl), the body paragraph, the marginal note, and the
+ * screenshot slot.
+ *
+ *  entry  -  ProjectSummary from src/data/projects
+ *  The long-form markdown body (if any) is rendered through the
+ *  default slot, so the page can pass `<Content />` from the
+ *  content collection.
+ */
+import type { ProjectSummary } from "../data/projects";
+
+interface Props {
+  entry: ProjectSummary;
+}
+
+const { entry } = Astro.props;
+---
+
+<article class="entry" data-od-id={`entry-${entry.number}`} data-od-reveal="scroll">
+  <div class="entry-head">
+    <div class="entry-no">{entry.number} / {entry.year}</div>
+    <h2 class="entry-title">{entry.title}</h2>
+    <div class="entry-meta">
+      <dl>
+        <dt>Role</dt>
+        <dd>{entry.role}</dd>
+        <dt>Stack</dt>
+        <dd>{entry.stack}</dd>
+        <dt>Team</dt>
+        <dd>{entry.team}</dd>
+        <dt>Outcome</dt>
+        <dd>{entry.outcome}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="entry-body">
+    <p class="entry-lede">{entry.lede}</p>
+    <slot />
+
+    <div class="entry-notes">
+      <span class="note-label">{entry.noteLabel}</span>
+      {entry.note}
+    </div>
+
+    <div
+      class="entry-visual"
+      data-od-id={`entry-${entry.number}-visual`}
+      data-state="empty"
+      role="img"
+      aria-label={`Screenshot slot for project ${entry.number}, awaiting asset`}
+    >
+      <span>Screenshot / mockup, 16:10</span>
+      <span class="screenshot-hint">
+        Drop a screenshot here once the project is chosen. The slot holds a 16:10 ratio.
+      </span>
+    </div>
+  </div>
+</article>

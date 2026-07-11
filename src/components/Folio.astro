@@ -1,0 +1,55 @@
+---
+/**
+ * Folio. The reusable section wrapper. Renders a sticky FolioBar
+ * and a page-inner that carries the notebook grid background
+ * (32px vertical, --fg at 4% mix, masked to fade 0 to 70%). The
+ * FolioNumber sits in the bottom-right.
+ *
+ *  folioNumber  -  the printed "01 / field note" string for the bottom-right
+ *  folioBarNumber  -  the printed "01" / "02" etc.
+ *  folioBarTag    -  the printed "01 / Field note" tag
+ *  folioBarMeta   -  the printed meta line
+ *  folioBarId     -  the data-od-id (folio-01 etc.)
+ *  folioBarH2     -  optional screen-reader h2
+ *  id             -  the page-01 etc. id (used by the spine to scroll)
+ *  odId           -  the data-od-id (page-01-hero etc.)
+ */
+import FolioBar from "./FolioBar.astro";
+import FolioNumber from "./FolioNumber.astro";
+
+interface Props {
+  folioNumber: string;
+  folioBarNumber: string;
+  folioBarTag: string;
+  folioBarMeta: string;
+  folioBarId: string;
+  folioBarH2?: string;
+  id: string;
+  odId: string;
+}
+
+const {
+  folioNumber,
+  folioBarNumber,
+  folioBarTag,
+  folioBarMeta,
+  folioBarId,
+  folioBarH2,
+  id,
+  odId,
+} = Astro.props;
+---
+
+<article class="page" id={id} data-od-id={odId}>
+  <FolioBar
+    folioNumber={folioBarNumber}
+    folioTag={folioBarTag}
+    folioMeta={folioBarMeta}
+    folioId={folioBarId}
+    h2Label={folioBarH2}
+  />
+  <div class="page-inner">
+    <FolioNumber text={folioNumber} />
+    <slot />
+  </div>
+</article>

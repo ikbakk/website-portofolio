@@ -1,0 +1,50 @@
+---
+/**
+ * /approach  -  page-04 Approach.
+ *
+ * 4-paragraph manifesto. The first paragraph uses the display face;
+ * the following paragraphs use the body face. The list at the end
+ * is the same mono row pattern as the contact list.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Folio from "@/components/Folio.astro";
+import { folios } from "@/data/nav";
+import { approach } from "@/data/approach";
+
+const currentSection = folios[3];
+---
+
+<BaseLayout currentSection={currentSection} homeHref="/">
+  <Folio
+    folioNumber="04 / approach"
+    folioBarNumber="04"
+    folioBarTag={approach.folioTag}
+    folioBarMeta={approach.folioMeta}
+    folioBarId="folio-04"
+    folioBarH2="Approach: how I work, briefly"
+    id="page-04"
+    odId="page-04-approach"
+  >
+    <div class="approach">
+      <div class="approach-side" data-od-id="approach-side" data-od-reveal="entry">
+        {approach.side}
+      </div>
+      <div class="approach-body">
+        <p data-od-id="approach-lede" data-od-reveal="entry">
+          {approach.paragraphs[0]}
+        </p>
+        {approach.paragraphs.slice(1).map((para) => (
+          <p data-od-reveal="entry">{para}</p>
+        ))}
+        <ul class="approach-list" data-od-id="approach-list" data-od-reveal="entry">
+          {approach.list.map((row) => (
+            <li>
+              <span>{row.label}</span>
+              <span>{row.value}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Folio>
+</BaseLayout>

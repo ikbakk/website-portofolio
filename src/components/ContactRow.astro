@@ -1,0 +1,33 @@
+---
+/**
+ * ContactRow. One row on /contact. Terminal-style: label / link /
+ * note. When enabled=false the link renders aria-disabled="true"
+ * and is not interactive.
+ */
+import type { ContactRow as ContactRowData } from "../data/contact";
+
+interface Props {
+  row: ContactRowData;
+}
+
+const { row } = Astro.props;
+const isExternal = row.href.startsWith("http") || row.href.startsWith("mailto:");
+---
+
+<li
+  class="contact-item"
+  data-od-id={`contact-${row.kind}`}
+  data-od-reveal="entry"
+>
+  <span class="contact-label">{row.label}</span>
+  <a
+    class="contact-link"
+    href={row.href}
+    rel={isExternal ? "noopener" : undefined}
+    aria-disabled={row.enabled ? undefined : "true"}
+    data-od-id={`contact-${row.kind}-link`}
+  >
+    {row.value}
+  </a>
+  <span class="contact-annot">{row.note}</span>
+</li>

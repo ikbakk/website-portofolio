@@ -1,0 +1,96 @@
+---
+/**
+ * Mark. Four SVG variants in one file. Only the variant matching
+ * body[data-direction] is shown; the others are display:none via
+ * the .mark / .mark-a..d rules in global.css.
+ *
+ *  mark   -  { id, name, ... } from src/data/marks
+ *  size   -  24 (topbar) | 32 (tweaks tile) | 96 (lockup) | 192 (stage)
+ *  monogram  -  the monogram letter (defaults to "f", the placeholder)
+ */
+import type { Mark } from "../data/marks";
+
+interface Props {
+  mark: Mark;
+  size?: 24 | 32 | 96 | 192;
+  monogram?: string;
+  labelled?: boolean;
+}
+
+const { mark, size = 32, monogram = "f", labelled = false } = Astro.props;
+
+// B and C are typographic  -  they read the monogram. A and D are
+// pure geometry. The geometry is identical to the source artifact.
+const isTypographic = mark.id === "b" || mark.id === "c";
+const ariaLabel = labelled
+  ? `Mark ${mark.id.toUpperCase()}: ${mark.name}`
+  : undefined;
+---
+
+<svg
+  class:list={["mark", `mark-${mark.id}`]}
+  viewBox="0 0 96 96"
+  width={size}
+  height={size}
+  aria-hidden={labelled ? undefined : "true"}
+  aria-label={ariaLabel}
+  role={labelled ? "img" : undefined}
+>
+  {mark.id === "a" && (
+    <>
+      <path
+        class="sg-accent"
+        d="M 16 22 L 80 22 Q 88 22 88 30 L 88 58 Q 88 66 80 66 L 36 66 L 24 78 L 24 66 L 16 66 Q 8 66 8 58 L 8 30 Q 8 22 16 22 Z"
+        fill="none"
+        stroke-width="2.5"
+        stroke-linejoin="round"
+      />
+      <circle class="fg-accent" cx="42" cy="44" r="5" />
+    </>
+  )}
+
+  {mark.id === "b" && (
+    <>
+      <rect class="fg-accent" x="12" y="8" width="72" height="80" rx="2" />
+      <text
+        class="fg-on mark-text-italic"
+        x="48"
+        y="64"
+        text-anchor="middle"
+        font-family="Newsreader, serif"
+        font-weight="500"
+        font-size="58"
+      >{monogram}</text>
+    </>
+  )}
+
+  {mark.id === "c" && (
+    <text
+      class="fg-ink mark-text-italic"
+      x="48"
+      y="80"
+      text-anchor="middle"
+      font-family="Newsreader, serif"
+      font-weight="400"
+      font-size="92"
+    >{monogram}</text>
+  )}
+
+  {mark.id === "d" && (
+    <>
+      <path
+        class="fg-accent"
+        d="M 14 18 L 54 18 Q 60 18 60 24 L 60 44 Q 60 50 54 50 L 30 50 L 22 58 L 22 50 L 14 50 Q 8 50 8 44 L 8 24 Q 8 18 14 18 Z"
+      />
+      <path
+        class="sg-ink"
+        d="M 42 46 L 82 46 Q 88 46 88 52 L 88 72 Q 88 78 82 78 L 74 78 L 74 86 L 66 78 L 42 78 Q 36 78 36 72 L 36 52 Q 36 46 42 46 Z"
+        fill="none"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+    </>
+  )}
+
+  {isTypographic && null /* monogram rendered above */}
+</svg>

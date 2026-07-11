@@ -1,0 +1,37 @@
+---
+/**
+ * ProjectScreenshot. A presentational wrapper for an <img> with the
+ * screenshot-slot chrome. The slot starts in data-state="empty";
+ * when an <img> lands inside, view-transitions flips the state to
+ * "filled" (and "loading" while the asset is in flight).
+ */
+interface Props {
+  projectNumber: string;
+  alt: string;
+  src?: string;
+  loading?: boolean;
+}
+
+const { projectNumber, alt, src, loading = false } = Astro.props;
+const state = loading ? "loading" : src ? "filled" : "empty";
+---
+
+<div
+  class="entry-visual"
+  data-od-id={`entry-${projectNumber}-visual`}
+  data-state={state}
+  data-loading={loading ? "true" : "false"}
+  role="img"
+  aria-label={alt}
+>
+  {src ? (
+    <img src={src} alt={alt} loading="lazy" />
+  ) : (
+    <>
+      <span>Screenshot / mockup, 16:10</span>
+      <span class="screenshot-hint">
+        Drop a screenshot here once the project is chosen. The slot holds a 16:10 ratio.
+      </span>
+    </>
+  )}
+</div>
