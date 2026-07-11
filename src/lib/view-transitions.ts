@@ -5,11 +5,6 @@
  * (2) re-run the page-enter motion + scroll-reveal observers after
  * the new page is in the DOM.
  */
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
 import { killAllTweens, entryStagger, scrollReveal, isReducedMotion } from "./motion";
 import { restoreDirection, currentDirection, applyDirection } from "./direction";
 import { startClock } from "./clock";
@@ -20,9 +15,6 @@ type DocWithEvents = Document & {
   addEventListener(name: string, cb: EventListener): void;
 };
 
-// True when GSAP and IntersectionObserver are both available.
-// If not (older browser, server-side, etc), we skip the entry tween
-// and let the elements render at full opacity.
 const entryStaggerAvailable =
   typeof window !== "undefined" &&
   typeof window.requestAnimationFrame === "function" &&
@@ -31,19 +23,10 @@ const entryStaggerAvailable =
 let stopScrollSpy: () => void = () => {};
 
 function refreshOnLoad(): void {
-  // Make sure the body direction matches localStorage on every page load.
-  // The direction module is idempotent.
   restoreDirection();
-
-  // Re-run the live clock. startClock is idempotent.
   startClock();
-
-  // Re-attach the scroll-progress listener. startProgress is idempotent.
   startProgress();
 
-  // Start (or restart) scroll-spy only on the home page, where the
-  // spine uses #page-NN anchors. On /identity the spine links are
-  // real routes and scroll-spy is skipped.
   if (document.body.dataset.spineAnchors === "true") {
     stopScrollSpy();
     stopScrollSpy = startScrollSpy();
@@ -51,13 +34,8 @@ function refreshOnLoad(): void {
     stopScrollSpy();
   }
 
-  // Only mark the page as will-animate when GSAP can actually run.
-  // This hides [data-od-reveal] elements via CSS so the entry tween
-  // can fade them in. If motion is reduced, the elements stay
-  // visible (no class added, no CSS hide).
   if (!isReducedMotion() && entryStaggerAvailable) {
     document.body.classList.add("will-animate");
-    // Defer one frame so the initial hide paints before the tween starts.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         const entryTargets = document.querySelectorAll<HTMLElement>("[data-od-reveal='entry']");
@@ -70,18 +48,13 @@ function refreshOnLoad(): void {
       });
     });
   } else {
-    // Reduced motion: ensure elements are visible (no class).
     document.body.classList.remove("will-animate");
   }
 
-  // Re-bind tweaks tile clicks (the original artifact binds these
-  // on DOMContentLoaded; with view transitions the bindings are
-  // re-applied here on every page load).
   bindTweaksTiles();
   bindTweaksToggle();
 }
 
-/** Re-bind every .tweaks-tile so clicks update the body direction. */
 function bindTweaksTiles(): void {
   document.querySelectorAll<HTMLButtonElement>(".tweaks-tile").forEach((tile) => {
     if (tile.dataset.bound === "1") return;
@@ -118,52 +91,18 @@ function bindTweaksToggle(): void {
   });
 }
 
-/** Create the ScrollSmoother instance and store it globally. */
-function initSmoother(): void {
-  if (typeof document === "undefined") return;
-  // Only create on the home page (where spine uses anchors).
-  // On /identity the smooth-scrolled single-page doesn't apply.
-  if (document.body.dataset.spineAnchors !== "true") return;
-  if (window.__gsapSmoother) return;
-
-  const reduced = isReducedMotion();
-  window.__gsapSmoother = ScrollSmoother.create({
-    smooth: reduced ? 0 : 1.2,
-    effects: !reduced,
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-  });
-}
-
-/** Get the active smoother, or null if none / on identity. */
-function getSmoother(): ScrollSmoother | null {
-  return (typeof window !== "undefined" && window.__gsapSmoother) || null;
-}
-
 export function attachViewTransitions(): () => void {
   if (typeof document === "undefined") return () => {};
   const doc = document as DocWithEvents;
 
-  // Make sure the body has the right direction at first paint, even
-  // before astro:page-load has fired.
   restoreDirection();
-
-  // Initialize ScrollSmoother for the home page.
-  initSmoother();
 
   doc.addEventListener("astro:before-swap", () => {
     killAllTweens();
     stopScrollSpy();
-    // Kill the smoother before navigating away.
-    if (window.__gsapSmoother) {
-      window.__gsapSmoother.kill();
-      window.__gsapSmoother = undefined;
-    }
   });
   doc.addEventListener("astro:page-load", refreshOnLoad);
 
-  // Initial paint: run the refresh once so things like the clock and
-  // tweaks bindings are wired up.
   refreshOnLoad();
 
   return () => {
@@ -171,15 +110,6 @@ export function attachViewTransitions(): () => void {
   };
 }
 
-/** Read the current direction off the body for use at render time. */
 export function getCurrentDirection(): string {
   return currentDirection();
-}
-
-// Extend the window type so TypeScript knows about our global smoother.
-// The actual property is set at runtime by initSmoother().
-declare global {
-  interface Window {
-    __gsapSmoother?: import("gsap/ScrollSmoother").ScrollSmoother;
-  }
 }

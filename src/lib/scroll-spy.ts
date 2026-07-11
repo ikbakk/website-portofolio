@@ -4,14 +4,8 @@
  * then update the spine markers' is-current / is-past classes and
  * the topbar section indicator. Single-page mode only; the
  * multi-page identity deck skips this.
- *
- * Anchor navigation uses the ScrollSmoother instance from
- * view-transitions.ts so the smooth-scroll effect is consistent
- * with the page's global scroll smoothing. When no smoother is
- * active (reduced motion, /identity page, or initialization race),
- * falls back to instant native scrollTo.
  */
-import { isReducedMotion } from "./motion";
+import { progressHairline } from "./motion";
 
 const SECTION_IDS = ["page-01", "page-02", "page-03", "page-04", "page-05"] as const;
 const SECTION_NAMES: Record<(typeof SECTION_IDS)[number], string> = {
@@ -40,19 +34,16 @@ function findActiveSection(): (typeof SECTION_IDS)[number] {
 function update(): void {
   ticking = false;
 
-  // Update --progress (ScrollSmoother keeps window.scrollY in sync)
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const p = docHeight > 0 ? Math.max(0, Math.min(1, window.scrollY / docHeight)) : 0;
-  document.documentElement.style.setProperty("--progress", p.toFixed(4));
+  progressHairline(p);
   document.body.classList.toggle("is-scrolled", window.scrollY > 80);
 
-  // Update the active section
   const next = findActiveSection();
   if (next === currentId) return;
   currentId = next;
   const idx = SECTION_IDS.indexOf(next);
 
-  // Update spine markers
   document.querySelectorAll<HTMLElement>(".spine-marker").forEach((marker) => {
     const id = (marker.dataset.spineId || "").replace(/^#/, "");
     const i = SECTION_IDS.indexOf(id as (typeof SECTION_IDS)[number]);
@@ -67,7 +58,6 @@ function update(): void {
     }
   });
 
-  // Update topbar section indicator
   const sectionNo = document.querySelector<HTMLElement>("[data-js='section-no']");
   const sectionName = document.querySelector<HTMLElement>("[data-js='section-name']");
   if (sectionNo) sectionNo.textContent = String(idx + 1).padStart(2, "0");
@@ -80,30 +70,6 @@ function onScroll(): void {
   window.requestAnimationFrame(update);
 }
 
-/**
- * Smooth-scroll to a section via ScrollSmoother. Falls back to
- * native scrollTo when the smoother isn't available (identity page,
- * reduced motion, SSR, or before the smoother initializes).
- */
-function scrollToSection(id: string): void {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  // 56px = topbar height
-  const top = Math.max(0, el.offsetTop - 56);
-
-  const smoother =
-    typeof window !== "undefined" ? window.__gsapSmoother : undefined;
-
-  if (smoother && !isReducedMotion()) {
-    smoother.scrollTo(top, true);
-  } else {
-    window.scrollTo({ top, behavior: "auto" });
-  }
-
-  history.replaceState(null, "", `#${id}`);
-}
-
 function onAnchorClick(event: MouseEvent): void {
   const target = event.target as HTMLElement | null;
   if (!target) return;
@@ -111,8 +77,13 @@ function onAnchorClick(event: MouseEvent): void {
   if (!anchor) return;
   const id = anchor.getAttribute("href")!.slice(1);
   if (!SECTION_IDS.includes(id as (typeof SECTION_IDS)[number])) return;
+  const el = document.getElementById(id);
+  if (!el) return;
   event.preventDefault();
-  scrollToSection(id);
+  const rect = el.getBoundingClientRect();
+  const top = rect.top + window.scrollY - 56;
+  window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+  history.replaceState(null, "", `#${id}`);
 }
 
 /** Start scroll-spy. Idempotent. Returns a teardown fn. */

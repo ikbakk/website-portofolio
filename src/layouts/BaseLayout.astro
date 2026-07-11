@@ -90,7 +90,7 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
   >
     <SkipLink href="#main" label="Skip to main content" />
 
-    {/* Fixed elements outside ScrollSmoother wrapper */}
+    {/* Fixed elements outside the main content flow. */}
     <Topbar
       profile={profile}
       currentSection={currentSection}
@@ -101,13 +101,9 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
     <TweaksPanel initialDirection={initialDirection} />
 
     <div class="shell">
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <main id="main" class="pages" data-od-id="pages">
-            <slot />
-          </main>
-        </div>
-      </div>
+      <main id="main" class="pages" data-od-id="pages">
+        <slot />
+      </main>
     </div>
 
     {/* Pre-paint script: apply the saved mark direction before the

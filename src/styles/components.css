@@ -10,23 +10,6 @@
  *         4f35639d-8997-4015-8ec6-3697ef01cbcc/frontend-engineer-portfolio.html
  */
 
-/* ─── ScrollSmoother wrapper ──────────────────────────────────── */
-#smooth-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-}
-#smooth-content {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  pointer-events: auto;
-}
-
 /* ─── shell ─────────────────────────────────────────────────────── */
 .shell {
   display: block;
