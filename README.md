@@ -24,14 +24,19 @@ the data layer (12 frozen TS modules) split into testable pieces.
 
 ## Routes
 
+The portfolio is a single page; the identity deck is its own route.
+
 | Path        | Page                  | What it is                                  |
 | ----------- | --------------------- | ------------------------------------------- |
-| `/`         | page-01 Field note    | Manifesto h1 + marginalia                   |
-| `/work`     | page-02 Selected work | 3 build entries with meta dl + screenshot slots |
-| `/toolkit`  | page-03 Toolkit       | 5 numbered capability items                 |
-| `/approach` | page-04 Approach      | 4-paragraph manifesto + 4-row list         |
-| `/contact`  | page-05 Contact       | 6 terminal-style rows (4 disabled placeholders) + colophon |
+| `/`         | All 5 folios as sections of one page | Field note -> Selected work -> Toolkit -> Approach -> Contact -> Colophon |
 | `/identity` | identity deck         | 4 mark directions + apply section           |
+
+The home page is one long scroll with five `<article id="page-0N">` sections
+linked by anchor. The spine markers are `<a href="#page-0N">` and the
+scroll-spy script (src/lib/scroll-spy.ts) updates the active marker as the
+user scrolls. The topbar's mark uses `href="#page-01"` so it scrolls back
+to the top instead of reloading. The tweaks panel still links to
+`/identity` for the full mark directions deck.
 
 ## Source tree
 
@@ -69,6 +74,7 @@ portfolio/
 │   │   ├── direction.ts                # mark-direction localStorage reader/writer
 │   │   ├── clock.ts                    # live timezone + clock ticker
 │   │   ├── progress.ts                 # rAF scroll tracker
+│   │   ├── scroll-spy.ts               # in-page section -> active spine marker
 │   │   └── view-transitions.ts         # GSAP ↔ ClientRouter glue
 │   ├── components/                     # presentational, props only
 │   │   ├── Topbar.astro
@@ -91,12 +97,8 @@ portfolio/
 │   │   ├── components.css              # portfolio + tweaks + folio layout
 │   │   └── identity.css                # identity page + showcase + swatch chips
 │   └── pages/
-│       ├── index.astro
-│       ├── work.astro
-│       ├── toolkit.astro
-│       ├── approach.astro
-│       ├── contact.astro
-│       └── identity.astro
+│       ├── index.astro                # the entire portfolio (5 sections)
+│       └── identity.astro             # 4 mark directions deck
 └── README.md
 ```
 
@@ -164,13 +166,17 @@ One curve, three durations, transform + opacity only.
 2. `isReducedMotion()` in `motion.ts` makes every GSAP timeline a
    no-op. Belt and braces.
 
-View transitions are wired by `<ClientRouter />` in the head:
+View transitions are wired by `<ClientRouter />` in the head, but only
+`/identity` triggers a real page swap; the home page is one long scroll:
 
 - `astro:before-swap` calls `killAllTweens()` to avoid memory leaks
 - `astro:page-load` re-runs the entry stagger and IntersectionObserver
-  setup
-- `Topbar`, `Spine`, and `TweaksPanel` use `transition:persist` so the
-  chrome does not unmount between pages
+  setup, and (re)starts the scroll-spy listener
+- On the home page, the spine markers are `<a href="#page-0N">` anchors
+  and the scroll-spy (`src/lib/scroll-spy.ts`) updates the active marker
+  as the user scrolls between sections
+- On `/identity`, the spine markers are real Astro routes, so the
+  multi-page navigation kicks in instead
 
 ## Behavior preserved
 
@@ -250,14 +256,14 @@ for the full list):
 | --- | ------------------------------------------------ | ------ |
 | 1   | `astro build` exits 0 with no warnings           | PASS   |
 | 2   | `bunx tsc --noEmit` exits 0                       | PASS   |
-| 3   | All 6 routes return 200                          | PASS   |
+| 3   | All 2 routes return 200                          | PASS   |
 | 4   | No raw hex outside `global.css`                  | PASS   |
 | 5   | No inline `style=` attributes                    | PASS   |
 | 6   | No em dashes, en dashes, or `scrollIntoView`     | PASS   |
 | 7   | All `data-od-id` values unique                   | PASS   |
 | 8   | `localStorage` key is `mark-direction`           | PASS   |
 | 9   | `body[data-direction]` is the only body data-*   | PASS   |
-| 10  | All 4 mark directions render on `/identity`      | PASS   |
+| 10  | All 5 sections (`#page-01..05`) on `/`            | PASS   |
 
 ## Open TODOs (waiting on real inputs)
 

@@ -3,9 +3,16 @@
  * BaseLayout. The single source of truth for <html>, <head>, and
  * the global chrome. Every page passes through here.
  *
- *   profile         -  Profile from src/data/profile
- *   currentSection  -  NavFolio for the active route (drives topbar + spine)
- *   homeHref        -  anchor for the topbar-mark (back to top), usually "/"
+ *   currentSection  -  NavFolio for the active route. On the home
+ *                      page this is page-01; scroll-spy updates the
+ *                      topbar/spine as the user scrolls between
+ *                      sections.
+ *   homeHref        -  anchor for the topbar-mark. On the home page
+ *                      this is "#page-01" so the mark scrolls back
+ *                      to the top instead of reloading.
+ *   asAnchors       -  true on the home page: the spine links are
+ *                      #page-NN anchors. false on /identity: the
+ *                      spine links are real Astro routes.
  *   title           -  <title> for this page
  *   description     -  meta description for this page
  *
@@ -29,6 +36,7 @@ import SkipLink from "@/components/SkipLink.astro";
 interface Props {
   currentSection: NavFolio;
   homeHref: string;
+  asAnchors?: boolean;
   title?: string;
   description?: string;
   /** Mark direction to render in the topbar. Server-side default
@@ -39,6 +47,7 @@ interface Props {
 const {
   currentSection,
   homeHref,
+  asAnchors = true,
   title = seo.title,
   description = seo.description,
   initialDirection = defaultDirection,
@@ -75,7 +84,10 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
 
     <ClientRouter fallback="swap" />
   </head>
-  <body data-direction={initialDirection}>
+  <body
+    data-direction={initialDirection}
+    data-spine-anchors={asAnchors ? "true" : "false"}
+  >
     <SkipLink href="#main" label="Skip to main content" />
 
     <div class="shell">
@@ -90,7 +102,7 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
         <slot />
       </main>
 
-      <Spine currentId={currentSection.id} />
+      <Spine currentId={currentSection.id} asAnchors={asAnchors} />
       <TweaksPanel initialDirection={initialDirection} />
     </div>
 
@@ -108,8 +120,9 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
       })();
     </script>
 
-    {/* View transitions glue. Attaches handlers for
-        astro:before-swap + astro:page-load on every page. */}
+    {/* Page glue: scroll-spy on the home page, tweaks bindings on
+        every page, view-transitions hooks so navigating to /identity
+        still re-runs the entry tween. */}
     <script>
       import { attachViewTransitions } from "@/lib/view-transitions";
       attachViewTransitions();

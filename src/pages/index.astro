@@ -1,19 +1,48 @@
 ---
 /**
- * /   -  page-01 Field note.
+ * /  -  the entire portfolio, one page, five sections.
  *
- * Hero with the manifesto h1 and the marginalia aside. The clock
- * slot in the marginalia is filled by the live clock on the client.
+ *   page-01  Field note     manifesto + marginalia
+ *   page-02  Selected work  3 build entries (content collection)
+ *   page-03  Toolkit        5 numbered capability items
+ *   page-04  Approach       4-paragraph manifesto + 4-row list
+ *   page-05  Contact        6 terminal-style rows
+ *   colophon                5-row footer block (typography, build, clock)
+ *
+ * /identity stays as its own route (4 mark directions deck).
  */
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Folio from "@/components/Folio.astro";
+import ProjectEntry from "@/components/ProjectEntry.astro";
+import ToolkitItem from "@/components/ToolkitItem.astro";
+import ContactRow from "@/components/ContactRow.astro";
+import Colophon from "@/components/Colophon.astro";
 import { folios } from "@/data/nav";
 import { hero } from "@/data/hero";
+import { projects, projectsFolioTag, projectsFolioMeta, projectsLede } from "@/data/projects";
+import { toolkit, toolkitFolioTag, toolkitFolioMeta, toolkitLede } from "@/data/toolkit";
+import { approach } from "@/data/approach";
+import { contact, contactFolioTag, contactFolioMeta, contactLede } from "@/data/contact";
+import { colophon as colophonData } from "@/data/colophon";
+import { seo } from "@/data/seo";
+import { getCollection } from "astro:content";
 
+// The current section is page-01 on first paint; scroll-spy in
+// src/scripts/scroll-spy.ts (wired in BaseLayout) updates it.
 const currentSection = folios[0];
+
+// Look up each project's markdown body in the content collection.
+const collection = await getCollection("projects");
+const entryBodies = new Map(collection.map((entry) => [entry.id, entry]));
 ---
 
-<BaseLayout currentSection={currentSection} homeHref="/">
+<BaseLayout
+  currentSection={currentSection}
+  homeHref="#page-01"
+  asAnchors={true}
+  title={seo.title}
+  description={seo.description}
+>
   <Folio
     folioNumber="01 / field note"
     folioBarNumber="01"
@@ -52,4 +81,101 @@ const currentSection = folios[0];
       </aside>
     </div>
   </Folio>
+
+  <Folio
+    folioNumber="02 / selected work"
+    folioBarNumber="02"
+    folioBarTag={projectsFolioTag}
+    folioBarMeta={projectsFolioMeta}
+    folioBarId="folio-02"
+    folioBarH2="Selected work: three projects, 2023 to 2026"
+    id="page-02"
+    odId="page-02-work"
+  >
+    <p class="page-lede" data-od-id="work-lede" data-od-reveal="entry">
+      {projectsLede}
+    </p>
+
+    <div class="entries">
+      {projects.map((summary) => {
+        const entry = entryBodies.get(summary.slug);
+        return <ProjectEntry entry={summary} />;
+      })}
+    </div>
+  </Folio>
+
+  <Folio
+    folioNumber="03 / toolkit"
+    folioBarNumber="03"
+    folioBarTag={toolkitFolioTag}
+    folioBarMeta={toolkitFolioMeta}
+    folioBarId="folio-03"
+    folioBarH2="Toolkit: the kinds of work I do, in my own words"
+    id="page-03"
+    odId="page-03-toolkit"
+  >
+    <p class="page-lede" data-od-id="toolkit-lede" data-od-reveal="entry">
+      {toolkitLede}
+    </p>
+
+    <ol class="toolkit">
+      {toolkit.map((item, i) => (
+        <ToolkitItem item={item} index={i} />
+      ))}
+    </ol>
+  </Folio>
+
+  <Folio
+    folioNumber="04 / approach"
+    folioBarNumber="04"
+    folioBarTag={approach.folioTag}
+    folioBarMeta={approach.folioMeta}
+    folioBarId="folio-04"
+    folioBarH2="Approach: how I work, briefly"
+    id="page-04"
+    odId="page-04-approach"
+  >
+    <div class="approach">
+      <div class="approach-side" data-od-id="approach-side" data-od-reveal="entry">
+        {approach.side}
+      </div>
+      <div class="approach-body">
+        <p data-od-id="approach-lede" data-od-reveal="entry">
+          {approach.paragraphs[0]}
+        </p>
+        {approach.paragraphs.slice(1).map((para) => (
+          <p data-od-reveal="entry">{para}</p>
+        ))}
+        <ul class="approach-list" data-od-id="approach-list" data-od-reveal="entry">
+          {approach.list.map((row) => (
+            <li>
+              <span>{row.label}</span>
+              <span>{row.value}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Folio>
+
+  <Folio
+    folioNumber="05 / contact"
+    folioBarNumber="05"
+    folioBarTag={contactFolioTag}
+    folioBarMeta={contactFolioMeta}
+    folioBarId="folio-05"
+    folioBarH2="Contact: reply window 1 to 2 business days"
+    id="page-05"
+    odId="page-05-contact"
+  >
+    <p class="page-lede" data-od-id="contact-lede" data-od-reveal="entry">
+      {contactLede}
+    </p>
+    <ul class="contact-list" data-od-id="contact-list">
+      {contact.map((row) => <ContactRow row={row} />)}
+    </ul>
+  </Folio>
+
+  <Colophon data={colophonData} />
 </BaseLayout>
+

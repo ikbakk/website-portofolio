@@ -9,6 +9,7 @@ import { killAllTweens, entryStagger, scrollReveal, isReducedMotion } from "./mo
 import { restoreDirection, currentDirection, applyDirection } from "./direction";
 import { startClock } from "./clock";
 import { startProgress } from "./progress";
+import { startScrollSpy } from "./scroll-spy";
 
 type DocWithEvents = Document & {
   addEventListener(name: string, cb: EventListener): void;
@@ -22,6 +23,8 @@ const entryStaggerAvailable =
   typeof window.requestAnimationFrame === "function" &&
   typeof window.IntersectionObserver === "function";
 
+let stopScrollSpy: () => void = () => {};
+
 function refreshOnLoad(): void {
   // Make sure the body direction matches localStorage on every page load.
   // The direction module is idempotent.
@@ -32,6 +35,16 @@ function refreshOnLoad(): void {
 
   // Re-attach the scroll-progress listener. startProgress is idempotent.
   startProgress();
+
+  // Start (or restart) scroll-spy only on the home page, where the
+  // spine uses #page-NN anchors. On /identity the spine links are
+  // real routes and scroll-spy is skipped.
+  if (document.body.dataset.spineAnchors === "true") {
+    stopScrollSpy();
+    stopScrollSpy = startScrollSpy();
+  } else {
+    stopScrollSpy();
+  }
 
   // Only mark the page as will-animate when GSAP can actually run.
   // This hides [data-od-reveal] elements via CSS so the entry tween
@@ -110,6 +123,7 @@ export function attachViewTransitions(): () => void {
 
   doc.addEventListener("astro:before-swap", () => {
     killAllTweens();
+    stopScrollSpy();
   });
   doc.addEventListener("astro:page-load", refreshOnLoad);
 
