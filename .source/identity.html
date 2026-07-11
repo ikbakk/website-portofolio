@@ -1,0 +1,1168 @@
+<!doctype html>
+<!--
+  Identity system for the personal brand of the frontend engineer behind
+  frontend-engineer-portfolio.html.
+
+  Visual language bound to the WeChat design system: chat-list gray canvas,
+  single WeChat green accent, three-typeface stack (Newsreader / IBM Plex
+  Sans / JetBrains Mono). No raster mockups are shipped here / every
+  mark below is live SVG so it drops directly into the portfolio. The
+  generation prompts at the bottom of each direction are ready to run
+  the moment an image provider key is configured.
+
+  Source of truth: portfolio-website-plan.md (positioning, audience,
+  first-build scope). Identity decisions made for this pass:
+    1. Name is still a placeholder ([Your name]) / no fabricated identity.
+    2. The seal direction references the WeChat green as ink, not red -
+       a deliberate departure from the traditional vermillion hanko.
+    3. The monogram direction uses a single Newsreader italic glyph
+       rather than a custom letterform / keeps the type system honest.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Identity / [Your name] / Field Notes</title>
+  <meta name="description" content="Four identity directions for a frontend engineer's personal brand, bound to the WeChat design system." />
+  <meta name="theme-color" content="#ededed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+  />
+  <style>
+    /* ─── WeChat token system (binding the active design system) ───── */
+    :root {
+      --bg:               #ededed;
+      --surface:          #f7f7f7;
+      --surface-2:        #ffffff;
+      --fg:               #1a1a1a;
+      --muted:            #888888;
+      --border:           #e0e0e0;
+      --border-strong:    #c8c8c8;
+      --accent:           #07c160;
+      --accent-hover:     #10b160;
+      --accent-active:    #059050;
+      --accent-quiet:     color-mix(in oklab, var(--accent) 14%, var(--surface));
+      --danger:           #fa5151;
+      --warn:             #fab702;
+
+      --font-display: "Newsreader", "Iowan Old Style", "Charter", "PingFang SC", "Hiragino Sans GB", Georgia, serif;
+      --font-body:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Helvetica Neue", sans-serif;
+      --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+      --text-xs:   11px;
+      --text-sm:   13px;
+      --text-base: 15px;
+      --text-lg:   16px;
+      --text-xl:   18px;
+      --text-2xl:  22px;
+      --text-3xl:  32px;
+      --text-4xl:  44px;
+      --text-display: clamp(40px, 6vw, 72px);
+
+      --leading-body:    1.6;
+      --leading-tight:   1.15;
+      --leading-display: 1.05;
+      --tracking-display: -0.02em;
+      --tracking-mono:   0.02em;
+
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-8:  32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+
+      --rail-w:        280px;
+      --container-pad: clamp(20px, 4vw, 56px);
+
+      --motion-fast: 180ms;
+      --motion-base: 320ms;
+      --motion-reveal: 500ms;
+      --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    /* SVG token bindings (used by the marks) */
+    .fg-accent { fill: var(--accent); }
+    .sg-accent { stroke: var(--accent); }
+    .fg-ink    { fill: var(--fg); }
+    .sg-ink    { stroke: var(--fg); }
+    .fg-on     { fill: var(--surface-2); }
+    .sg-none   { stroke: none; }
+
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    em { font-style: italic; }
+    ::selection { background: var(--accent-quiet); color: var(--fg); }
+
+    .skip-link {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+      padding: var(--space-2) var(--space-4);
+      background: var(--surface);
+      color: var(--fg);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      letter-spacing: var(--tracking-mono);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-sm, 4px);
+      transform: translateY(-200%);
+      transition: transform var(--motion-fast) var(--ease-out);
+      z-index: 100;
+    }
+    .skip-link:focus-visible { transform: translateY(0); }
+
+    .vh {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ─── shell ───────────────────────────────────────────────────── */
+    .shell {
+      display: grid;
+      grid-template-columns: var(--rail-w) 1fr;
+      min-height: 100vh;
+    }
+
+    /* ─── rail ────────────────────────────────────────────────────── */
+    .rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      padding: var(--space-10) var(--space-8);
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-10);
+      overflow-y: auto;
+      z-index: 10;
+    }
+    .rail-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .rail-title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 400;
+      letter-spacing: var(--tracking-display);
+      line-height: 1.1;
+      margin: 8px 0 0 0;
+    }
+    .rail-title em { font-style: italic; color: var(--accent); }
+    .rail-sub {
+      font-size: var(--text-sm);
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 28em;
+      margin: 12px 0 0 0;
+    }
+    .stack-sm > * + * { margin-top: var(--space-4); }
+    .section-spacer { margin-top: 48px; }
+    .code-tag { font-family: var(--font-mono); font-size: 13px; }
+    .rail-nav-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--space-3);
+    }
+    .rail-nav { display: flex; flex-direction: column; gap: 2px; }
+    .rail-link {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--muted);
+      transition: color var(--motion-fast) var(--ease-out);
+    }
+    .rail-link:hover { color: var(--fg); }
+    .rail-link.is-current { color: var(--fg); }
+    .rail-link .route-no { width: 1.8em; color: var(--muted); font-size: var(--text-xs); }
+    .rail-link.is-current .route-no { color: var(--accent); }
+    .rail-link.is-current::after {
+      content: "·";
+      color: var(--accent);
+      margin-left: auto;
+    }
+    .rail-meta {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      color: var(--muted);
+    }
+    .rail-row { display: flex; justify-content: space-between; gap: var(--space-3); }
+    .rail-row span:first-child { text-transform: uppercase; }
+
+    /* ─── pages ───────────────────────────────────────────────────── */
+    .pages { min-width: 0; }
+    .page {
+      padding: var(--space-16) var(--container-pad) var(--space-20);
+      border-bottom: 1px solid var(--border);
+    }
+    .page:last-of-type { border-bottom: 0; }
+    .page-inner {
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .page-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--space-4);
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: var(--text-display);
+      line-height: var(--leading-display);
+      letter-spacing: var(--tracking-display);
+      font-weight: 400;
+      margin: 0 0 var(--space-8);
+      max-width: 18ch;
+    }
+    .page-title em { font-style: italic; font-weight: 300; }
+    .page-lede {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      line-height: 1.35;
+      letter-spacing: var(--tracking-display);
+      color: var(--fg);
+      max-width: 36em;
+      margin: 0 0 var(--space-8);
+      font-weight: 400;
+    }
+    .page-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: start;
+      margin-bottom: var(--space-12);
+    }
+    .page-body p {
+      margin: 0;
+      font-size: var(--text-base);
+      line-height: 1.6;
+      color: var(--fg);
+      max-width: 32em;
+    }
+    .page-body .meta-block {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      color: var(--muted);
+      border-left: 1px solid var(--border);
+      padding-left: var(--space-4);
+      line-height: 1.7;
+    }
+    .page-body .meta-block strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ─── direction card ─────────────────────────────────────────── */
+    .direction {
+      border-top: 1px solid var(--border);
+      padding: var(--space-16) 0 var(--space-12);
+    }
+    .direction:first-of-type { border-top: 0; padding-top: 0; }
+    .direction-head {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: var(--space-8);
+      align-items: baseline;
+      margin-bottom: var(--space-10);
+    }
+    .direction-no {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--accent);
+      letter-spacing: var(--tracking-mono);
+    }
+    .direction-name {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 500;
+      letter-spacing: var(--tracking-display);
+      line-height: 1.15;
+      margin: 0 0 var(--space-2);
+    }
+    .direction-tag {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--muted);
+      letter-spacing: var(--tracking-mono);
+      margin: 0;
+    }
+
+    /* ─── stage: symbol on left, wordmark + lockup on right ──────── */
+    .stage {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-10);
+      margin-bottom: var(--space-12);
+      align-items: stretch;
+    }
+    .stage-symbol,
+    .stage-lockup {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: var(--space-12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+      gap: var(--space-4);
+    }
+    .stage-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--space-3);
+    }
+    .symbol {
+      width: 128px;
+      height: 128px;
+      display: block;
+    }
+    .symbol-xl { width: 192px; height: 192px; }
+
+    /* ─── wordmark ───────────────────────────────────────────────── */
+    .wordmark {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+    .wordmark-stack { align-items: center; text-align: center; }
+    .wordmark-name {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: var(--tracking-display);
+      line-height: 1.05;
+    }
+    .wordmark-role {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: var(--space-2);
+    }
+
+    /* ─── lockup variants ────────────────────────────────────────── */
+    .lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+    }
+    .lockup-vertical {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .lockup-mono {
+      align-items: baseline;
+    }
+    .lockup .symbol { width: 64px; height: 64px; }
+    .lockup .wordmark-name { font-size: var(--text-2xl); }
+    .lockup .monogram {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 96px;
+      line-height: 0.85;
+      color: var(--fg);
+    }
+    .lockup .monogram-stack {
+      display: flex;
+      flex-direction: column;
+    }
+    .lockup-mono .wordmark-name { font-size: var(--text-xl); font-style: normal; font-weight: 400; }
+    .lockup .wordmark-suffix {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    /* ─── palette + rules + prompt ──────────────────────────────── */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-10);
+      border-top: 1px solid var(--border);
+      padding-top: var(--space-10);
+    }
+    .col-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 var(--space-4);
+    }
+    .col-body { font-size: var(--text-sm); line-height: 1.6; color: var(--fg); }
+    .col-body p { margin: 0 0 var(--space-3); }
+
+    /* swatch row */
+    .swatches {
+      display: flex;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+      flex-wrap: wrap;
+    }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      min-width: 64px;
+    }
+    .swatch-chip {
+      width: 100%;
+      height: 36px;
+      border: 1px solid var(--border);
+    }
+    .swatch-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: var(--tracking-mono);
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--fg);
+    }
+
+    /* do/don't list */
+    .rules { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+    .rule {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      line-height: 1.5;
+      color: var(--fg);
+    }
+    .rule-mark { font-family: var(--font-mono); font-size: var(--text-base); }
+    .rule-do .rule-mark { color: var(--accent); }
+    .rule-dont .rule-mark { color: var(--danger); }
+
+    /* generation prompt */
+    .prompt {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: var(--space-4) var(--space-5);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 240px;
+      overflow: auto;
+    }
+    .prompt-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--space-2);
+    }
+
+    /* ─── showcase strip ─────────────────────────────────────────── */
+    .showcase {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: var(--space-12);
+    }
+    .showcase-tile {
+      background: var(--bg);
+      padding: var(--space-8) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4);
+      min-height: 180px;
+      justify-content: center;
+    }
+    .showcase-tile .symbol { width: 56px; height: 56px; }
+    .showcase-tile-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: var(--tracking-mono);
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── final apply block ──────────────────────────────────────── */
+    .apply {
+      border: 1px solid var(--border);
+      padding: var(--space-10);
+      background: var(--surface);
+    }
+    .apply-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+    .apply pre {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: var(--space-5);
+      overflow: auto;
+      margin: 0;
+    }
+
+    /* ─── motion (one language, emil-disciplined) ─────────────────
+     * Three moments only:
+     *   1. Entry reveal: the four direction heads + brief + apply
+     *      headlines fade up on load, staggered by 80ms. Applied via
+     *      JS so first paint still shows the page; reduced-motion
+     *      users get an instant load.
+     *   2. Hover micro-feedback on .showcase-tile and .lockup: the
+     *      marks themselves stay still (a logo that moves is a logo
+     *      that lies), but the frame that carries them lifts 1-2px
+     *      and shifts its border one tone toward the accent.
+     *   3. Scroll reveal: .lockup blocks fade in 16px from below
+     *      as they cross 15% of the viewport. One-shot, then
+     *      unobserved.
+     * All three use transform + opacity only, one easing, three
+     * durations (180ms hover / 500ms entry / 500ms reveal). The
+     * global reduced-motion query strips them all. */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition:
+        opacity var(--motion-reveal) var(--ease-out),
+        transform var(--motion-reveal) var(--ease-out);
+      will-change: opacity, transform;
+    }
+    .reveal.is-entered {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .lockup,
+    .showcase-tile {
+      transition:
+        transform var(--motion-fast) var(--ease-out),
+        border-color var(--motion-fast) var(--ease-out),
+        background var(--motion-fast) var(--ease-out),
+        box-shadow var(--motion-fast) var(--ease-out);
+    }
+    .showcase-tile {
+      cursor: default;
+    }
+    .showcase-tile:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-strong);
+    }
+    .lockup:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    .lockup-reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition:
+        opacity var(--motion-reveal) var(--ease-out),
+        transform var(--motion-reveal) var(--ease-out);
+      will-change: opacity, transform;
+    }
+    .lockup-reveal.is-in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger the entry by index using CSS custom property --i
+       set on the element by JS. 80ms per step. */
+    .reveal { transition-delay: calc(var(--i, 0) * 80ms); }
+    .lockup-reveal { transition-delay: calc(var(--i, 0) * 60ms); }
+
+    /* ─── responsive ─────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .shell { grid-template-columns: 1fr; }
+      .rail {
+        position: relative;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .page-body { grid-template-columns: 1fr; }
+      .stage { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .showcase { grid-template-columns: repeat(2, 1fr); }
+      .apply-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#page-01" class="skip-link">Skip to identity routes</a>
+  <div class="shell">
+
+    <!-- ─── left rail ───────────────────────────────────────────── -->
+    <aside class="rail" aria-label="Identity navigation">
+      <div>
+        <div class="rail-eyebrow">Identity system / v0.1</div>
+        <h1 class="rail-title">Field <em>notes</em></h1>
+        <p class="rail-sub">Four directions for a frontend engineer's personal brand, bound to the WeChat design system. Live SVG, no raster mockups.</p>
+      </div>
+
+      <nav aria-label="Identity routes">
+        <div class="rail-nav-label">Routes</div>
+        <div class="rail-nav">
+          <a class="rail-link" href="#page-01"><span class="route-no">00</span><span>Brief</span></a>
+          <a class="rail-link" href="#page-02"><span class="route-no">A</span><span>Speak</span></a>
+          <a class="rail-link" href="#page-03"><span class="route-no">B</span><span>Seal</span></a>
+          <a class="rail-link" href="#page-04"><span class="route-no">C</span><span>Field</span></a>
+          <a class="rail-link" href="#page-05"><span class="route-no">D</span><span>Dialogue</span></a>
+          <a class="rail-link" href="#page-06"><span class="route-no">+</span><span>Apply</span></a>
+        </div>
+      </nav>
+
+      <div class="rail-meta">
+        <div class="rail-row"><span>Display</span><span>Newsreader</span></div>
+        <div class="rail-row"><span>Body</span><span>IBM Plex Sans</span></div>
+        <div class="rail-row"><span>Mono</span><span>JetBrains Mono</span></div>
+        <div class="rail-row"><span>Accent</span><span>#07c160</span></div>
+        <div class="rail-row"><span>Canvas</span><span>#ededed</span></div>
+      </div>
+    </aside>
+
+    <!-- ─── main pages ──────────────────────────────────────────── -->
+    <main class="pages">
+
+      <!-- ── 00 brief ─────────────────────────────────────────── -->
+      <section class="page" id="page-01" data-od-id="identity-brief">
+        <div class="page-inner">
+          <div class="page-eyebrow">00 / Brief</div>
+          <h2 class="page-title">Four routes, <em>one</em> system.</h2>
+          <p class="page-lede">A working engineer's personal brand needs to read as a single, deliberate voice across the portfolio, the GitHub profile, and the resume header. This document proposes four directions that all bind to the active WeChat design system so swapping between them changes only the mark, not the page.</p>
+          <div class="page-body">
+            <div class="stack-sm">
+              <p>Every direction uses the same six tokens (<span class="code-tag">--bg / --surface / --fg / --muted / --border / --accent</span>), the same Newsreader + IBM Plex Sans + JetBrains Mono stack, and the same six spacing tiers. They differ in silhouette: how much the mark carries versus how much the typography carries.</p>
+              <p>A is the safest reading. C is the most editorial. B is the most original. D is the most communicative. Pick the one that matches the way you want to be remembered.</p>
+            </div>
+            <div class="meta-block">
+              <strong>Constraints</strong><br/>
+              No em dashes. No Tailwind. No fabricated metrics. No external image CDNs. The mark must render without webfonts (system fallbacks present) and degrade gracefully in print.<br/><br/>
+              <strong>Deliverables per route</strong><br/>
+              Symbol (SVG) / Wordmark (HTML) / Lockup (HTML composition) / Palette swatches / Usage rules (do + don't) / Generation prompt (raster-ready).
+            </div>
+          </div>
+
+          <!-- ── showcase strip: all four at thumbnail size ───── -->
+          <div class="showcase" aria-label="All four marks at thumbnail size">
+            <div class="showcase-tile">
+              <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                <path class="sg-accent" d="M 16 22 L 80 22 Q 88 22 88 30 L 88 58 Q 88 66 80 66 L 36 66 L 24 78 L 24 66 L 16 66 Q 8 66 8 58 L 8 30 Q 8 22 16 22 Z" fill="none" stroke-width="2.5" stroke-linejoin="round" />
+                <circle class="fg-accent" cx="42" cy="44" r="5" />
+              </svg>
+              <div class="showcase-tile-label">A · Speak</div>
+            </div>
+            <div class="showcase-tile">
+              <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                <rect class="fg-accent" x="12" y="8" width="72" height="80" rx="2" />
+                <text class="fg-on" x="48" y="64" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="500" font-size="58">f</text>
+              </svg>
+              <div class="showcase-tile-label">B · Seal</div>
+            </div>
+            <div class="showcase-tile">
+              <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                <text class="fg-ink" x="48" y="80" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="92">f</text>
+              </svg>
+              <div class="showcase-tile-label">C · Field</div>
+            </div>
+            <div class="showcase-tile">
+              <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                <path class="fg-accent" d="M 14 18 L 54 18 Q 60 18 60 24 L 60 44 Q 60 50 54 50 L 30 50 L 22 58 L 22 50 L 14 50 Q 8 50 8 44 L 8 24 Q 8 18 14 18 Z" />
+                <path class="sg-ink" d="M 42 46 L 82 46 Q 88 46 88 52 L 88 72 Q 88 78 82 78 L 74 78 L 74 86 L 66 78 L 42 78 Q 36 78 36 72 L 36 52 Q 36 46 42 46 Z" fill="none" stroke-width="2" stroke-linejoin="round" />
+              </svg>
+              <div class="showcase-tile-label">D · Dialogue</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── A · Speak ─────────────────────────────────────────── -->
+      <section class="page" id="page-02" data-od-id="identity-direction-a">
+        <div class="page-inner">
+          <div class="direction">
+            <header class="direction-head">
+              <div class="direction-no">A</div>
+              <div>
+                <h3 class="direction-name">Speak</h3>
+                <p class="direction-tag">A single green dot inside an empty speech bubble. The most restrained mark in the system / it reads as a quiet invitation to talk, not a logo shouting for attention.</p>
+              </div>
+            </header>
+
+            <div class="stage">
+              <div class="stage-symbol">
+                <div class="stage-label">Symbol</div>
+                <svg class="symbol symbol-xl" viewBox="0 0 96 96" role="img" aria-label="Speak symbol: a single green dot inside an empty speech bubble outline">
+                  <path class="sg-accent" d="M 16 22 L 80 22 Q 88 22 88 30 L 88 58 Q 88 66 80 66 L 36 66 L 24 78 L 24 66 L 16 66 Q 8 66 8 58 L 8 30 Q 8 22 16 22 Z" fill="none" stroke-width="2.5" stroke-linejoin="round" />
+                  <circle class="fg-accent" cx="42" cy="44" r="5" />
+                </svg>
+              </div>
+              <div class="stage-lockup">
+                <div class="stage-label">Lockup</div>
+                <div class="lockup">
+                  <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                    <path class="sg-accent" d="M 16 22 L 80 22 Q 88 22 88 30 L 88 58 Q 88 66 80 66 L 36 66 L 24 78 L 24 66 L 16 66 Q 8 66 8 58 L 8 30 Q 8 22 16 22 Z" fill="none" stroke-width="2.5" stroke-linejoin="round" />
+                    <circle class="fg-accent" cx="42" cy="44" r="5" />
+                  </svg>
+                  <div class="wordmark">
+                    <span class="wordmark-name">[Your name]</span>
+                    <span class="wordmark-role">Frontend engineer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div>
+                <p class="col-label">Palette</p>
+                <div class="col-body">
+                  <div class="swatches">
+                    <div class="swatch"><div class="swatch-chip" style="background:#07c160"></div><span class="swatch-name">--accent</span><span class="swatch-hex">#07c160</span></div>
+                    <div class="swatch"><div class="swatch-chip" style="background:#ededed"></div><span class="swatch-name">--bg</span><span class="swatch-hex">#ededed</span></div>
+                    <div class="swatch"><div class="swatch-chip" style="background:#1a1a1a"></div><span class="swatch-name">--fg</span><span class="swatch-hex">#1a1a1a</span></div>
+                  </div>
+                  <p>Stroke uses <code>--accent</code> at 2.5px. Backgrounds in the lockup use <code>--bg</code>. The single interior dot is the only filled element.</p>
+                </div>
+              </div>
+              <div>
+                <p class="col-label">Usage rules</p>
+                <ul class="rules">
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Use as the favicon / the dot is legible at 16px.</span></li>
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Use as the social-card avatar (paired with the bg).</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't fill the bubble interior / emptiness is the point.</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't add a second dot, no matter how minimal it feels.</span></li>
+                </ul>
+              </div>
+              <div>
+                <p class="col-label">Raster prompt</p>
+                <div class="prompt-meta"><span>flux-pro-ultra · 1:1</span><span>copy & run</span></div>
+                <div class="prompt">Minimalist editorial brand mark on a flat muted light gray (#ededed) background. A single rounded speech bubble outline in saturated WeChat green (#07c160) with a 2.5px stroke and no fill, small tail at the bottom-left. One WeChat green filled circle inside the bubble, slightly off-center to the left. Pure flat vector. No gradients, no shadows, no glow, no 3D, no emboss. Centered in frame with generous negative space. Reference: Swiss design, Massimo Vignelli, Muji, WeChat.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── B · Seal ──────────────────────────────────────────── -->
+      <section class="page" id="page-03" data-od-id="identity-direction-b">
+        <div class="page-inner">
+          <div class="direction">
+            <header class="direction-head">
+              <div class="direction-no">B</div>
+              <div>
+                <h3 class="direction-name">Seal</h3>
+                <p class="direction-tag">A square hanko in WeChat green with a reverse-out italic monogram. References Chinese chops, but in the brand's signature green rather than the traditional vermillion / a deliberate signal that the system is the brand, not the cliche.</p>
+              </div>
+            </header>
+
+            <div class="stage">
+              <div class="stage-symbol">
+                <div class="stage-label">Symbol</div>
+                <svg class="symbol symbol-xl" viewBox="0 0 96 96" role="img" aria-label="Seal symbol: a green square stamp with a white reverse-out italic letter f">
+                  <rect class="fg-accent" x="12" y="8" width="72" height="80" rx="2" />
+                  <text class="fg-on" x="48" y="64" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="500" font-size="58">f</text>
+                </svg>
+              </div>
+              <div class="stage-lockup">
+                <div class="stage-label">Lockup</div>
+                <div class="lockup lockup-vertical">
+                  <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                    <rect class="fg-accent" x="12" y="8" width="72" height="80" rx="2" />
+                    <text class="fg-on" x="48" y="64" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="500" font-size="58">f</text>
+                  </svg>
+                  <div class="wordmark wordmark-stack">
+                    <span class="wordmark-name">[Your name]</span>
+                    <span class="wordmark-role">Frontend engineer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div>
+                <p class="col-label">Palette</p>
+                <div class="col-body">
+                  <div class="swatches">
+                    <div class="swatch"><div class="swatch-chip" style="background:#07c160"></div><span class="swatch-name">--accent</span><span class="swatch-hex">#07c160</span></div>
+                    <div class="swatch"><div class="swatch-chip" style="background:#ffffff;border:1px solid var(--border)"></div><span class="swatch-name">--on-accent</span><span class="swatch-hex">#ffffff</span></div>
+                  </div>
+                  <p>Solid block uses <code>--accent</code>. The reverse-out monogram sits in pure white at the seal's optical center. No additional color or texture.</p>
+                </div>
+              </div>
+              <div>
+                <p class="col-label">Usage rules</p>
+                <ul class="rules">
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Use as a printed bookmark, business card, or repo avatar / it reads at 32px.</span></li>
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Pair with the lockup-vertical composition on the resume header.</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't soften the corners more than 2px / the sharpness is the mark.</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't substitute vermillion (#c0392b) for the green / that breaks the system.</span></li>
+                </ul>
+              </div>
+              <div>
+                <p class="col-label">Raster prompt</p>
+                <div class="prompt-meta"><span>ideogram-v3-fal · 1:1</span><span>copy & run</span></div>
+                <div class="prompt">A square Chinese hanko seal in saturated WeChat green (#07c160), portrait aspect 1:1.15, with a single italic serif letter f in white reversed out of the center. The seal is a solid flat block with subtly rounded 2px corners / no gradients, no shadows, no texture, no distress, no emboss. The letter uses an editorial serif (Newsreader / Iowan Old Style style), italic, weight 500. Centered on a flat muted light gray (#ededed) background with generous negative space. Reference: modernized Chinese chops, Massimo Vignelli's grid, Muji sticker aesthetic.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── C · Field ─────────────────────────────────────────── -->
+      <section class="page" id="page-04" data-od-id="identity-direction-c">
+        <div class="page-inner">
+          <div class="direction">
+            <header class="direction-head">
+              <div class="direction-no">C</div>
+              <div>
+                <h3 class="direction-name">Field</h3>
+                <p class="direction-tag">A pure typographic mark. A single Newsreader italic letter carries the entire brand; the wordmark simply spells out the rest. The most editorial direction in the system / and the hardest to fake.</p>
+              </div>
+            </header>
+
+            <div class="stage">
+              <div class="stage-symbol">
+                <div class="stage-label">Symbol</div>
+                <svg class="symbol symbol-xl" viewBox="0 0 96 96" role="img" aria-label="Field monogram: a single italic letter f in heavy Newsreader">
+                  <text class="fg-ink" x="48" y="80" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="92">f</text>
+                </svg>
+              </div>
+              <div class="stage-lockup">
+                <div class="stage-label">Lockup</div>
+                <div class="lockup lockup-mono">
+                  <span class="monogram" aria-hidden="true">f</span>
+                  <div class="wordmark">
+                    <span class="wordmark-name">ield <span class="wordmark-suffix">[Your name]</span></span>
+                    <span class="wordmark-role">Frontend engineer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div>
+                <p class="col-label">Palette</p>
+                <div class="col-body">
+                  <div class="swatches">
+                    <div class="swatch"><div class="swatch-chip" style="background:#1a1a1a"></div><span class="swatch-name">--fg</span><span class="swatch-hex">#1a1a1a</span></div>
+                    <div class="swatch"><div class="swatch-chip" style="background:#ededed"></div><span class="swatch-name">--bg</span><span class="swatch-hex">#ededed</span></div>
+                  </div>
+                  <p>No accent in the symbol itself / the green only appears in usage context (status indicator, active nav, project note rule). The mark earns its color by where it sits.</p>
+                </div>
+              </div>
+              <div>
+                <p class="col-label">Usage rules</p>
+                <ul class="rules">
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Use as the in-corner mark of the portfolio / small and quiet.</span></li>
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Pair with the asymmetric lockup on the resume / the kerning carries the personality.</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't substitute Inter or Arial for Newsreader / the italic axis is the mark.</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't recolor the letter green / it would compete with the system's accent.</span></li>
+                </ul>
+              </div>
+              <div>
+                <p class="col-label">Raster prompt</p>
+                <div class="prompt-meta"><span>ideogram-v3-fal · 1:1</span><span>copy & run</span></div>
+                <div class="prompt">A single large italic serif letter f in dark ink (#1a1a1a) on a flat muted light gray (#ededed) background. The letter is the entire mark / no other geometry, no symbol, no decoration. Newsreader / Iowan Old Style style, italic, regular weight 400, optical size around 60pt. The letter sits on the optical center of the canvas with generous negative space on all sides. Pure flat vector. No gradients, no shadows, no glow, no 3D. Reference: editorial monograph covers (Knopf, New Directions), Massimo Vignelli, late-1990s Faber &amp; Faber.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── D · Dialogue ──────────────────────────────────────── -->
+      <section class="page" id="page-05" data-od-id="identity-direction-d">
+        <div class="page-inner">
+          <div class="direction">
+            <header class="direction-head">
+              <div class="direction-no">D</div>
+              <div>
+                <h3 class="direction-name">Dialogue</h3>
+                <p class="direction-tag">Two interlocking speech forms / one filled, one outlined / offset diagonally. References the chat-app heritage of the design system, but reads as two voices in conversation rather than a single brand shouting.</p>
+              </div>
+            </header>
+
+            <div class="stage">
+              <div class="stage-symbol">
+                <div class="stage-label">Symbol</div>
+                <svg class="symbol symbol-xl" viewBox="0 0 96 96" role="img" aria-label="Dialogue symbol: two overlapping speech bubbles, one filled green and one outlined">
+                  <path class="fg-accent" d="M 14 18 L 54 18 Q 60 18 60 24 L 60 44 Q 60 50 54 50 L 30 50 L 22 58 L 22 50 L 14 50 Q 8 50 8 44 L 8 24 Q 8 18 14 18 Z" />
+                  <path class="sg-ink" d="M 42 46 L 82 46 Q 88 46 88 52 L 88 72 Q 88 78 82 78 L 74 78 L 74 86 L 66 78 L 42 78 Q 36 78 36 72 L 36 52 Q 36 46 42 46 Z" fill="none" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="stage-lockup">
+                <div class="stage-label">Lockup</div>
+                <div class="lockup lockup-vertical">
+                  <svg class="symbol" viewBox="0 0 96 96" aria-hidden="true">
+                    <path class="fg-accent" d="M 14 18 L 54 18 Q 60 18 60 24 L 60 44 Q 60 50 54 50 L 30 50 L 22 58 L 22 50 L 14 50 Q 8 50 8 44 L 8 24 Q 8 18 14 18 Z" />
+                    <path class="sg-ink" d="M 42 46 L 82 46 Q 88 46 88 52 L 88 72 Q 88 78 82 78 L 74 78 L 74 86 L 66 78 L 42 78 Q 36 78 36 72 L 36 52 Q 36 46 42 46 Z" fill="none" stroke-width="2" stroke-linejoin="round" />
+                  </svg>
+                  <div class="wordmark wordmark-stack">
+                    <span class="wordmark-name">[Your name]</span>
+                    <span class="wordmark-role">Frontend engineer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div>
+                <p class="col-label">Palette</p>
+                <div class="col-body">
+                  <div class="swatches">
+                    <div class="swatch"><div class="swatch-chip" style="background:#07c160"></div><span class="swatch-name">--accent</span><span class="swatch-hex">#07c160</span></div>
+                    <div class="swatch"><div class="swatch-chip" style="background:#1a1a1a"></div><span class="swatch-name">--fg</span><span class="swatch-hex">#1a1a1a</span></div>
+                    <div class="swatch"><div class="swatch-chip" style="background:#ededed"></div><span class="swatch-name">--bg</span><span class="swatch-hex">#ededed</span></div>
+                  </div>
+                  <p>The filled bubble uses <code>--accent</code>. The outlined bubble uses <code>--fg</code> at 2px. The mark carries the system's full dialogue (color + structure), so use it sparingly on the page.</p>
+                </div>
+              </div>
+              <div>
+                <p class="col-label">Usage rules</p>
+                <ul class="rules">
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Use as the section marker for "Selected work" / the two voices read as project / context.</span></li>
+                  <li class="rule rule-do"><span class="rule-mark">+</span><span>Use on the GitHub profile or social card / the silhouette is distinctive at 64px.</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't reverse the roles (filled gray, outlined green) / the color carries the meaning.</span></li>
+                  <li class="rule rule-dont"><span class="rule-mark">−</span><span>Don't add a third bubble / the dialogue is exactly two.</span></li>
+                </ul>
+              </div>
+              <div>
+                <p class="col-label">Raster prompt</p>
+                <div class="prompt-meta"><span>flux-pro-ultra · 1:1</span><span>copy & run</span></div>
+                <div class="prompt">Minimalist editorial brand mark on a flat muted light gray (#ededed) background. Two overlapping rounded speech bubble forms offset diagonally by 8px: the upper-left one is a solid filled WeChat green (#07c160) bubble with a small tail at the bottom-left, the lower-right one is the same bubble shape but rendered as a 2px dark ink (#1a1a1a) outline with no fill and a small tail at the bottom-right. The two bubbles overlap at the center by about a quarter of their width. No gradients, no shadows, no glow, no 3D, no emboss. Centered with generous negative space. Reference: Massimo Vignelli, modernized WeChat, late-1990s Wired magazine, Pentagram partner marks.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── + · Apply ─────────────────────────────────────────── -->
+      <section class="page" id="page-06" data-od-id="identity-apply">
+        <div class="page-inner">
+          <div class="page-eyebrow">+ / Apply</div>
+          <h2 class="page-title">Drop the mark into the <em>portfolio</em>.</h2>
+          <p class="page-lede">All four marks are pure SVG. The same four files below are already inlined in the rail of <code class="code-tag">frontend-engineer-portfolio.html</code> with a live direction-switcher (data-direction on <code class="code-tag">body</code>). The copy here is the integration receipt.</p>
+
+          <div class="apply">
+            <div class="apply-grid">
+              <div>
+                <p class="col-label">HTML</p>
+                <pre>&lt;!-- rail-brand --&gt;
+&lt;a href="#page-01" class="rail-mark" data-direction="a" aria-label="Home"&gt;
+  &lt;svg class="mark mark-a" ...&gt;...&lt;/svg&gt;
+  &lt;svg class="mark mark-b" ...&gt;...&lt;/svg&gt;
+  &lt;svg class="mark mark-c" ...&gt;...&lt;/svg&gt;
+  &lt;svg class="mark mark-d" ...&gt;...&lt;/svg&gt;
+&lt;/a&gt;</pre>
+              </div>
+              <div>
+                <p class="col-label">CSS</p>
+                <pre>.mark { display: none; width: 28px; height: 28px; }
+body[data-direction="a"] .mark-a { display: block; }
+body[data-direction="b"] .mark-b { display: block; }
+body[data-direction="c"] .mark-c { display: block; }
+body[data-direction="d"] .mark-d { display: block; }</pre>
+              </div>
+              <div>
+                <p class="col-label">JS</p>
+                <pre>// Tweak panel: cycle directions
+document.querySelectorAll('[data-set-direction]')
+  .forEach(b =&gt; b.addEventListener('click', () =&gt; {
+    document.body.dataset.direction = b.dataset.setDirection;
+  }));</pre>
+              </div>
+              <div>
+                <p class="col-label">Persistence</p>
+                <pre>// Optional: remember the pick
+localStorage.setItem(
+  'mark-direction',
+  document.body.dataset.direction
+);</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-spacer">
+            <p class="col-label">Open TODOs (waiting on real inputs)</p>
+            <ul class="rules">
+              <li class="rule rule-do"><span class="rule-mark">→</span><span>Replace <code class="code-tag">[Your name]</code> across all four directions and the portfolio rail.</span></li>
+              <li class="rule rule-do"><span class="rule-mark">→</span><span>Decide whether the monogram letter follows your initial, your company's initial, or a deliberately different glyph (we used <em>f</em> as a placeholder).</span></li>
+              <li class="rule rule-do"><span class="rule-mark">→</span><span>Pick a direction and set <code class="code-tag">body[data-direction]</code> as the default; remove the others from the rail if you don't want the Tweak control visible.</span></li>
+              <li class="rule rule-do"><span class="rule-mark">→</span><span>When an image-provider credential lands, run the four prompts above through <code class="code-tag">od media generate</code> and stash the PNGs as <code class="code-tag">identity-assets/&lt;direction&gt;.png</code> for OG cards and the resume header.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Highlight current route in the rail
+    (() => {
+      'use strict';
+      const links = document.querySelectorAll('.rail-link');
+      const pages = Array.from(document.querySelectorAll('.page'));
+      const set = (id) => {
+        links.forEach(l => {
+          const active = l.getAttribute('href') === '#' + id;
+          l.classList.toggle('is-current', active);
+          if (active) l.setAttribute('aria-current', 'true');
+          else l.removeAttribute('aria-current');
+        });
+      };
+      const probe = () => {
+        const top = window.scrollY + 120;
+        let current = pages[0]?.id;
+        for (const p of pages) {
+          if (p.offsetTop <= top) current = p.id;
+        }
+        if (current) set(current);
+      };
+      window.addEventListener('scroll', probe, { passive: true });
+      window.addEventListener('resize', probe);
+      probe();
+    })();
+
+    // Motion: entry reveal + scroll reveal
+    // One motion language (cubic-bezier(0.23, 1, 0.32, 1)).
+    // Reduced-motion users get an instant load with no observer.
+    (() => {
+      'use strict';
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // 1. Entry reveal: ten headline-level elements, staggered by 80ms
+      const entrySelectors = [
+        '#page-01 .page-eyebrow',
+        '#page-01 .page-title',
+        '#page-01 .page-lede',
+        '#page-02 .direction-head',
+        '#page-03 .direction-head',
+        '#page-04 .direction-head',
+        '#page-05 .direction-head',
+        '#page-06 .page-eyebrow',
+        '#page-06 .page-title',
+        '#page-06 .page-lede',
+      ];
+      const entryEls = entrySelectors
+        .map(sel => document.querySelector(sel))
+        .filter(Boolean);
+
+      if (reduce) {
+        // No animation: mark all as entered so they render normally.
+        entryEls.forEach(el => el.classList.add('reveal', 'is-entered'));
+      } else {
+        entryEls.forEach((el, i) => {
+          el.classList.add('reveal');
+          el.style.setProperty('--i', i);
+        });
+        // Defer to next frame so the initial opacity:0 is painted
+        // before the transition starts (otherwise the transition
+        // is skipped and the element appears instantly).
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            entryEls.forEach(el => el.classList.add('is-entered'));
+          });
+        });
+      }
+
+      // 2. Scroll reveal: the four lockup blocks fade in as they
+      //    cross 15% of the viewport, staggered by 60ms in source
+      //    order. One-shot: once visible, stop observing.
+      const lockups = Array.from(document.querySelectorAll('.lockup'));
+      if (lockups.length) {
+        if (reduce) {
+          lockups.forEach(el => el.classList.add('lockup-reveal', 'is-in-view'));
+        } else {
+          lockups.forEach((el, i) => {
+            el.classList.add('lockup-reveal');
+            el.style.setProperty('--i', i);
+          });
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in-view');
+                io.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px',
+          });
+          lockups.forEach(el => io.observe(el));
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
