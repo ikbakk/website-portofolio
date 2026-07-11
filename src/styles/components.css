@@ -888,3 +888,15 @@ body[data-direction="d"] .mark-d { display: block; }
   .toolkit-cat { font-size: var(--text-xl); }
   .entry-meta dl { grid-template-columns: 70px 1fr; }
 }
+
+/* reveal: opt-in hidden state for GSAP entry tween.
+   Elements with [data-od-reveal] are visible by default. JS adds
+   the .will-animate class on <body> only when it can run GSAP, so
+   the elements get hidden and then animated in. If JS doesn't
+   run, or if prefers-reduced-motion is on, they stay visible. */
+body.will-animate [data-od-reveal="entry"],
+body.will-animate [data-od-reveal="scroll"] {
+  opacity: 0;
+  transform: translateY(12px);
+  will-change: opacity, transform;
+}

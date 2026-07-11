@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# screenshots (ephemeral, taken by local firefox for verification)
+.screenshots/
+
 # dependencies
 node_modules/
 

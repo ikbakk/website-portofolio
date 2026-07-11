@@ -5,7 +5,7 @@
  * (2) re-run the page-enter motion + scroll-reveal observers after
  * the new page is in the DOM.
  */
-import { killAllTweens, entryStagger, scrollReveal } from "./motion";
+import { killAllTweens, entryStagger, scrollReveal, isReducedMotion } from "./motion";
 import { restoreDirection, currentDirection, applyDirection } from "./direction";
 import { startClock } from "./clock";
 import { startProgress } from "./progress";
@@ -13,6 +13,14 @@ import { startProgress } from "./progress";
 type DocWithEvents = Document & {
   addEventListener(name: string, cb: EventListener): void;
 };
+
+// True when GSAP and IntersectionObserver are both available.
+// If not (older browser, server-side, etc), we skip the entry tween
+// and let the elements render at full opacity.
+const entryStaggerAvailable =
+  typeof window !== "undefined" &&
+  typeof window.requestAnimationFrame === "function" &&
+  typeof window.IntersectionObserver === "function";
 
 function refreshOnLoad(): void {
   // Make sure the body direction matches localStorage on every page load.
@@ -25,16 +33,27 @@ function refreshOnLoad(): void {
   // Re-attach the scroll-progress listener. startProgress is idempotent.
   startProgress();
 
-  // Re-run page-enter motion on the new page's entry elements.
-  const entryTargets = document.querySelectorAll<HTMLElement>("[data-od-reveal='entry']");
-  if (entryTargets.length) {
-    entryStagger(entryTargets);
-  }
+  // Only mark the page as will-animate when GSAP can actually run.
+  // This hides [data-od-reveal] elements via CSS so the entry tween
+  // can fade them in. If motion is reduced, the elements stay
+  // visible (no class added, no CSS hide).
+  if (!isReducedMotion() && entryStaggerAvailable) {
+    document.body.classList.add("will-animate");
+    // Defer one frame so the initial hide paints before the tween starts.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const entryTargets = document.querySelectorAll<HTMLElement>("[data-od-reveal='entry']");
+        if (entryTargets.length) entryStagger(entryTargets);
 
-  // Re-run scroll reveal on the new page's lockups + sections.
-  const revealTargets = document.querySelectorAll<HTMLElement>("[data-od-reveal='scroll']");
-  if (revealTargets.length) {
-    scrollReveal(revealTargets);
+        const revealTargets = document.querySelectorAll<HTMLElement>("[data-od-reveal='scroll']");
+        if (revealTargets.length) scrollReveal(revealTargets);
+
+        document.body.classList.remove("will-animate");
+      });
+    });
+  } else {
+    // Reduced motion: ensure elements are visible (no class).
+    document.body.classList.remove("will-animate");
   }
 
   // Re-bind tweaks tile clicks (the original artifact binds these
