@@ -1,0 +1,207 @@
+/*
+ * Global stylesheet.
+ *
+ * Two responsibilities:
+ *  1. Re-declare the 49 :root tokens verbatim from the source artifact so
+ *     every visual value resolves to the same number as the original.
+ *  2. Bridge the tokens to Tailwind v4 utilities via a single @theme block.
+ *
+ * Anything that lives outside of the :root block or the @theme block is
+ * either reset / base or a layout rule that no utility can express.
+ * Source: /home/ikbak/Documents/dev/open-design/.od/projects/
+ *         4f35639d-8997-4015-8ec6-3697ef01cbcc/frontend-engineer-portfolio.html
+ */
+
+@import "tailwindcss";
+@import "@fontsource-variable/newsreader";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* ─── WeChat token system (binding the active design system) ───── */
+:root {
+  --bg:               #ededed;
+  --surface:          #f7f7f7;
+  --surface-2:        #ffffff;
+  --fg:               #1a1a1a;
+  --muted:            #888888;
+  --border:           #e0e0e0;
+  --border-strong:    #c8c8c8;
+  --accent:           #07c160;
+  --accent-hover:     #10b160;
+  --accent-active:    #059050;
+  --accent-quiet:     color-mix(in oklab, var(--accent) 14%, var(--surface));
+  --danger:           #fa5151;
+  --warn:             #fab702;
+
+  --font-display: "Newsreader Variable", "Newsreader", "Iowan Old Style", "Charter", "PingFang SC", "Hiragino Sans GB", Georgia, serif;
+  --font-body:    "IBM Plex Sans Variable", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Helvetica Neue", sans-serif;
+  --font-mono:    "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-lg:   16px;
+  --text-xl:   18px;
+  --text-2xl:  22px;
+  --text-3xl:  32px;
+  --text-4xl:  44px;
+  --text-5xl:  64px;
+  --text-display: clamp(40px, 7vw, 88px);
+
+  --leading-body:    1.6;
+  --leading-tight:   1.15;
+  --leading-display: 1.05;
+  --tracking-display: -0.02em;
+  --tracking-mono:   0.02em;
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  --topbar-h:        60px;
+  --topbar-h-mobile: 52px;
+  --spine-h:         48px;
+  --container-pad: clamp(20px, 4vw, 56px);
+  --container-max:   1200px;
+
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-reveal: 500ms;
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* runtime scroll progress, 0 to 1. Read by both the topbar hairline
+     and the spine line fill. Set by src/lib/progress.ts on scroll. */
+  --progress: 0;
+}
+
+/* ─── Tailwind v4 token bridge ──────────────────────────────────── */
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-accent-quiet: var(--accent-quiet);
+  --color-danger: var(--danger);
+  --color-warn: var(--warn);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --text-xs: 11px;
+  --text-xs--line-height: 1.4;
+  --text-sm: 13px;
+  --text-sm--line-height: 1.5;
+  --text-base: 15px;
+  --text-base--line-height: 1.6;
+  --text-lg: 16px;
+  --text-lg--line-height: 1.55;
+  --text-xl: 18px;
+  --text-xl--line-height: 1.3;
+  --text-2xl: 22px;
+  --text-2xl--line-height: 1.35;
+  --text-3xl: 32px;
+  --text-3xl--line-height: 1.2;
+  --text-4xl: 44px;
+  --text-4xl--line-height: 1.1;
+  --text-5xl: 64px;
+  --text-5xl--line-height: 1.0;
+  --text-display: var(--text-display);
+  --text-display--line-height: var(--leading-display);
+  --text-display--letter-spacing: var(--tracking-display);
+  --text-display--font-weight: 400;
+
+  --spacing-topbar-h: 60px;
+  --spacing-topbar-h-mobile: 52px;
+  --spacing-spine-h: 48px;
+
+  --ease-out: var(--ease-out);
+
+  --animate-status-pulse: status-pulse 2.4s var(--ease-out) infinite;
+}
+
+/* ─── reset & base ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  font-feature-settings: "ss01", "ss02", "kern";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+::selection { background: var(--accent-quiet); color: var(--fg); }
+
+/* visually hidden (screen-reader only) */
+.vh {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* SVG token bindings (used by the marks). Defined here so component
+   authors can simply class="fg-accent sg-accent" without re-declaring. */
+.fg-accent { fill: var(--accent); }
+.sg-accent { stroke: var(--accent); }
+.fg-ink    { fill: var(--fg); }
+.sg-ink    { stroke: var(--fg); }
+.fg-on     { fill: var(--surface-2); }
+.sg-none   { stroke: none; }
+
+/* ─── reduced motion (global) ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .status-dot { animation: none !important; }
+  .topbar-progress-fill { transition: none !important; }
+  .spine-line-fill { transition: none !important; }
+  .spine-marker:hover { transform: none !important; }
+  .spine-marker.is-current { transform: none !important; }
+  .topbar-mark:hover { transform: none !important; }
+  .entry-visual[data-state="loading"]::before { animation: none !important; }
+}
+
+/* ─── print ───────────────────────────────────────────────────── */
+@media print {
+  .topbar { position: static !important; background: none; border-bottom: 1px solid var(--border); }
+  .topbar-progress, .spine, .tweaks, .topbar-mark svg { display: none !important; }
+  .folio-bar { position: static !important; border-bottom: 1px solid var(--border); }
+  .page { page-break-after: always; padding: 24px; }
+}
