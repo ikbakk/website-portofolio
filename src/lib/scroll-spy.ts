@@ -4,9 +4,16 @@
  * then update the spine markers' is-current / is-past classes and
  * the topbar section indicator. Single-page mode only; the
  * multi-page identity deck skips this.
+ *
+ * Anchor navigation uses GSAP ScrollToPlugin so the motion language
+ * (power3.out, 500ms) stays consistent with every other tween in
+ * the page.  The same --ease-out curve the design system uses.
  */
-import { isReducedMotion } from "./motion";
-import { progressHairline } from "./motion";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
+
+import { isReducedMotion, gsapEasings, progressHairline } from "./motion";
 
 const SECTION_IDS = ["page-01", "page-02", "page-03", "page-04", "page-05"] as const;
 const SECTION_NAMES: Record<(typeof SECTION_IDS)[number], string> = {
@@ -19,6 +26,9 @@ const SECTION_NAMES: Record<(typeof SECTION_IDS)[number], string> = {
 
 let ticking = false;
 let currentId: (typeof SECTION_IDS)[number] = "page-01";
+/** Scroll tween created by the last anchor navigation, so we can
+ *  kill it if the user starts scrolling manually mid-tween. */
+let scrollTween: gsap.core.Tween | null = null;
 
 function findActiveSection(): (typeof SECTION_IDS)[number] {
   if (typeof window === "undefined") return "page-01";
@@ -70,9 +80,37 @@ function update(): void {
 }
 
 function onScroll(): void {
+  // If the user scrolls while a GSAP scroll-tween is in flight,
+  // kill it so the browser takes over.
+  if (scrollTween && scrollTween.isActive()) {
+    scrollTween.kill();
+    scrollTween = null;
+  }
   if (ticking) return;
   ticking = true;
   window.requestAnimationFrame(update);
+}
+
+function scrollToSection(id: string): void {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const rect = el.getBoundingClientRect();
+  const top = Math.max(0, rect.top + window.scrollY - 56); // 56 = topbar offset
+
+  if (isReducedMotion()) {
+    window.scrollTo({ top, behavior: "auto" });
+    scrollTween = null;
+  } else {
+    scrollTween = gsap.to(window, {
+      scrollTo: { y: top },
+      duration: 0.5,
+      ease: gsapEasings.out,
+      onComplete: () => { scrollTween = null; },
+    });
+  }
+
+  history.replaceState(null, "", `#${id}`);
 }
 
 function onAnchorClick(event: MouseEvent): void {
@@ -82,16 +120,8 @@ function onAnchorClick(event: MouseEvent): void {
   if (!anchor) return;
   const id = anchor.getAttribute("href")!.slice(1);
   if (!SECTION_IDS.includes(id as (typeof SECTION_IDS)[number])) return;
-  const el = document.getElementById(id);
-  if (!el) return;
   event.preventDefault();
-  const rect = el.getBoundingClientRect();
-  const top = rect.top + window.scrollY - 56; // offset for the sticky topbar
-  window.scrollTo({
-    top: Math.max(0, top),
-    behavior: isReducedMotion() ? "auto" : "smooth",
-  });
-  history.replaceState(null, "", `#${id}`);
+  scrollToSection(id);
 }
 
 /** Start scroll-spy. Idempotent. Returns a teardown fn. */
