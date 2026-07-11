@@ -10,10 +10,26 @@
  *         4f35639d-8997-4015-8ec6-3697ef01cbcc/frontend-engineer-portfolio.html
  */
 
+/* ─── ScrollSmoother wrapper ──────────────────────────────────── */
+#smooth-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+#smooth-content {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  pointer-events: auto;
+}
+
 /* ─── shell ─────────────────────────────────────────────────────── */
 .shell {
   display: block;
-  min-height: 100vh;
 }
 
 /* ─── skip link ─────────────────────────────────────────────── */
@@ -37,8 +53,10 @@
 
 /* ─── topbar ───────────────────────────────────────────────────── */
 .topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
   background: color-mix(in oklab, var(--bg) 88%, transparent);
   backdrop-filter: saturate(140%) blur(8px);
@@ -453,8 +471,7 @@ body[data-direction="d"] .mark-d { display: block; }
 }
 
 .folio-bar {
-  position: sticky;
-  top: var(--topbar-h);
+  position: relative;
   z-index: 6;
   background: color-mix(in oklab, var(--bg) 88%, transparent);
   border-bottom: 1px solid var(--border);
@@ -867,7 +884,7 @@ body[data-direction="d"] .mark-d { display: block; }
 
   .page { padding: var(--space-12) var(--space-5) calc(var(--space-12) + 72px); }
   .folio-bar-inner { padding: var(--space-3) var(--space-5); }
-  .folio-bar { top: var(--topbar-h-mobile); }
+  /* folio-bar is no longer sticky (ScrollSmoother handles scroll) */
   .manifesto { font-size: clamp(32px, 9vw, 56px); }
   .manifesto-sub { grid-template-columns: 1fr; gap: var(--space-6); }
   .entry { grid-template-columns: 1fr; gap: var(--space-6); }

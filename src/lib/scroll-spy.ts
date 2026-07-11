@@ -5,15 +5,13 @@
  * the topbar section indicator. Single-page mode only; the
  * multi-page identity deck skips this.
  *
- * Anchor navigation uses GSAP ScrollToPlugin so the motion language
- * (power3.out, 500ms) stays consistent with every other tween in
- * the page.  The same --ease-out curve the design system uses.
+ * Anchor navigation uses the ScrollSmoother instance from
+ * view-transitions.ts so the smooth-scroll effect is consistent
+ * with the page's global scroll smoothing. When no smoother is
+ * active (reduced motion, /identity page, or initialization race),
+ * falls back to instant native scrollTo.
  */
-import gsap from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-gsap.registerPlugin(ScrollToPlugin);
-
-import { isReducedMotion, gsapEasings, progressHairline } from "./motion";
+import { isReducedMotion } from "./motion";
 
 const SECTION_IDS = ["page-01", "page-02", "page-03", "page-04", "page-05"] as const;
 const SECTION_NAMES: Record<(typeof SECTION_IDS)[number], string> = {
@@ -26,9 +24,6 @@ const SECTION_NAMES: Record<(typeof SECTION_IDS)[number], string> = {
 
 let ticking = false;
 let currentId: (typeof SECTION_IDS)[number] = "page-01";
-/** Scroll tween created by the last anchor navigation, so we can
- *  kill it if the user starts scrolling manually mid-tween. */
-let scrollTween: gsap.core.Tween | null = null;
 
 function findActiveSection(): (typeof SECTION_IDS)[number] {
   if (typeof window === "undefined") return "page-01";
@@ -45,10 +40,10 @@ function findActiveSection(): (typeof SECTION_IDS)[number] {
 function update(): void {
   ticking = false;
 
-  // Update --progress
+  // Update --progress (ScrollSmoother keeps window.scrollY in sync)
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const p = docHeight > 0 ? Math.max(0, Math.min(1, window.scrollY / docHeight)) : 0;
-  progressHairline(p);
+  document.documentElement.style.setProperty("--progress", p.toFixed(4));
   document.body.classList.toggle("is-scrolled", window.scrollY > 80);
 
   // Update the active section
@@ -80,34 +75,30 @@ function update(): void {
 }
 
 function onScroll(): void {
-  // If the user scrolls while a GSAP scroll-tween is in flight,
-  // kill it so the browser takes over.
-  if (scrollTween && scrollTween.isActive()) {
-    scrollTween.kill();
-    scrollTween = null;
-  }
   if (ticking) return;
   ticking = true;
   window.requestAnimationFrame(update);
 }
 
+/**
+ * Smooth-scroll to a section via ScrollSmoother. Falls back to
+ * native scrollTo when the smoother isn't available (identity page,
+ * reduced motion, SSR, or before the smoother initializes).
+ */
 function scrollToSection(id: string): void {
   const el = document.getElementById(id);
   if (!el) return;
 
-  const rect = el.getBoundingClientRect();
-  const top = Math.max(0, rect.top + window.scrollY - 56); // 56 = topbar offset
+  // 56px = topbar height
+  const top = Math.max(0, el.offsetTop - 56);
 
-  if (isReducedMotion()) {
-    window.scrollTo({ top, behavior: "auto" });
-    scrollTween = null;
+  const smoother =
+    typeof window !== "undefined" ? window.__gsapSmoother : undefined;
+
+  if (smoother && !isReducedMotion()) {
+    smoother.scrollTo(top, true);
   } else {
-    scrollTween = gsap.to(window, {
-      scrollTo: { y: top },
-      duration: 0.5,
-      ease: gsapEasings.out,
-      onComplete: () => { scrollTween = null; },
-    });
+    window.scrollTo({ top, behavior: "auto" });
   }
 
   history.replaceState(null, "", `#${id}`);

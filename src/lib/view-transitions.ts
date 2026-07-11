@@ -5,6 +5,11 @@
  * (2) re-run the page-enter motion + scroll-reveal observers after
  * the new page is in the DOM.
  */
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
 import { killAllTweens, entryStagger, scrollReveal, isReducedMotion } from "./motion";
 import { restoreDirection, currentDirection, applyDirection } from "./direction";
 import { startClock } from "./clock";
@@ -113,6 +118,28 @@ function bindTweaksToggle(): void {
   });
 }
 
+/** Create the ScrollSmoother instance and store it globally. */
+function initSmoother(): void {
+  if (typeof document === "undefined") return;
+  // Only create on the home page (where spine uses anchors).
+  // On /identity the smooth-scrolled single-page doesn't apply.
+  if (document.body.dataset.spineAnchors !== "true") return;
+  if (window.__gsapSmoother) return;
+
+  const reduced = isReducedMotion();
+  window.__gsapSmoother = ScrollSmoother.create({
+    smooth: reduced ? 0 : 1.2,
+    effects: !reduced,
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+  });
+}
+
+/** Get the active smoother, or null if none / on identity. */
+function getSmoother(): ScrollSmoother | null {
+  return (typeof window !== "undefined" && window.__gsapSmoother) || null;
+}
+
 export function attachViewTransitions(): () => void {
   if (typeof document === "undefined") return () => {};
   const doc = document as DocWithEvents;
@@ -121,9 +148,17 @@ export function attachViewTransitions(): () => void {
   // before astro:page-load has fired.
   restoreDirection();
 
+  // Initialize ScrollSmoother for the home page.
+  initSmoother();
+
   doc.addEventListener("astro:before-swap", () => {
     killAllTweens();
     stopScrollSpy();
+    // Kill the smoother before navigating away.
+    if (window.__gsapSmoother) {
+      window.__gsapSmoother.kill();
+      window.__gsapSmoother = undefined;
+    }
   });
   doc.addEventListener("astro:page-load", refreshOnLoad);
 
@@ -139,4 +174,12 @@ export function attachViewTransitions(): () => void {
 /** Read the current direction off the body for use at render time. */
 export function getCurrentDirection(): string {
   return currentDirection();
+}
+
+// Extend the window type so TypeScript knows about our global smoother.
+// The actual property is set at runtime by initSmoother().
+declare global {
+  interface Window {
+    __gsapSmoother?: import("gsap/ScrollSmoother").ScrollSmoother;
+  }
 }
