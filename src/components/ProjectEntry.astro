@@ -1,8 +1,7 @@
 ---
 /**
- * ProjectEntry. One project on /work. Renders the entry-head (number,
- * title, meta dl), the body paragraph, the marginal note, and the
- * screenshot slot.
+ * ProjectEntry. One project card. Renders the header (number,
+ * title, meta dl), intro text, note, and screenshot slot.
  *
  *  entry  -  ProjectSummary from src/data/projects
  *  The long-form markdown body (if any) is rendered through the
@@ -18,11 +17,11 @@ interface Props {
 const { entry } = Astro.props;
 ---
 
-<article class="entry" data-od-id={`entry-${entry.number}`} data-od-reveal="scroll">
-  <div class="entry-head">
-    <div class="entry-no">{entry.number} / {entry.year}</div>
-    <h2 class="entry-title">{entry.title}</h2>
-    <div class="entry-meta">
+<article class="project" data-od-id={`entry-${entry.number}`} data-od-reveal="scroll">
+  <div class="project-head">
+    <div class="project-number">{entry.number} / {entry.year}</div>
+    <h2 class="project-title">{entry.title}</h2>
+    <div class="project-meta">
       <dl>
         <dt>Role</dt>
         <dd>{entry.role}</dd>
@@ -35,17 +34,17 @@ const { entry } = Astro.props;
       </dl>
     </div>
   </div>
-  <div class="entry-body">
-    <p class="entry-lede">{entry.lede}</p>
+  <div class="project-body">
+    <p class="project-intro">{entry.lede}</p>
     <slot />
 
-    <div class="entry-notes">
-      <span class="note-label">{entry.noteLabel}</span>
+    <div class="project-notes">
+      <span class="note-title">{entry.noteLabel}</span>
       {entry.note}
     </div>
 
     <div
-      class="entry-visual"
+      class="project-visual"
       data-od-id={`entry-${entry.number}-visual`}
       data-state="empty"
       role="img"

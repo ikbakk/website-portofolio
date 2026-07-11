@@ -2,27 +2,26 @@
  * Scroll-spy. On every scroll, find the section currently in view
  * (the one whose top is closest to but past 35% of the viewport),
  * then update the spine markers' is-current / is-past classes and
- * the topbar section indicator. Single-page mode only; the
- * multi-page identity deck skips this.
+ * the topbar section indicator.
  */
 import { progressHairline } from "./motion";
 
-const SECTION_IDS = ["page-01", "page-02", "page-03", "page-04", "page-05"] as const;
+const SECTION_IDS = ["field-note", "selected-work", "toolkit", "approach", "contact"] as const;
 const SECTION_NAMES: Record<(typeof SECTION_IDS)[number], string> = {
-  "page-01": "Field note",
-  "page-02": "Selected work",
-  "page-03": "Toolkit",
-  "page-04": "Approach",
-  "page-05": "Contact",
+  "field-note": "Field note",
+  "selected-work": "Selected work",
+  "toolkit": "Toolkit",
+  "approach": "Approach",
+  "contact": "Contact",
 };
 
 let ticking = false;
-let currentId: (typeof SECTION_IDS)[number] = "page-01";
+let currentId: (typeof SECTION_IDS)[number] = "field-note";
 
 function findActiveSection(): (typeof SECTION_IDS)[number] {
-  if (typeof window === "undefined") return "page-01";
+  if (typeof window === "undefined") return "field-note";
   const probe = window.scrollY + window.innerHeight * 0.35;
-  let found: (typeof SECTION_IDS)[number] = "page-01";
+  let found: (typeof SECTION_IDS)[number] = "field-note";
   for (const id of SECTION_IDS) {
     const el = document.getElementById(id);
     if (!el) continue;
@@ -73,7 +72,7 @@ function onScroll(): void {
 function onAnchorClick(event: MouseEvent): void {
   const target = event.target as HTMLElement | null;
   if (!target) return;
-  const anchor = target.closest<HTMLAnchorElement>("a[href^='#page-']");
+  const anchor = target.closest<HTMLAnchorElement>("a[href^='#']");
   if (!anchor) return;
   const id = anchor.getAttribute("href")!.slice(1);
   if (!SECTION_IDS.includes(id as (typeof SECTION_IDS)[number])) return;

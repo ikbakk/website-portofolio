@@ -1,16 +1,4 @@
 ---
-/**
- * /  -  the entire portfolio, one page, five sections.
- *
- *   page-01  Field note     manifesto + marginalia
- *   page-02  Selected work  3 build entries (content collection)
- *   page-03  Toolkit        5 numbered capability items
- *   page-04  Approach       4-paragraph manifesto + 4-row list
- *   page-05  Contact        6 terminal-style rows
- *   colophon                5-row footer block (typography, build, clock)
- *
- * /identity stays as its own route (4 mark directions deck).
- */
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Folio from "@/components/Folio.astro";
 import ProjectEntry from "@/components/ProjectEntry.astro";
@@ -27,7 +15,7 @@ import { colophon as colophonData } from "@/data/colophon";
 import { seo } from "@/data/seo";
 import { getCollection } from "astro:content";
 
-// The current section is page-01 on first paint; scroll-spy in
+// The current section is field-note on first paint; scroll-spy in
 // src/scripts/scroll-spy.ts (wired in BaseLayout) updates it.
 const currentSection = folios[0];
 
@@ -38,39 +26,39 @@ const entryBodies = new Map(collection.map((entry) => [entry.id, entry]));
 
 <BaseLayout
   currentSection={currentSection}
-  homeHref="#page-01"
+  homeHref="#field-note"
   asAnchors={true}
   title={seo.title}
   description={seo.description}
 >
   <Folio
-    folioNumber="01 / field note"
-    folioBarNumber="01"
-    folioBarTag={hero.folioTag}
-    folioBarMeta={hero.folioMeta}
-    folioBarId="folio-01"
-    id="page-01"
-    odId="page-01-hero"
+    sectionNumber="01 / field note"
+    sectionBarNumber="01"
+    sectionBarTag={hero.folioTag}
+    sectionBarMeta={hero.folioMeta}
+    sectionBarId="section-01"
+    id="field-note"
+    odId="field-note-hero"
   >
-    <h1 class="manifesto" data-od-id="hero-manifesto" data-od-reveal="entry">
+    <h1 class="hero-title" data-od-id="hero-title" data-od-reveal="entry">
       {hero.title.map((seg) =>
         typeof seg === "string" ? seg : <em>{seg.em}</em>,
       )}
     </h1>
 
-    <div class="manifesto-sub">
+    <div class="hero-summary">
       <p data-od-id="hero-subhead" data-od-reveal="entry">
         {hero.lede}
       </p>
       <aside
-        class="marginalia"
+        class="hero-facts"
         aria-label="At a glance"
-        data-od-id="hero-marginalia"
+        data-od-id="hero-facts"
         data-od-reveal="entry"
       >
         {hero.marginalia.map((row) => (
           <p>
-            <span class="mk">{row.label}</span>
+            <span class="fact-label">{row.label}</span>
             {row.live ? (
               <span class="js-local-slot">{row.value}</span>
             ) : (
@@ -83,20 +71,20 @@ const entryBodies = new Map(collection.map((entry) => [entry.id, entry]));
   </Folio>
 
   <Folio
-    folioNumber="02 / selected work"
-    folioBarNumber="02"
-    folioBarTag={projectsFolioTag}
-    folioBarMeta={projectsFolioMeta}
-    folioBarId="folio-02"
-    folioBarH2="Selected work: three projects, 2023 to 2026"
-    id="page-02"
-    odId="page-02-work"
+    sectionNumber="02 / selected work"
+    sectionBarNumber="02"
+    sectionBarTag={projectsFolioTag}
+    sectionBarMeta={projectsFolioMeta}
+    sectionBarId="section-02"
+    sectionBarH2="Selected work: three projects, 2023 to 2026"
+    id="selected-work"
+    odId="selected-work"
   >
-    <p class="page-lede" data-od-id="work-lede" data-od-reveal="entry">
+    <p class="page-intro" data-od-id="work-lede" data-od-reveal="entry">
       {projectsLede}
     </p>
 
-    <div class="entries">
+    <div class="project-list">
       {projects.map((summary) => {
         const entry = entryBodies.get(summary.slug);
         return <ProjectEntry entry={summary} />;
@@ -105,16 +93,16 @@ const entryBodies = new Map(collection.map((entry) => [entry.id, entry]));
   </Folio>
 
   <Folio
-    folioNumber="03 / toolkit"
-    folioBarNumber="03"
-    folioBarTag={toolkitFolioTag}
-    folioBarMeta={toolkitFolioMeta}
-    folioBarId="folio-03"
-    folioBarH2="Toolkit: the kinds of work I do, in my own words"
-    id="page-03"
-    odId="page-03-toolkit"
+    sectionNumber="03 / toolkit"
+    sectionBarNumber="03"
+    sectionBarTag={toolkitFolioTag}
+    sectionBarMeta={toolkitFolioMeta}
+    sectionBarId="section-03"
+    sectionBarH2="Toolkit: the kinds of work I do, in my own words"
+    id="toolkit"
+    odId="toolkit"
   >
-    <p class="page-lede" data-od-id="toolkit-lede" data-od-reveal="entry">
+    <p class="page-intro" data-od-id="toolkit-lede" data-od-reveal="entry">
       {toolkitLede}
     </p>
 
@@ -126,14 +114,14 @@ const entryBodies = new Map(collection.map((entry) => [entry.id, entry]));
   </Folio>
 
   <Folio
-    folioNumber="04 / approach"
-    folioBarNumber="04"
-    folioBarTag={approach.folioTag}
-    folioBarMeta={approach.folioMeta}
-    folioBarId="folio-04"
-    folioBarH2="Approach: how I work, briefly"
-    id="page-04"
-    odId="page-04-approach"
+    sectionNumber="04 / approach"
+    sectionBarNumber="04"
+    sectionBarTag={approach.folioTag}
+    sectionBarMeta={approach.folioMeta}
+    sectionBarId="section-04"
+    sectionBarH2="Approach: how I work, briefly"
+    id="approach"
+    odId="approach"
   >
     <div class="approach">
       <div class="approach-side" data-od-id="approach-side" data-od-reveal="entry">
@@ -159,16 +147,16 @@ const entryBodies = new Map(collection.map((entry) => [entry.id, entry]));
   </Folio>
 
   <Folio
-    folioNumber="05 / contact"
-    folioBarNumber="05"
-    folioBarTag={contactFolioTag}
-    folioBarMeta={contactFolioMeta}
-    folioBarId="folio-05"
-    folioBarH2="Contact: reply window 1 to 2 business days"
-    id="page-05"
-    odId="page-05-contact"
+    sectionNumber="05 / contact"
+    sectionBarNumber="05"
+    sectionBarTag={contactFolioTag}
+    sectionBarMeta={contactFolioMeta}
+    sectionBarId="section-05"
+    sectionBarH2="Contact: reply window 1 to 2 business days"
+    id="contact"
+    odId="contact"
   >
-    <p class="page-lede" data-od-id="contact-lede" data-od-reveal="entry">
+    <p class="page-intro" data-od-id="contact-lede" data-od-reveal="entry">
       {contactLede}
     </p>
     <ul class="contact-list" data-od-id="contact-list">

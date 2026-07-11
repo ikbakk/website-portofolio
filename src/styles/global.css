@@ -17,7 +17,6 @@
 @import "@fontsource-variable/ibm-plex-sans";
 @import "@fontsource-variable/jetbrains-mono";
 @import "./components.css";
-@import "./identity.css";
 
 /* ─── WeChat token system (binding the active design system) ───── */
 :root {
@@ -201,13 +200,13 @@ em { font-style: italic; }
   .spine-marker:hover { transform: none !important; }
   .spine-marker.is-current { transform: none !important; }
   .topbar-mark:hover { transform: none !important; }
-  .entry-visual[data-state="loading"]::before { animation: none !important; }
+  .project-visual[data-state="loading"]::before { animation: none !important; }
 }
 
 /* ─── print ───────────────────────────────────────────────────── */
 @media print {
   .topbar { position: static !important; background: none; border-bottom: 1px solid var(--border); }
-  .topbar-progress, .spine, .tweaks, .topbar-mark svg { display: none !important; }
-  .folio-bar { position: static !important; border-bottom: 1px solid var(--border); }
+  .topbar-progress, .spine, .topbar-mark svg { display: none !important; }
+  .section-bar { position: static !important; border-bottom: 1px solid var(--border); }
   .page { page-break-after: always; padding: 24px; }
 }

@@ -7,8 +7,8 @@
  * page; route on other pages).
  *
  *   folios    -  ReadonlyArray<NavFolio> for the 5 folios
- *   currentId -  the id of the active folio (e.g. "page-02")
- *   asAnchors -  true to use #page-NN anchors (single-page mode).
+ *   currentId -  the id of the active section (e.g. "selected-work")
+ *   asAnchors -  true to use #section-id anchors (single-page mode).
  *                false to use Astro routes /work, /toolkit, etc.
  */
 import type { NavFolio } from "../data/nav";
@@ -22,7 +22,7 @@ interface Props {
 
 const {
   folios: list = folios,
-  currentId = "page-01",
+  currentId = "field-note",
   asAnchors = true,
 } = Astro.props;
 const currentIndex = list.findIndex((f) => f.id === currentId);
@@ -37,10 +37,10 @@ const currentIndex = list.findIndex((f) => f.id === currentId);
   <div class="spine-track" data-js="spine-track">
     <span class="spine-line" aria-hidden="true"></span>
     <span class="spine-line-fill" aria-hidden="true"></span>
-    {list.map((folio, i) => {
-      const isCurrent = folio.id === currentId;
+    {list.map((section, i) => {
+      const isCurrent = section.id === currentId;
       const isPast = currentIndex >= 0 && i < currentIndex;
-      const href = asAnchors ? `#${folio.id}` : folio.route;
+      const href = asAnchors ? `#${section.id}` : section.route;
       return (
         <a
           class:list={[
@@ -49,14 +49,14 @@ const currentIndex = list.findIndex((f) => f.id === currentId);
             isPast && "is-past",
           ]}
           href={href}
-          data-spine-id={folio.id}
-          data-od-id={`spine-${folio.number}`}
-          aria-label={`Folio ${folio.number}: ${folio.name}`}
+          data-spine-id={section.id}
+          data-od-id={`spine-${section.number}`}
+          aria-label={`Folio ${section.number}: ${section.name}`}
           aria-current={isCurrent ? "true" : undefined}
-          data-set-spine={folio.id}
+          data-set-spine={section.id}
         >
-          <span class="spine-tip">{folio.name}</span>
-          {folio.number}
+          <span class="spine-tip">{section.name}</span>
+          {section.number}
         </a>
       );
     })}

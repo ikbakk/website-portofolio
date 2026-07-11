@@ -13,12 +13,12 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<footer class="colophon" data-od-id="colophon" role="contentinfo">
+<footer class="site-footer" data-od-id="site-footer" role="contentinfo">
   {data.rows.map((row) => (
-    <div class="colophon-row">
+    <div class="footer-row">
       <span>{row.label}</span>
       {row.variant === "clock" ? (
-        <span class="colophon-clock js-clock-slot" data-od-id="colophon-clock">
+        <span class="footer-clock js-clock-slot" data-od-id="footer-clock">
           {row.value}
         </span>
       ) : (

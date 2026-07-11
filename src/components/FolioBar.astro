@@ -1,31 +1,31 @@
 ---
 /**
  * FolioBar. The sticky strip immediately under the topbar that names
- * the current folio. Has a visually-hidden h2 for the page landmark.
+ * the current section. Has a visually-hidden h2 for the page landmark.
  *
- *  folioNumber   -  the printed "01" / "02" etc.
- *  folioTag      -  the printed "01 / Field note" tag
- *  folioMeta     -  the printed "2026 / present" or "three projects, ..."
+ *  sectionNumber   -  the printed "01" / "02" etc.
+ *  sectionTag      -  the printed "01 / Field note" tag
+ *  sectionMeta     -  the printed "2026 / present" or "three projects, ..."
  *  h2Label       -  the screen-reader-only h2 text. Optional.
- *  folioId       -  used in the data-od-id attribute (folio-01 etc.)
+ *  sectionId       -  used in the data-od-id attribute (section-01 etc.)
  */
 interface Props {
-  folioNumber: string;
-  folioTag: string;
-  folioMeta: string;
-  folioId: string;
+  sectionNumber: string;
+  sectionTag: string;
+  sectionMeta: string;
+  sectionId: string;
   h2Label?: string;
 }
 
-const { folioNumber, folioTag, folioMeta, folioId, h2Label } = Astro.props;
+const { sectionNumber, sectionTag, sectionMeta, sectionId, h2Label } = Astro.props;
 ---
 
-<header class="folio-bar" data-od-id={folioId}>
-  <div class="folio-bar-inner">
+<header class="section-bar" data-od-id={sectionId}>
+  <div class="section-bar-inner">
     {h2Label && <h2 class="vh">{h2Label}</h2>}
-    <div class="folio">
-      <span class="folio-tag">{folioTag}</span>
-      <span>{folioMeta}</span>
+    <div class="section">
+      <span class="section-tag">{sectionTag}</span>
+      <span>{sectionMeta}</span>
     </div>
   </div>
 </header>

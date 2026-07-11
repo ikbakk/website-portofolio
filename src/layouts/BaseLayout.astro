@@ -4,33 +4,28 @@
  * the global chrome. Every page passes through here.
  *
  *   currentSection  -  NavFolio for the active route. On the home
- *                      page this is page-01; scroll-spy updates the
+ *                      page this is field-note; scroll-spy updates the
  *                      topbar/spine as the user scrolls between
  *                      sections.
  *   homeHref        -  anchor for the topbar-mark. On the home page
- *                      this is "#page-01" so the mark scrolls back
+ *                      this is "#field-note" so the mark scrolls back
  *                      to the top instead of reloading.
  *   asAnchors       -  true on the home page: the spine links are
- *                      #page-NN anchors. false on /identity: the
- *                      spine links are real Astro routes.
+ *                      section anchors.
  *   title           -  <title> for this page
  *   description     -  meta description for this page
  *
- *   The layout renders the topbar, the main slot, the spine, the
- *   tweaks panel, and an inline pre-paint script that restores the
- *   mark direction from localStorage before first paint.
+ *   The layout renders the topbar, the main slot, and the spine.
  */
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 
 import { profile } from "@/data/profile";
 import { seo } from "@/data/seo";
-import { defaultDirection } from "@/data/marks";
 import type { NavFolio } from "@/data/nav";
 
 import Topbar from "@/components/Topbar.astro";
 import Spine from "@/components/Spine.astro";
-import TweaksPanel from "@/components/TweaksPanel.astro";
 import SkipLink from "@/components/SkipLink.astro";
 
 interface Props {
@@ -39,9 +34,6 @@ interface Props {
   asAnchors?: boolean;
   title?: string;
   description?: string;
-  /** Mark direction to render in the topbar. Server-side default
-   *  is "a"  -  the client-side script overrides it on first paint. */
-  initialDirection?: "a" | "b" | "c" | "d";
 }
 
 const {
@@ -50,7 +42,6 @@ const {
   asAnchors = true,
   title = seo.title,
   description = seo.description,
-  initialDirection = defaultDirection,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
@@ -84,10 +75,7 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
 
     <ClientRouter fallback="swap" />
   </head>
-  <body
-    data-direction={initialDirection}
-    data-spine-anchors={asAnchors ? "true" : "false"}
-  >
+  <body data-spine-anchors={asAnchors ? "true" : "false"}>
     <SkipLink href="#main" label="Skip to main content" />
 
     {/* Fixed elements outside the main content flow. */}
@@ -95,10 +83,8 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
       profile={profile}
       currentSection={currentSection}
       homeHref={homeHref}
-      direction={initialDirection}
     />
     <Spine currentId={currentSection.id} asAnchors={asAnchors} />
-    <TweaksPanel initialDirection={initialDirection} />
 
     <div class="shell">
       <main id="main" class="pages" data-od-id="pages">
@@ -106,26 +92,11 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
       </main>
     </div>
 
-    {/* Pre-paint script: apply the saved mark direction before the
-        first frame, so the topbar mark shows the right glyph without
-        a flash. No-op on the server; ships as a tiny inline script. */}
-    <script is:inline>
-      (function () {
-        try {
-          var saved = localStorage.getItem("mark-direction");
-          if (saved && (saved === "a" || saved === "b" || saved === "c" || saved === "d")) {
-            document.body.dataset.direction = saved;
-          }
-        } catch (e) { /* localStorage unavailable, ignore */ }
-      })();
-    </script>
-
-    {/* Page glue: scroll-spy on the home page, tweaks bindings on
-        every page, view-transitions hooks so navigating to /identity
-        still re-runs the entry tween. */}
     <script>
-      import { attachViewTransitions } from "@/lib/view-transitions";
-      attachViewTransitions();
+      import { initPage } from "@/lib/client";
+
+      initPage();
+      document.addEventListener("astro:page-load", initPage);
     </script>
   </body>
 </html>

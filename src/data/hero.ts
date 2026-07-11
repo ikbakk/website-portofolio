@@ -1,5 +1,5 @@
 /**
- * Hero copy for page-01 (Field note).
+ * Hero copy for field-note (Field note).
  *
  * The page is built around a single h1 (the manifesto) and a small
  * marginalia block. Marginalia rows use the same .mk / value pattern

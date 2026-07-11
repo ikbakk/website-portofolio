@@ -11,21 +11,17 @@
  */
 import type { Profile } from "../data/profile";
 import type { NavFolio } from "../data/nav";
-import { marks, markById, defaultDirection } from "../data/marks";
+import { marks } from "../data/marks";
 import Mark from "./Mark.astro";
 
 interface Props {
   profile: Profile;
   currentSection: NavFolio;
   homeHref: string;
-  /** The direction to render in the topbar mark. The body data-direction
-   *  is set client-side from localStorage, but on first paint the
-   *  topbar mark needs a default. */
-  direction?: "a" | "b" | "c" | "d";
 }
 
-const { profile, currentSection, homeHref, direction = defaultDirection } = Astro.props;
-const activeMark = markById(direction) ?? marks[0];
+const { profile, currentSection, homeHref } = Astro.props;
+const activeMark = marks[0];
 const roleLine = profile.role;
 ---
 
