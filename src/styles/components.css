@@ -98,8 +98,10 @@
   }
 
   .spine {
-    @apply fixed left-1/2 z-30 m-auto flex -translate-x-1/2 items-center gap-0 rounded-full border border-border px-4 py-2;
-    bottom: var(--space-5);
+    @apply fixed z-30 m-auto flex items-center gap-0 rounded-full border border-border px-2 py-4;
+    right: var(--space-5);
+    top: 50%;
+    transform: translateY(-50%);
     background: color-mix(in oklab, var(--surface) 92%, transparent);
     backdrop-filter: saturate(140%) blur(10px);
     -webkit-backdrop-filter: saturate(140%) blur(10px);
@@ -107,16 +109,16 @@
   }
 
   .spine-track {
-    @apply relative flex items-center gap-4;
+    @apply relative flex flex-col items-center gap-4;
   }
 
   .spine-line {
-    @apply absolute inset-x-0 top-1/2 z-0 h-px -translate-y-1/2 bg-border;
+    @apply absolute left-1/2 inset-y-0 z-0 w-px -translate-x-1/2 bg-border;
   }
 
   .spine-line-fill {
-    @apply absolute left-0 top-1/2 h-px w-full origin-left bg-accent;
-    transform: scaleX(0);
+    @apply absolute left-1/2 top-0 h-full w-px origin-top -translate-x-1/2 bg-accent;
+    transform: scaleY(0);
   }
 
   .spine-marker {
@@ -143,9 +145,9 @@
   }
 
   .spine-marker .spine-tip {
-    @apply pointer-events-none absolute left-1/2 whitespace-nowrap rounded bg-fg px-2 py-1 font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-surface-2 opacity-0 transition-[opacity,transform];
-    bottom: calc(100% + 8px);
-    transform: translateX(-50%) translateY(4px);
+    @apply pointer-events-none absolute right-[calc(100%+8px)] whitespace-nowrap rounded bg-fg px-2 py-1 font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-surface-2 opacity-0 transition-[opacity,transform];
+    top: 50%;
+    transform: translateY(-50%) translateX(4px);
     transition-duration: var(--motion-fast);
     transition-timing-function: var(--ease-out);
   }
@@ -153,7 +155,7 @@
   .spine-marker:hover .spine-tip,
   .spine-marker:focus-visible .spine-tip {
     @apply opacity-100;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(-50%) translateX(0);
   }
 
   .pages {
@@ -506,13 +508,37 @@
   }
 
   .spine {
-    @apply left-1/2 right-auto -translate-x-1/2 justify-center px-3 py-2;
+    @apply left-1/2 right-auto justify-center px-3 py-2;
+    top: auto;
+    bottom: var(--space-5);
     width: calc(100vw - (var(--space-3) * 2));
     max-width: 360px;
+    transform: translateX(-50%);
   }
 
   .spine-track {
-    @apply w-full justify-between gap-3;
+    @apply w-full flex-row justify-between gap-3;
+  }
+
+  .spine-line {
+    @apply inset-x-0 inset-y-auto left-auto top-1/2 h-px w-auto -translate-y-1/2 translate-x-0;
+  }
+
+  .spine-line-fill {
+    @apply left-0 top-1/2 h-px w-full origin-left -translate-y-1/2 translate-x-0;
+    transform: scaleX(0);
+  }
+
+  .spine-marker .spine-tip {
+    @apply left-1/2 right-auto;
+    top: auto;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%) translateY(4px);
+  }
+
+  .spine-marker:hover .spine-tip,
+  .spine-marker:focus-visible .spine-tip {
+    transform: translateX(-50%) translateY(0);
   }
 
   .page {

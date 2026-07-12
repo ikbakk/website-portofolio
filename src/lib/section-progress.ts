@@ -49,11 +49,12 @@ function scrollToSection(marker: HTMLElement): void {
   if (!section) return;
 
   const smoother = ScrollSmoother.get();
-  const y = Math.max(0, section.offsetTop - 56);
 
   if (smoother) {
+    const y = smoother.offset(section, "top 56px");
     smoother.scrollTo(y, true);
   } else {
+    const y = Math.max(0, section.offsetTop - 56);
     window.scrollTo({ top: y, behavior: "smooth" });
   }
 
@@ -85,8 +86,19 @@ export function initSectionProgress(): void {
 
   const progressFill = document.querySelector<HTMLElement>("[data-js='progress-fill']");
   const spineFill = document.querySelector<HTMLElement>(".spine-line-fill");
+  const isMobileSpine = window.matchMedia("(max-width: 960px)");
   const setTopbarProgress = progressFill ? gsap.quickSetter(progressFill, "scaleX") : null;
-  const setSpineProgress = spineFill ? gsap.quickSetter(spineFill, "scaleX") : null;
+  const setSpineProgressX = spineFill ? gsap.quickSetter(spineFill, "scaleX") : null;
+  const setSpineProgressY = spineFill ? gsap.quickSetter(spineFill, "scaleY") : null;
+  const setSpineProgress = (progress: number) => {
+    if (isMobileSpine.matches) {
+      setSpineProgressY?.(1);
+      setSpineProgressX?.(progress);
+    } else {
+      setSpineProgressX?.(1);
+      setSpineProgressY?.(progress);
+    }
+  };
   const triggers: ScrollTrigger[] = [];
 
   triggers.push(
@@ -95,7 +107,7 @@ export function initSectionProgress(): void {
       end: "max",
       onUpdate: (self) => {
         setTopbarProgress?.(self.progress);
-        setSpineProgress?.(self.progress);
+        setSpineProgress(self.progress);
         document.body.classList.toggle("is-scrolled", self.scroll() > 80);
       },
     }),
