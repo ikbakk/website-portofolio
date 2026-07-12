@@ -29,14 +29,14 @@ export interface Seo {
 }
 
 export const seo: Seo = {
-  title: "Field notes from a frontend engineer",
+  title: "Muhammad Iqbal Firdaus — Frontend & Mobile Engineer",
   description:
-    "A working engineer's portfolio. Build entries, real toolkit, honest placeholders for screenshots and links.",
+    "Portfolio of Muhammad Iqbal Firdaus, a Frontend Engineer and Mobile Engineer in Mataram, Indonesia, working with React, Next.js, Astro, Flutter, REST APIs, IoT dashboards, and technical SEO.",
   ogImage: "/og.png",
   themeColor: colors.themeColor.light,
   themeColorDark: colors.themeColor.dark,
   twitter: { card: "summary_large_image" },
-  site: "https://ikbakk.github.io",
+  site: "https://ikbakk.vercel.app",
 } as const;
 
 Object.freeze(seo);

@@ -12,6 +12,7 @@ const SECTION_NAMES: Record<(typeof SECTION_IDS)[number], string> = {
 };
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 let cleanup: () => void = () => {};
 
@@ -50,11 +51,13 @@ function scrollToSection(marker: HTMLElement): void {
 
   const smoother = ScrollSmoother.get();
 
+  const topbarOffset = document.querySelector<HTMLElement>(".topbar")?.offsetHeight ?? 56;
+
   if (smoother) {
-    const y = smoother.offset(section, "top 48px");
+    const y = smoother.offset(section, `top ${topbarOffset}px`);
     smoother.scrollTo(y, true);
   } else {
-    const y = Math.max(0, section.offsetTop - 56);
+    const y = Math.max(0, section.getBoundingClientRect().top + window.scrollY - topbarOffset);
     window.scrollTo({ top: y, behavior: "smooth" });
   }
 
@@ -87,6 +90,7 @@ export function initSectionProgress(): void {
   const progressFill = document.querySelector<HTMLElement>("[data-js='progress-fill']");
   const spineFill = document.querySelector<HTMLElement>(".spine-line-fill");
   const isMobileSpine = window.matchMedia("(max-width: 960px)");
+  const canLayerPins = window.matchMedia("(prefers-reduced-motion: no-preference)");
   const setTopbarProgress = progressFill ? gsap.quickSetter(progressFill, "scaleX") : null;
   const setSpineProgressX = spineFill ? gsap.quickSetter(spineFill, "scaleX") : null;
   const setSpineProgressY = spineFill ? gsap.quickSetter(spineFill, "scaleY") : null;
@@ -104,24 +108,32 @@ export function initSectionProgress(): void {
     (section): section is HTMLElement => section !== null,
   );
 
-  document.body.classList.add("has-layered-pins");
+  const handleLayerQueryChange = () => initSectionProgress();
+  canLayerPins.addEventListener("change", handleLayerQueryChange);
 
-  panels.forEach((panel, index) => {
-    gsap.set(panel, { zIndex: index + 1 });
+  if (canLayerPins.matches) {
+    document.body.classList.add("has-layered-pins");
 
-    triggers.push(
-      ScrollTrigger.create({
-        trigger: panel,
-        start: "bottom bottom",
-        end: "bottom 100px",
-        pin: index === panels.length - 1 ? false : true,
-        pinSpacing: false,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        refreshPriority: index,
-      }),
-    );
-  });
+    panels.forEach((panel, index) => {
+      gsap.set(panel, { zIndex: index + 1 });
+
+      triggers.push(
+        ScrollTrigger.create({
+          trigger: panel,
+          start: "bottom bottom",
+          end: "bottom 100px",
+          pin: index === panels.length - 1 ? false : true,
+          pinSpacing: false,
+          anticipatePin: isMobileSpine.matches ? 0 : 1,
+          invalidateOnRefresh: true,
+          refreshPriority: index,
+        }),
+      );
+    });
+  } else {
+    document.body.classList.remove("has-layered-pins");
+    panels.forEach((panel) => gsap.set(panel, { clearProps: "zIndex" }));
+  }
 
   triggers.push(
     ScrollTrigger.create({
@@ -158,6 +170,7 @@ export function initSectionProgress(): void {
     triggers.forEach((trigger) => trigger.kill());
     panels.forEach((panel) => gsap.set(panel, { clearProps: "zIndex" }));
     document.body.classList.remove("has-layered-pins");
+    canLayerPins.removeEventListener("change", handleLayerQueryChange);
     document.removeEventListener("click", handleSpineClick);
     document.removeEventListener("keydown", handleSpineKeydown);
     cleanup = () => {};

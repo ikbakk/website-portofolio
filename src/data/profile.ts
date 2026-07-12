@@ -24,17 +24,17 @@ export interface Profile {
 }
 
 export const profile: Profile = {
-  name: "[Your name]",
-  role: "Frontend engineer",
-  status: "Available for new work",
-  statusNote: "Open to senior IC / staff frontend roles; design-eng adjacent.",
-  monogram: "f",
+  name: "Muhammad Iqbal Firdaus",
+  role: "Frontend Engineer · Mobile Engineer",
+  status: "Available for frontend and mobile work",
+  statusNote: "Open to remote roles, relocation, and visa sponsorship opportunities.",
+  monogram: "i",
   buildMeta: {
     build: "v0.4.2",
-    hash: "a3f1c9e",
+    hash: "ikbakk",
     updated: "2026-07",
-    location: "Your timezone",
-    copyright: "[Your name], 2026",
+    location: "Mataram, Indonesia",
+    copyright: "Muhammad Iqbal Firdaus, 2026",
   },
 } as const;
 

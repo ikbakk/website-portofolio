@@ -31,24 +31,24 @@ export interface HeroData {
 export const hero: HeroData = {
   eyebrow: "01 / Field note",
   folioTag: "01 / Field note",
-  folioMeta: "2026 / present",
+  folioMeta: "Mataram / Indonesia",
   /** The h1 is split so the <em> runs can be rendered with the right
    *  tags without HTML in the data file. Each entry is one
    *  segment: either a plain string or { em: "..." }. */
   title: [
-    "I build the ",
-    { em: "parts of the product" },
-    " you can see, and the parts that keep ",
-    { em: "working when no one is watching" },
+    "I build ",
+    { em: "production-ready web and mobile interfaces" },
+    " for teams that need clear UX, reliable integrations, and ",
+    { em: "maintainable frontend systems" },
     ".",
   ] satisfies TitleSegment[],
   lede:
-    "A working engineer's portfolio. Three projects, a real toolkit, and a short note on how I work. Bound to the WeChat token system so the page reads like a quiet working canvas instead of a marketing template.",
+    "I'm Muhammad Iqbal Firdaus, a Frontend Engineer and Mobile Engineer with 2+ years of professional experience and hands-on web development experience since 2022. I've worked across tourism, government, analytics, automotive, restaurant, IoT, and digital media products, using React, Next.js, Astro, and Flutter to turn designs and APIs into performant applications that are easy to ship and maintain.",
   marginalia: [
-    { label: "Tenure",        value: "10+ years on the web, mostly inside product teams." },
-    { label: "Stack",         value: "TypeScript, React, Next.js, design systems, a11y." },
-    { label: "Looking for",   value: "senior IC or staff frontend roles; design-eng adjacent." },
-    { label: "Based in",      value: "your timezone", live: true },
+    { label: "Tenure", value: "2+ years professional; hands-on web development since 2022; 1+ year Flutter." },
+    { label: "Stack", value: "React, Next.js, Astro, SolidJS, Flutter, TypeScript, Tailwind CSS." },
+    { label: "Looking for", value: "frontend or mobile roles; remote, relocation, and visa sponsorship welcome." },
+    { label: "Based in", value: "your timezone", live: true },
   ] satisfies MarginaliaRow[],
   statusLine: "Available for new work",
 };

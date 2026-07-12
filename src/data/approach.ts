@@ -21,17 +21,17 @@ export const approach: ApproachData = {
   folioTag: "04 / Approach",
   folioMeta: "how I work, briefly",
   folioNumber: "04 / approach",
-  side: "A short note, not a manifesto",
+  side: "A short note on shipping real products",
   paragraphs: [
-    "I work best on small teams where the engineer and the designer are close enough to disagree over lunch and ship the right answer by Friday.",
-    "I lean toward the boring solution. Most of the time the right tool is a CSS Grid, a useEffect with a real cleanup, a token file, and a one-line commit message that explains why. When the boring solution is wrong, I can usually tell you why in two sentences.",
-    "I keep a written log of what I shipped, what I tried that didn't work, and what I'd do next time. It's how I stay honest with myself, and it's how I make a useful handoff to whoever picks the work up after me.",
+    "I work best when design, frontend, backend, and product stay close enough to clarify the problem before the interface hardens into code.",
+    "My default approach is practical: understand the requirement, map the API shape, build the smallest reliable UI, then improve the details that make the product feel polished on desktop and mobile. I care about responsive layouts, clear states, maintainable components, and performance because those are the things users notice when they go wrong.",
+    "Most of my work has been freelance and remote, so I keep communication explicit. I document assumptions, surface blockers early, and try to leave the codebase easier to continue than when I arrived.",
   ],
   list: [
-    { label: "Cadence",        value: "Async by default, sync when it matters. Two short syncs a week, written updates between them." },
-    { label: "Review",         value: "Read every PR I send and every PR I receive. Leave one thing to learn each time." },
-    { label: "Documentation",  value: "Decisions live in a doc, not in someone's head. Six months from me, future-me still gets the context." },
-    { label: "Disagreement",   value: "Push back with the data I have. If I lose the argument, I commit or I leave, I don't drift." },
+    { label: "Collaboration", value: "Remote-friendly, async by default, direct with clients, designers, backend teams, and IoT teams." },
+    { label: "Delivery", value: "Production features, bug fixes, refactors, migrations, and maintenance for existing applications." },
+    { label: "Quality", value: "Responsive UI, API edge cases, performance checks, SEO details, and clear handoff notes." },
+    { label: "Mobility", value: "Open to relocation and visa sponsorship opportunities." },
   ],
 } as const;
 

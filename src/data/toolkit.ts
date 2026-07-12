@@ -17,40 +17,40 @@ export interface ToolkitItem {
 export const toolkit: ReadonlyArray<ToolkitItem> = [
   {
     number: "01",
-    category: "Frontend engineering",
-    body: "Production React, TypeScript, performance budgets, accessibility audits, the parts of the app that have to keep working when the team is asleep. I've shipped interfaces that handle real users, real data, and real failure modes.",
-    tag: "React · TypeScript · Next.js · testing-library · Lighthouse",
+    category: "Frontend applications",
+    body: "Production React, Next.js, Astro, SolidJS, and TypeScript work: turning Figma designs, REST APIs, and existing codebases into responsive interfaces that teams can maintain after launch.",
+    tag: "React · Next.js · Astro · SolidJS · TypeScript",
   },
   {
     number: "02",
-    category: "Design systems",
-    body: "Token taxonomies, primitive libraries, migration plans, the boring connective tissue that lets a small team move fast. I write the system once so product engineers don't have to think about it for the next two years.",
-    tag: "Tokens · Storybook · Figma variables · docs",
+    category: "Mobile development",
+    body: "Flutter and React Native applications for Android and iOS, including feature delivery, API integration, localization, CMS-driven content, production fixes, and migration work.",
+    tag: "Flutter · Dart · React Native · REST API · Sanity CMS",
   },
   {
     number: "03",
-    category: "Prototyping & interaction",
-    body: "Working prototypes that answer a product question before the design phase ends. I build the version you can click on, hand it to the team, and the right next decision usually surfaces by Friday.",
-    tag: "React · vanilla TS · motion · micro-interaction",
+    category: "API integration & BFF workflows",
+    body: "Comfortable working with Backend-for-Frontend architectures, REST endpoints, authentication flows, asynchronous data fetching, and the edge cases that appear when frontend screens depend on real services.",
+    tag: "REST API · BFF · React Query · Postman · Node.js",
   },
   {
     number: "04",
-    category: "Accessibility & performance",
-    body: "Not a separate phase. Keyboard support, screen-reader testing, motion preferences, and the kind of performance work that makes the app feel respectful on a 4G connection and an old phone.",
-    tag: "WCAG · ARIA · Core Web Vitals · reduced motion",
+    category: "Technical SEO & static sites",
+    body: "High-performance Astro and Next.js sites with structured data, XML sitemaps, robots.txt, canonical URLs, Open Graph metadata, responsive images, and Search Console setup.",
+    tag: "Astro · Schema.org · Core Web Vitals · Open Graph",
   },
   {
     number: "05",
-    category: "Tooling & developer experience",
-    body: "Build pipelines, lint rules, codemods, and the small scripts that turn a 40-minute chore into a five-minute chore. I like making the next person's day slightly easier.",
-    tag: "Vite · esbuild · pnpm · changesets · CI",
+    category: "Dashboards & operational data",
+    body: "Real-time interfaces for IoT and analytics use cases, with MQTT streams, Firebase data, cached queries, and charts that help users understand operational metrics quickly.",
+    tag: "MQTT · Firebase · React Query · Recharts · Supabase",
   },
 ] as const;
 
 export const toolkitLede =
-  "A short list of the kinds of work I do, in my own words. Listed in the order I reach for them.";
+  "The practical stack I use most often: frontend applications, cross-platform mobile work, API integration, technical SEO, and data-heavy dashboards.";
 
 export const toolkitFolioTag = "03 / Toolkit";
-export const toolkitFolioMeta = "not a skills matrix";
+export const toolkitFolioMeta = "web, mobile, APIs, SEO";
 
 Object.freeze(toolkit);

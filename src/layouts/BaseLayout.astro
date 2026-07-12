@@ -81,12 +81,14 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
         ScrollSmoother.get()?.kill();
-        ScrollSmoother.create({
-          wrapper: "#smooth-wrapper",
-          content: "#smooth-content",
-          smooth: 2,
-          effects: true,
-        });
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          ScrollSmoother.create({
+            wrapper: "#smooth-wrapper",
+            content: "#smooth-content",
+            smooth: 2,
+            effects: true,
+          });
+        }
         initSectionProgress();
 
     </script>

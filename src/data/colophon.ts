@@ -19,10 +19,10 @@ export interface ColophonData {
 export const colophon: ColophonData = {
   rows: [
     { label: "Typography", value: "Newsreader / IBM Plex Sans / JetBrains Mono" },
-    { label: "Bound to",   value: "WeChat token system / chat-list canvas, single green accent" },
+    { label: "Built with", value: "Astro / TypeScript / Tailwind CSS / GSAP" },
     { label: "Local time", value: "offline", variant: "clock" },
-    { label: "Build",      value: "v0.4.2 / a3f1c9e / 2026-07" },
-    { label: "(c)",        value: "[Your name], 2026 / field notes from a frontend engineer" },
+    { label: "Build", value: "v0.4.2 / ikbakk / 2026-07" },
+    { label: "(c)", value: "Muhammad Iqbal Firdaus, 2026 / frontend and mobile engineering" },
   ],
 } as const;
 

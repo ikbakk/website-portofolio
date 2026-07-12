@@ -11,8 +11,8 @@
  *  stack       -  comma-separated tools, used in the dl and the tag row
  *  team        -  short team line
  *  outcome     -  short outcome line
- *  note        -  the marginal "what I'd do differently" block
- *  noteLabel   -  label for the marginal note (e.g. "What I'd do differently")
+ *  note        -  marginal project note
+ *  noteLabel   -  label for the marginal note
  *  slug        -  file name in src/content/projects
  */
 export interface ProjectSummary {
@@ -27,6 +27,14 @@ export interface ProjectSummary {
   note: string;
   noteLabel: string;
   slug: "01" | "02" | "03";
+  /** Optional screenshot. When provided, the entry renders the
+   *  image-first layout; when omitted, the entry renders the
+   *  text-only layout with an empty screenshot slot. */
+  image?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
 }
 
 export const projects: ReadonlyArray<ProjectSummary> = [
@@ -34,56 +42,61 @@ export const projects: ReadonlyArray<ProjectSummary> = [
     slug: "01",
     number: "01",
     year: "2025",
-    title: "Design system rollout across six product surfaces",
-    role: "Lead frontend",
-    stack: "TypeScript, React, Storybook, Figma tokens",
-    team: "2 frontend, 1 designer, 1 PM",
+    title: "Sungkar Group Indonesia — tourism marketing site for Lombok, Sumbawa, and Labuan Bajo",
+    role: "Freelance frontend engineer",
+    stack: "Astro, TypeScript, multilingual routing, Schema.org, WebP",
+    team: "Solo, working with the Sungkar Group team and local operators",
     outcome:
-      "Replaced 6 fragmented libraries with one tokenized system. Release cycle from weeks to days.",
+      "Shipped a fast, SEO-first tourism marketing site covering Lombok, Sumbawa, and Labuan Bajo with structured data, multilingual content (ID/AR), and Core Web Vitals in the green.",
+    image: {
+      src: "/projects/sungkargroup.svg",
+      alt: "Sungkar Group Indonesia landing page: hero with private tour Lombok, popular packages, and Lombok, Sumbawa, Labuan Bajo destinations",
+      caption: "Landing page with hero, four popular packages, and multi-destination strip.",
+    },
     lede:
-      "A two-quarter consolidation across B2B and B2C surfaces. Designed the token taxonomy with the design lead, shipped the primitives, then wrote the migration playbook so five product teams could move without freezing their roadmaps.",
+      "Sungkar Group Indonesia is a Lombok-based tour operator running private tours, open trips, and phinisi charters across Lombok, Sumbawa, and Labuan Bajo. I built the marketing and content surface with Astro, focusing on technical SEO, multilingual routing, WebP image delivery, and a content model that the operations team can extend as new packages are added.",
     note:
-      "Start with a thin vertical slice in one product first, instead of building the full primitive library up front. The full library came together faster once two teams had already adopted the tokens.",
-    noteLabel: "What I'd do differently",
+      "Tourism sites live or die on discoverability and perceived speed. Structured data per package, Open Graph for share previews, and lightweight static rendering mattered more than heavy interactivity.",
+    noteLabel: "What I focused on",
   },
   {
     slug: "02",
     number: "02",
-    year: "2024",
-    title: "Dense internal workflow tool for ops teams",
-    role: "Sole frontend",
-    stack: "Next.js, TanStack Table, react-aria",
-    team: "Embedded with ops + design",
+    year: "2024–2025",
+    title: "Real-time IoT monitoring dashboards",
+    role: "IoT dashboard developer",
+    stack: "React, MQTT, Firebase, React Query, Recharts",
+    team: "Freelance, collaborating with backend and IoT teams",
     outcome:
-      "Replaced three spreadsheets and two internal scripts. One workspace, keyboard-first, accessible to the ops QA process.",
+      "Built responsive dashboards that transform device telemetry and operational metrics into real-time charts and monitoring views.",
     lede:
-      "An internal tool for a 30-person ops team processing thousands of records a day. The constraint was information density and keyboard speed, not visual delight. Built a small component kit, a keyboard layer over react-aria, and a query system that survived bad data.",
+      "Operational teams needed a browser-based way to monitor connected devices and understand telemetry without digging through raw streams. I built React dashboards that subscribe to MQTT-based data flows, persist and read data through Firebase, cache asynchronous requests with React Query, and present key metrics through Recharts visualizations.",
     note:
-      "Tables with 50+ columns, 100ms column resize, and a save model that couldn't lose work to a network blip. Wrote a draft + commit layer that turned the page into a stable editing surface.",
-    noteLabel: "Constraint that shaped it",
+      "Real-time dashboards are only useful when the interface feels stable. Caching, loading states, and chart structure mattered as much as the MQTT integration itself.",
+    noteLabel: "What mattered most",
   },
   {
     slug: "03",
     number: "03",
-    year: "2023",
-    title: "Public launch surface for a developer tool",
-    role: "Frontend + design eng",
-    stack: "Astro, vanilla TS, vanilla CSS",
-    team: "Solo, working with the founder",
+    year: "2025–present",
+    title: "Cross-platform mobile apps for media and content products",
+    role: "Mobile developer",
+    stack: "Flutter, React Native, REST API, Sanity CMS",
+    team: "Freelance, collaborating with designers and product stakeholders",
     outcome:
-      "Marketing site + docs + first-touch onboarding. Core Web Vitals green, 100 on accessibility, on a small hosting budget.",
+      "Maintained a Flutter short-form drama streaming app, migrated an ebook app from React Native to Flutter, and connected mobile UIs to dynamic content systems.",
     lede:
-      "A small developer-tool company needed a marketing site, a docs site, and a getting-started flow that didn't feel like marketing. Built it with Astro for shipping the static surface fast, kept the interactive parts in vanilla TS so there was no framework overhead for a one-engineer team.",
+      "Media products need fast iteration without breaking the viewing or reading experience. I maintained and enhanced a Flutter streaming platform with new features, REST API integration, localization support, and production bug fixes, then helped migrate a subscription ebook application from React Native to Flutter while preserving existing functionality.",
     note:
-      "No design system. Three surfaces, three scopes, the system came after the launch when the team grew. Doing it again I'd plant a token file from day one even if it's just CSS custom properties.",
+      "The migration work was a maintainability exercise: keep the product familiar for users while giving the codebase a cleaner path for future Android and iOS development.",
     noteLabel: "Tradeoff",
   },
 ] as const;
 
 export const projectsLede =
-  "Three projects that show range, not a highlights reel. Each one is a real engineering decision with a real constraint behind it.";
+  "Selected work across government platforms, IoT dashboards, and mobile media products. Each entry focuses on the product constraint, the stack, and the outcome.";
 
 export const projectsFolioTag = "02 / Selected work";
-export const projectsFolioMeta = "three projects, 2023 to 2026";
+export const projectsFolioMeta = "three projects, 2024 to present";
 
 Object.freeze(projects);

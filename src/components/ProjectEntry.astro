@@ -1,7 +1,14 @@
 ---
 /**
  * ProjectEntry. One project card. Renders the header (number,
- * title, meta dl), intro text, note, and screenshot slot.
+ * title, meta dl), intro text, note, and a screenshot slot.
+ *
+ * Two layouts:
+ *  - with-image:    a figure with <img> + caption leads the body.
+ *  - without-image: text-only entry. No screenshot placeholder.
+ *
+ * The decision is data-driven: if `entry.image` is set, the
+ * image-first layout is used; otherwise the text-first layout.
  *
  *  entry  -  ProjectSummary from src/data/projects
  *  The long-form markdown body (if any) is rendered through the
@@ -15,9 +22,14 @@ interface Props {
 }
 
 const { entry } = Astro.props;
+const hasImage = Boolean(entry.image);
 ---
 
-<article class="project" data-od-id={`entry-${entry.number}`} data-od-reveal="scroll">
+<article
+  class:list={["project", hasImage && "project--with-image"]}
+  data-od-id={`entry-${entry.number}`}
+  data-od-reveal="scroll"
+>
   <div class="project-head">
     <div class="project-number">{entry.number} / {entry.year}</div>
     <h2 class="project-title">{entry.title}</h2>
@@ -35,25 +47,26 @@ const { entry } = Astro.props;
     </div>
   </div>
   <div class="project-body">
+    {hasImage && (
+      <figure class="project-figure" data-od-id={`entry-${entry.number}-figure`}>
+        <img
+          class="project-image"
+          src={entry.image!.src}
+          alt={entry.image!.alt}
+          loading="lazy"
+        />
+        {entry.image!.caption && (
+          <figcaption class="project-caption">{entry.image!.caption}</figcaption>
+        )}
+      </figure>
+    )}
+
     <p class="project-intro">{entry.lede}</p>
     <slot />
 
     <div class="project-notes">
       <span class="note-title">{entry.noteLabel}</span>
       {entry.note}
-    </div>
-
-    <div
-      class="project-visual"
-      data-od-id={`entry-${entry.number}-visual`}
-      data-state="empty"
-      role="img"
-      aria-label={`Screenshot slot for project ${entry.number}, awaiting asset`}
-    >
-      <span>Screenshot / mockup, 16:10</span>
-      <span class="screenshot-hint">
-        Drop a screenshot here once the project is chosen. The slot holds a 16:10 ratio.
-      </span>
     </div>
   </div>
 </article>
