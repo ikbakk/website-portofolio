@@ -1,16 +1,4 @@
 ---
-/**
- * Spine. The bottom-fixed pill of 5 markers that mirrors the
- * document's scroll progress. Two layers: the grey line (always
- * there) and the accent line (scaled by --progress). Each marker
- * links to the corresponding page section (anchor on the home
- * page; route on other pages).
- *
- *   folios    -  ReadonlyArray<NavFolio> for the 5 folios
- *   currentId -  the id of the active section (e.g. "selected-work")
- *   asAnchors -  true to use #section-id anchors (single-page mode).
- *                false to use Astro routes /work, /toolkit, etc.
- */
 import type { NavFolio } from "../data/nav";
 import { folios } from "../data/nav";
 

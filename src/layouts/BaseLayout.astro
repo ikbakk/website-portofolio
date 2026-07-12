@@ -77,8 +77,6 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
   </head>
   <body data-spine-anchors={asAnchors ? "true" : "false"}>
     <SkipLink href="#main" label="Skip to main content" />
-
-    {/* Fixed elements outside the main content flow. */}
     <Topbar
       profile={profile}
       currentSection={currentSection}
