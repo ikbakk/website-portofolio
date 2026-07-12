@@ -1,22 +1,4 @@
 ---
-/**
- * BaseLayout. The single source of truth for <html>, <head>, and
- * the global chrome. Every page passes through here.
- *
- *   currentSection  -  NavFolio for the active route. On the home
- *                      page this is field-note; scroll-spy updates the
- *                      topbar/spine as the user scrolls between
- *                      sections.
- *   homeHref        -  anchor for the topbar-mark. On the home page
- *                      this is "#field-note" so the mark scrolls back
- *                      to the top instead of reloading.
- *   asAnchors       -  true on the home page: the spine links are
- *                      section anchors.
- *   title           -  <title> for this page
- *   description     -  meta description for this page
- *
- *   The layout renders the topbar, the main slot, and the spine.
- */
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 
@@ -84,16 +66,28 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
     />
     <Spine currentId={currentSection.id} asAnchors={asAnchors} />
 
-    <div class="shell">
-      <main id="main" class="pages" data-od-id="pages">
+    <div id="smooth-wrapper" class="shell ">
+      <main id="smooth-content" class="pages" data-od-id="pages">
         <slot />
       </main>
     </div>
 
     <script>
       import { initPage } from "@/lib/client";
+      import {gsap} from 'gsap'
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      import { ScrollSmoother } from "gsap/ScrollSmoother"
 
       initPage();
+      
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+      ScrollSmoother.create({
+        smooth: 1.2, // how long (in seconds) it takes to "catch up" to the native scroll position
+        effects: true, // looks for data-speed and data-lag attributes on elements
+        smoothTouch: 0.1 // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+      });
+
+
       document.addEventListener("astro:page-load", initPage);
     </script>
   </body>

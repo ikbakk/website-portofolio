@@ -1,19 +1,4 @@
 ---
-/**
- * Folio. The reusable section wrapper. Renders a sticky FolioBar
- * and a page-inner that carries the notebook grid background
- * (32px vertical, --fg at 4% mix, masked to fade 0 to 70%). The
- * FolioNumber sits in the bottom-right.
- *
- *  sectionNumber  -  the printed "01 / field note" string for the bottom-right
- *  sectionBarNumber  -  the printed "01" / "02" etc.
- *  sectionBarTag    -  the printed "01 / Field note" tag
- *  sectionBarMeta   -  the printed meta line
- *  sectionBarId     -  the data-od-id (section-01 etc.)
- *  sectionBarH2     -  optional screen-reader h2
- *  id             -  the field-note etc. id (used by the spine to scroll)
- *  odId           -  the data-od-id (field-note-hero etc.)
- */
 import FolioBar from "./FolioBar.astro";
 import FolioNumber from "./FolioNumber.astro";
 
