@@ -28,7 +28,7 @@ const currentIndex = list.findIndex((f) => f.id === currentId);
     {list.map((section, i) => {
       const isCurrent = section.id === currentId;
       const isPast = currentIndex >= 0 && i < currentIndex;
-      const href = asAnchors ? `#${section.id}` : section.route;
+      const href = asAnchors ? undefined : section.route;
       return (
         <a
           class:list={[
@@ -37,6 +37,8 @@ const currentIndex = list.findIndex((f) => f.id === currentId);
             isPast && "is-past",
           ]}
           href={href}
+          role={asAnchors ? "button" : undefined}
+          tabindex={asAnchors ? "0" : undefined}
           data-spine-id={section.id}
           data-od-id={`spine-${section.number}`}
           aria-label={`Folio ${section.number}: ${section.name}`}

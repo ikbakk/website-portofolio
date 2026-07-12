@@ -93,8 +93,8 @@
   }
 
   .topbar-progress-fill {
-    @apply h-full w-full origin-left bg-accent transition-transform duration-[80ms] ease-linear;
-    transform: scaleX(var(--progress, 0));
+    @apply h-full w-full origin-left bg-accent;
+    transform: scaleX(0);
   }
 
   .spine {
@@ -115,8 +115,8 @@
   }
 
   .spine-line-fill {
-    @apply absolute left-0 top-1/2 h-px w-full origin-left bg-accent transition-transform duration-[80ms] ease-linear;
-    transform: scaleX(var(--progress, 0));
+    @apply absolute left-0 top-1/2 h-px w-full origin-left bg-accent;
+    transform: scaleX(0);
   }
 
   .spine-marker {
@@ -167,6 +167,10 @@
 
   .page:last-of-type {
     @apply border-b-0;
+  }
+
+  #contact {
+    min-height: 100svh;
   }
 
   .page-inner {
