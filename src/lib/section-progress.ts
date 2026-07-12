@@ -51,7 +51,7 @@ function scrollToSection(marker: HTMLElement): void {
   const smoother = ScrollSmoother.get();
 
   if (smoother) {
-    const y = smoother.offset(section, "top 56px");
+    const y = smoother.offset(section, "top 48px");
     smoother.scrollTo(y, true);
   } else {
     const y = Math.max(0, section.offsetTop - 56);
@@ -100,6 +100,28 @@ export function initSectionProgress(): void {
     }
   };
   const triggers: ScrollTrigger[] = [];
+  const panels = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+    (section): section is HTMLElement => section !== null,
+  );
+
+  document.body.classList.add("has-layered-pins");
+
+  panels.forEach((panel, index) => {
+    gsap.set(panel, { zIndex: index + 1 });
+
+    triggers.push(
+      ScrollTrigger.create({
+        trigger: panel,
+        start: "bottom bottom",
+        end: "bottom 100px",
+        pin: index === panels.length - 1 ? false : true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        refreshPriority: index,
+      }),
+    );
+  });
 
   triggers.push(
     ScrollTrigger.create({
@@ -134,6 +156,8 @@ export function initSectionProgress(): void {
 
   cleanup = () => {
     triggers.forEach((trigger) => trigger.kill());
+    panels.forEach((panel) => gsap.set(panel, { clearProps: "zIndex" }));
+    document.body.classList.remove("has-layered-pins");
     document.removeEventListener("click", handleSpineClick);
     document.removeEventListener("keydown", handleSpineKeydown);
     cleanup = () => {};

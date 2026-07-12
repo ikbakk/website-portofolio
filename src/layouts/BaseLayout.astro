@@ -80,21 +80,15 @@ const ogImage = new URL(seo.ogImage, Astro.site).toString();
 
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-      document.addEventListener("astro:page-load", () => {
         ScrollSmoother.get()?.kill();
         ScrollSmoother.create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
-          smooth: 1.5,
+          smooth: 2,
           effects: true,
         });
         initSectionProgress();
-      });
 
-      document.addEventListener("astro:before-swap", () => {
-        destroySectionProgress();
-        ScrollSmoother.get()?.kill();
-      });
     </script>
   </body>
 </html>

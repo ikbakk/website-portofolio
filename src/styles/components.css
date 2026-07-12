@@ -164,6 +164,8 @@
 
   .page {
     @apply relative border-b border-border;
+    min-height: 100svh;
+    background: var(--bg);
     padding: var(--space-16) clamp(20px, 4vw, 56px) calc(var(--space-20) + var(--spine-h) + var(--space-6));
   }
 
