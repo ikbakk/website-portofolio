@@ -1,5 +1,5 @@
 /**
- * Three featured build entries. The long-form text lives in
+ * Four featured build entries. The long-form text lives in
  * src/content/projects/0X.md (Astro content collection) and is rendered
  * through the ProjectEntry component. This file is the *summary* that
  * drives the folio bar, the meta dl, and the lede.
@@ -26,7 +26,7 @@ export interface ProjectSummary {
   lede: string;
   note: string;
   noteLabel: string;
-  slug: "01" | "02" | "03";
+  slug: "01" | "02" | "03" | "04";
   /** Optional screenshot. When provided, the entry renders the
    *  image-first layout; when omitted, the entry renders the
    *  text-only layout with an empty screenshot slot. */
@@ -91,12 +91,33 @@ export const projects: ReadonlyArray<ProjectSummary> = [
       "The migration work was a maintainability exercise: keep the product familiar for users while giving the codebase a cleaner path for future Android and iOS development.",
     noteLabel: "Tradeoff",
   },
+  {
+    slug: "04",
+    number: "04",
+    year: "2026",
+    title: "Ward Monitor — ESP32 patient telemetry dashboard",
+    role: "Full-stack frontend and IoT prototyping",
+    stack: "Angular, TypeScript, ESP32, MAX30100, MLX90614, Lucide icons",
+    team: "Solo product build",
+    outcome:
+      "Built a backend-ready clinical operations dashboard with real login flow, ward navigation, patient detail pages, and state-aware telemetry cards for ESP32 sensor readings.",
+    image: {
+      src: "/projects/ward-monitor-dashboard.png",
+      alt: "Ward Monitor dashboard showing clinical operations, priority patient cards, ward boards, vitals, and ESP32 device state",
+      caption: "Dashboard view with priority review queue, ward boards, state-tinted patient cards, and sensor readings.",
+    },
+    lede:
+      "Ward Monitor turns ESP32 sensor data into a nurse-station interface for rooms, beds, monitored patients, and device state. I designed the Angular UI around quick triage: priority patients first, compact icon-led status summaries, state-tinted cards, privacy mode, and route-level detail pages ready to connect to a production backend.",
+    note:
+      "The interface was designed for scan speed. Status is carried by color, icon, and spacing rather than long labels, while the auth and routing seams are prepared for the backend API.",
+    noteLabel: "Product constraint",
+  },
 ] as const;
 
 export const projectsLede =
-  "Selected work across government platforms, IoT dashboards, and mobile media products. Each entry focuses on the product constraint, the stack, and the outcome.";
+  "Selected work across tourism sites, IoT dashboards, clinical monitoring, and mobile media products. Each entry focuses on the product constraint, the stack, and the outcome.";
 
 export const projectsFolioTag = "02 / Selected work";
-export const projectsFolioMeta = "three projects, 2024 to present";
+export const projectsFolioMeta = "four projects, 2024 to present";
 
 Object.freeze(projects);
