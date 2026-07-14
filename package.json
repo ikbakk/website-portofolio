@@ -16,6 +16,7 @@
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/newsreader": "^5.2.10",
     "astro": "^7.0.7",
+    "biome": "^0.3.3",
     "gsap": "^3.15.0"
   },
   "devDependencies": {

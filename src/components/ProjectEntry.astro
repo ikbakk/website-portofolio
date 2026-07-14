@@ -2,7 +2,7 @@
 const { project, index } = Astro.props;
 const detailText = project.details.join('\n\n');
 ---
-<article class="project-entry" data-motion="project" data-project-card data-project-index={index} tabindex="0">
+<article class:list={['project-entry', index === 0 && 'is-focused']} data-motion="project" data-project-card data-project-index={index} tabindex="0">
   <aside class="project-meta">
     <span>{project.number} / {project.year}</span>
     <dl>

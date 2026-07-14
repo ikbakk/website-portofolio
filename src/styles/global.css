@@ -342,8 +342,9 @@ body.is-scrolled .topbar {
   background-size: 36px 36px;
   mask-image: linear-gradient(to bottom, black, transparent 72%);
   pointer-events: none;
-  transform: translate3d(0, var(--folio-bg-y, 0px), 0);
+  transform: translate3d(0, 0, 0);
   will-change: transform;
+  z-index: 0;
 }
 
 .folio-dark {

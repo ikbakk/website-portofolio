@@ -36,7 +36,7 @@ const projectGroups = Array.from({ length: Math.ceil(projects.length / 3) }, (_,
       <div class="project-pager" data-project-pager aria-label="Selected project groups">
         <div class="project-pages" data-project-pages>
           {projectGroups.map((group, groupIndex) => (
-            <div class="project-page" data-project-page data-page-index={groupIndex} aria-label={`Project set ${groupIndex + 1} of ${projectGroups.length}`}>
+            <div class:list={['project-page', groupIndex === 0 && 'is-active']} data-project-page data-page-index={groupIndex} aria-label={`Project set ${groupIndex + 1} of ${projectGroups.length}`}>
               {group.map((project, index) => <ProjectEntry project={project} index={groupIndex * 3 + index} />)}
             </div>
           ))}

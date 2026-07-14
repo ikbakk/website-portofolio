@@ -3,25 +3,19 @@
     @apply block;
   }
 
+  /* Skip link - GSAP handles focus animation */
   .skip-link {
-    @apply absolute z-[100] rounded border border-accent bg-surface px-4 py-2 font-mono text-sm tracking-[var(--tracking-mono)] text-fg -translate-y-[200%] transition-transform;
+    @apply absolute z-[100] rounded border border-accent bg-surface px-4 py-2 font-mono text-sm tracking-[var(--tracking-mono)] text-fg;
     top: var(--space-3);
     left: var(--space-3);
-    transition-duration: var(--motion-fast);
-    transition-timing-function: var(--ease-out);
   }
 
-  .skip-link:focus-visible {
-    @apply translate-y-0;
-  }
-
+  /* Topbar - GSAP handles scroll state transitions */
   .topbar {
-    @apply fixed inset-x-0 top-0 z-20 border-b border-transparent transition-colors;
+    @apply fixed inset-x-0 top-0 z-20 border-b border-transparent;
     background: color-mix(in oklab, var(--bg) 88%, transparent);
     backdrop-filter: saturate(140%) blur(8px);
     -webkit-backdrop-filter: saturate(140%) blur(8px);
-    transition-duration: var(--motion-base);
-    transition-timing-function: var(--ease-out);
   }
 
   body.is-scrolled .topbar {
@@ -38,18 +32,9 @@
     @apply flex min-w-0 items-center gap-3;
   }
 
+  /* Mark - GSAP handles hover rotation */
   .topbar-mark {
-    @apply inline-flex size-7 shrink-0 items-center justify-center rounded transition-transform;
-    transition-duration: var(--motion-fast);
-    transition-timing-function: var(--ease-out);
-  }
-
-  .topbar-mark:hover {
-    @apply -rotate-3;
-  }
-
-  .topbar-mark:focus-visible {
-    @apply outline outline-2 outline-offset-2 outline-accent;
+    @apply inline-flex size-7 shrink-0 items-center justify-center rounded;
   }
 
   .mark {
@@ -68,10 +53,10 @@
     @apply flex items-center gap-2 whitespace-nowrap font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-fg;
   }
 
+  /* Status dot - GSAP handles pulse animation */
   .status-dot {
     @apply size-[7px] shrink-0 rounded-full bg-accent;
     box-shadow: 0 0 0 0 var(--accent);
-    animation: status-pulse 2.4s var(--ease-out) infinite;
   }
 
   .topbar-section {
@@ -82,21 +67,22 @@
     @apply text-accent tabular-nums;
   }
 
+  /* Section name - GSAP handles color transitions */
   .topbar-section-name {
-    @apply text-fg transition-colors;
-    transition-duration: var(--motion-base);
-    transition-timing-function: var(--ease-out);
+    @apply text-fg;
   }
 
   .topbar-progress {
     @apply pointer-events-none absolute inset-x-0 -bottom-px h-px overflow-hidden;
   }
 
+  /* Progress fill - GSAP controls scaleX */
   .topbar-progress-fill {
     @apply h-full w-full origin-left bg-accent;
     transform: scaleX(0);
   }
 
+  /* Spine - GSAP handles positioning and marker animations */
   .spine {
     @apply fixed z-30 m-auto flex items-center gap-0 rounded-full border border-border px-2 py-4;
     right: var(--space-5);
@@ -116,46 +102,22 @@
     @apply absolute left-1/2 inset-y-0 z-0 w-px -translate-x-1/2 bg-border;
   }
 
+  /* Spine fill - GSAP controls scaleY */
   .spine-line-fill {
     @apply absolute left-1/2 top-0 h-full w-px origin-top -translate-x-1/2 bg-accent;
     transform: scaleY(0);
   }
 
+  /* Spine markers - GSAP handles all interactive states */
   .spine-marker {
-    @apply relative z-[1] inline-flex size-6 cursor-pointer items-center justify-center rounded-full border border-border bg-bg font-mono text-[10px] text-muted tabular-nums transition-[color,border-color,background,transform];
+    @apply relative z-[1] inline-flex size-6 cursor-pointer items-center justify-center rounded-full border border-border bg-bg font-mono text-[10px] text-muted tabular-nums;
     letter-spacing: 0;
-    transition-duration: var(--motion-fast), var(--motion-fast), var(--motion-fast), var(--motion-base);
-    transition-timing-function: var(--ease-out);
-  }
-
-  .spine-marker:hover {
-    @apply scale-105 border-fg text-fg;
-  }
-
-  .spine-marker.is-current {
-    @apply scale-110 border-accent bg-accent text-surface-2;
-  }
-
-  .spine-marker.is-past {
-    @apply border-fg text-fg;
-  }
-
-  .spine-marker:focus-visible {
-    @apply outline outline-2 outline-offset-3 outline-accent;
   }
 
   .spine-marker .spine-tip {
-    @apply pointer-events-none absolute right-[calc(100%+8px)] whitespace-nowrap rounded bg-fg px-2 py-1 font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-surface-2 opacity-0 transition-[opacity,transform];
+    @apply pointer-events-none absolute right-[calc(100%+8px)] whitespace-nowrap rounded bg-fg px-2 py-1 font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-surface-2 opacity-0;
     top: 50%;
     transform: translateY(-50%) translateX(4px);
-    transition-duration: var(--motion-fast);
-    transition-timing-function: var(--ease-out);
-  }
-
-  .spine-marker:hover .spine-tip,
-  .spine-marker:focus-visible .spine-tip {
-    @apply opacity-100;
-    transform: translateY(-50%) translateX(0);
   }
 
   .pages {
@@ -315,15 +277,10 @@
     @apply mb-2 block text-xs uppercase tracking-[var(--tracking-mono)] text-muted;
   }
 
+  /* Project visual - GSAP handles hover states */
   .project-visual {
-    @apply flex aspect-[16/10] max-w-[720px] flex-col items-center justify-center gap-2 border border-border p-6 text-center font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-muted transition-colors;
+    @apply flex aspect-[16/10] max-w-[720px] flex-col items-center justify-center gap-2 border border-border p-6 text-center font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-muted;
     background: repeating-linear-gradient(45deg, var(--surface) 0 12px, var(--bg) 12px 24px);
-    transition-duration: var(--motion-fast);
-    transition-timing-function: var(--ease-out);
-  }
-
-  .project-visual:hover {
-    @apply border-border-strong;
   }
 
   .project-visual[data-state="filled"],
@@ -339,14 +296,9 @@
     @apply size-full object-cover;
   }
 
-  .project-visual[data-state="loading"] {
-    @apply text-muted;
-  }
-
   .project-visual[data-state="loading"]::before {
     content: "";
     @apply size-6 rounded-full border-2 border-border border-t-accent;
-    animation: visual-spin 0.9s linear infinite;
   }
 
   .project-visual .screenshot-hint {
@@ -357,8 +309,6 @@
     @apply hidden;
   }
 
-  /* With-image layout: the figure leads the body and the entry
-     widens so the screenshot has room to breathe. */
   .project--with-image .project-body {
     @apply max-w-none;
   }
@@ -374,7 +324,6 @@
   .project-caption {
     @apply mt-2 font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-muted;
   }
-
 
   .toolkit {
     @apply m-0 list-none border-t border-border p-0;
@@ -448,22 +397,13 @@
     @apply font-mono text-xs uppercase tracking-[var(--tracking-mono)] text-muted;
   }
 
+  /* Contact link - GSAP handles hover states */
   .contact-link {
-    @apply break-words border-b border-transparent font-display text-2xl font-medium tracking-[var(--tracking-display)] text-fg transition-colors;
-    transition-duration: var(--motion-fast);
-    transition-timing-function: var(--ease-out);
+    @apply break-words border-b border-transparent font-display text-2xl font-medium tracking-[var(--tracking-display)] text-fg;
   }
 
   .contact-link:visited {
     @apply text-fg;
-  }
-
-  .contact-link:hover {
-    @apply border-accent text-accent;
-  }
-
-  .contact-link:active {
-    @apply border-accent-active text-accent-active;
   }
 
   .contact-link[aria-disabled="true"] {
@@ -491,29 +431,10 @@
     @apply text-fg;
   }
 
+  /* Reveal states - GSAP controls these */
   body.will-animate [data-od-reveal="entry"],
   body.will-animate [data-od-reveal="scroll"] {
     @apply translate-y-3 opacity-0 will-change-[opacity,transform];
-  }
-}
-
-@keyframes status-pulse {
-  0% {
-    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 50%, transparent);
-  }
-
-  70% {
-    box-shadow: 0 0 0 7px color-mix(in oklab, var(--accent) 0%, transparent);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent);
-  }
-}
-
-@keyframes visual-spin {
-  to {
-    transform: rotate(360deg);
   }
 }
 
@@ -565,12 +486,7 @@
     @apply left-1/2 right-auto;
     top: auto;
     bottom: calc(100% + 8px);
-    transform: translateX(-50%) translateY(4px);
-  }
-
-  .spine-marker:hover .spine-tip,
-  .spine-marker:focus-visible .spine-tip {
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateX(4px);
   }
 
   .page {

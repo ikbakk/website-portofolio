@@ -28,11 +28,15 @@ const {
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to main content</a>
-    {showChrome && <Topbar profile={profile} navItems={navItems} transition:persist />}
-    <slot />
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          {showChrome && <Topbar profile={profile} navItems={navItems} transition:persist />}
+          <slot />
+      </div>
+    </div>
     <script>
-      import { initPortfolioMotion } from '../scripts/motion';
-      initPortfolioMotion();
+      import { initMotion } from '../scripts/main';
+      initMotion();
     </script>
   </body>
 </html>
