@@ -1,40 +1,14 @@
 ---
-import FolioBar from "./FolioBar.astro";
-import FolioNumber from "./FolioNumber.astro";
-
-interface Props {
-  sectionNumber: string;
-  sectionBarNumber: string;
-  sectionBarTag: string;
-  sectionBarMeta: string;
-  sectionBarId: string;
-  sectionBarH2?: string;
-  id: string;
-  odId: string;
-}
-
-const {
-  sectionNumber,
-  sectionBarNumber,
-  sectionBarTag,
-  sectionBarMeta,
-  sectionBarId,
-  sectionBarH2,
-  id,
-  odId,
-} = Astro.props;
+interface Props { id: string; number: string; title: string; tone?: 'light' | 'dark'; }
+const { id, number, title, tone = 'light' } = Astro.props;
 ---
-
-<article class="page" id={id} data-od-id={odId}>
-  <FolioBar
-    sectionNumber={sectionBarNumber}
-    sectionTag={sectionBarTag}
-    sectionMeta={sectionBarMeta}
-    sectionId={sectionBarId}
-    h2Label={sectionBarH2}
-  />
-  <div class="page-inner">
-    <FolioNumber text={sectionNumber} />
-    <slot />
+<section id={id} class:list={['folio', tone === 'dark' && 'folio-dark']} data-section={id} data-motion="section">
+  <div class="folio-pin">
+    <span>{number}</span>
+    <strong>{title}</strong>
   </div>
-</article>
+  <div class="folio-inner">
+    <slot />
+    <span class="folio-corner" aria-hidden="true">{number} / {title.toLowerCase()}</span>
+  </div>
+</section>

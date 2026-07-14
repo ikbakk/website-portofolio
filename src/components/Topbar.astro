@@ -1,64 +1,26 @@
 ---
-/**
- * Topbar. Sticky at top of the viewport, scroll-aware, three-column
- * grid: brand / status / current section. The progress hairline is
- * rendered as the last child of the topbar so the GSAP / scroll
- * progress math in src/lib/progress.ts scales it via --progress.
- *
- *  profile        -  Profile from src/data/profile
- *  currentSection  -  NavFolio for the active route
- *  homeHref       -  anchor for the topbar-mark (back to top)
- */
-import type { Profile } from "../data/profile";
-import type { NavFolio } from "../data/nav";
-import { marks } from "../data/marks";
-import Mark from "./Mark.astro";
+import Mark from './Mark.astro';
+import type { navItems as navItemsData, profile as profileData } from '../data/site';
 
-interface Props {
-  profile: Profile;
-  currentSection: NavFolio;
-  homeHref: string;
-}
+type NavItem = (typeof navItemsData)[number];
+type Profile = typeof profileData;
 
-const { profile, currentSection, homeHref } = Astro.props;
-const activeMark = marks[0];
-const roleLine = profile.role;
+const { profile, navItems } = Astro.props as { profile: Profile; navItems: readonly NavItem[] };
 ---
-
-<header
-  class="topbar"
-  data-od-id="topbar"
-  role="banner"
-  transition:persist="topbar"
->
-  <div class="topbar-inner">
-    <div class="topbar-brand">
-      <a
-        class="topbar-mark"
-        href={homeHref}
-        aria-label={`${profile.name} / back to top`}
-        data-od-id="topbar-mark"
-      >
-        <Mark mark={activeMark} size={24} monogram={profile.monogram} />
-      </a>
-      <div class="topbar-name">
-        {profile.name}
-        <span class="topbar-role">{roleLine}</span>
-      </div>
-    </div>
-
-    <div class="topbar-status" data-od-id="topbar-status" aria-live="polite">
-      <span class="status-dot" aria-hidden="true"></span>
-      <span class="topbar-status-text">{profile.status}</span>
-    </div>
-
-    <div class="topbar-section" data-od-id="topbar-section" aria-live="polite">
-      <span class="topbar-section-no" data-js="section-no">{currentSection.number}</span>
-      <span class="topbar-section-name" data-js="section-name">{currentSection.name}</span>
-    </div>
+<header class="topbar" data-motion="topbar">
+  <a class="topbar-brand" href="#field" aria-label={`${profile.name} home`}>
+    <Mark size="sm" />
+    <span class="brand-copy">
+      <strong>{profile.name}</strong>
+      <span>{profile.role}</span>
+    </span>
+  </a>
+  <div class="topbar-status" aria-live="polite">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>{profile.status}</span>
   </div>
-
-  <div class="topbar-progress" aria-hidden="true">
-    <div class="topbar-progress-fill" data-js="progress-fill"></div>
-  </div>
+  <nav class="topbar-nav" aria-label="Primary navigation">
+    {navItems.map((item) => <a href={item.href} data-nav-target={item.id}>{item.number}<span>{item.label}</span></a>)}
+  </nav>
+  <span class="topbar-progress" aria-hidden="true"><span></span></span>
 </header>

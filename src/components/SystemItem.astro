@@ -1,0 +1,11 @@
+---
+const { item } = Astro.props;
+---
+<li class="system-item" data-motion="system-item">
+  <span>{item.number}</span>
+  <div>
+    <h3>{item.title}</h3>
+    <p>{item.body}</p>
+    <small>{item.tag}</small>
+  </div>
+</li>

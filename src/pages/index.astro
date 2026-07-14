@@ -1,169 +1,119 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Folio from "@/components/Folio.astro";
-import ProjectEntry from "@/components/ProjectEntry.astro";
-import ToolkitItem from "@/components/ToolkitItem.astro";
-import ContactRow from "@/components/ContactRow.astro";
-import Colophon from "@/components/Colophon.astro";
-import { folios } from "@/data/nav";
-import { hero } from "@/data/hero";
-import { projects, projectsFolioTag, projectsFolioMeta, projectsLede } from "@/data/projects";
-import { toolkit, toolkitFolioTag, toolkitFolioMeta, toolkitLede } from "@/data/toolkit";
-import { approach } from "@/data/approach";
-import { contact, contactFolioTag, contactFolioMeta, contactLede } from "@/data/contact";
-import { colophon as colophonData } from "@/data/colophon";
-import { seo } from "@/data/seo";
-import { getCollection } from "astro:content";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Folio from '../components/Folio.astro';
+import ProjectEntry from '../components/ProjectEntry.astro';
+import SystemItem from '../components/SystemItem.astro';
+import ContactRow from '../components/ContactRow.astro';
+import { hero, projects, craftItems, method, contactRows, profile, pdfViewer, siteMeta } from '../data/site';
 
-// The current section is field-note on first paint; scroll-spy in
-// src/scripts/scroll-spy.ts (wired in BaseLayout) updates it.
-const currentSection = folios[0];
-
-// Look up each project's markdown body in the content collection.
-const collection = await getCollection("projects");
-const entryBodies = new Map(collection.map((entry) => [entry.id, entry]));
+const projectGroups = Array.from({ length: Math.ceil(projects.length / 3) }, (_, index) => projects.slice(index * 3, index * 3 + 3));
 ---
-
-<BaseLayout
-  currentSection={currentSection}
-  homeHref="#field-note"
-  asAnchors={true}
-  title={seo.title}
-  description={seo.description}
->
-  <Folio
-    sectionNumber="01 / field note"
-    sectionBarNumber="01"
-    sectionBarTag={hero.folioTag}
-    sectionBarMeta={hero.folioMeta}
-    sectionBarId="section-01"
-    id="field-note"
-    odId="field-note-hero"
-  >
-    <h1 class="hero-title" data-od-id="hero-title" data-od-reveal="entry">
-      {hero.title.map((seg) =>
-        typeof seg === "string" ? seg : <em>{seg.em}</em>,
-      )}
-    </h1>
-
-    <div class="hero-summary">
-      <p data-od-id="hero-subhead" data-od-reveal="entry">
-        {hero.lede}
-      </p>
-      <aside
-        class="hero-facts"
-        aria-label="At a glance"
-        data-od-id="hero-facts"
-        data-od-reveal="entry"
-      >
-        {hero.marginalia.map((row) => (
-          <p>
-            <span class="fact-label">{row.label}</span>
-            {row.live ? (
-              <span class="js-local-slot">{row.value}</span>
-            ) : (
-              row.value
-            )}
-          </p>
-        ))}
-      </aside>
-    </div>
-  </Folio>
-
-  <Folio
-    sectionNumber="02 / selected work"
-    sectionBarNumber="02"
-    sectionBarTag={projectsFolioTag}
-    sectionBarMeta={projectsFolioMeta}
-    sectionBarId="section-02"
-    sectionBarH2="Selected work: four projects, 2024 to 2026"
-    id="selected-work"
-    odId="selected-work"
-  >
-    <p class="page-intro" data-od-id="work-lede" data-od-reveal="entry">
-      {projectsLede}
-    </p>
-
-    <div class="project-list">
-      {projects.map((summary) => {
-        const entry = entryBodies.get(summary.slug);
-        return <ProjectEntry entry={summary} />;
-      })}
-    </div>
-  </Folio>
-
-  <Folio
-    sectionNumber="03 / toolkit"
-    sectionBarNumber="03"
-    sectionBarTag={toolkitFolioTag}
-    sectionBarMeta={toolkitFolioMeta}
-    sectionBarId="section-03"
-    sectionBarH2="Toolkit: the kinds of work I do, in my own words"
-    id="toolkit"
-    odId="toolkit"
-  >
-    <p class="page-intro" data-od-id="toolkit-lede" data-od-reveal="entry">
-      {toolkitLede}
-    </p>
-
-    <ol class="toolkit">
-      {toolkit.map((item, i) => (
-        <ToolkitItem item={item} index={i} />
-      ))}
-    </ol>
-  </Folio>
-
-  <Folio
-    sectionNumber="04 / approach"
-    sectionBarNumber="04"
-    sectionBarTag={approach.folioTag}
-    sectionBarMeta={approach.folioMeta}
-    sectionBarId="section-04"
-    sectionBarH2="Approach: how I work, briefly"
-    id="approach"
-    odId="approach"
-  >
-    <div class="approach">
-      <div class="approach-side" data-od-id="approach-side" data-od-reveal="entry">
-        {approach.side}
+<BaseLayout title={siteMeta.title} description={siteMeta.description}>
+  <main id="content" class="site-shell" transition:animate="slide">
+    <Folio id="field" number="01" title="Field note">
+      <div class="hero-grid">
+        <div class="hero-copy" data-motion="hero-copy">
+          <p class="eyebrow">{hero.eyebrow}</p>
+          <h1>{hero.title}</h1>
+          <p class="lede">{hero.lede}</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#work">{hero.primaryCta}</a>
+            <button class="button button-secondary" type="button" data-pdf-open data-pdf-src={pdfViewer.src}>{hero.secondaryCta}</button>
+          </div>
+        </div>
+        <aside class="hero-console" data-motion="hero-console" aria-label="Portfolio proof points">
+          <span class="console-topline">{hero.proofLabel}</span>
+          {hero.proof.map((item, index) => <p><span>{String(index + 1).padStart(2, '0')}</span>{item}</p>)}
+        </aside>
       </div>
-      <div class="approach-body">
-        <p data-od-id="approach-lede" data-od-reveal="entry">
-          {approach.paragraphs[0]}
-        </p>
-        {approach.paragraphs.slice(1).map((para) => (
-          <p data-od-reveal="entry">{para}</p>
-        ))}
-        <ul class="approach-list" data-od-id="approach-list" data-od-reveal="entry">
-          {approach.list.map((row) => (
-            <li>
-              <span>{row.label}</span>
-              <span>{row.value}</span>
-            </li>
+    </Folio>
+
+    <Folio id="work" number="02" title="Selected work">
+      <div class="section-intro" data-motion="intro">
+        <p class="eyebrow">Proof should be inspectable</p>
+        <h2>Four selected builds across static sites, dashboards, mobile apps, and IoT telemetry.</h2>
+      </div>
+      <div class="project-pager" data-project-pager aria-label="Selected project groups">
+        <div class="project-pages" data-project-pages>
+          {projectGroups.map((group, groupIndex) => (
+            <div class="project-page" data-project-page data-page-index={groupIndex} aria-label={`Project set ${groupIndex + 1} of ${projectGroups.length}`}>
+              {group.map((project, index) => <ProjectEntry project={project} index={groupIndex * 3 + index} />)}
+            </div>
           ))}
-        </ul>
+        </div>
+        <div class="project-pagination" aria-label="Project set pagination">
+          {projectGroups.map((_, groupIndex) => (
+            <button
+              class="project-page-dot"
+              type="button"
+              data-project-page-button
+              data-page-index={groupIndex}
+              aria-label={`Show project set ${groupIndex + 1}`}
+              aria-current={groupIndex === 0 ? 'true' : 'false'}
+            >
+              <span>{String(groupIndex + 1).padStart(2, '0')}</span>
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
-  </Folio>
+    </Folio>
 
-  <Folio
-    sectionNumber="05 / contact"
-    sectionBarNumber="05"
-    sectionBarTag={contactFolioTag}
-    sectionBarMeta={contactFolioMeta}
-    sectionBarId="section-05"
-    sectionBarH2="Contact: reply window 1 to 2 business days"
-    id="contact"
-    odId="contact"
-  >
-    <p class="page-intro" data-od-id="contact-lede" data-od-reveal="entry">
-      {contactLede}
-    </p>
-    <ul class="contact-list" data-od-id="contact-list">
-      {contact.map((row) => <ContactRow row={row} />)}
-    </ul>
-  </Folio>
+    <Folio id="craft" number="03" title="Craft" tone="dark">
+      <div class="section-intro" data-motion="intro">
+        <p class="eyebrow">What the work is made of</p>
+        <h2>Interface craft that survives handoff, QA, and the next feature request.</h2>
+      </div>
+      <ol class="system-list">
+        {craftItems.map((item) => <SystemItem item={item} />)}
+      </ol>
+    </Folio>
 
-  <Colophon data={colophonData} />
+    <Folio id="method" number="04" title="Method">
+      <div class="method-panel" data-motion="method-panel">
+        <p class="eyebrow">Working style</p>
+        <h2>Design taste is more useful when it is attached to engineering constraints.</h2>
+        {method.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </Folio>
+
+    <Folio id="contact" number="05" title="Contact">
+      <div class="contact-layout">
+        <div class="section-intro" data-motion="intro">
+          <p class="eyebrow">Next step</p>
+          <h2>Send the strongest projects, links, and screenshots. The system is ready for real content.</h2>
+        </div>
+        <div class="contact-list">
+          {contactRows.map((row) => <ContactRow row={row} />)}
+        </div>
+      </div>
+    </Folio>
+    <dialog class="project-dialog modal-shell" data-project-dialog aria-labelledby="project-dialog-title">
+      <div class="modal-card modal-card-project">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close project details">×</button>
+        <p class="eyebrow" data-project-kicker>Project detail</p>
+        <h2 id="project-dialog-title" data-project-title>Project detail</h2>
+        <div class="modal-meta" data-project-meta></div>
+        <div class="modal-copy" data-project-copy></div>
+        <div class="modal-actions">
+          <button class="button button-primary" type="button" data-modal-close>Back to portfolio</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="pdf-dialog modal-shell" data-pdf-dialog aria-labelledby="pdf-dialog-title">
+      <div class="modal-card modal-card-pdf">
+        <button class="modal-close" type="button" data-modal-close aria-label="Close PDF viewer">×</button>
+        <div class="pdf-head">
+          <div>
+            <p class="eyebrow">Document viewer</p>
+            <h2 id="pdf-dialog-title">{pdfViewer.title}</h2>
+            <p>{pdfViewer.description}</p>
+          </div>
+          <a class="button button-secondary" href={pdfViewer.src} target="_blank" rel="noreferrer">Open in new tab</a>
+        </div>
+        <p class="pdf-empty" data-pdf-empty>{pdfViewer.missing}</p>
+        <iframe class="pdf-frame" src="about:blank" title="Resume PDF preview" data-pdf-frame loading="lazy"></iframe>
+      </div>
+    </dialog>
+  </main>
 </BaseLayout>
-

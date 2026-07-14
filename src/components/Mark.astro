@@ -1,32 +1,11 @@
 ---
-import type { Mark } from "../data/marks";
-
-interface Props {
-  mark: Mark;
-  size?: 24 | 32 | 96 | 192;
-  monogram?: string;
-  labelled?: boolean;
-}
-
-const { mark, size = 32, labelled = false } = Astro.props;
-const ariaLabel = labelled ? `Mark: ${mark.name}` : undefined;
+interface Props { size?: 'sm' | 'md' | 'lg'; label?: string; }
+const { size = 'md', label = 'Portfolio mark' } = Astro.props;
+const classes = ['mark', `mark-${size}`];
 ---
-
-<svg
-  class:list={["mark", `mark-${mark.id}`]}
-  viewBox="0 0 96 96"
-  width={size}
-  height={size}
-  aria-hidden={labelled ? undefined : "true"}
-  aria-label={ariaLabel}
-  role={labelled ? "img" : undefined}
->
-  <path
-    class="sg-accent"
-    d="M 16 22 L 80 22 Q 88 22 88 30 L 88 58 Q 88 66 80 66 L 36 66 L 24 78 L 24 66 L 16 66 Q 8 66 8 58 L 8 30 Q 8 22 16 22 Z"
-    fill="none"
-    stroke-width="2.5"
-    stroke-linejoin="round"
-  />
-  <circle class="fg-accent" cx="42" cy="44" r="5" />
-</svg>
+<span class:list={classes} aria-label={label} role="img">
+  <svg class="mark-svg mark-speak" viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M14 18.5C14 12.7 18.7 8 24.5 8h15C45.3 8 50 12.7 50 18.5v13C50 37.3 45.3 42 39.5 42H30L18 54V42h-3.5C8.7 42 4 37.3 4 31.5v-13C4 12.7 8.7 8 14 8Z" />
+    <circle cx="40" cy="26" r="4" />
+  </svg>
+</span>

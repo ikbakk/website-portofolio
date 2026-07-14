@@ -1,72 +1,42 @@
 ---
-/**
- * ProjectEntry. One project card. Renders the header (number,
- * title, meta dl), intro text, note, and a screenshot slot.
- *
- * Two layouts:
- *  - with-image:    a figure with <img> + caption leads the body.
- *  - without-image: text-only entry. No screenshot placeholder.
- *
- * The decision is data-driven: if `entry.image` is set, the
- * image-first layout is used; otherwise the text-first layout.
- *
- *  entry  -  ProjectSummary from src/data/projects
- *  The long-form markdown body (if any) is rendered through the
- *  default slot, so the page can pass `<Content />` from the
- *  content collection.
- */
-import type { ProjectSummary } from "../data/projects";
-
-interface Props {
-  entry: ProjectSummary;
-}
-
-const { entry } = Astro.props;
-const hasImage = Boolean(entry.image);
+const { project, index } = Astro.props;
+const detailText = project.details.join('\n\n');
 ---
-
-<article
-  class:list={["project", hasImage && "project--with-image"]}
-  data-od-id={`entry-${entry.number}`}
-  data-od-reveal="scroll"
->
-  <div class="project-head">
-    <div class="project-number">{entry.number} / {entry.year}</div>
-    <h2 class="project-title">{entry.title}</h2>
-    <div class="project-meta">
-      <dl>
-        <dt>Role</dt>
-        <dd>{entry.role}</dd>
-        <dt>Stack</dt>
-        <dd>{entry.stack}</dd>
-        <dt>Team</dt>
-        <dd>{entry.team}</dd>
-        <dt>Outcome</dt>
-        <dd>{entry.outcome}</dd>
-      </dl>
-    </div>
-  </div>
+<article class="project-entry" data-motion="project" data-project-card data-project-index={index} tabindex="0">
+  <aside class="project-meta">
+    <span>{project.number} / {project.year}</span>
+    <dl>
+      <div><dt>Role</dt><dd>{project.role}</dd></div>
+      <div><dt>Stack</dt><dd>{project.stack.join(' / ')}</dd></div>
+      <div><dt>Outcome</dt><dd>{project.outcome}</dd></div>
+    </dl>
+  </aside>
   <div class="project-body">
-    {hasImage && (
-      <figure class="project-figure" data-od-id={`entry-${entry.number}-figure`}>
-        <img
-          class="project-image"
-          src={entry.image!.src}
-          alt={entry.image!.alt}
-          loading="lazy"
-        />
-        {entry.image!.caption && (
-          <figcaption class="project-caption">{entry.image!.caption}</figcaption>
-        )}
-      </figure>
-    )}
-
-    <p class="project-intro">{entry.lede}</p>
-    <slot />
-
-    <div class="project-notes">
-      <span class="note-title">{entry.noteLabel}</span>
-      {entry.note}
+    <div class="project-shot" data-state="empty" role="img" aria-label={`Screenshot slot for ${project.title}`}>
+      <span>Screenshot pending</span>
+      <small>Drop a 16:10 product capture into src/assets/projects.</small>
+    </div>
+    <div class="project-copy">
+      <h3>{project.title}</h3>
+      <p>{project.context}</p>
+      <p>{project.contribution}</p>
+      <footer>{project.note}</footer>
+      <button
+        class="button button-secondary project-detail-trigger"
+        type="button"
+        data-project-open
+        data-project-index={index}
+        data-project-number={project.number}
+        data-project-year={project.year}
+        data-project-title={project.title}
+        data-project-role={project.role}
+        data-project-stack={project.stack.join(' / ')}
+        data-project-outcome={project.outcome}
+        data-project-note={project.note}
+        data-project-details={detailText}
+      >
+        View project details
+      </button>
     </div>
   </div>
 </article>
