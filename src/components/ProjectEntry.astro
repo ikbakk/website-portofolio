@@ -1,28 +1,39 @@
 ---
 const { project, index } = Astro.props;
 const detailText = project.details.join('\n\n');
+const image = project.image;
 ---
-<article class:list={['project-entry', index === 0 && 'is-focused']} data-motion="project" data-project-card data-project-index={index} tabindex="0">
-  <aside class="project-meta">
-    <span>{project.number} / {project.year}</span>
-    <dl>
-      <div><dt>Role</dt><dd>{project.role}</dd></div>
-      <div><dt>Stack</dt><dd>{project.stack.join(' / ')}</dd></div>
-      <div><dt>Outcome</dt><dd>{project.outcome}</dd></div>
-    </dl>
-  </aside>
-  <div class="project-body">
-    <div class="project-shot" data-state="empty" role="img" aria-label={`Screenshot slot for ${project.title}`}>
-      <span>Screenshot pending</span>
-      <small>Drop a 16:10 product capture into src/assets/projects.</small>
+<article class="project-entry grid h-auto scroll-mt-[calc(var(--topbar-h)+92px)] content-start gap-[var(--space-6)] self-start border-t border-border pt-[var(--space-6)] opacity-85 outline-offset-4 will-change-[opacity,transform,filter] focus-visible:outline-[var(--focus-ring)]" data-motion="project" data-project-card data-project-index={index} tabindex="0">
+  <div class="project-body grid gap-[var(--space-5)]">
+    <div class="project-main flex items-start gap-[var(--space-6)] max-[1080px]:flex-col">
+      <div class:list={[
+        'project-shot grid aspect-[16/10] w-full flex-[0_0_min(46%,440px)] place-items-center overflow-hidden rounded-[var(--radius-lg)] border border-border bg-[repeating-linear-gradient(135deg,var(--surface),var(--surface)_12px,color-mix(in_oklab,var(--surface),var(--fg)_3%)_12px,color-mix(in_oklab,var(--surface),var(--fg)_3%)_24px)] text-center text-muted max-[1080px]:flex-none',
+        image ? 'p-0' : 'p-[var(--space-5)]',
+      ]} data-state={image ? 'ready' : 'empty'} role="img" aria-label={image?.alt ?? `Screenshot slot for ${project.title}`}>
+        {image ? (
+          <figure class="m-0 h-full w-full">
+            <img class="h-full w-full object-cover" src={image.src} alt={image.alt} loading="lazy" />
+          </figure>
+        ) : (
+          <>
+            <span class="block font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg">Screenshot pending</span>
+            <small class="mt-[var(--space-2)] block max-w-[24ch]">Drop a 16:10 product capture into public/projects.</small>
+          </>
+        )}
+      </div>
+      <div class="project-copy grid min-w-0 flex-1 content-start gap-[var(--space-4)] overflow-hidden">
+        <p class="m-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{project.number} / {project.year}</p>
+        <h3 class="m-0 overflow-hidden font-display text-[clamp(1.32rem,2.1vw,2.45rem)] font-medium leading-[1.04] tracking-[var(--tracking-display)] text-balance [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">{project.title}</h3>
+        <p class="m-0 max-w-[64ch] overflow-hidden text-fg-2 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4]">{project.context}</p>
+        <p class="m-0 max-w-[64ch] overflow-hidden text-fg-2 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]">{project.contribution}</p>
+      </div>
     </div>
-    <div class="project-copy">
-      <h3>{project.title}</h3>
-      <p>{project.context}</p>
-      <p>{project.contribution}</p>
-      <footer>{project.note}</footer>
+
+    <p class="m-0 max-w-[64ch] rounded-[var(--radius-md)] border border-border bg-surface p-[var(--space-4)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-muted">{project.disclosure}</p>
+
+    <div class="flex items-start justify-center">
       <button
-        class="button button-secondary project-detail-trigger"
+        class="button project-detail-trigger inline-flex h-11 flex-none items-center justify-center rounded-[var(--radius-pill)] border border-border-strong bg-surface-2 px-[var(--space-5)] py-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg focus-visible:outline-[var(--focus-ring)]"
         type="button"
         data-project-open
         data-project-index={index}
@@ -30,6 +41,7 @@ const detailText = project.details.join('\n\n');
         data-project-year={project.year}
         data-project-title={project.title}
         data-project-role={project.role}
+        data-project-disclosure={project.disclosure}
         data-project-stack={project.stack.join(' / ')}
         data-project-outcome={project.outcome}
         data-project-note={project.note}

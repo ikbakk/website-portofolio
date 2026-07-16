@@ -1,0 +1,21 @@
+---
+import Folio from './Folio.astro';
+import ProjectEntry from './ProjectEntry.astro';
+import { projects, sectionCopy } from '../data/site';
+---
+<Folio id="work" number="02" title="Selected work">
+  <div class="section-intro mb-[var(--space-12)] grid gap-[var(--space-4)]" data-motion="intro">
+    <p class="eyebrow m-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{sectionCopy.workEyebrow}</p>
+    <h2 class="m-0 max-w-[26ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance">{sectionCopy.workTitle}</h2>
+  </div>
+
+  <div class="project-horizontal flex items-start overflow-hidden" data-project-horizontal aria-label="Selected projects horizontal scroll">
+    <div class="project-track flex w-max items-start gap-[var(--space-8)] will-change-transform max-[899px]:w-auto max-[899px]:flex-col" data-project-track>
+      {projects.map((project, index) => (
+        <div class="project-slide grid h-auto w-[min(82vw,860px)] shrink-0 content-start self-start max-[899px]:w-full">
+          <ProjectEntry project={project} index={index} />
+        </div>
+      ))}
+    </div>
+  </div>
+</Folio>

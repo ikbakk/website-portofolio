@@ -13,11 +13,14 @@ ScrollTrigger.config({ ignoreMobileResize: true });
 
 /** Initialize ScrollSmoother for smooth scrolling with parallax support. */
 export function initScrollSmoother() {
-  return ScrollSmoother.create({
-    smooth: 1.3,
-    effects: true,
-    smoothTouch: 0.1,
-  });
+  return (
+    ScrollSmoother.get() ??
+    ScrollSmoother.create({
+      smooth: 1.2,
+      effects: true,
+      smoothTouch: 0.1,
+    })
+  );
 }
 
 /** Shared easing presets. */
@@ -35,14 +38,14 @@ export const durations = {
   slow: 0.9,
 } as const;
 
-/** Check if user prefers reduced motion. */
+/** Reduced motion detection is disabled; always allow motion. */
 export function isReducedMotion(): boolean {
-  if (typeof window === 'undefined') return true;
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return false;
 }
 
-/** Kill all ScrollTriggers (for page transitions). */
+/** Kill all ScrollTriggers and ScrollSmoother (for page transitions/re-init). */
 export function killScrollTriggers(): void {
+  ScrollSmoother.get()?.kill();
   ScrollTrigger.getAll().forEach((t) => t.kill());
 }
 

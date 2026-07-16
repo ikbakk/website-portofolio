@@ -1,14 +1,29 @@
 ---
 interface Props { id: string; number: string; title: string; tone?: 'light' | 'dark'; }
 const { id, number, title, tone = 'light' } = Astro.props;
+const isDark = tone === 'dark';
 ---
-<section id={id} class:list={['folio', tone === 'dark' && 'folio-dark']} data-section={id} data-motion="section">
-  <div class="folio-pin">
-    <span>{number}</span>
-    <strong>{title}</strong>
+<section
+  id={id}
+  class:list={[
+    'folio relative min-h-svh scroll-mt-[calc(var(--topbar-h)+var(--space-4))] overflow-clip border-b px-[var(--page-pad)] py-[var(--space-8)] pb-[var(--space-16)]',
+    isDark ? 'border-[color-mix(in_oklab,var(--surface-2),transparent_86%)] bg-fg text-surface-2' : 'border-border bg-bg text-fg',
+    id === 'field' && 'min-h-[calc(100svh_-_var(--topbar-h))] pt-[var(--space-5)] pb-[var(--space-8)]',
+  ]}
+  data-section={id}
+  data-motion="section"
+>
+  <div class="pointer-events-none absolute inset-[-8%] bg-[linear-gradient(to_right,color-mix(in_oklab,var(--fg),transparent_96%)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--fg),transparent_97%)_1px,transparent_1px)] bg-[length:36px_36px] [mask-image:linear-gradient(to_bottom,black,transparent_72%)] [transform:translate3d(0,var(--folio-bg-y,0px),0)] will-change-transform" data-folio-bg aria-hidden="true"></div>
+  <div class:list={[
+    'folio-pin sticky top-[calc(var(--topbar-h)+var(--space-3))] z-[4] mx-auto mb-[var(--space-6)] flex max-w-[var(--page-max)] justify-between gap-[var(--space-4)] overflow-hidden rounded-[var(--radius-md)] border px-[var(--space-4)] py-[var(--space-3)] shadow-[var(--elev-raised)] isolation-isolate max-[1080px]:top-[calc(var(--topbar-h)+var(--space-2))]',
+    id === 'field' && 'mb-[var(--space-4)]',
+    isDark ? 'border-[color-mix(in_oklab,var(--surface-2),transparent_82%)] bg-fg' : 'border-border bg-surface-2',
+  ]}>
+    <span class="relative inline-block origin-left font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent will-change-transform">{number}</span>
+    <strong class="relative font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)]">{title}</strong>
   </div>
-  <div class="folio-inner">
+  <div class="folio-inner relative mx-auto max-w-[var(--page-max)]">
     <slot />
-    <span class="folio-corner" aria-hidden="true">{number} / {title.toLowerCase()}</span>
+    <span class="pointer-events-none absolute right-0 bottom-[calc(var(--space-12)*-1)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-muted" aria-hidden="true">{number} / {title.toLowerCase()}</span>
   </div>
 </section>

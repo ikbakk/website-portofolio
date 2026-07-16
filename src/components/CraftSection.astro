@@ -1,0 +1,14 @@
+---
+import Folio from './Folio.astro';
+import SystemItem from './SystemItem.astro';
+import { craftItems, sectionCopy } from '../data/site';
+---
+<Folio id="craft" number="03" title="Craft" tone="dark">
+  <div class="section-intro mb-[var(--space-12)] grid gap-[var(--space-4)]" data-motion="intro">
+    <p class="eyebrow m-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{sectionCopy.craftEyebrow}</p>
+    <h2 class="m-0 max-w-[26ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance">{sectionCopy.craftTitle}</h2>
+  </div>
+  <ol class="system-list m-0 mt-[var(--space-12)] grid list-none grid-cols-3 gap-px border border-[color-mix(in_oklab,var(--surface-2),transparent_84%)] bg-[color-mix(in_oklab,var(--surface-2),transparent_82%)] p-0 max-[1080px]:grid-cols-2 max-[720px]:grid-cols-1">
+    {craftItems.map((item) => <SystemItem item={item} />)}
+  </ol>
+</Folio>

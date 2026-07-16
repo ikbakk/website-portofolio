@@ -1,9 +1,9 @@
-import { contact as existingContact } from './contact';
+import { contact as existingContact, contactLede } from './contact';
 import { hero as existingHero } from './hero';
 import { approach } from './approach';
-import { projects as featuredProjects } from './projects';
+import { projects as featuredProjects, projectsLede } from './projects';
 import { seo } from './seo';
-import { toolkit } from './toolkit';
+import { toolkit, toolkitLede } from './toolkit';
 import { profile as existingProfile } from './profile';
 
 export const profile = {
@@ -51,13 +51,16 @@ export const projects = featuredProjects.map((project) => ({
   role: project.role,
   stack: project.stack.split(',').map((item) => item.trim()),
   outcome: project.outcome,
+  workType: project.workType,
+  disclosure: project.disclosure,
   context: project.lede,
   contribution: project.note,
   note: project.noteLabel,
-  details: [project.lede, project.note],
+  image: project.image,
+  details: [project.disclosure, project.lede, project.note],
 }));
 
-export const craftItems = toolkit.slice(0, 4).map((item) => ({
+export const craftItems = toolkit.map((item) => ({
   number: item.number,
   title: item.category,
   body: item.body,
@@ -65,6 +68,11 @@ export const craftItems = toolkit.slice(0, 4).map((item) => ({
 }));
 
 export const method = approach.paragraphs;
+
+export const methodRecommendations = approach.list.map((item) => ({
+  label: item.label,
+  value: item.value,
+}));
 
 export const contactRows = existingContact.map((row) => ({
   label: row.label,
@@ -74,12 +82,25 @@ export const contactRows = existingContact.map((row) => ({
   note: row.note,
 }));
 
+export const sectionCopy = {
+  workEyebrow: 'Proof should be inspectable',
+  workTitle: projectsLede,
+  craftEyebrow: 'What the work is made of',
+  craftTitle: toolkitLede,
+  methodEyebrow: 'Working style',
+  methodTitle: approach.side,
+  contactEyebrow: 'Next step',
+  contactTitle: contactLede,
+} as const;
+
 export const pdfViewer = {
   title: 'Resume preview',
-  description: 'If resume.pdf is available in the public folder, this popup renders it inline. Otherwise it shows a clear fallback instead of a blank frame.',
+  description:
+    'If resume.pdf is available in the public folder, this popup renders it inline. Otherwise it shows a clear fallback instead of a blank frame.',
   src: profile.resume,
   cta: 'Open PDF',
-  missing: 'No PDF is available yet. Add resume.pdf to the public folder, then this viewer will open it in place.',
+  missing:
+    'No PDF is available yet. Add resume.pdf to the public folder, then this viewer will open it in place.',
 } as const;
 
 export const siteMeta = {

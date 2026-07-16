@@ -1,11 +1,22 @@
 ---
-interface Props { size?: 'sm' | 'md' | 'lg'; label?: string; }
-const { size = 'md', label = 'Portfolio mark' } = Astro.props;
-const classes = ['mark', `mark-${size}`];
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  label?: string;
+}
+const { size = 'md', label = 'Muhammad Iqbal Firdaus logo' } = Astro.props;
+const sizeClass = {
+  sm: 'h-7 w-7',
+  md: 'h-10 w-10',
+  lg: 'h-[92px] w-[92px]',
+}[size];
 ---
-<span class:list={classes} aria-label={label} role="img">
-  <svg class="mark-svg mark-speak" viewBox="0 0 64 64" aria-hidden="true">
-    <path d="M14 18.5C14 12.7 18.7 8 24.5 8h15C45.3 8 50 12.7 50 18.5v13C50 37.3 45.3 42 39.5 42H30L18 54V42h-3.5C8.7 42 4 37.3 4 31.5v-13C4 12.7 8.7 8 14 8Z" />
-    <circle cx="40" cy="26" r="4" />
-  </svg>
+<span
+  class:list={[
+    'mark relative inline-grid shrink-0 place-items-center overflow-hidden rounded-[var(--radius-sm)] bg-fg',
+    sizeClass,
+  ]}
+  aria-label={label}
+  role="img"
+>
+  <img class="block h-full w-full object-cover" src="/logo-mark.svg" alt="" loading="eager" decoding="async" />
 </span>

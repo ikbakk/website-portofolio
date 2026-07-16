@@ -1,11 +1,20 @@
 ---
 const { item } = Astro.props;
 ---
-<li class="system-item" data-motion="system-item">
-  <span>{item.number}</span>
-  <div>
-    <h3>{item.title}</h3>
-    <p>{item.body}</p>
-    <small>{item.tag}</small>
+<li class="system-item group relative grid min-h-[330px] overflow-hidden bg-fg p-[var(--space-5)] outline-offset-[-2px] focus-within:outline-[var(--focus-ring)]" data-motion="system-item" data-craft-item tabindex="0">
+  <div class="relative z-[2] grid h-full content-between">
+    <span class="font-display text-[clamp(2.4rem,6vw,5.5rem)] leading-[0.82] text-accent">{item.number}</span>
+    <div class="grid gap-[var(--space-4)]">
+      <div class="flex gap-[var(--space-2)]" aria-hidden="true">
+        <span class="h-2 w-2 rounded-full bg-accent"></span>
+        <span class="h-2 w-2 rounded-full bg-[color-mix(in_oklab,var(--surface-2),transparent_70%)]"></span>
+        <span class="h-2 w-2 rounded-full bg-[color-mix(in_oklab,var(--surface-2),transparent_84%)]"></span>
+      </div>
+      <h3 class="m-0 font-display text-[clamp(1.3rem,2vw,2.25rem)] font-medium leading-[1.04] tracking-[var(--tracking-display)] text-balance">{item.title}</h3>
+      <small class="font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-muted">{item.tag}</small>
+    </div>
+  </div>
+  <div class="craft-description pointer-events-none absolute inset-x-0 bottom-0 z-[3] translate-y-5 border-t border-[color-mix(in_oklab,var(--surface-2),transparent_84%)] bg-[linear-gradient(180deg,color-mix(in_oklab,var(--fg),transparent_4%),var(--fg))] p-[var(--space-5)] opacity-0" data-craft-description>
+    <p class="m-0 text-[color-mix(in_oklab,var(--surface-2),transparent_18%)]">{item.body}</p>
   </div>
 </li>

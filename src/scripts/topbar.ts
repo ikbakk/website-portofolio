@@ -51,7 +51,6 @@ function initTopbarLinks(): void {
   const resetLink = (link: HTMLElement) => {
     const active = link.getAttribute('aria-current') === 'true';
     gsap.to(link, {
-      y: active ? -1 : 0,
       scale: active ? 1.025 : 1,
       duration: durations.base,
       ease: easings.out,
@@ -66,8 +65,19 @@ function initTopbarLinks(): void {
     const enter = () => {
       if (isReducedMotion()) return;
       gsap.killTweensOf([link, label]);
-      gsap.to(link, { y: -2, scale: 1.045, duration: durations.base, ease: easings.out, overwrite: true });
-      if (label) gsap.fromTo(label, { x: -5 }, { x: 0, duration: durations.base, ease: easings.out, overwrite: true });
+      gsap.to(link, {
+        y: -2,
+        scale: 1.045,
+        duration: durations.base,
+        ease: easings.out,
+        overwrite: true,
+      });
+      if (label)
+        gsap.fromTo(
+          label,
+          { x: -5 },
+          { x: 0, duration: durations.base, ease: easings.out, overwrite: true },
+        );
     };
 
     const leave = () => {
@@ -77,7 +87,11 @@ function initTopbarLinks(): void {
 
     const press = () => {
       if (isReducedMotion()) return;
-      gsap.fromTo(link, { scale: 0.965 }, { scale: 1.045, duration: 0.34, ease: easings.back, overwrite: true });
+      gsap.fromTo(
+        link,
+        { scale: 0.965 },
+        { scale: 1.045, duration: 0.34, ease: easings.back, overwrite: true },
+      );
     };
 
     link.addEventListener('pointerenter', enter, { signal });
@@ -93,14 +107,27 @@ function initTopbarLinks(): void {
     records.forEach((record) => {
       const link = record.target as HTMLElement;
       if (link.getAttribute('aria-current') === 'true') {
-        gsap.fromTo(link, { y: 0, scale: 0.985 }, { y: -1, scale: 1.025, duration: 0.48, ease: easings.out, overwrite: true });
+        gsap.fromTo(
+          link,
+          { y: 0, scale: 0.985 },
+          { y: -1, scale: 1.025, duration: 0.48, ease: easings.out, overwrite: true },
+        );
       } else {
-        gsap.to(link, { y: 0, scale: 1, duration: 0.32, ease: easings.out, overwrite: true, clearProps: 'transform' });
+        gsap.to(link, {
+          y: 0,
+          scale: 1,
+          duration: 0.32,
+          ease: easings.out,
+          overwrite: true,
+          clearProps: 'transform',
+        });
       }
     });
   });
 
-  links.forEach((link) => observer.observe(link, { attributes: true, attributeFilter: ['aria-current'] }));
+  links.forEach((link) =>
+    observer.observe(link, { attributes: true, attributeFilter: ['aria-current'] }),
+  );
 
   navMotionCleanup = () => {
     observer.disconnect();

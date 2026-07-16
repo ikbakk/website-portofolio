@@ -1,0 +1,19 @@
+---
+import Folio from './Folio.astro';
+import { method, methodRecommendations, sectionCopy } from '../data/site';
+---
+<Folio id="method" number="04" title="Method">
+  <div class="method-panel ml-auto max-w-[900px] rounded-[var(--radius-lg)] border border-border bg-surface-2 p-[clamp(28px,5vw,64px)]" data-motion="method-panel">
+    <p class="eyebrow m-0 mb-[var(--space-4)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{sectionCopy.methodEyebrow}</p>
+    <h2 class="m-0 max-w-[26ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance">{sectionCopy.methodTitle}</h2>
+    {method.map((paragraph) => <p class="max-w-[70ch] text-[clamp(0.98rem,1.2vw,1.1rem)] text-fg-2">{paragraph}</p>)}
+    <div class="mt-[var(--space-8)] grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-md)] border border-border bg-border max-[720px]:grid-cols-1">
+      {methodRecommendations.map((item) => (
+        <article class="bg-surface p-[var(--space-4)]">
+          <p class="m-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{item.label}</p>
+          <p class="m-0 mt-[var(--space-2)] text-sm text-fg-2">{item.value}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</Folio>
