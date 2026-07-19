@@ -1,35 +1,84 @@
 ---
 import { pdfViewer } from '../data/site';
-const shell = 'modal-shell fixed inset-0 m-auto hidden max-h-[calc(100svh_-_var(--space-12))] w-[min(var(--page-max),calc(100vw_-_(var(--page-pad)*2)))] overflow-visible border-0 bg-transparent p-0 text-fg open:grid open:place-items-center backdrop:bg-[color-mix(in_oklab,var(--fg),transparent_58%)] backdrop:[backdrop-filter:blur(10px)]';
-const card = 'modal-card relative max-h-[calc(100svh_-_var(--space-12))] w-full overflow-auto rounded-[var(--radius-lg)] border border-border bg-surface-2 p-[clamp(24px,4vw,48px)] shadow-[0_24px_80px_color-mix(in_oklab,var(--fg),transparent_82%)] [transform-origin:center_center] will-change-[transform,opacity,clip-path] [overscroll-behavior:contain] [-webkit-overflow-scrolling:touch]';
-const close = 'modal-close sticky top-0 z-[2] ml-auto grid h-10 w-10 place-items-center rounded-full border border-border bg-surface text-fg';
-const button = 'button inline-flex min-h-11 items-center justify-center rounded-[var(--radius-pill)] border border-accent bg-accent px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent-on focus-visible:outline-[var(--focus-ring)]';
+const shell =
+  'modal-shell fixed inset-0 m-auto hidden max-h-[calc(100svh_-_var(--space-12))] w-[min(var(--page-max),calc(100vw_-_(var(--page-pad)*2)))] overflow-visible border-0 bg-transparent p-0 text-fg open:grid open:place-items-center backdrop:bg-[color-mix(in_oklab,var(--fg),transparent_58%)] backdrop:[backdrop-filter:blur(10px)]';
+const pdfShell =
+  'modal-shell fixed inset-0 m-auto hidden h-[100svh] w-[min(var(--page-max),calc(100vw_-_(var(--page-pad)*2)))] overflow-visible border-0 bg-transparent p-0 text-fg open:grid open:place-items-center backdrop:bg-[color-mix(in_oklab,var(--fg),transparent_58%)] backdrop:[backdrop-filter:blur(10px)]';
+const card =
+  'modal-card relative max-h-[calc(100svh_-_var(--space-12))] w-full overflow-auto rounded-[var(--radius-lg)] border border-border bg-surface-2 p-[clamp(24px,4vw,48px)] shadow-[0_24px_80px_color-mix(in_oklab,var(--fg),transparent_82%)] [transform-origin:center_center] will-change-[transform,opacity,clip-path] [overscroll-behavior:contain] [-webkit-overflow-scrolling:touch]';
+const pdfCard =
+  'modal-card relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-2 p-[clamp(24px,4vw,48px)] shadow-[0_24px_80px_color-mix(in_oklab,var(--fg),transparent_82%)] [transform-origin:center_center] will-change-[transform,opacity,clip-path]';
+const close =
+  'modal-close sticky top-0 z-[2] ml-auto grid h-10 w-10 place-items-center rounded-full border border-border bg-surface text-fg';
+const button =
+  'button inline-flex min-h-11 items-center justify-center rounded-[var(--radius-pill)] border border-accent bg-accent px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent-on focus-visible:outline-[var(--focus-ring)]';
 ---
+
 <dialog class={shell} data-project-dialog aria-labelledby="project-dialog-title">
   <div class={`${card} modal-card-project`}>
-    <button class={close} type="button" data-modal-close aria-label="Close project details">×</button>
-    <p class="eyebrow m-0 mb-[var(--space-4)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent" data-project-kicker>Project detail</p>
-    <h2 id="project-dialog-title" class="m-0 max-w-[24ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance" data-project-title>Project detail</h2>
-    <div class="modal-meta my-[var(--space-6)] grid grid-cols-3 gap-px border border-border bg-border max-[1080px]:grid-cols-1" data-project-meta></div>
-    <div class="modal-copy grid max-w-[72ch] gap-[var(--space-4)] text-fg-2" data-project-copy></div>
-    <div class="modal-actions mt-[var(--space-8)]">
-      <button class={button} type="button" data-modal-close>Back to portfolio</button>
+    <div class="mb-[var(--space-4)] flex items-center justify-between gap-[var(--space-4)]">
+      <div class="flex min-w-0 items-center gap-[var(--space-3)]">
+        <p
+          class="eyebrow m-0 shrink-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent"
+          data-project-kicker
+        >
+          Project detail
+        </p>
+        <p
+          class="m-0 truncate font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-muted"
+          data-project-nav-title
+        >
+          Project detail
+        </p>
+      </div>
+      <div class="flex items-center gap-[var(--space-2)]">
+        <button
+          class="inline-flex h-9 items-center rounded-[var(--radius-pill)] border border-border px-[var(--space-3)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg focus-visible:outline-[var(--focus-ring)]"
+          type="button"
+          data-project-step="previous">Prev</button
+        >
+        <button
+          class="inline-flex h-9 items-center rounded-[var(--radius-pill)] border border-border px-[var(--space-3)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg focus-visible:outline-[var(--focus-ring)]"
+          type="button"
+          data-project-step="next">Next</button
+        >
+        <button class={close} type="button" data-modal-close aria-label="Close project details"
+          >×</button
+        >
+      </div>
+    </div>
+    <h2
+      id="project-dialog-title"
+      class="m-0 max-w-[24ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance"
+      data-project-title
+    >
+      Project detail
+    </h2>
+    <div class="modal-hero my-[var(--space-6)]" data-project-hero></div>
+    <div
+      class="modal-meta my-[var(--space-6)] grid grid-cols-4 gap-px border border-border bg-border max-[1080px]:grid-cols-2 max-[640px]:grid-cols-1"
+      data-project-meta
+    >
+    </div>
+    <div class="modal-copy grid max-w-[72ch] gap-[var(--space-4)] text-fg-2" data-project-copy>
     </div>
   </div>
 </dialog>
 
-<dialog class={`${shell} pdf-dialog`} data-pdf-dialog aria-labelledby="pdf-dialog-title">
-  <div class={`${card} modal-card-pdf`}>
+<dialog class={`${pdfShell} pdf-dialog`} data-pdf-dialog aria-label="Resume PDF preview">
+  <div class={`${pdfCard} modal-card-pdf`}>
     <button class={close} type="button" data-modal-close aria-label="Close PDF viewer">×</button>
-    <div class="pdf-head mb-[var(--space-6)] grid grid-cols-[minmax(0,1fr)_auto] items-start gap-[var(--space-6)] max-[720px]:grid-cols-1">
-      <div>
-        <p class="eyebrow m-0 mb-[var(--space-4)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">Document viewer</p>
-        <h2 id="pdf-dialog-title" class="m-0 max-w-[24ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance">{pdfViewer.title}</h2>
-        <p class="max-w-[62ch] text-fg-2">{pdfViewer.description}</p>
-      </div>
-      <a class="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-pill)] border border-border-strong bg-surface-2 px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg focus-visible:outline-[var(--focus-ring)]" href={pdfViewer.src} target="_blank" rel="noreferrer">Open in new tab</a>
-    </div>
-    <p class="pdf-empty my-[var(--space-4)] hidden rounded-[var(--radius-md)] border border-dashed border-border-strong bg-surface p-[var(--space-4)] text-fg-2 [.pdf-dialog[data-pdf-state='missing']_&]:block [.pdf-dialog[data-pdf-state='error']_&]:block" data-pdf-empty>{pdfViewer.missing}</p>
-    <iframe class="pdf-frame h-[min(70svh,720px)] w-full rounded-[var(--radius-md)] border border-border bg-surface [.pdf-dialog[data-pdf-state='missing']_&]:h-[220px] [.pdf-dialog[data-pdf-state='missing']_&]:min-h-[220px]" src="about:blank" title="Resume PDF preview" data-pdf-frame loading="lazy"></iframe>
+    <p
+      class="pdf-empty my-[var(--space-4)] hidden rounded-[var(--radius-md)] border border-dashed border-border-strong bg-surface p-[var(--space-4)] text-fg-2 [.pdf-dialog[data-pdf-state='missing']_&]:block [.pdf-dialog[data-pdf-state='error']_&]:block"
+      data-pdf-empty
+    >
+      {pdfViewer.missing}
+    </p>
+    <iframe
+      class="pdf-frame min-h-0 w-full flex-1 rounded-[var(--radius-md)] border border-border bg-surface [.pdf-dialog[data-pdf-state='missing']_&]:min-h-[220px]"
+      src="about:blank"
+      title="Resume PDF preview"
+      data-pdf-frame
+      loading="lazy"></iframe>
   </div>
 </dialog>

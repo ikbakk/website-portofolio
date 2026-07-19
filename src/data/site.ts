@@ -46,17 +46,19 @@ export const hero = {
 
 export const projects = featuredProjects.map((project) => ({
   number: project.number,
-  year: project.year,
   title: project.title,
   role: project.role,
+  team: project.team,
+  workType: project.workType,
   stack: project.stack.split(',').map((item) => item.trim()),
   outcome: project.outcome,
-  workType: project.workType,
   disclosure: project.disclosure,
+  link: project.link,
   context: project.lede,
   contribution: project.note,
   note: project.noteLabel,
   image: project.image,
+  caseStudy: project.caseStudy,
   details: [project.disclosure, project.lede, project.note],
 }));
 
@@ -67,12 +69,56 @@ export const craftItems = toolkit.map((item) => ({
   tag: item.tag,
 }));
 
+export const craftPrinciples = [
+  {
+    label: 'Responsive by default',
+    value:
+      'Layouts, content density, and interaction states are checked across desktop and mobile.',
+  },
+  {
+    label: 'States are part of the UI',
+    value:
+      'Loading, empty, error, and API edge cases are considered before the interface is handed over.',
+  },
+  {
+    label: 'Built to continue',
+    value:
+      'Components, naming, and implementation choices stay legible for the next person in the codebase.',
+  },
+] as const;
+
 export const method = approach.paragraphs;
 
 export const methodRecommendations = approach.list.map((item) => ({
   label: item.label,
   value: item.value,
 }));
+
+export const methodSteps = [
+  {
+    number: '01',
+    label: 'Clarify',
+    value:
+      'Align on the requirement, user path, constraints, and API shape before UI decisions harden.',
+  },
+  {
+    number: '02',
+    label: 'Structure',
+    value: 'Build the smallest reliable component and state model for the actual product workflow.',
+  },
+  {
+    number: '03',
+    label: 'Refine',
+    value:
+      'Bring responsive behavior, loading states, edge cases, and interaction details into the implementation.',
+  },
+  {
+    number: '04',
+    label: 'Handoff',
+    value:
+      'Document assumptions, surface blockers early, and leave the codebase ready for the next change.',
+  },
+] as const;
 
 export const contactRows = existingContact.map((row) => ({
   label: row.label,
@@ -81,6 +127,13 @@ export const contactRows = existingContact.map((row) => ({
   enabled: row.enabled,
   note: row.note,
 }));
+
+export const contactMeta = {
+  primaryLabel: 'Start a conversation',
+  primaryHref: profile.email,
+  primaryNote: 'Email is the fastest route for roles, project briefs, and freelance work.',
+  responseWindow: 'Typically replies within 1-2 business days.',
+} as const;
 
 export const sectionCopy = {
   workEyebrow: 'Proof should be inspectable',
@@ -93,14 +146,28 @@ export const sectionCopy = {
   contactTitle: contactLede,
 } as const;
 
+// Remove or reorder entries here to tailor every project dialog consistently.
+export const projectDialogSections = [
+  { key: 'overview', label: 'Overview' },
+  { key: 'problem', label: 'Problem statement' },
+  { key: 'responsibilities', label: 'Responsibilities' },
+  { key: 'approach', label: 'Approach' },
+  { key: 'technical', label: 'Technical decisions' },
+  { key: 'constraints', label: 'Constraints' },
+  { key: 'comparison', label: 'Before and after' },
+  { key: 'results', label: 'Results' },
+  { key: 'features', label: 'Key features' },
+  { key: 'next', label: 'What I would improve next' },
+  { key: 'links', label: 'Links' },
+  { key: 'disclosure', label: 'Disclosure' },
+] as const;
+
 export const pdfViewer = {
   title: 'Resume preview',
-  description:
-    'If resume.pdf is available in the public folder, this popup renders it inline. Otherwise it shows a clear fallback instead of a blank frame.',
+  description: 'Review my resume inline, or open it in a separate browser tab.',
   src: profile.resume,
   cta: 'Open PDF',
-  missing:
-    'No PDF is available yet. Add resume.pdf to the public folder, then this viewer will open it in place.',
+  missing: 'The resume file could not be loaded. Open it in a new tab instead.',
 } as const;
 
 export const siteMeta = {
