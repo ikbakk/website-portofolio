@@ -1,0 +1,22 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  label?: string;
+}
+const { size = 'md', label = 'Muhammad Iqbal Firdaus logo' } = Astro.props;
+const sizeClass = {
+  sm: 'h-7 w-7',
+  md: 'h-10 w-10',
+  lg: 'h-[92px] w-[92px]',
+}[size];
+---
+<span
+  class:list={[
+    'mark relative inline-grid shrink-0 place-items-center overflow-hidden rounded-[var(--radius-sm)] bg-fg',
+    sizeClass,
+  ]}
+  aria-label={label}
+  role="img"
+>
+  <img class="block h-full w-full object-cover" src="/logo-mark.svg" alt="" loading="eager" decoding="async" />
+</span>

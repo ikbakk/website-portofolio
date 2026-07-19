@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/newsreader';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource-variable/jetbrains-mono';
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-on: var(--accent-on);
+  --color-accent-soft: var(--accent-soft);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+:root {
+  --bg: #ededed;
+  --surface: #f7f7f7;
+  --surface-2: #ffffff;
+  --fg: #1a1a1a;
+  --fg-2: #2c2c2c;
+  --muted: #888888;
+  --border: #e0e0e0;
+  --border-strong: color-mix(in oklab, var(--fg), transparent 78%);
+  --accent: #07c160;
+  --accent-on: #ffffff;
+  --accent-soft: color-mix(in oklab, var(--accent), transparent 86%);
+  --success: #07c160;
+  --warn: #fab702;
+  --danger: #fa5151;
+  --font-display: ui-serif, 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-body:
+    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei',
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
+  --text-4xl: clamp(2.15rem, 4.6vw, 4.35rem);
+  --leading-body: 1.6;
+  --leading-tight: 0.95;
+  --tracking-display: -0.055em;
+  --tracking-mono: 0.08em;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --elev-raised: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --focus-ring: 0 0 0 2px color-mix(in oklab, var(--accent), transparent 55%);
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-reveal: 560ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --topbar-h: 56px;
+  --page-max: 980px;
+  --page-pad: clamp(16px, 2.4vw, 32px);
+  --progress: 0;
+}

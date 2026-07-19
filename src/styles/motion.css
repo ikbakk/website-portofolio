@@ -1,0 +1,18 @@
+/**
+ * GSAP animation support styles.
+ * Only GSAP animates - CSS is purely presentational.
+ */
+
+/* Elements that GSAP will animate */
+[data-motion] {
+  will-change: transform, opacity;
+}
+
+#smooth-content {
+  will-change: transform;
+}
+
+/* ScrollSmoother parallax speed classes */
+[data-speed] {
+  will-change: transform;
+}

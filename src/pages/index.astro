@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import WorkSection from '../components/WorkSection.astro';
+import CraftSection from '../components/CraftSection.astro';
+import MethodSection from '../components/MethodSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import PortfolioDialogs from '../components/PortfolioDialogs.astro';
+import { profile } from '../data/site';
+---
+<BaseLayout title={`${profile.name} · Astro portfolio`}>
+  <main id="content" class="site-shell pt-[var(--topbar-h)]" transition:animate="slide">
+    <HeroSection />
+    <WorkSection />
+    <CraftSection />
+    <MethodSection />
+    <ContactSection />
+    <PortfolioDialogs />
+  </main>
+</BaseLayout>

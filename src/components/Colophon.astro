@@ -1,0 +1,29 @@
+---
+/**
+ * Colophon. The 5-row footer block at the very bottom of the
+ * page. Renders the live clock slot as .js-clock-slot so the
+ * clock module fills it on the client.
+ */
+import type { ColophonData } from "../data/colophon";
+
+interface Props {
+  data: ColophonData;
+}
+
+const { data } = Astro.props;
+---
+
+<footer class="site-footer" data-od-id="site-footer" role="contentinfo">
+  {data.rows.map((row) => (
+    <div class="footer-row">
+      <span>{row.label}</span>
+      {row.variant === "clock" ? (
+        <span class="footer-clock js-clock-slot" data-od-id="footer-clock">
+          {row.value}
+        </span>
+      ) : (
+        <span>{row.value}</span>
+      )}
+    </div>
+  ))}
+</footer>

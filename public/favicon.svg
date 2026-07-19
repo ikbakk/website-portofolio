@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Muhammad Iqbal favicon modular mark</title>
+  <desc id="desc">Small-size favicon version of the optically centered modular-grid mark with slightly larger modules and orange i dot for legibility.</desc>
+  <rect width="256" height="256" rx="48" fill="#111111"/>
+  <g transform="translate(4 3)">
+    <g fill="#F4EFE5">
+      <rect x="42" y="46" width="29" height="158" rx="9"/>
+      <rect x="90" y="94" width="29" height="70" rx="9"/>
+      <rect x="134" y="46" width="80" height="29" rx="9"/>
+      <rect x="134" y="101" width="61" height="29" rx="9"/>
+      <rect x="134" y="149" width="29" height="61" rx="9"/>
+    </g>
+    <circle cx="105" cy="61" r="15" fill="#FF6B35"/>
+  </g>
+</svg>

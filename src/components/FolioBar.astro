@@ -1,0 +1,21 @@
+---
+interface Props {
+  sectionNumber: string;
+  sectionTag: string;
+  sectionMeta: string;
+  sectionId: string;
+  h2Label?: string;
+}
+
+const { sectionNumber, sectionTag, sectionMeta, sectionId, h2Label } = Astro.props;
+---
+
+<header class="section-bar" data-od-id={sectionId}>
+  <div class="section-bar-inner">
+    {h2Label && <h2 class="vh">{h2Label}</h2>}
+    <div class="section">
+      <span class="section-tag">{sectionTag}</span>
+      <span>{sectionMeta}</span>
+    </div>
+  </div>
+</header>

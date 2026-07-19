@@ -1,0 +1,24 @@
+---
+const { row } = Astro.props;
+---
+
+<a
+  class:list={[
+    'contact-row grid grid-cols-[100px_minmax(0,1fr)] gap-[var(--space-4)] border-b border-border py-[var(--space-5)] text-fg max-[720px]:grid-cols-1',
+    !row.enabled && 'pointer-events-none text-muted',
+  ]}
+  href={row.enabled ? row.href : undefined}
+  aria-disabled={!row.enabled ? 'true' : undefined}
+>
+  <span class="font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-muted"
+    >{row.label}</span
+  >
+  <strong
+    class="font-display text-[clamp(1.3rem,2.4vw,2.35rem)] font-medium leading-none tracking-[var(--tracking-display)]"
+    >{row.value}</strong
+  >
+  <small
+    class="col-start-2 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-muted max-[720px]:col-auto"
+    >{row.note}</small
+  >
+</a>

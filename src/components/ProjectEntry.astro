@@ -1,0 +1,42 @@
+---
+import { projectDialogSections } from '../data/site';
+
+const { project, index } = Astro.props;
+const detailText = project.details.join('\n\n');
+const image = project.image;
+---
+
+<li>
+  <button
+    class="project-entry grid w-full cursor-pointer grid-cols-[auto_1fr] items-baseline gap-[var(--space-4)] border-t border-border py-[var(--space-5)] text-left outline-offset-4 focus-visible:outline-[var(--focus-ring)]"
+    type="button"
+    data-project-card
+    data-project-open
+    data-project-index={index}
+    data-project-number={project.number}
+    data-project-title={project.title}
+    data-project-role={project.role}
+    data-project-team={project.team}
+    data-project-work-type={project.workType}
+    data-project-disclosure={project.disclosure}
+    data-project-link-label={project.link.label}
+    data-project-link-href={project.link.href}
+    data-project-stack={project.stack.join(' / ')}
+    data-project-outcome={project.outcome}
+    data-project-note={project.note}
+    data-project-details={detailText}
+    data-project-image-src={image?.src ?? ''}
+    data-project-image-alt={image?.alt ?? ''}
+    data-project-image-caption={image?.caption ?? ''}
+    data-project-sections={JSON.stringify(projectDialogSections)}
+    data-project-case-study={JSON.stringify(project.caseStudy)}
+  >
+    <span
+      class="font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent"
+      >{project.number}</span
+    >
+    <span class="font-mono text-[var(--text-sm)] uppercase tracking-[var(--tracking-mono)] text-fg"
+      >{project.title}</span
+    >
+  </button>
+</li>

@@ -1,0 +1,38 @@
+---
+import Mark from './Mark.astro';
+import type { navItems as navItemsData, profile as profileData } from '../data/site';
+
+type NavItem = (typeof navItemsData)[number];
+type Profile = typeof profileData;
+
+const { profile, navItems } = Astro.props as { profile: Profile; navItems: readonly NavItem[] };
+const navButton = [
+  'group grid h-[30px] min-w-[30px] grid-cols-[auto_0fr] items-center gap-0 overflow-hidden rounded-[var(--radius-pill)] border-0 bg-transparent px-[var(--space-2)] font-mono text-[10px] uppercase tracking-[var(--tracking-mono)] text-muted',
+  'hover:min-w-[96px] hover:grid-cols-[auto_1fr] hover:gap-[var(--space-2)] hover:bg-surface-2 hover:text-fg',
+  'focus-visible:min-w-[96px] focus-visible:grid-cols-[auto_1fr] focus-visible:gap-[var(--space-2)] focus-visible:bg-surface-2 focus-visible:text-fg focus-visible:outline-[var(--focus-ring)]',
+  'aria-[current=true]:min-w-[96px] aria-[current=true]:grid-cols-[auto_1fr] aria-[current=true]:gap-[var(--space-2)] aria-[current=true]:text-accent aria-[current=true]:[box-shadow:inset_0_0_0_1px_color-mix(in_oklab,var(--accent),transparent_42%)]',
+  'max-[1080px]:min-w-8 max-[1080px]:hover:min-w-10 max-[1080px]:hover:gap-0 max-[1080px]:focus-visible:min-w-10 max-[1080px]:focus-visible:gap-0 max-[1080px]:aria-[current=true]:min-w-10 max-[1080px]:aria-[current=true]:gap-0',
+  'max-[720px]:h-[28px] max-[720px]:min-w-[28px] max-[720px]:hover:min-w-[32px] max-[720px]:focus-visible:min-w-[32px] max-[720px]:aria-[current=true]:min-w-[32px]',
+].join(' ');
+---
+<header class="topbar fixed inset-x-0 top-0 z-30 grid h-[var(--topbar-h)] grid-cols-[minmax(150px,0.62fr)_auto_minmax(284px,0.88fr)] items-center gap-[var(--space-3)] border-b border-transparent bg-bg px-[var(--page-pad)] body-[.is-scrolled_&]:border-border body-[.is-scrolled_&]:bg-surface max-[1080px]:grid-cols-[1fr_auto] max-[720px]:gap-[var(--space-2)]" data-motion="topbar">
+  <button class="topbar-brand flex min-w-0 items-center gap-[var(--space-3)] border-0 bg-transparent p-0 text-left" type="button" data-scroll-target="field" aria-label={`${profile.name} home`}>
+    <Mark size="sm" />
+    <span class="grid gap-px">
+      <strong class="font-display text-[15px] leading-none tracking-[var(--tracking-display)] max-[720px]:block max-[720px]:max-w-[18vw] max-[720px]:overflow-hidden max-[720px]:text-ellipsis max-[720px]:whitespace-nowrap">{profile.name}</strong>
+      <span class="font-mono text-[10px] uppercase tracking-[var(--tracking-mono)] text-muted max-[720px]:hidden">{profile.role}</span>
+    </span>
+  </button>
+  <div class="topbar-status flex items-center justify-center gap-[var(--space-2)] whitespace-nowrap font-mono text-[10px] uppercase tracking-[var(--tracking-mono)] text-muted max-[1080px]:hidden" aria-live="polite">
+    <span class="status-dot h-2 w-2 rounded-full bg-accent [box-shadow:0_0_0_0_color-mix(in_oklab,var(--accent),transparent_55%)]" aria-hidden="true"></span>
+    <span>{profile.status}</span>
+  </div>
+  <nav class="topbar-nav justify-self-end flex min-w-0 items-center justify-end gap-0.5 rounded-[var(--radius-pill)] border border-border bg-[color-mix(in_oklab,var(--surface-2),transparent_10%)] p-1 shadow-[var(--elev-raised)] max-[720px]:p-[3px]" aria-label="Primary navigation">
+    {navItems.map((item) => (
+      <button class={navButton} type="button" data-nav-target={item.id} data-scroll-target={item.id}>
+        {item.number}<span class="min-w-0 overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-aria-[current=true]:opacity-100 max-[1080px]:hidden">{item.label}</span>
+      </button>
+    ))}
+  </nav>
+  <span class="topbar-progress absolute inset-x-0 bottom-[-1px] h-px origin-left" aria-hidden="true"><span class="absolute inset-x-0 bottom-0 h-px origin-left scale-x-[var(--progress)] bg-accent"></span></span>
+</header>
