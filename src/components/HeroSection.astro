@@ -2,24 +2,67 @@
 import Folio from './Folio.astro';
 import { hero, pdfViewer } from '../data/site';
 ---
+
 <Folio id="field" number="01" title="Field note">
-  <div class="hero-grid grid min-h-[clamp(540px,calc(100svh_-_var(--topbar-h)_-_112px),760px)] grid-cols-[minmax(0,1.12fr)_minmax(240px,0.54fr)] items-center gap-[clamp(24px,3.6vw,48px)] max-[1080px]:grid-cols-1 max-[720px]:min-h-[calc(100svh_-_var(--topbar-h)_-_72px)]" data-hero-grid>
+  <div
+    class="hero-grid grid min-h-[clamp(540px,calc(100svh_-_var(--topbar-h)_-_112px),760px)] grid-cols-[minmax(0,1.12fr)_minmax(240px,0.54fr)] items-center gap-[clamp(24px,3.6vw,48px)] max-[1080px]:grid-cols-1 max-[720px]:min-h-[calc(100svh_-_var(--topbar-h)_-_72px)]"
+    data-hero-grid
+  >
     <div class="hero-copy" data-motion="hero-copy">
-      <p class="eyebrow m-0 mb-[var(--space-4)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{hero.eyebrow}</p>
-      <h1 class="m-0 max-w-[16ch] font-display text-[clamp(2.15rem,4.4vw,4.2rem)] font-medium leading-[0.98] tracking-[var(--tracking-display)] text-balance max-[1080px]:max-w-[17ch] max-[1080px]:text-[clamp(2rem,3.8vw,3.05rem)] max-[720px]:max-w-[12.5ch] max-[720px]:text-[clamp(1.9rem,9vw,2.75rem)]">{hero.title}</h1>
-      <p class="lede mt-[var(--space-5)] max-w-[42ch] text-[clamp(0.95rem,1.08vw,1.04rem)] text-fg-2">{hero.lede}</p>
+      <p
+        class="eyebrow m-0 mb-[var(--space-4)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent"
+      >
+        {hero.eyebrow}
+      </p>
+      <h1
+        class="m-0 max-w-[16ch] font-display text-[clamp(2.15rem,4.4vw,4.2rem)] font-medium leading-[0.98] tracking-[var(--tracking-display)] text-balance max-[1080px]:max-w-[17ch] max-[1080px]:text-[clamp(2rem,3.8vw,3.05rem)] max-[720px]:max-w-[12.5ch] max-[720px]:text-[clamp(1.9rem,9vw,2.75rem)]"
+      >
+        {hero.title}
+      </h1>
+      <p
+        class="lede mt-[var(--space-5)] max-w-[42ch] text-[clamp(0.95rem,1.08vw,1.04rem)] text-fg-2"
+      >
+        {hero.lede}
+      </p>
       <div class="hero-actions mt-[var(--space-6)] flex flex-wrap gap-[var(--space-3)]">
-        <button class="button inline-flex min-h-11 items-center justify-center rounded-[var(--radius-pill)] border border-accent bg-accent px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent-on focus-visible:outline-[var(--focus-ring)]" type="button" data-scroll-target="work">{hero.primaryCta}</button>
-        <button class="button inline-flex min-h-11 items-center justify-center rounded-[var(--radius-pill)] border border-border-strong bg-surface-2 px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg focus-visible:outline-[var(--focus-ring)]" type="button" data-pdf-open data-pdf-src={pdfViewer.src}>{hero.secondaryCta}</button>
+        <button
+          class="button inline-flex min-h-11 items-center justify-center rounded-[var(--radius-pill)] border border-accent bg-accent px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent-on focus-visible:outline-[var(--focus-ring)]"
+          type="button"
+          data-scroll-target="work">{hero.primaryCta}</button
+        >
+        <button
+          class="button inline-flex min-h-11 items-center justify-center rounded-[var(--radius-pill)] border border-border-strong bg-surface-2 px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg focus-visible:outline-[var(--focus-ring)]"
+          type="button"
+          data-pdf-open
+          data-pdf-src={pdfViewer.src}>{hero.secondaryCta}</button
+        >
       </div>
+      <p
+        class="m-0 mt-[var(--space-4)] flex items-center gap-[var(--space-2)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-fg-2"
+      >
+        <span class="h-2 w-2 rounded-full bg-accent" aria-hidden="true"></span>
+        Available for frontend and mobile work
+      </p>
     </div>
-    <aside class="hero-console relative grid min-h-[260px] content-stretch gap-[var(--space-3)] overflow-hidden rounded-[var(--radius-lg)] border border-[color-mix(in_oklab,var(--surface-2),transparent_82%)] bg-fg p-[var(--space-5)] text-surface-2 shadow-[0_24px_80px_color-mix(in_oklab,var(--fg),transparent_82%)] before:pointer-events-none before:absolute before:inset-3.5 before:rounded-[calc(var(--radius-lg)-6px)] before:border before:border-[color-mix(in_oklab,var(--surface-2),transparent_84%)]" data-motion="hero-console" aria-label="Portfolio proof points">
-      <span class="console-topline self-start font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{hero.proofLabel}</span>
-      {hero.proof.map((item, index) => (
-        <p class="relative m-0 grid min-h-[42px] grid-cols-[48px_minmax(0,1fr)] items-center gap-[var(--space-4)] border-t border-[color-mix(in_oklab,var(--surface-2),transparent_84%)] pt-[var(--space-3)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-[color-mix(in_oklab,var(--surface-2),transparent_12%)]">
-          <span class="grid h-8 w-8 place-items-center rounded-full border border-[color-mix(in_oklab,var(--surface-2),transparent_78%)] bg-[color-mix(in_oklab,var(--surface-2),transparent_92%)] text-surface-2">{String(index + 1).padStart(2, '0')}</span>{item}
-        </p>
-      ))}
+    <aside
+      class="hero-console relative grid min-h-[260px] content-stretch gap-[var(--space-3)] overflow-hidden rounded-[var(--radius-lg)] border border-[color-mix(in_oklab,var(--surface-2),transparent_82%)] bg-fg p-[var(--space-5)] text-surface-2 shadow-[0_24px_80px_color-mix(in_oklab,var(--fg),transparent_82%)] before:pointer-events-none before:absolute before:inset-3.5 before:rounded-[calc(var(--radius-lg)-6px)] before:border before:border-[color-mix(in_oklab,var(--surface-2),transparent_84%)]"
+      data-motion="hero-console"
+      aria-label="Portfolio proof points"
+    >
+      <span
+        class="console-topline self-start font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent"
+        >{hero.proofLabel}</span
+      >
+      {
+        hero.proof.map((item, index) => (
+          <p class="relative m-0 grid min-h-[42px] grid-cols-[48px_minmax(0,1fr)] items-center gap-[var(--space-4)] border-t border-[color-mix(in_oklab,var(--surface-2),transparent_84%)] pt-[var(--space-3)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-[color-mix(in_oklab,var(--surface-2),transparent_12%)]">
+            <span class="grid h-8 w-8 place-items-center rounded-full border border-[color-mix(in_oklab,var(--surface-2),transparent_78%)] bg-[color-mix(in_oklab,var(--surface-2),transparent_92%)] text-surface-2">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            {item}
+          </p>
+        ))
+      }
     </aside>
   </div>
 </Folio>

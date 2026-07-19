@@ -15,22 +15,32 @@ const {
   showChrome = true,
 } = Astro.props;
 ---
+
 <!doctype html>
-<html lang="en" data-theme="wechat" class="scroll-smooth scroll-pt-[calc(var(--topbar-h)+var(--space-4))] bg-bg text-fg [color-scheme:light] motion-reduce:scroll-auto">
+<html
+  lang="en"
+  data-theme="wechat"
+  class="scroll-smooth scroll-pt-[calc(var(--topbar-h)+var(--space-4))] bg-bg text-fg [color-scheme:light] motion-reduce:scroll-auto"
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#111111" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="m-0 min-w-80 bg-bg font-body text-[var(--text-base)] leading-[var(--leading-body)] text-fg antialiased selection:bg-accent selection:text-accent-on">
-    <button class="fixed left-[var(--space-4)] top-[var(--space-4)] z-[100] -translate-y-[140%] rounded-[var(--radius-pill)] border-0 bg-fg px-[var(--space-4)] py-[var(--space-3)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-surface-2 focus:translate-y-0 focus:outline-[var(--focus-ring)]" type="button" data-scroll-target="content">Skip to main content</button>
+  <body
+    class="m-0 min-w-80 bg-bg font-body text-[var(--text-base)] leading-[var(--leading-body)] text-fg antialiased selection:bg-accent selection:text-accent-on"
+  >
+    <button
+      class="fixed left-[var(--space-4)] top-[var(--space-4)] z-[100] -translate-y-[140%] rounded-[var(--radius-pill)] border-0 bg-fg px-[var(--space-4)] py-[var(--space-3)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-surface-2 focus:translate-y-0 focus:outline-[var(--focus-ring)]"
+      type="button"
+      data-scroll-target="content">Skip to main content</button
+    >
     {showChrome && <Topbar profile={profile} navItems={navItems} transition:persist />}
     <slot />
     <script>

@@ -1,13 +1,36 @@
 ---
 import Folio from './Folio.astro';
 import ContactRow from './ContactRow.astro';
-import { contactRows, sectionCopy } from '../data/site';
+import { contactMeta, contactRows, sectionCopy } from '../data/site';
 ---
+
 <Folio id="contact" number="05" title="Contact">
-  <div class="contact-layout grid grid-cols-[0.9fr_1.1fr] items-start gap-[clamp(32px,8vw,120px)] max-[1080px]:grid-cols-1">
+  <div
+    class="contact-layout grid grid-cols-[0.9fr_1.1fr] items-start gap-[clamp(32px,8vw,120px)] max-[1080px]:grid-cols-1"
+  >
     <div class="section-intro mb-[var(--space-12)] grid gap-[var(--space-4)]" data-motion="intro">
-      <p class="eyebrow m-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent">{sectionCopy.contactEyebrow}</p>
-      <h2 class="m-0 max-w-[26ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance">{sectionCopy.contactTitle}</h2>
+      <p
+        class="eyebrow m-0 font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent"
+      >
+        {sectionCopy.contactEyebrow}
+      </p>
+      <h2
+        class="m-0 max-w-[26ch] font-display text-[clamp(1.65rem,3vw,3rem)] font-medium leading-[1.02] tracking-[var(--tracking-display)] text-balance"
+      >
+        {sectionCopy.contactTitle}
+      </h2>
+      <a
+        class="button mt-[var(--space-3)] inline-flex min-h-11 w-fit items-center justify-center rounded-[var(--radius-pill)] border border-accent bg-accent px-[var(--space-5)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-accent-on focus-visible:outline-[var(--focus-ring)]"
+        href={`mailto:${contactMeta.primaryHref}`}
+      >
+        {contactMeta.primaryLabel}
+      </a>
+      <p
+        class="m-0 max-w-[42ch] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-muted"
+      >
+        {contactMeta.primaryNote}
+        {contactMeta.responseWindow}
+      </p>
     </div>
     <div class="contact-list grid border-t border-border">
       {contactRows.map((row) => <ContactRow row={row} />)}
