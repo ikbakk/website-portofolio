@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Icon from '../components/celestial/Icon.astro';
+import Opening from '../components/celestial/Opening.astro';
 import Navigation from '../components/celestial/Navigation.astro';
 import bodyFont from '@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2?url';
 import displayFont from '@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url';
@@ -44,24 +45,50 @@ const jsonLd = {
       data-home={String(home)}
       data-projects={JSON.stringify(archiveProjects.map((p) => p.id))}
     >
-      const config = document.currentScript;
-      if (config instanceof HTMLScriptElement && config.dataset.home === 'true') {
-        const projectIds = JSON.parse(config.dataset.projects || '[]');
-        const hash = location.hash.slice(1);
-        const project =
-          hash.startsWith('project-') && projectIds.includes(hash.slice(8))
-            ? hash.slice(8)
-            : 'courtside';
-        const section =
-          hash.startsWith('project-') && projectIds.includes(hash.slice(8))
-            ? 'projects'
-            : ['profile', 'projects', 'experience', 'contact'].includes(hash)
-              ? hash
-              : 'profile';
-        const initial = document.createElement('style');
-        initial.textContent = `.archive-world:not([data-archive-ready]) [data-section]:not([data-section="${section}"]), .archive-world:not([data-archive-ready]) [data-project-dossier]:not([data-project-dossier="${project}"]) { display:none; } .archive-world:not([data-archive-ready]) [data-section], .archive-world:not([data-archive-ready]) .project-dossier { margin-bottom:0; } .archive-world:not([data-archive-ready]) .identity-column { align-self:auto; } ${section !== 'projects' ? '.archive-world:not([data-archive-ready]) [data-project-area] { display:none; }' : ''}`;
-        document.head.append(initial);
-      }
+      (() => {
+        const config = document.currentScript;
+        if (config instanceof HTMLScriptElement && config.dataset.home === 'true') {
+          const projectIds = JSON.parse(config.dataset.projects || '[]');
+          const hash = location.hash.slice(1);
+          const project =
+            hash.startsWith('project-') && projectIds.includes(hash.slice(8))
+              ? hash.slice(8)
+              : 'courtside';
+          const section =
+            hash.startsWith('project-') && projectIds.includes(hash.slice(8))
+              ? 'projects'
+              : ['profile', 'projects', 'experience', 'contact'].includes(hash)
+                ? hash
+                : 'profile';
+          const initial = document.createElement('style');
+          initial.textContent = `.archive-world:not([data-archive-ready]) [data-section]:not([data-section="${section}"]), .archive-world:not([data-archive-ready]) [data-project-dossier]:not([data-project-dossier="${project}"]) { display:none; } .archive-world:not([data-archive-ready]) [data-section], .archive-world:not([data-archive-ready]) .project-dossier { margin-bottom:0; } .archive-world:not([data-archive-ready]) .identity-column { align-self:auto; } ${section !== 'projects' ? '.archive-world:not([data-archive-ready]) [data-project-area] { display:none; }' : ''}`;
+          document.head.append(initial);
+          setTimeout(() => {
+            if (!document.querySelector('[data-archive-ready]')) initial.remove();
+          }, 1800);
+          let seen = Boolean(Reflect.get(window, '__celestialIntroSeen'));
+          try {
+            seen ||= sessionStorage.getItem('celestial-intro-seen') === '1';
+          } catch {}
+          if (
+            !seen &&
+            (!location.hash || location.hash === '#profile') &&
+            !matchMedia('(prefers-reduced-motion: reduce)').matches
+          ) {
+            Reflect.set(window, '__celestialIntroSeen', true);
+            try {
+              sessionStorage.setItem('celestial-intro-seen', '1');
+            } catch {}
+            const html = document.documentElement;
+            html.dataset.opening = 'pending';
+            html.dataset.openingDeadline = String(performance.now() + 1600);
+            setTimeout(() => {
+              delete html.dataset.opening;
+              delete html.dataset.openingDeadline;
+            }, 1600);
+          }
+        }
+      })();
     </script>
     <title>{title}</title><meta name="description" content={description} /><meta
       name="theme-color"
@@ -109,6 +136,7 @@ const jsonLd = {
       />
     </picture>
     <div class="environment-scrim" aria-hidden="true"></div>
+    {home && <Opening />}
     <header class="site-header flex items-center justify-between">
       <a href="/#profile" class="brand flex items-center gap-3" aria-label="Iqbal portfolio home">
         <Icon name="profile" class="brand-icon" />

@@ -1382,3 +1382,111 @@ body.game-screen {
 [data-archive-ready]:not([data-dossier-more]) .dossier-scroll-hint {
   opacity: 0;
 }
+
+/* Original celestial motion: fixed decoration never changes the screen layout. */
+.archive-opening {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout paint;
+  color: #e8cf99;
+}
+html[data-opening='pending'] .archive-opening {
+  display: block;
+}
+.opening-veil {
+  position: absolute;
+  inset: 0;
+}
+.opening-sigil {
+  position: absolute;
+  width: min(52vmin, 340px);
+  height: min(52vmin, 340px);
+  inset: 0;
+  margin: auto;
+}
+[data-opening-stroke] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+[data-motion-nav] {
+  position: relative;
+}
+.nav-tracer {
+  position: absolute;
+  pointer-events: none;
+  width: 100px;
+  height: 8px;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  color: #eed19a;
+  transform-origin: 0 50%;
+}
+.nav-tracer svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+[data-motion-ready] .nav-item[aria-current='page']::after {
+  display: none;
+}
+.game-button {
+  overflow: hidden;
+  transition:
+    translate 0.2s var(--ease),
+    scale 0.15s var(--ease),
+    box-shadow 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+.game-button > :not([data-interaction-ripple]) {
+  position: relative;
+  z-index: 1;
+}
+.game-button::after {
+  z-index: 2;
+}
+.game-button:hover {
+  box-shadow:
+    inset 0 0 0 3px #fff9ebc0,
+    0 4px 18px #dfbd6b45;
+}
+.game-button:hover .action-icon {
+  filter: brightness(1.1);
+}
+.game-button:active {
+  scale: 0.95;
+}
+.interaction-ripple {
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #e9c477a6, #e9c47700 70%);
+  opacity: 0;
+  pointer-events: none;
+}
+.game-screen .archive-project-list a {
+  position: relative;
+}
+.selection-flare {
+  position: absolute;
+  pointer-events: none;
+  right: -5px;
+  top: -10px;
+  width: 40px;
+  height: 40px;
+  color: #b48a36;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-button:hover {
+    translate: none;
+  }
+  .game-button:active {
+    scale: none;
+    translate: none;
+  }
+}

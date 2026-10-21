@@ -198,7 +198,7 @@ Dossiers use asymmetric rounded corners with a finer inset border at 7px. They a
 
 ### Buttons
 
-Crafted light and dark action surfaces use the frontmatter variants. A thin exterior border, an inset outline and a right arrow complete the shape. Standard actions have a minimum height of 44px; compact case-study actions use 38px. Hover lifts by 2px and brightens the inset, press moves down 1px, and keyboard focus uses a 2px gold outline offset by 5px. Arrow motion is a small 3px translation.
+Crafted light and dark action surfaces use the frontmatter variants. A thin exterior border, an inset outline and a right arrow complete the shape. Standard actions have a minimum height of 44px; compact case-study actions use 38px. Hover lifts by 2px and brightens the inset, press compresses to 0.95 scale, and keyboard focus uses a 2px gold outline offset by 5px. Arrow motion is a small 3px translation.
 
 ### Cards / Containers
 
@@ -218,7 +218,7 @@ Dossier illustrations use circular project emblems with inset rings over a radia
 
 ### Identity and Motion
 
-The original `I` monogram is layered separately from SVG orbits and stars. Ambient outer and inner rotations take 240 and 320 seconds in opposite directions, with linear easing. They stop when offscreen, the document is hidden, or reduced motion is requested. Dossier changes reveal from opacity 0.65 and a 6px offset over 0.32 seconds with GSAP `power3.out`. Reduced motion disables CSS transitions and animations and bypasses the reveal. Navigation remains useful without JavaScript.
+The original `I` monogram is layered separately from SVG orbits and stars. The first home visit in a session draws an original gold sigil, then opens an SVG iris in roughly one second. Interaction dismisses it immediately; deep links and reduced motion skip it. A 1.6-second fallback deadline prevents a failed enhancement bundle from obscuring content. Navigation uses a shared gold brush tracer (250ms), with a brief icon tilt for pointer activation. Incoming dossiers resolve with opacity, an 8px offset and a short clip reveal over 320ms. Buttons compress on press with a 350ms radial ripple; project emblems emit a small SVG flare. Keyboard and reduced-motion state changes use short opacity-only feedback. Ambient outer and inner rotations take 240 and 320 seconds, and stop offscreen, when hidden, or under reduced motion. Astro route cleanup removes all owned tweens and listeners. Navigation remains useful without JavaScript. See [motion.md](docs/design/motion.md).
 
 ## Do's and Don'ts
 

@@ -1,3 +1,6 @@
+import { initOpening } from './opening';
+import { initNavigationMotion } from './navigation-motion';
+import { initUIFeedback } from './interaction-motion';
 import { readArchiveLocation } from './location';
 import { initAmbientMotion, revealDossier, stopDossierMotion } from './motion';
 
@@ -5,13 +8,16 @@ export function initArchive(root: HTMLElement): () => void {
   const dossiers = [...root.querySelectorAll<HTMLElement>('[data-project-dossier]')];
   const knownIds = dossiers.map((el) => el.dataset.projectDossier!);
   const sections = [...root.querySelectorAll<HTMLElement>('[data-section]')];
+  const navMotion = initNavigationMotion(root.closest('body')!);
+  const stopFeedback = initUIFeedback(root.closest('body')!);
   let previous = '';
-  const update = () => {
+  const update = (keyboard = false) => {
     const state = readArchiveLocation(location.hash, knownIds);
     const key = state.section + state.projectId;
     if (key === previous) return;
     const wasReady = Boolean(previous);
     previous = key;
+    [...sections, ...dossiers].forEach(stopDossierMotion);
     sections.forEach((el) => {
       el.hidden = el.dataset.section !== state.section;
     });
@@ -31,6 +37,7 @@ export function initArchive(root: HTMLElement): () => void {
     });
     const title = document.querySelector<HTMLElement>('[data-current-title]');
     if (title) title.textContent = state.section.charAt(0).toUpperCase() + state.section.slice(1);
+    navMotion.sync(wasReady, keyboard);
     root.dataset.activeSection = state.section;
     root.dataset.archiveReady = 'true';
     root
@@ -41,7 +48,7 @@ export function initArchive(root: HTMLElement): () => void {
         state.section === 'projects'
           ? dossiers.find((el) => !el.hidden)
           : sections.find((el) => !el.hidden);
-      if (active) revealDossier(active);
+      if (active) revealDossier(active, keyboard);
     }
   };
   const click = (event: MouseEvent) => {
@@ -68,14 +75,16 @@ export function initArchive(root: HTMLElement): () => void {
     if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
     event.preventDefault();
     if (location.hash !== url.hash) history.pushState(null, '', url.hash);
-    update();
+    update(event.detail === 0);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
   document.addEventListener('click', click, true);
-  window.addEventListener('hashchange', update);
-  window.addEventListener('popstate', update);
+  const historyUpdate = () => update(true);
+  window.addEventListener('hashchange', historyUpdate);
+  window.addEventListener('popstate', historyUpdate);
   update();
   const stopMotion = initAmbientMotion(root);
+  const stopOpening = initOpening(root);
   const scroller = root.querySelector<HTMLElement>('.main-dossier .dossier-content');
   const end = scroller?.querySelector('[data-scroll-end]');
   const scrollObserver = new IntersectionObserver(
@@ -86,24 +95,31 @@ export function initArchive(root: HTMLElement): () => void {
   );
   if (end) scrollObserver.observe(end);
   return () => {
+    stopOpening();
+    navMotion.dispose();
+    stopFeedback();
     stopMotion();
     scrollObserver.disconnect();
     [...sections, ...dossiers].forEach(stopDossierMotion);
     document.removeEventListener('click', click, true);
-    window.removeEventListener('hashchange', update);
-    window.removeEventListener('popstate', update);
+    window.removeEventListener('hashchange', historyUpdate);
+    window.removeEventListener('popstate', historyUpdate);
   };
 }
 
 let cleanup: (() => void) | undefined;
+let activeBody: HTMLElement | undefined;
 function boot() {
+  if (activeBody === document.body && cleanup) return;
   cleanup?.();
+  activeBody = document.body;
   const root = document.querySelector<HTMLElement>('[data-archive-root]');
-  cleanup = root ? initArchive(root) : undefined;
+  cleanup = root ? initArchive(root) : initUIFeedback(document.body);
 }
 document.addEventListener('astro:before-swap', () => {
   cleanup?.();
   cleanup = undefined;
+  activeBody = undefined;
 });
 document.addEventListener('astro:page-load', boot);
 boot();

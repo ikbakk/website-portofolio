@@ -43,7 +43,7 @@ const stars = [
       >
       {
         stars.map(([x, y], i) => (
-          <g transform={`translate(${x} ${y})`}>
+          <g data-star transform={`translate(${x} ${y})`}>
             <>
               <path
                 d={`m0 ${i < 4 ? -12 : -7} 2 ${i < 4 ? 10 : 5} ${i < 4 ? 10 : 5} 2 ${i < 4 ? -10 : -5} 2 -2 ${i < 4 ? 10 : 5} -2 ${i < 4 ? -10 : -5} ${i < 4 ? -10 : -5} -2 ${i < 4 ? 10 : 5} -2Z`}

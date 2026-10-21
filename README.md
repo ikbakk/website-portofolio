@@ -49,7 +49,7 @@ the Projects navigation tab. The former left rail and bottom project strip are r
 
 The home page contains all meaningful content without JavaScript. Enhancement
 switches visible panels, synchronizes URL/history, and runs optional ambient motion.
-Reduced motion disables the ambient/selection animation. Project emblems are normal
+A once-per-session SVG opening, shared navigation tracer, press ripples and project sparkles complement the ambient identity. Reduced motion skips the opening and spatial movement, retaining brief opacity feedback. Project emblems are normal
 links, not hover-only controls.
 
 ## Source map
@@ -83,3 +83,5 @@ Keep deployment and branch merging as separate owner-approved actions.
 - [Approved specification](docs/superpowers/specs/2026-10-22-celestial-portfolio-design.md)
 - [Implementation plan](docs/superpowers/plans/2026-10-22-celestial-portfolio.md)
 - [Verification evidence](docs/design/verification.md)
+
+Motion direction and lifecycle: [docs/design/motion.md](docs/design/motion.md).
