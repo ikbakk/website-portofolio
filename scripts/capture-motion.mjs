@@ -26,9 +26,10 @@ try {
     const context = await browser.newContext({
       viewport: { width, height },
       reducedMotion: 'no-preference',
-      ...(name === 'desktop'
-        ? { recordVideo: { dir: output + '/raw', size: { width: 960, height: 600 } } }
-        : {}),
+      recordVideo: {
+        dir: output + '/raw',
+        size: name === 'desktop' ? { width: 960, height: 600 } : { width, height },
+      },
     });
     const page = await context.newPage();
     const errors = [];
@@ -85,7 +86,7 @@ try {
     });
     const video = page.video();
     await context.close();
-    if (video) await rename(await video.path(), output + '/desktop-motion.webm');
+    if (video) await rename(await video.path(), output + '/' + name + '-motion.webm');
   }
   await writeFile(output + '/capture-report.json', JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));

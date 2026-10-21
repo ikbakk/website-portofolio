@@ -321,6 +321,16 @@
         "name": "press-ripple",
         "value": "350ms; 160ms reduced motion",
         "purpose": "Bounded radial response; reduced motion uses opacity only"
+      },
+      {
+        "name": "mobile-local-underline",
+        "value": "1px original gold gradient + centred diamond; scaleX 250ms; exit opacity 320ms after 100ms hold",
+        "purpose": "Original gold underline and centred active diamond; open/close each item in place; delayed, slower exit and fade on diamond"
+      },
+      {
+        "name": "mobile-frame",
+        "value": "400ms frame, 150ms clear pause, then 300ms content fade",
+        "purpose": "Frame expands from centre; wait for completion plus visible pause before content fade; parchment static; reduced motion opacity-only"
       }
     ],
     "breakpoints": [
@@ -345,7 +355,7 @@
       "home": "100dvh; header / minmax(0, 1fr) / footer or mobile navigation",
       "scroll": "Only the home dossier scrolls; reading routes use document scrolling",
       "projectEntry": "Projects navigation tab; no rail or strip",
-      "mobileIdentity": "Labelled 2-left/2-right constellation navigation around monogram; 150\u2013180px region, 116px on short screens; no bottom home navigation",
+      "mobileIdentity": "Current section title above monogram; labelled 2-left/2-right constellation; no top bar or bottom home navigation; compact arrangement on short screens",
       "desktop": "30/70 identity/content; Projects selection and detail in two inner columns"
     }
   },

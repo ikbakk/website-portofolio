@@ -239,3 +239,7 @@ The original `I` monogram is layered separately from SVG orbits and stars. The f
 ### Constellation navigation revision
 
 Mobile home has no bottom navigation. Four labelled constellation controls surround the central monogram: Profile/Projects left, Experience/Contact right. Their positions remain stable and touch targets stay at least 44px. Short screens use a smaller identity region. Reading routes retain their existing navigation. Desktop uses roughly 30/70 identity/content columns, with project selection beside its dossier. The active diamond and shared brush tracer align to each item centre; the mobile tracer follows both row and column. Home remains 100dvh with only inner dossier scrolling.
+
+### Mobile motion refinement
+
+On mobile home the current section title sits above the monogram; the separate header is hidden. Each constellation link owns its underline, which fades and opens horizontally from its centre over 250ms, then closes over 250ms and fades out over 320ms after a 100ms hold. Its centred diamond fades with the active state. The original thin gold underline and centred diamond selection dot are preserved; there is no travelling shared tracer on mobile. The parchment field remains stationary. Only its separate ornamental frame expands from the centre over 400ms; after a 150ms pause, dossier content fades over 300ms. Reduced motion uses opacity only. Desktop retains its existing header, tracer and dossier motion.

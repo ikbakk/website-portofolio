@@ -1631,3 +1631,122 @@ html[data-opening='pending'] .archive-opening {
     height: 22px;
   }
 }
+
+/* Mobile: local underlines open/close in place; the parchment is stationary. */
+.dossier-frame {
+  display: contents;
+}
+.mobile-section-title {
+  display: none;
+}
+@media (max-width: 700px) {
+  .game-screen {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  body.game-screen {
+    grid-template-rows: minmax(0, 1fr);
+  }
+  .game-screen .site-header {
+    display: none;
+  }
+  .game-screen main {
+    grid-row: 1;
+  }
+  .game-screen .identity-column {
+    height: clamp(180px, 25dvh, 210px);
+  }
+  .game-screen .mobile-section-title {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% 0;
+    margin: 0;
+    color: #fff4d7;
+    font-family: var(--font-display);
+    font-size: 21px;
+    line-height: 1.2;
+    text-align: center;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .game-screen .identity-art {
+    top: 57%;
+  }
+  .game-screen .constellation-nav {
+    top: 28px;
+  }
+  .constellation-nav .nav-item {
+    translate: none;
+  }
+  .constellation-nav .nav-item::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4b788, transparent);
+    transform: scaleX(0);
+    opacity: 0;
+    transform-origin: center;
+    transition:
+      transform 0.25s var(--ease),
+      opacity 0.32s ease-out 0.1s;
+    pointer-events: none;
+  }
+  .constellation-nav .nav-item[aria-current='page']::after {
+    transform: scaleX(1);
+    opacity: 1;
+    transition-delay: 0s;
+  }
+  .constellation-nav .nav-active {
+    transition: opacity 0.2s ease-out;
+  }
+  .game-screen .main-dossier {
+    border-color: transparent;
+  }
+  .game-screen .main-dossier::before {
+    border: none;
+  }
+  .game-screen .main-dossier .dossier-frame {
+    display: block;
+    position: absolute;
+    inset: 0;
+    border: 1px solid #c4ad81;
+    border-radius: inherit;
+    pointer-events: none;
+    transform-origin: center;
+  }
+  .game-screen .dossier-frame::before {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px solid #b5a28280;
+    border-radius: 9px 3px 9px 3px;
+  }
+}
+@media (max-width: 700px) and (max-height: 600px) {
+  .game-screen .identity-column {
+    height: 144px;
+  }
+  .game-screen .mobile-section-title {
+    font-size: 18px;
+  }
+  .game-screen .constellation-nav {
+    top: 22px;
+  }
+  .game-screen .identity-art {
+    width: 104px;
+    top: 58%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .constellation-nav .nav-item::after,
+  .constellation-nav .nav-active {
+    transition-duration: 0.125s;
+    transition-delay: 0s;
+  }
+}

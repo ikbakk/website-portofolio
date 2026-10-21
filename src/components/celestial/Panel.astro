@@ -7,13 +7,15 @@ const { class: className = '', scrollable = false } = Astro.props;
 ---
 
 <div class:list={['dossier', className]}>
-  {
-    ['tl', 'tr', 'bl', 'br'].map((position) => (
-      <svg class={`panel-corner corner-${position}`} viewBox="0 0 48 48" aria-hidden="true">
-        <use href="/celestial/symbols.svg#corner" />
-      </svg>
-    ))
-  }
+  <div class="dossier-frame" data-panel-frame aria-hidden="true">
+    {
+      ['tl', 'tr', 'bl', 'br'].map((position) => (
+        <svg class={`panel-corner corner-${position}`} viewBox="0 0 48 48" aria-hidden="true">
+          <use href="/celestial/symbols.svg#corner" />
+        </svg>
+      ))
+    }
+  </div>
   <div
     class="dossier-content"
     tabindex={scrollable ? 0 : undefined}

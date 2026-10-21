@@ -103,3 +103,13 @@ The current cold mobile lab sample reports **LCP 1,716ms and CLS 0**, with no ov
 Mobile home replaces bottom navigation with four labelled controls around the monogram, two on each side. Short viewports keep a compact, visible constellation. Desktop uses a 30/70 identity/content split and side-by-side project selection/detail. Active markers share the item centre.
 
 Astro check: zero errors, warnings and hints (40 files). Static build, formatting and all **42 Playwright tests** pass. New regressions check mobile control positions and touch targets at 390px and 320px, desktop content allocation and marker alignment. Final desktop/mobile/landscape captures report no page errors or horizontal overflow. Case-study routes keep their existing navigation and reading layout.
+
+## Mobile panel motion refinement
+
+Mobile home moves the current section title above the monogram and removes its separate top bar. Local underlines fade and scale open/closed; the centred diamond selection marker is retained. Panel content fades while a separate decorative frame expands from the centre, leaving the parchment dimensions and position unchanged. Reduced motion uses opacity only.
+
+Astro diagnostics: zero errors, warnings and hints across 41 files. Static build, formatting and **45 Playwright tests** pass. New checks cover title alignment at 390px/320px, local outgoing/incoming underline opacity, static panel geometry, frame expansion and reduced motion. Initial testing caught opening cleanup clearing the new content fade; mobile opening no longer owns that content, and opening click dismissal precedes navigation. Focused review reported no important issues. Mobile recording and desktop/mobile captures show no errors or overflow.
+
+[Mobile interaction recording](verification/mobile-panel-motion.mp4).
+
+The mobile transition order is deliberate: frame expands for 400ms, waits 150ms, then content fades in over 300ms. Tests assert the frame has completed and the content remains fully visible at 520ms, then verify the content fade has started. The outgoing underline remains briefly visible before its slower fade; the new underline opens immediately.

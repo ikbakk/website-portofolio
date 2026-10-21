@@ -26,3 +26,5 @@ This is an original interpretation, not a claim to reproduce official game timin
 Guidance: Impeccable animate/craft floor; GreenSock official gsap-timeline and
 gsap-performance skills (https://github.com/greensock/gsap-skills). The existing
 Astro lifecycle owns cleanup for all tweens, observers and event listeners.
+
+Mobile refinement: the current page title moves above the monogram. Each menu owns a centred underline that fades open/closed rather than travelling between controls; the centred diamond selection dot is retained. The panel background is fixed while its independent decorative frame expands from the centre over 400ms. After a 150ms pause, content fades in over 300ms. The outgoing underline holds for 100ms before fading for 320ms, while its scale closes over 250ms. Reduced motion removes spatial animation. Desktop motion remains as before.
