@@ -7,7 +7,7 @@ export function initNavigationMotion(scope: HTMLElement) {
   let frame = 0;
   const sync = (animate = false, keyboard = false) => {
     for (const nav of navs) {
-      if (!nav.offsetWidth) continue;
+      if (!nav.offsetWidth || nav.hasAttribute('data-constellation')) continue;
       const active = nav.querySelector<HTMLElement>('[aria-current="page"]');
       const marker = nav.querySelector<HTMLElement>('[data-nav-indicator]');
       if (!active || !marker) continue;

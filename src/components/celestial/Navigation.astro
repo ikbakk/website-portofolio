@@ -62,9 +62,13 @@ const items = [
       </a>
     ))
   }
-  <span class="nav-tracer" data-nav-indicator aria-hidden="true"
-    ><svg viewBox="0 0 100 8" preserveAspectRatio="none"
-      ><path d="M1 4 19 2.8 51 3.3 79 2 99 4 76 5.3 49 4.5 18 5.2Z" fill="currentColor"></path></svg
-    ></span
-  >
+  {
+    !constellation && (
+      <span class="nav-tracer" data-nav-indicator aria-hidden="true">
+        <svg viewBox="0 0 100 8" preserveAspectRatio="none">
+          <path d="M1 4 19 2.8 51 3.3 79 2 99 4 76 5.3 49 4.5 18 5.2Z" fill="currentColor" />
+        </svg>
+      </span>
+    )
+  }
 </nav>

@@ -68,3 +68,64 @@ export function initAmbientMotion(root: HTMLElement): () => void {
     document.removeEventListener('visibilitychange', sync);
   };
 }
+
+/** Animate only content and the decorative frame; the parchment never moves. */
+export function initMobilePanelMotion(root: HTMLElement) {
+  const mobile = matchMedia('(max-width: 700px)');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const content = root.querySelector<HTMLElement>('.main-dossier .dossier-content');
+  const frame = root.querySelector<HTMLElement>('.main-dossier [data-panel-frame]');
+  const targets = [content, frame].filter((el): el is HTMLElement => Boolean(el));
+  const reset = () => {
+    gsap.killTweensOf(targets);
+    gsap.set(targets, { clearProps: 'transform,opacity' });
+  };
+  const visibility = () => {
+    if (document.hidden) reset();
+  };
+  mobile.addEventListener('change', reset);
+  reduced.addEventListener('change', reset);
+  document.addEventListener('visibilitychange', visibility);
+  return {
+    mobile: () => mobile.matches,
+    reveal() {
+      reset();
+      if (!mobile.matches || document.hidden) return;
+      const duration = reduced.matches ? 0.15 : 0.4;
+      const timeline = gsap.timeline();
+      if (frame) {
+        timeline.fromTo(
+          frame,
+          reduced.matches ? { opacity: 0.4 } : { scale: 0.18, opacity: 0.15 },
+          {
+            opacity: 1,
+            ...(reduced.matches ? {} : { scale: 1 }),
+            duration,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity',
+          },
+        );
+      }
+      if (content) {
+        timeline.fromTo(
+          content,
+          { opacity: 0.35 },
+          {
+            immediateRender: false,
+            opacity: 1,
+            duration: reduced.matches ? 0.15 : 0.3,
+            ease: 'power2.out',
+            clearProps: 'opacity',
+          },
+          reduced.matches ? '>' : '+=0.15',
+        );
+      }
+    },
+    dispose() {
+      reset();
+      mobile.removeEventListener('change', reset);
+      reduced.removeEventListener('change', reset);
+      document.removeEventListener('visibilitychange', visibility);
+    },
+  };
+}

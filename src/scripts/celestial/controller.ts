@@ -2,7 +2,12 @@ import { initOpening } from './opening';
 import { initNavigationMotion } from './navigation-motion';
 import { initUIFeedback } from './interaction-motion';
 import { readArchiveLocation } from './location';
-import { initAmbientMotion, revealDossier, stopDossierMotion } from './motion';
+import {
+  initAmbientMotion,
+  initMobilePanelMotion,
+  revealDossier,
+  stopDossierMotion,
+} from './motion';
 
 export function initArchive(root: HTMLElement): () => void {
   const dossiers = [...root.querySelectorAll<HTMLElement>('[data-project-dossier]')];
@@ -10,6 +15,7 @@ export function initArchive(root: HTMLElement): () => void {
   const sections = [...root.querySelectorAll<HTMLElement>('[data-section]')];
   const navMotion = initNavigationMotion(root.closest('body')!);
   const stopFeedback = initUIFeedback(root.closest('body')!);
+  const panelMotion = initMobilePanelMotion(root);
   let previous = '';
   const update = (keyboard = false) => {
     const state = readArchiveLocation(location.hash, knownIds);
@@ -35,8 +41,9 @@ export function initArchive(root: HTMLElement): () => void {
       if (el.dataset.projectLink === state.projectId) el.setAttribute('aria-current', 'true');
       else el.removeAttribute('aria-current');
     });
-    const title = document.querySelector<HTMLElement>('[data-current-title]');
-    if (title) title.textContent = state.section.charAt(0).toUpperCase() + state.section.slice(1);
+    document.querySelectorAll<HTMLElement>('[data-current-title]').forEach((title) => {
+      title.textContent = state.section.charAt(0).toUpperCase() + state.section.slice(1);
+    });
     navMotion.sync(wasReady, keyboard);
     root.dataset.activeSection = state.section;
     root.dataset.archiveReady = 'true';
@@ -48,7 +55,8 @@ export function initArchive(root: HTMLElement): () => void {
         state.section === 'projects'
           ? dossiers.find((el) => !el.hidden)
           : sections.find((el) => !el.hidden);
-      if (active) revealDossier(active, keyboard);
+      if (panelMotion.mobile()) panelMotion.reveal();
+      else if (active) revealDossier(active, keyboard);
     }
   };
   const click = (event: MouseEvent) => {
@@ -78,13 +86,14 @@ export function initArchive(root: HTMLElement): () => void {
     update(event.detail === 0);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
-  document.addEventListener('click', click, true);
   const historyUpdate = () => update(true);
   window.addEventListener('hashchange', historyUpdate);
   window.addEventListener('popstate', historyUpdate);
   update();
   const stopMotion = initAmbientMotion(root);
   const stopOpening = initOpening(root);
+  // Dismiss the opening before a click starts the destination panel's motion.
+  document.addEventListener('click', click, true);
   const scroller = root.querySelector<HTMLElement>('.main-dossier .dossier-content');
   const end = scroller?.querySelector('[data-scroll-end]');
   const scrollObserver = new IntersectionObserver(
@@ -96,6 +105,7 @@ export function initArchive(root: HTMLElement): () => void {
   if (end) scrollObserver.observe(end);
   return () => {
     stopOpening();
+    panelMotion.dispose();
     navMotion.dispose();
     stopFeedback();
     stopMotion();

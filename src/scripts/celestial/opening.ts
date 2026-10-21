@@ -20,7 +20,9 @@ export function initOpening(root: HTMLElement): () => void {
   const core = overlay.querySelector('[data-opening-core]');
   const aperture = overlay.querySelector('[data-aperture]');
   const identity = root.querySelector('.identity-art');
-  const dossier = root.querySelector('.main-dossier .dossier-content');
+  const dossier = matchMedia('(max-width: 700px)').matches
+    ? null
+    : root.querySelector('.main-dossier .dossier-content');
   const navigation = body.querySelectorAll('.nav-item');
   let timeline: gsap.core.Timeline | undefined;
   let finished = false;
