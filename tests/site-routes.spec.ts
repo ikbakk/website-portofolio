@@ -70,7 +70,40 @@ for (const [width, height] of [
       await expect(page.locator('.mobile-nav')).toHaveCount(0);
       await expect(page.locator('.constellation-nav')).toBeVisible();
       await expect(page.locator('.mobile-section-title')).toHaveText('Projects');
+      await expect(page.locator('.case-identity-info')).toBeHidden();
     }
+  });
+}
+for (const [width, height] of [
+  [1440, 900],
+  [1024, 768],
+]) {
+  test(`project detail keeps the landscape identity and dossier in balance at ${width}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height });
+    await page.goto('/projects/courtside/');
+    await expect(page.locator('.case-world .mobile-section-title')).toBeVisible();
+    await expect(page.locator('.case-identity-info')).toBeVisible();
+    await expect(page.locator('.site-footer')).toBeHidden();
+    expect(
+      await page.locator('.site-header').evaluate((el) => getComputedStyle(el).backgroundImage),
+    ).toContain('linear-gradient');
+    const layout = await page.evaluate(() => {
+      const identity = document.querySelector('.identity-column')!.getBoundingClientRect();
+      const dossier = document.querySelector('.case-dossier')!.getBoundingClientRect();
+      return {
+        identityRight: identity.right,
+        dossierLeft: dossier.left,
+        dossierWidth: dossier.width,
+        viewportWidth: window.innerWidth,
+        documentHeight: document.documentElement.scrollHeight,
+        viewportHeight: window.innerHeight,
+      };
+    });
+    expect(layout.dossierLeft).toBeGreaterThan(layout.identityRight);
+    expect(layout.dossierWidth).toBeGreaterThan(layout.viewportWidth * 0.54);
+    expect(layout.documentHeight).toBeLessThanOrEqual(layout.viewportHeight + 1);
   });
 }
 test('unknown routes use a useful 404', async ({ page }) => {

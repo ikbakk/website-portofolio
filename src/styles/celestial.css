@@ -1765,6 +1765,9 @@ html[data-opening='pending'] .archive-opening {
 .mobile-section-title {
   display: none;
 }
+.case-identity-info {
+  display: none;
+}
 @media (max-width: 700px) {
   .game-screen {
     padding-top: env(safe-area-inset-top);
@@ -1874,5 +1877,95 @@ html[data-opening='pending'] .archive-opening {
   .constellation-nav .nav-active {
     transition-duration: 0.125s;
     transition-delay: 0s;
+  }
+}
+
+/* Case-study landscape keeps the mobile identity-to-dossier reading order. */
+@media (min-width: 701px) {
+  .game-screen .case-grid {
+    grid-template-columns: minmax(270px, 0.9fr) minmax(0, 1.55fr);
+    gap: clamp(32px, 5vw, 76px);
+  }
+  .game-screen .case-world .mobile-section-title {
+    display: block;
+    margin: 0 0 clamp(8px, 1.5vh, 18px);
+    color: #fff4d7;
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2vw, 29px);
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0 2px 8px #020b16;
+  }
+  .game-screen .case-world .identity-art {
+    width: min(100%, 34dvh, 360px);
+  }
+  .game-screen .case-world .identity-caption {
+    margin-top: clamp(0px, 1.2vh, 14px);
+  }
+  .game-screen .case-dossier {
+    max-width: 1080px;
+    justify-self: stretch;
+    padding-inline: clamp(28px, 3.5vw, 56px);
+  }
+}
+
+@media (min-width: 701px) and (max-height: 780px) {
+  .game-screen .case-world {
+    padding-block: 14px;
+  }
+  .game-screen .case-world .mobile-section-title {
+    margin-bottom: 6px;
+    font-size: clamp(20px, 1.8vw, 25px);
+  }
+  .game-screen .case-world .identity-art {
+    width: min(100%, 31dvh, 320px);
+  }
+  .game-screen .case-dossier {
+    padding-block: 24px;
+  }
+}
+
+@media (min-width: 701px) and (orientation: landscape) {
+  .game-screen:has(.case-world) .site-header {
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 50%) 0%,
+      rgb(0 0 0 / 28%) 58%,
+      transparent 100%
+    );
+    border-bottom-color: transparent;
+  }
+  .game-screen:has(.case-world) .site-footer {
+    display: none;
+  }
+  .game-screen .case-identity-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 14px;
+    max-width: 32ch;
+    margin-top: clamp(10px, 1.5vh, 18px);
+    color: #e9dfc8;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    text-shadow: 0 1px 5px #020b16;
+  }
+  .game-screen .case-identity-info a {
+    color: #f4d99c;
+    text-decoration: underline;
+    text-decoration-color: #d1b67599;
+    text-underline-offset: 3px;
+  }
+}
+
+@media (min-width: 701px) and (orientation: landscape) and (max-height: 780px) {
+  .game-screen .case-world .identity-art {
+    width: min(100%, 27dvh, 288px);
+  }
+  .game-screen .case-identity-info {
+    margin-top: 7px;
+    gap: 2px 10px;
+    font-size: 11px;
   }
 }
