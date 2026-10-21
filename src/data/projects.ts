@@ -17,6 +17,9 @@
  *  slug        -  file name in src/content/projects
  */
 export interface ProjectSummary {
+  id: string;
+  featured: boolean;
+  stage: 'production' | 'internal-alpha' | 'prototype' | 'local-tool';
   number: string;
   title: string;
   role: string;
@@ -44,12 +47,14 @@ export interface ProjectSummary {
     next: string;
     links: string;
   };
-  slug: '01' | '02' | '03' | '04';
+  slug: '01' | '02' | '03' | '04' | '05';
   /** Optional screenshot. When provided, the entry renders the
    *  image-first layout; when omitted, the entry renders the
    *  text-only layout with an empty screenshot slot. */
   image?: {
     src: string;
+    width: number;
+    height: number;
     alt: string;
     caption?: string;
   };
@@ -58,8 +63,11 @@ export interface ProjectSummary {
 export const projects: ReadonlyArray<ProjectSummary> = [
   {
     slug: '01',
+    id: 'sungkar-group',
+    featured: true,
+    stage: 'production',
     number: '01',
-    title: 'Sungkar Group Indonesia Landing',
+    title: 'Sungkar Group',
     role: 'Freelance frontend engineer',
     stack: 'Astro, TypeScript, multilingual routing, Schema.org, WebP',
     team: 'Solo, working with the Sungkar Group team and local operators',
@@ -70,11 +78,13 @@ export const projects: ReadonlyArray<ProjectSummary> = [
       href: 'https://sungkargroup.com',
     },
     outcome:
-      'Shipped a fast, SEO-first tourism marketing site covering Lombok, Sumbawa, and Labuan Bajo with structured data, multilingual content (ID/AR), and Core Web Vitals in the green.',
+      'Built a multilingual tourism website covering Lombok, Sumbawa, and Labuan Bajo, with structured package content, technical SEO, and responsive image delivery.',
     image: {
-      src: '/projects/sungkargroup.png',
+      src: '/projects/sungkargroup.webp',
+      width: 1828,
+      height: 967,
       alt: 'Sungkar Group Indonesia landing page: hero with private tour Lombok, popular packages, and Lombok, Sumbawa, Labuan Bajo destinations',
-      caption: 'Landing page with hero, four popular packages, and multi-destination strip.',
+      caption: 'Tourism homepage capture retained from the earlier portfolio.',
     },
     lede: 'Sungkar Group Indonesia is a Lombok-based tour operator running private tours, open trips, and phinisi charters across Lombok, Sumbawa, and Labuan Bajo. I built the marketing and content surface with Astro, focusing on technical SEO, multilingual routing, WebP image delivery, and a content model that the operations team can extend as new packages are added.',
     note: 'Tourism sites live or die on discoverability and perceived speed. Structured data per package, Open Graph for share previews, and lightweight static rendering mattered more than heavy interactivity.',
@@ -94,8 +104,11 @@ export const projects: ReadonlyArray<ProjectSummary> = [
   },
   {
     slug: '02',
+    id: 'beaconnect',
+    featured: true,
+    stage: 'internal-alpha',
     number: '02',
-    title: 'Beaconnect - reassurance-first companion app',
+    title: 'Beaconnect',
     role: 'Mobile product engineer',
     stack: 'Flutter, Firebase Auth, Cloud Firestore, Firebase Cloud Messaging, Android widgets',
     team: 'Independent product build',
@@ -133,8 +146,11 @@ export const projects: ReadonlyArray<ProjectSummary> = [
   },
   {
     slug: '03',
+    id: 'cv-builder',
+    featured: true,
+    stage: 'local-tool',
     number: '03',
-    title: 'CV Builder - local-first PDF resume editor',
+    title: 'CV Builder',
     role: 'Frontend product engineer',
     stack: 'React, TypeScript, Tailwind CSS, Zustand, IndexedDB, Typst',
     team: 'Independent product build',
@@ -172,8 +188,11 @@ export const projects: ReadonlyArray<ProjectSummary> = [
   },
   {
     slug: '04',
+    id: 'ward-monitor',
+    featured: false,
+    stage: 'prototype',
     number: '04',
-    title: 'Ward Monitor — ESP32 patient telemetry dashboard',
+    title: 'Ward Monitor',
     role: 'Full-stack frontend and IoT prototyping',
     stack: 'Angular, TypeScript, ESP32, MAX30100, MLX90614, Lucide icons',
     team: 'Solo product build',
@@ -187,7 +206,9 @@ export const projects: ReadonlyArray<ProjectSummary> = [
     outcome:
       'Built a backend-ready clinical operations dashboard with real login flow, ward navigation, patient detail pages, and state-aware telemetry cards for ESP32 sensor readings.',
     image: {
-      src: '/projects/ward-monitor-dashboard.png',
+      src: '/projects/ward-monitor-dashboard.webp',
+      width: 1440,
+      height: 3047,
       alt: 'Ward Monitor dashboard showing clinical operations, priority patient cards, ward boards, vitals, and ESP32 device state',
       caption:
         'Dashboard view with priority review queue, ward boards, state-tinted patient cards, and sensor readings.',
@@ -206,6 +227,47 @@ export const projects: ReadonlyArray<ProjectSummary> = [
       features: '',
       next: '',
       links: '',
+    },
+  },
+  {
+    slug: '05',
+    id: 'courtside',
+    featured: true,
+    stage: 'production',
+    number: '05',
+    title: 'Courtside',
+    role: 'Independent product engineer',
+    stack: 'SvelteKit, TypeScript, Supabase, TanStack Query, Vitest, Playwright',
+    team: 'Independent build for a casual badminton club',
+    workType: 'personal product',
+    disclosure:
+      'Public personal project. Session operations and rotation recommendations are implemented; real-session validation is ongoing.',
+    link: {
+      label: 'View Courtside source',
+      href: 'https://github.com/ikbakk/badminton-club-helper',
+    },
+    outcome:
+      'A club helper bringing attendance, player rotation, team recommendations, results and session finance into one operator workflow.',
+    lede: 'A badminton session has a practical fairness problem: arrivals change, players need breaks, and someone has to remember who is waiting. Courtside gives the operator a clear view of the session and suggestions they can override.',
+    note: 'The operator stays in control. Recommendations use recorded session state; public visitors only see safe read-only club information.',
+    noteLabel: 'Product decision',
+    caseStudy: {
+      overview: 'A mobile-first helper for casual badminton clubs.',
+      problem:
+        'Remembering attendance, fair playing time and session costs becomes difficult while also running a club night.',
+      responsibilities:
+        'Product flow, courtside interface, rotation and pairing recommendations, Supabase persistence, and verification.',
+      approach:
+        'Keep the operator workflow explicit: record attendance, recommend players, confirm teams, record sets, then settle the session.',
+      technical:
+        'SvelteKit and TypeScript with Supabase/Postgres, TanStack Query, transactional commands and append-only session history.',
+      constraints:
+        'Late arrivals, rest, substitutions and admin overrides must be reflected honestly in the session state.',
+      comparison: '',
+      features:
+        'Roster and attendance, rotation suggestions, team balance, set results, fees, payments and expenses.',
+      next: 'Continue validation during real club sessions and refine the courtside experience.',
+      links: 'Public source and implementation documentation on GitHub.',
     },
   },
 ] as const;

@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  mobile?: boolean;
+  home?: boolean;
+}
+const { mobile = false, home = false } = Astro.props;
+const items = [
+  { id: 'profile', label: 'Profile' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+];
+---
+
+<nav
+  class:list={[mobile ? 'mobile-nav' : 'main-nav', 'flex items-center justify-center']}
+  aria-label={mobile ? 'Mobile navigation' : 'Main navigation'}
+>
+  {
+    items.map((item) => (
+      <a
+        href={`${home ? '' : '/'}#${item.id}`}
+        data-section-link={item.id}
+        data-navigation
+        aria-current={
+          (home && item.id === 'profile') || (!home && item.id === 'projects') ? 'page' : undefined
+        }
+        class="nav-item flex flex-col items-center justify-center gap-1.5"
+      >
+        <>
+          <Icon name={item.id} />
+          <span>{item.label}</span>
+          <span class="nav-active" aria-hidden="true" />
+        </>
+      </a>
+    ))
+  }
+</nav>

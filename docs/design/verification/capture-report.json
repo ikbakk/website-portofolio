@@ -1,0 +1,30 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "errors": [],
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "height": 1000,
+    "errors": [],
+    "overflow": false
+  },
+  {
+    "name": "case",
+    "width": 1440,
+    "height": 1000,
+    "errors": [],
+    "overflow": false
+  },
+  {
+    "name": "not-found",
+    "width": 390,
+    "height": 1000,
+    "errors": [],
+    "overflow": false
+  }
+]

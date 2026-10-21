@@ -1,0 +1,67 @@
+---
+const stars = [
+  [230, 22],
+  [230, 438],
+  [22, 230],
+  [438, 230],
+  [78, 78],
+  [382, 78],
+  [78, 382],
+  [382, 382],
+  [143, 27],
+  [363, 162],
+  [112, 365],
+  [308, 418],
+];
+---
+
+<div class="identity-art" aria-hidden="true">
+  <svg class="identity-orbits" viewBox="0 0 460 460" fill="none">
+    <g stroke="currentColor" stroke-width=".75">
+      <circle cx="230" cy="230" r="186"></circle><circle
+        cx="230"
+        cy="230"
+        r="202"
+        stroke-dasharray="32 8 2 8"></circle>
+      <g data-orbit="outer"
+        ><ellipse cx="230" cy="230" rx="214" ry="92" transform="rotate(-28 230 230)"
+        ></ellipse><ellipse cx="230" cy="230" rx="214" ry="92" transform="rotate(53 230 230)"
+        ></ellipse><path
+          d="M78 78 382 382M78 382 382 78 M230 22v416M22 230h416"
+          stroke-opacity=".35"></path></g
+      >
+      <g data-orbit="inner"
+        ><ellipse
+          cx="230"
+          cy="230"
+          rx="170"
+          ry="206"
+          transform="rotate(24 230 230)"
+          stroke-opacity=".5"></ellipse><path d="m143 27 220 135-55 256-196-53Z" stroke-opacity=".3"
+        ></path><circle cx="43" cy="249" r="7" fill="currentColor" fill-opacity=".5"
+        ></circle><circle cx="358" cy="89" r="5" fill="currentColor"></circle></g
+      >
+      {
+        stars.map(([x, y], i) => (
+          <g transform={`translate(${x} ${y})`}>
+            <>
+              <path
+                d={`m0 ${i < 4 ? -12 : -7} 2 ${i < 4 ? 10 : 5} ${i < 4 ? 10 : 5} 2 ${i < 4 ? -10 : -5} 2 -2 ${i < 4 ? 10 : 5} -2 ${i < 4 ? -10 : -5} ${i < 4 ? -10 : -5} -2 ${i < 4 ? 10 : 5} -2Z`}
+                fill="currentColor"
+              />
+              <circle r={i < 4 ? 17 : 10} stroke-opacity=".4" />
+            </>
+          </g>
+        ))
+      }
+    </g>
+  </svg>
+  <img
+    src="/celestial/monogram.svg"
+    width="400"
+    height="400"
+    alt=""
+    class="identity-monogram"
+    fetchpriority="high"
+  />
+</div>

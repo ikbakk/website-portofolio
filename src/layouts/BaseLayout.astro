@@ -1,51 +1,133 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
-import Topbar from '../components/Topbar.astro';
-import { navItems, profile } from '../data/site';
-
+import Icon from '../components/celestial/Icon.astro';
+import Navigation from '../components/celestial/Navigation.astro';
+import bodyFont from '@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2?url';
+import displayFont from '@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url';
+import { archiveProjects } from '../data/archive';
+import { site } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
-  showChrome?: boolean;
+  home?: boolean;
 }
 const {
-  title = `${profile.name} · Frontend engineer`,
-  description = 'Frontend engineer portfolio built in Astro, Tailwind CSS, and GSAP.',
-  showChrome = true,
+  title = 'Muhammad Iqbal Firdaus | Frontend & mobile engineer',
+  description = 'Web, mobile and practical tools by Muhammad Iqbal Firdaus, a frontend and mobile engineer based in Mataram, Indonesia.',
+  home = false,
 } = Astro.props;
+const origin = site.url;
+const canonical = new URL(Astro.url.pathname, origin).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Muhammad Iqbal Firdaus',
+  jobTitle: 'Frontend and mobile engineer',
+  url: origin,
+  sameAs: ['https://github.com/ikbakk', 'https://linkedin.com/in/ikbakk'],
+};
 ---
 
 <!doctype html>
-<html
-  lang="en"
-  data-theme="wechat"
-  class="scroll-smooth scroll-pt-[calc(var(--topbar-h)+var(--space-4))] bg-bg text-fg [color-scheme:light] motion-reduce:scroll-auto"
->
+<html lang="en" data-theme="celestial">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#111111" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <title>{title}</title>
-    <ClientRouter />
-  </head>
-  <body
-    class="m-0 min-w-80 bg-bg font-body text-[var(--text-base)] leading-[var(--leading-body)] text-fg antialiased selection:bg-accent selection:text-accent-on"
-  >
-    <button
-      class="fixed left-[var(--space-4)] top-[var(--space-4)] z-[100] -translate-y-[140%] rounded-[var(--radius-pill)] border-0 bg-fg px-[var(--space-4)] py-[var(--space-3)] font-mono text-[var(--text-xs)] uppercase tracking-[var(--tracking-mono)] text-surface-2 focus:translate-y-0 focus:outline-[var(--focus-ring)]"
-      type="button"
-      data-scroll-target="content">Skip to main content</button
+    <meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <script
+      is:inline
+      data-astro-rerun
+      data-home={String(home)}
+      data-projects={JSON.stringify(archiveProjects.map((p) => p.id))}
     >
-    {showChrome && <Topbar profile={profile} navItems={navItems} transition:persist />}
-    <slot />
+      const config = document.currentScript;
+      if (config instanceof HTMLScriptElement && config.dataset.home === 'true') {
+        const projectIds = JSON.parse(config.dataset.projects || '[]');
+        const hash = location.hash.slice(1);
+        const project =
+          hash.startsWith('project-') && projectIds.includes(hash.slice(8))
+            ? hash.slice(8)
+            : 'courtside';
+        const section =
+          hash.startsWith('project-') && projectIds.includes(hash.slice(8))
+            ? 'projects'
+            : ['profile', 'projects', 'experience', 'contact'].includes(hash)
+              ? hash
+              : 'profile';
+        const initial = document.createElement('style');
+        initial.textContent = `.archive-world:not([data-archive-ready]) [data-section]:not([data-section="${section}"]), .archive-world:not([data-archive-ready]) [data-project-dossier]:not([data-project-dossier="${project}"]) { display:none; } .archive-world:not([data-archive-ready]) [data-section], .archive-world:not([data-archive-ready]) .project-dossier { margin-bottom:0; } .archive-world:not([data-archive-ready]) .identity-column { align-self:auto; } ${['experience', 'contact'].includes(section) ? '.archive-world:not([data-archive-ready]) [data-project-area] { display:none; }' : ''}`;
+        document.head.append(initial);
+      }
+    </script>
+    <title>{title}</title><meta name="description" content={description} /><meta
+      name="theme-color"
+      content="#14263d"
+    />
+    <link rel="canonical" href={canonical} /><link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta
+      property="og:description"
+      content={description}
+    />
+    <meta property="og:url" content={canonical} /><meta
+      property="og:image"
+      content={`${origin}/og.jpg`}
+    />
+    <meta property="og:image:width" content="1200" /><meta
+      property="og:image:height"
+      content="630"
+    /><meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <slot name="head" /><ClientRouter />
+  </head>
+  <body class="min-h-svh bg-midnight font-body text-ivory antialiased">
+    <a class="skip-link" href="#content">Skip to content</a>
+    <picture class="environment" aria-hidden="true">
+      <source
+        media="(max-width:700px)"
+        srcset="/celestial/celestial-city-mobile.webp"
+        width="780"
+        height="1190"
+      />
+      <img
+        src="/celestial/celestial-city.webp"
+        width="1586"
+        height="992"
+        alt=""
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+    <div class="environment-scrim" aria-hidden="true"></div>
+    <header class="site-header flex items-center justify-between">
+      <a href="/#profile" class="brand flex items-center gap-3" aria-label="Iqbal portfolio home">
+        <Icon name="profile" class="brand-icon" />
+        <span
+          ><span class="brand-title" data-current-title>{home ? 'Profile' : 'Archive'}</span><span
+            class="brand-subtitle">Iqbal / Portfolio</span
+          ></span
+        >
+      </a>
+      <Navigation home={home} />
+      <div class="header-ornament" aria-hidden="true"><span></span><Icon name="profile" /></div>
+    </header>
+    <main id="content" tabindex="-1"><slot /></main>
+    <Navigation mobile home={home} />
+    <footer class="site-footer text-center">
+      <span>Made with care in Mataram.</span><span>Astro &amp; Tailwind CSS</span><a
+        href="https://github.com/ikbakk/website-portofolio">Source code</a
+      >
+    </footer>
     <script>
-      import { initPortfolioMotion } from '../scripts/motion';
-      initPortfolioMotion();
+      import '../scripts/celestial/controller';
     </script>
   </body>
 </html>

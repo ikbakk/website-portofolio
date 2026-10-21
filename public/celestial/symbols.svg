@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="profile" viewBox="0 0 32 32"><path d="m16 2 3.5 10.5L30 16l-10.5 3.5L16 30l-3.5-10.5L2 16l10.5-3.5Z"/><circle cx="16" cy="16" r="10"/><path d="M16 7v18M7 16h18"/></symbol>
+  <symbol id="projects" viewBox="0 0 32 32"><path d="M7 8 16 3l9 5v16l-9 5-9-5Z M7 8l9 5 9-5 M16 13v16 M12 10l9-5"/><path d="M11 17v5m10-5v5"/></symbol>
+  <symbol id="experience" viewBox="0 0 32 32"><path d="m16 3 11 5v18H5V8Z M9 12v10h14V12 M12 8v4m8-4v4 M12 16h8m-8 3h8"/><path d="M16 3v5"/></symbol>
+  <symbol id="contact" viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="18" rx="2"/><path d="m4 8 12 10L28 8 M4 25l8-9m16 9-8-9"/></symbol>
+  <symbol id="sungkar-group" viewBox="0 0 64 64"><path d="M7 43 24 18l8 13 7-20 18 32Z M15 43l10-13 7 7 7-14 12 20 M24 18l1 12m14-19v12 M6 49c8-5 16 5 25 0s17-5 27 0 M19 55c9-4 16 4 25 0"/><circle cx="14" cy="18" r="4"/></symbol>
+  <symbol id="courtside" viewBox="0 0 64 64"><path d="m26 38 8 7 22-25-3-5-6 1-1-6-6 2-3-5-20 26 7 3Z M27 35l20-19m-17 22 23-23m-30 17L40 12m-20 18L37 7 M26 38l8 7-5 6c-4 5-13-2-10-6Z"/><path d="m19 48-5 7"/></symbol>
+  <symbol id="beaconnect" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24"/><path d="m15 19 18-3 16 16-15 17-20-7 1-23 19 30 M33 16l1 33m15-17-35 10"/><circle cx="15" cy="19" r="3" fill="currentColor"/><circle cx="33" cy="16" r="4" fill="currentColor"/><circle cx="49" cy="32" r="3" fill="currentColor"/><circle cx="34" cy="49" r="4" fill="currentColor"/><circle cx="14" cy="42" r="3" fill="currentColor"/></symbol>
+  <symbol id="cv-builder" viewBox="0 0 64 64"><path d="M17 9h30v46H17Z M12 14H9v45h32v-4 M23 18h18m-18 5h18m-18 8h18m-18 5h18m-18 5h11"/><path d="m35 46 2 2 5-5"/></symbol>
+  <symbol id="ward-monitor" viewBox="0 0 64 64"><path d="M10 13h44v33H10Z M23 54h18m-9-8v8 M14 32h9l5-11 8 20 5-9h9"/></symbol>
+  <symbol id="pin" viewBox="0 0 32 32"><path d="M25 13c0 7-9 16-9 16S7 20 7 13a9 9 0 1 1 18 0Z"/><circle cx="16" cy="13" r="3"/></symbol>
+  <symbol id="arrow" viewBox="0 0 32 32"><path d="m12 7 9 9-9 9"/></symbol>
+  <symbol id="download" viewBox="0 0 32 32"><path d="M8 3h11l6 6v20H8Z M19 3v6h6 M16 12v10m-4-4 4 4 4-4 M12 25h8"/></symbol>
+  <symbol id="github" viewBox="0 0 32 32"><path d="M11 27v-4c-5 1-6-2-7-3m17 7v-5c3-1 5-3 5-7 0-2-1-4-2-5 0-2 0-4-1-5-3 0-5 2-5 2a17 17 0 0 0-6 0S9 5 6 5c-1 2-1 4 0 5-2 2-2 3-2 5 0 4 2 6 7 7"/></symbol>
+  <symbol id="corner" viewBox="0 0 48 48"><path d="M2 46V13L13 2h33 M7 43V16l9-9h27 M7 27l9-11h11L16 27Z M16 2v14H2"/><path d="m11 11 5-5 5 5-5 5Z" fill="currentColor" stroke="none"/><circle cx="30" cy="7" r="2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="spark" viewBox="0 0 32 32"><path d="m16 2 3 11 11 3-11 3-3 11-3-11L2 16l11-3Z"/></symbol>
+</svg>

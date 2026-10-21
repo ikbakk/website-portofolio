@@ -1,0 +1,103 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Panel from '../components/celestial/Panel.astro';
+import Icon from '../components/celestial/Icon.astro';
+import Action from '../components/celestial/Action.astro';
+import type { ArchiveProject } from '../data/archive';
+import { archiveProjects, stageLabels } from '../data/archive';
+interface Props {
+  project: ArchiveProject;
+}
+const { project } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: project.title,
+  description: project.summary,
+  url: `https://ikbak.vercel.app${project.caseHref}`,
+  author: { '@type': 'Person', name: 'Muhammad Iqbal Firdaus' },
+};
+---
+
+<BaseLayout title={`${project.title} | Muhammad Iqbal Firdaus`} description={project.source.lede}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="case-shell mx-auto">
+    <a class="back-link inline-flex items-center gap-2" href={`/#project-${project.id}`}
+      ><Icon name="arrow" />Back to archive</a
+    >
+    <Panel class="case-panel">
+      <article>
+        <header class="case-heading">
+          <span class="case-stage" data-project-stage
+            >{project.kind} / {stageLabels[project.stage]}</span
+          >
+          <h1>{project.title}</h1><p class="case-summary">{project.summary}</p>
+          <dl class="case-facts grid gap-5 sm:grid-cols-2">
+            <div><dt>My role</dt><dd>{project.source.role}</dd></div><div>
+              <dt>Built with</dt><dd>{project.stack.join(', ')}</dd>
+            </div>
+          </dl>
+        </header>
+        {
+          project.image ? (
+            <figure class="case-capture">
+              <>
+                <img
+                  src={project.image.src}
+                  alt={project.image.alt}
+                  width={project.image.width}
+                  height={project.image.height}
+                  loading="eager"
+                />
+                <figcaption>
+                  {project.image.caption}
+                  {project.stage === 'prototype' ? ' Prototype with synthetic data.' : ''}
+                </figcaption>
+              </>
+            </figure>
+          ) : (
+            <figure class="case-illustration flex flex-col items-center justify-center gap-4">
+              {project.id === 'courtside' ? (
+                <img
+                  src="/celestial/court.svg"
+                  alt="Illustration of a badminton court"
+                  width="320"
+                  height="240"
+                />
+              ) : (
+                <span class="emblem case-emblem">
+                  <Icon name={project.id} />
+                </span>
+              )}
+              <figcaption>Original project illustration. Not an application screenshot.</figcaption>
+            </figure>
+          )
+        }
+        <div class="case-prose"><slot /></div>
+        <aside class="case-disclosure">
+          <Icon name="projects" /><p>{project.source.disclosure}</p>
+        </aside>
+        <Action href={project.source.link.href} icon="projects" dark
+          >{project.source.link.label}</Action
+        >
+      </article>
+    </Panel>
+    <nav class="other-projects" aria-label="Other case studies">
+      <h2>Continue exploring</h2><div class="flex flex-wrap gap-3">
+        {
+          archiveProjects
+            .filter((p) => p.id !== project.id)
+            .map((p) => (
+              <a href={p.caseHref}>
+                <>
+                  <Icon name={p.id} />
+                  <span>{p.title}</span>
+                  <Icon name="arrow" />
+                </>
+              </a>
+            ))
+        }
+      </div>
+    </nav>
+  </div>
+</BaseLayout>

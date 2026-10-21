@@ -1,0 +1,14 @@
+---
+import { getEntry, render } from 'astro:content';
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import { archiveProjects } from '../../data/archive';
+export function getStaticPaths() {
+  return archiveProjects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+const { project } = Astro.props;
+const entry = await getEntry('projects', project.contentId);
+if (!entry) throw new Error(`Missing project content: ${project.contentId}`);
+const { Content } = await render(entry);
+---
+
+<CaseStudyLayout project={project}><Content /></CaseStudyLayout>

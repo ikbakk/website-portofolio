@@ -9,7 +9,7 @@ export default defineConfig({
   },
   // Bound the site to a single domain for the build's absolute URLs.
   // Update before deploy.
-  site: 'https://ikbakk.github.io',
+  site: 'https://ikbak.vercel.app',
   trailingSlash: 'ignore',
   prefetch: {
     prefetchAll: false,
