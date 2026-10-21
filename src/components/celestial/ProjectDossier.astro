@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import Action from './Action.astro';
+import type { ArchiveProject } from '../../data/archive';
+import { stageLabels } from '../../data/archive';
+interface Props {
+  project: ArchiveProject;
+}
+const { project } = Astro.props;
+---
+
+<article
+  id={`project-${project.id}`}
+  data-project-dossier={project.id}
+  class="project-dossier"
+  aria-labelledby={`title-${project.id}`}
+>
+  <div class="project-dossier-copy">
+    <h2 id={`title-${project.id}`}>{project.title}</h2>
+    <p class="project-summary">{project.summary}</p>
+    <p class="project-stack flex items-start gap-2">
+      <Icon name="projects" />{
+        project.stack
+          .filter((item) => item !== 'TypeScript')
+          .slice(0, 2)
+          .join(' / ')
+      }
+    </p>
+    <span class="project-stage" data-project-stage>{stageLabels[project.stage]}</span>
+    <Action href={project.caseHref} icon="profile" dark>Read case study</Action>
+  </div>
+  <div class="dossier-illustration" aria-hidden="true">
+    {
+      project.id === 'courtside' ? (
+        <img src="/celestial/court.svg" width="240" height="180" alt="" />
+      ) : (
+        <span class="emblem emblem-illustration">
+          <Icon name={project.id} />
+        </span>
+      )
+    }
+  </div>
+</article>

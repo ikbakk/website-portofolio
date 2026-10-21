@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+import Action from './Action.astro';
+---
+
+<section id="profile" data-section="profile" aria-labelledby="profile-title">
+  <h1 id="profile-title" class="profile-name">Muhammad Iqbal Firdaus</h1>
+  <p class="profile-role">Frontend &amp; mobile engineer</p>
+  <p class="profile-location flex items-center gap-2"><Icon name="pin" />Mataram, Indonesia</p>
+  <p class="profile-bio">
+    I build web and mobile software<br class="desktop-break" /> for everyday problems.
+  </p>
+  <div class="profile-mobile-actions grid gap-3">
+    <Action href="#projects" icon="profile">View projects</Action><Action
+      href="/resume.pdf"
+      icon="download"
+      dark>Open resume</Action
+    >
+  </div>
+  <div class="ornament-rule" aria-hidden="true"><Icon name="spark" /></div>
+  <dl class="profile-details grid gap-3">
+    <div><dt><Icon name="profile" />Focus</dt><dd>Frontend &amp; mobile</dd></div>
+    <div><dt><Icon name="pin" />Based in</dt><dd>Mataram, Indonesia</dd></div>
+    <div><dt><Icon name="projects" />Tools</dt><dd>React, Astro, Flutter</dd></div>
+    <div><dt><Icon name="experience" />Work</dt><dd>Client &amp; personal projects</dd></div>
+  </dl>
+</section>

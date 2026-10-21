@@ -1,0 +1,96 @@
+import { readArchiveLocation } from './location';
+import { initAmbientMotion, revealDossier, stopDossierMotion } from './motion';
+
+export function initArchive(root: HTMLElement): () => void {
+  const dossiers = [...root.querySelectorAll<HTMLElement>('[data-project-dossier]')];
+  const knownIds = dossiers.map((el) => el.dataset.projectDossier!);
+  const sections = [...root.querySelectorAll<HTMLElement>('[data-section]')];
+  let previous = '';
+  const update = () => {
+    const state = readArchiveLocation(location.hash, knownIds);
+    const key = state.section + state.projectId;
+    if (key === previous) return;
+    const wasReady = Boolean(previous);
+    previous = key;
+    sections.forEach((el) => {
+      el.hidden = el.dataset.section !== state.section;
+    });
+    dossiers.forEach((el) => {
+      el.hidden = el.dataset.projectDossier !== state.projectId;
+    });
+    root.querySelectorAll<HTMLElement>('[data-project-area]').forEach((el) => {
+      el.hidden = state.section === 'experience' || state.section === 'contact';
+    });
+    document.querySelectorAll<HTMLElement>('[data-section-link]').forEach((el) => {
+      if (el.dataset.sectionLink === state.section) el.setAttribute('aria-current', 'page');
+      else el.removeAttribute('aria-current');
+    });
+    root.querySelectorAll<HTMLElement>('[data-project-link]').forEach((el) => {
+      if (el.dataset.projectLink === state.projectId) el.setAttribute('aria-current', 'true');
+      else el.removeAttribute('aria-current');
+    });
+    const title = document.querySelector<HTMLElement>('[data-current-title]');
+    if (title) title.textContent = state.section.charAt(0).toUpperCase() + state.section.slice(1);
+    root.dataset.activeSection = state.section;
+    root.dataset.archiveReady = 'true';
+    if (wasReady) {
+      const active =
+        state.section === 'projects'
+          ? dossiers.find((el) => !el.hidden)
+          : sections.find((el) => !el.hidden);
+      if (active) revealDossier(active);
+    }
+  };
+  const click = (event: MouseEvent) => {
+    if (event.target instanceof Element && event.target.closest('.skip-link')) {
+      event.preventDefault();
+      document.getElementById('content')?.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+    const target =
+      event.target instanceof Element
+        ? event.target.closest<HTMLAnchorElement>('a[data-navigation]')
+        : null;
+    if (
+      !target ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
+    const url = new URL(target.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
+    event.preventDefault();
+    if (location.hash !== url.hash) history.pushState(null, '', url.hash);
+    update();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+  document.addEventListener('click', click, true);
+  window.addEventListener('hashchange', update);
+  window.addEventListener('popstate', update);
+  update();
+  const stopMotion = initAmbientMotion(root);
+  return () => {
+    stopMotion();
+    [...sections, ...dossiers].forEach(stopDossierMotion);
+    document.removeEventListener('click', click, true);
+    window.removeEventListener('hashchange', update);
+    window.removeEventListener('popstate', update);
+  };
+}
+
+let cleanup: (() => void) | undefined;
+function boot() {
+  cleanup?.();
+  const root = document.querySelector<HTMLElement>('[data-archive-root]');
+  cleanup = root ? initArchive(root) : undefined;
+}
+document.addEventListener('astro:before-swap', () => {
+  cleanup?.();
+  cleanup = undefined;
+});
+document.addEventListener('astro:page-load', boot);
+boot();

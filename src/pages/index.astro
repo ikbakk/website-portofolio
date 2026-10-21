@@ -1,20 +1,101 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/HeroSection.astro';
-import WorkSection from '../components/WorkSection.astro';
-import CraftSection from '../components/CraftSection.astro';
-import MethodSection from '../components/MethodSection.astro';
-import ContactSection from '../components/ContactSection.astro';
-import PortfolioDialogs from '../components/PortfolioDialogs.astro';
-import { profile } from '../data/site';
+import Panel from '../components/celestial/Panel.astro';
+import Icon from '../components/celestial/Icon.astro';
+import Action from '../components/celestial/Action.astro';
+import IdentityMark from '../components/celestial/IdentityMark.astro';
+import ProjectSelector from '../components/celestial/ProjectSelector.astro';
+import ProfileDossier from '../components/celestial/ProfileDossier.astro';
+import ProjectDossier from '../components/celestial/ProjectDossier.astro';
+import { archiveProjects } from '../data/archive';
+import { experience } from '../data/experience';
 ---
-<BaseLayout title={`${profile.name} · Astro portfolio`}>
-  <main id="content" class="site-shell pt-[var(--topbar-h)]" transition:animate="slide">
-    <HeroSection />
-    <WorkSection />
-    <CraftSection />
-    <MethodSection />
-    <ContactSection />
-    <PortfolioDialogs />
-  </main>
+
+<BaseLayout home>
+  <div class="archive-world" data-archive-root>
+    <div class="archive-grid">
+      <ProjectSelector variant="rail" />
+      <div class="identity-column flex flex-col items-center justify-center">
+        <IdentityMark />
+        <div class="identity-caption text-center">
+          <div class="identity-rule" aria-hidden="true"><Icon name="spark" /></div>
+          <p>Frontend &amp; mobile engineer</p>
+          <span>Independent builds. Real-world problems.</span>
+        </div>
+        <div class="identity-actions flex flex-wrap justify-center gap-3">
+          <Action href="#projects" icon="profile" class="view-projects">View projects</Action>
+          <Action href="/resume.pdf" icon="download" dark>Open resume</Action>
+        </div>
+      </div>
+      <Panel class="main-dossier">
+        <ProfileDossier />
+        <section id="projects" data-section="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title" class="section-title">Project archive</h2>
+          <p class="section-description">
+            A few things I have built, and the decisions behind them.
+          </p>
+          <nav class="archive-project-list flex flex-wrap gap-2" aria-label="All projects">
+            {
+              archiveProjects.map((project) => (
+                <a href={`#project-${project.id}`} data-project-link={project.id} data-navigation>
+                  {project.title}
+                </a>
+              ))
+            }
+          </nav>
+        </section>
+        <section id="experience" data-section="experience" aria-labelledby="experience-title">
+          <h2 id="experience-title" class="section-title">Experience</h2>
+          <p class="section-description">
+            Web, mobile, and operational interfaces. Working with people, from the first requirement
+            to the last detail.
+          </p>
+          <ol class="experience-list grid gap-5">
+            {
+              experience.map((item) => (
+                <li>
+                  <>
+                    <p class="experience-period">{item.period}</p>
+                    <h3>{item.title}</h3>
+                    <p class="experience-organization">{item.organization}</p>
+                    <p>{item.description}</p>
+                  </>
+                </li>
+              ))
+            }
+          </ol>
+          <a class="text-link" href="/resume.pdf" download>Download full resume (PDF)</a>
+        </section>
+        <section id="contact" data-section="contact" aria-labelledby="contact-title">
+          <Icon name="contact" class="contact-crest" />
+          <h2 id="contact-title" class="section-title">A new connection.</h2>
+          <p class="section-description">
+            Have a role, a project, or a problem worth working on? I would like to hear about it.
+          </p>
+          <dl class="contact-details grid gap-4">
+            <div><dt>Based in</dt><dd>Mataram, Indonesia</dd></div><div>
+              <dt>Open to</dt><dd>Remote roles, freelance work and relocation</dd>
+            </div>
+          </dl>
+          <div class="contact-actions grid gap-3">
+            <Action href="mailto:ikbakfir@gmail.com" icon="contact" dark>Email me</Action>
+            <Action href="https://github.com/ikbakk" icon="github">GitHub</Action>
+            <a class="text-link" href="https://linkedin.com/in/ikbakk">Find me on LinkedIn</a>
+            <a class="text-link" href="/resume.pdf" download>Download resume (PDF)</a>
+          </div>
+        </section>
+        <div class="dossier-projects" data-project-area>
+          <div class="ornament-rule" aria-hidden="true"><Icon name="spark" /></div>
+          <div class="project-section-topline flex items-center justify-between">
+            <span>Selected project</span><a href="#projects" data-navigation class="archive-link"
+              >Browse archive</a
+            >
+          </div>
+          {archiveProjects.map((project) => <ProjectDossier project={project} />)}
+        </div>
+      </Panel>
+    </div>
+    <ProjectSelector variant="strip" />
+    <p class="world-note text-center">Every project has a story. Choose an emblem to explore.</p>
+  </div>
 </BaseLayout>

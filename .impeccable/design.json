@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-21T17:38:51.020257+00:00",
+  "title": "Design System: Iqbal Celestial Archive",
+  "extensions": {
+    "colorMeta": {
+      "sky": {
+        "role": "neutral",
+        "displayName": "Sky",
+        "tonalRamp": [
+          "oklch(15% 0.0495 255.21)",
+          "oklch(26% 0.0495 255.21)",
+          "oklch(38% 0.0495 255.21)",
+          "oklch(49% 0.0495 255.21)",
+          "oklch(61% 0.0495 255.21)",
+          "oklch(72% 0.0495 255.21)",
+          "oklch(84% 0.0495 255.21)",
+          "oklch(95% 0.0495 255.21)"
+        ]
+      },
+      "midnight": {
+        "role": "neutral",
+        "displayName": "Midnight",
+        "tonalRamp": [
+          "oklch(15% 0.0382 257.20)",
+          "oklch(26% 0.0382 257.20)",
+          "oklch(38% 0.0382 257.20)",
+          "oklch(49% 0.0382 257.20)",
+          "oklch(61% 0.0382 257.20)",
+          "oklch(72% 0.0382 257.20)",
+          "oklch(84% 0.0382 257.20)",
+          "oklch(95% 0.0382 257.20)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "tonalRamp": [
+          "oklch(15% 0.0201 84.59)",
+          "oklch(26% 0.0201 84.59)",
+          "oklch(38% 0.0201 84.59)",
+          "oklch(49% 0.0201 84.59)",
+          "oklch(61% 0.0201 84.59)",
+          "oklch(72% 0.0201 84.59)",
+          "oklch(84% 0.0201 84.59)",
+          "oklch(95% 0.0201 84.59)"
+        ]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Gold",
+        "tonalRamp": [
+          "oklch(15% 0.0591 86.00)",
+          "oklch(26% 0.0591 86.00)",
+          "oklch(38% 0.0591 86.00)",
+          "oklch(49% 0.0591 86.00)",
+          "oklch(61% 0.0591 86.00)",
+          "oklch(72% 0.0591 86.00)",
+          "oklch(84% 0.0591 86.00)",
+          "oklch(95% 0.0591 86.00)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0448 256.50)",
+          "oklch(26% 0.0448 256.50)",
+          "oklch(38% 0.0448 256.50)",
+          "oklch(49% 0.0448 256.50)",
+          "oklch(61% 0.0448 256.50)",
+          "oklch(72% 0.0448 256.50)",
+          "oklch(84% 0.0448 256.50)",
+          "oklch(95% 0.0448 256.50)"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0264 260.67)",
+          "oklch(26% 0.0264 260.67)",
+          "oklch(38% 0.0264 260.67)",
+          "oklch(49% 0.0264 260.67)",
+          "oklch(61% 0.0264 260.67)",
+          "oklch(72% 0.0264 260.67)",
+          "oklch(84% 0.0264 260.67)",
+          "oklch(95% 0.0264 260.67)"
+        ]
+      },
+      "parchment-light": {
+        "role": "neutral",
+        "displayName": "Parchment Light",
+        "tonalRamp": [
+          "oklch(15% 0.0171 84.59)",
+          "oklch(26% 0.0171 84.59)",
+          "oklch(38% 0.0171 84.59)",
+          "oklch(49% 0.0171 84.59)",
+          "oklch(61% 0.0171 84.59)",
+          "oklch(72% 0.0171 84.59)",
+          "oklch(84% 0.0171 84.59)",
+          "oklch(95% 0.0171 84.59)"
+        ]
+      },
+      "parchment-shade": {
+        "role": "neutral",
+        "displayName": "Parchment Shade",
+        "tonalRamp": [
+          "oklch(15% 0.0243 85.79)",
+          "oklch(26% 0.0243 85.79)",
+          "oklch(38% 0.0243 85.79)",
+          "oklch(49% 0.0243 85.79)",
+          "oklch(61% 0.0243 85.79)",
+          "oklch(72% 0.0243 85.79)",
+          "oklch(84% 0.0243 85.79)",
+          "oklch(95% 0.0243 85.79)"
+        ]
+      },
+      "panel-border": {
+        "role": "neutral",
+        "displayName": "Panel Border",
+        "tonalRamp": [
+          "oklch(15% 0.0648 83.37)",
+          "oklch(26% 0.0648 83.37)",
+          "oklch(38% 0.0648 83.37)",
+          "oklch(49% 0.0648 83.37)",
+          "oklch(61% 0.0648 83.37)",
+          "oklch(72% 0.0648 83.37)",
+          "oklch(84% 0.0648 83.37)",
+          "oklch(95% 0.0648 83.37)"
+        ]
+      },
+      "action-ink": {
+        "role": "neutral",
+        "displayName": "Action Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0458 253.97)",
+          "oklch(26% 0.0458 253.97)",
+          "oklch(38% 0.0458 253.97)",
+          "oklch(49% 0.0458 253.97)",
+          "oklch(61% 0.0458 253.97)",
+          "oklch(72% 0.0458 253.97)",
+          "oklch(84% 0.0458 253.97)",
+          "oklch(95% 0.0458 253.97)"
+        ]
+      },
+      "action-light": {
+        "role": "neutral",
+        "displayName": "Action Light",
+        "tonalRamp": [
+          "oklch(15% 0.0235 88.23)",
+          "oklch(26% 0.0235 88.23)",
+          "oklch(38% 0.0235 88.23)",
+          "oklch(49% 0.0235 88.23)",
+          "oklch(61% 0.0235 88.23)",
+          "oklch(72% 0.0235 88.23)",
+          "oklch(84% 0.0235 88.23)",
+          "oklch(95% 0.0235 88.23)"
+        ]
+      },
+      "action-shade": {
+        "role": "neutral",
+        "displayName": "Action Shade",
+        "tonalRamp": [
+          "oklch(15% 0.0455 85.86)",
+          "oklch(26% 0.0455 85.86)",
+          "oklch(38% 0.0455 85.86)",
+          "oklch(49% 0.0455 85.86)",
+          "oklch(61% 0.0455 85.86)",
+          "oklch(72% 0.0455 85.86)",
+          "oklch(84% 0.0455 85.86)",
+          "oklch(95% 0.0455 85.86)"
+        ]
+      },
+      "action-dark-top": {
+        "role": "neutral",
+        "displayName": "Action Dark Top",
+        "tonalRamp": [
+          "oklch(15% 0.0462 249.41)",
+          "oklch(26% 0.0462 249.41)",
+          "oklch(38% 0.0462 249.41)",
+          "oklch(49% 0.0462 249.41)",
+          "oklch(61% 0.0462 249.41)",
+          "oklch(72% 0.0462 249.41)",
+          "oklch(84% 0.0462 249.41)",
+          "oklch(95% 0.0462 249.41)"
+        ]
+      },
+      "action-dark-bottom": {
+        "role": "neutral",
+        "displayName": "Action Dark Bottom",
+        "tonalRamp": [
+          "oklch(15% 0.0401 255.25)",
+          "oklch(26% 0.0401 255.25)",
+          "oklch(38% 0.0401 255.25)",
+          "oklch(49% 0.0401 255.25)",
+          "oklch(61% 0.0401 255.25)",
+          "oklch(72% 0.0401 255.25)",
+          "oklch(84% 0.0401 255.25)",
+          "oklch(95% 0.0401 255.25)"
+        ]
+      },
+      "action-dark-text": {
+        "role": "neutral",
+        "displayName": "Action Dark Text",
+        "tonalRamp": [
+          "oklch(15% 0.0269 85.67)",
+          "oklch(26% 0.0269 85.67)",
+          "oklch(38% 0.0269 85.67)",
+          "oklch(49% 0.0269 85.67)",
+          "oklch(61% 0.0269 85.67)",
+          "oklch(72% 0.0269 85.67)",
+          "oklch(84% 0.0269 85.67)",
+          "oklch(95% 0.0269 85.67)"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus",
+        "tonalRamp": [
+          "oklch(15% 0.1039 85.76)",
+          "oklch(26% 0.1039 85.76)",
+          "oklch(38% 0.1039 85.76)",
+          "oklch(49% 0.1039 85.76)",
+          "oklch(61% 0.1039 85.76)",
+          "oklch(72% 0.1039 85.76)",
+          "oklch(84% 0.1039 85.76)",
+          "oklch(95% 0.1039 85.76)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Case-study title"
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heading"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project dossier heading"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default information text"
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "Case-study prose"
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Action labels"
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metadata and compact links"
+      }
+    },
+    "shadows": [
+      {
+        "name": "dossier",
+        "value": "0 14px 44px #040b1726",
+        "purpose": "Separate parchment from the scene"
+      },
+      {
+        "name": "light-action",
+        "value": "inset 0 0 0 3px #fff9eb70, 0 4px 12px #02091526",
+        "purpose": "Crafted light action rim"
+      },
+      {
+        "name": "dark-action",
+        "value": "inset 0 0 0 3px #293b4d, 0 4px 12px #02091526",
+        "purpose": "Crafted dark action rim"
+      },
+      {
+        "name": "selected-emblem",
+        "value": "inset 0 0 0 4px #203246, inset 0 0 0 5px #eedab3, 0 3px 18px #e6cd913b",
+        "purpose": "Current project illumination"
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "CSS state transitions"
+      },
+      {
+        "name": "action-transition",
+        "value": "0.24s",
+        "purpose": "Action and arrow transitions"
+      },
+      {
+        "name": "dossier-reveal",
+        "value": "0.32s power3.out",
+        "purpose": "Opacity 0.65 to 1 and y 6 to 0; bypass for reduced motion"
+      },
+      {
+        "name": "outer-orbit",
+        "value": "240s linear infinite",
+        "purpose": "Clockwise, only visible and without reduced motion"
+      },
+      {
+        "name": "inner-orbit",
+        "value": "320s linear infinite",
+        "purpose": "Counterclockwise, only visible and without reduced motion"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-min",
+        "value": "1600px"
+      },
+      {
+        "name": "compact-max",
+        "value": "1250px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1000px"
+      },
+      {
+        "name": "mobile-max",
+        "value": "700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Light Action",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "Original two-tone action with a fine inset outline and opposing curved corners.",
+      "html": "<a class=\"ds-game-button\" href=\"#projects\"><span>View projects</span><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" fill=\"none\" stroke=\"currentColor\" class=\"ds-action-arrow\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 7 9 9-9 9\"/></svg>\n</a>",
+      "css": ".ds-game-button {\n  position: relative;\n  display: inline-flex;\n  min-height: 44px;\n  align-items: center;\n  justify-content: center;\n  gap: 12px;\n  padding: 9px 19px;\n  background: linear-gradient(#fff8e7, #e8d9b9);\n  color: #24364c;\n  border: 1px solid #c8b183;\n  border-radius: 5px 22px 5px 22px;\n  text-decoration: none;\n  font-family: var(--font-display, 'Newsreader Variable', Georgia, serif);\n  font-size: 18px;\n  font-weight: 500;\n  line-height: 1.2;\n  box-shadow:\n    inset 0 0 0 3px #fff9eb70,\n    0 4px 12px #02091526;\n  transition:\n    translate 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    box-shadow 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    background 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1));\n}\n.ds-game-button::after {\n  content: '';\n  position: absolute;\n  inset: 4px;\n  border: 1px solid #a38c5f65;\n  border-radius: inherit;\n  pointer-events: none;\n}\n.ds-game-button:hover {\n  translate: 0 -2px;\n  box-shadow:\n    inset 0 0 0 3px #fff9ebc0,\n    0 6px 18px #02091536;\n}\n.ds-game-button:active {\n  translate: 0 1px;\n}\n.ds-action-arrow {\n  width: 17px;\n  height: 17px;\n  margin-left: auto;\n  transition: translate 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1));\n}\n.ds-game-button:hover .ds-action-arrow {\n  translate: 3px 0;\n}.ds-game-button:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }@media(prefers-reduced-motion:reduce){.ds-game-button,.ds-action-arrow{transition:none}}"
+    },
+    {
+      "name": "Dark Action",
+      "kind": "button",
+      "refersTo": "button-dark",
+      "description": "Original two-tone action with a fine inset outline and opposing curved corners.",
+      "html": "<a class=\"ds-game-button ds-game-button-dark\" href=\"#projects\"><span>View projects</span><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" fill=\"none\" stroke=\"currentColor\" class=\"ds-action-arrow\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 7 9 9-9 9\"/></svg>\n</a>",
+      "css": ".ds-game-button {\n  position: relative;\n  display: inline-flex;\n  min-height: 44px;\n  align-items: center;\n  justify-content: center;\n  gap: 12px;\n  padding: 9px 19px;\n  background: linear-gradient(#fff8e7, #e8d9b9);\n  color: #24364c;\n  border: 1px solid #c8b183;\n  border-radius: 5px 22px 5px 22px;\n  text-decoration: none;\n  font-family: var(--font-display, 'Newsreader Variable', Georgia, serif);\n  font-size: 18px;\n  font-weight: 500;\n  line-height: 1.2;\n  box-shadow:\n    inset 0 0 0 3px #fff9eb70,\n    0 4px 12px #02091526;\n  transition:\n    translate 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    box-shadow 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    background 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1));\n}\n.ds-game-button::after {\n  content: '';\n  position: absolute;\n  inset: 4px;\n  border: 1px solid #a38c5f65;\n  border-radius: inherit;\n  pointer-events: none;\n}\n.ds-game-button:hover {\n  translate: 0 -2px;\n  box-shadow:\n    inset 0 0 0 3px #fff9ebc0,\n    0 6px 18px #02091536;\n}\n.ds-game-button:active {\n  translate: 0 1px;\n}\n.ds-action-arrow {\n  width: 17px;\n  height: 17px;\n  margin-left: auto;\n  transition: translate 0.24s var(--ease, cubic-bezier(0.22, 1, 0.36, 1));\n}\n.ds-game-button:hover .ds-action-arrow {\n  translate: 3px 0;\n}\n.ds-game-button-dark {\n  background: linear-gradient(#21364b, #101e30);\n  color: #f7eedb;\n  border-color: #b8a175;\n  box-shadow:\n    inset 0 0 0 3px #293b4d,\n    0 4px 12px #02091526;\n}\n.ds-game-button-dark:hover {\n  box-shadow:\n    inset 0 0 0 3px #4b5660,\n    0 6px 18px #02091536;\n}.ds-game-button:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }@media(prefers-reduced-motion:reduce){.ds-game-button,.ds-action-arrow{transition:none}}"
+    },
+    {
+      "name": "Parchment Dossier",
+      "kind": "card",
+      "refersTo": "dossier",
+      "description": "The canonical readable panel; actual corner ornament paths are inline.",
+      "html": "<article class=\"ds-dossier\"><svg class=\"ds-panel-corner ds-corner-tl\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\"  stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 46V13L13 2h33 M7 43V16l9-9h27 M7 27l9-11h11L16 27Z M16 2v14H2\"/><path d=\"m11 11 5-5 5 5-5 5Z\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"30\" cy=\"7\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/></svg>\n<svg class=\"ds-panel-corner ds-corner-tr\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\"  stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 46V13L13 2h33 M7 43V16l9-9h27 M7 27l9-11h11L16 27Z M16 2v14H2\"/><path d=\"m11 11 5-5 5 5-5 5Z\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"30\" cy=\"7\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/></svg>\n<svg class=\"ds-panel-corner ds-corner-bl\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\"  stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 46V13L13 2h33 M7 43V16l9-9h27 M7 27l9-11h11L16 27Z M16 2v14H2\"/><path d=\"m11 11 5-5 5 5-5 5Z\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"30\" cy=\"7\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/></svg>\n<svg class=\"ds-panel-corner ds-corner-br\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\"  stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 46V13L13 2h33 M7 43V16l9-9h27 M7 27l9-11h11L16 27Z M16 2v14H2\"/><path d=\"m11 11 5-5 5 5-5 5Z\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"30\" cy=\"7\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/></svg>\n<div class=\"ds-dossier-content\"><h2>Project archive</h2><p>Real work, carefully documented.</p></div></article>",
+      "css": ".ds-dossier {\n  position: relative;\n  isolation: isolate;\n  color: var(--ink, #25354b);\n  background: linear-gradient(115deg, #f8f2e6, #eae2d1);\n  border: 1px solid #c4ad81;\n  border-radius: 15px 5px 15px 5px;\n  padding: 30px;\n  box-shadow: 0 14px 44px #040b1726;\n}\n.ds-dossier::before {\n  content: '';\n  position: absolute;\n  inset: 7px;\n  pointer-events: none;\n  border: 1px solid #b5a28280;\n  border-radius: 9px 3px 9px 3px;\n}\n.ds-dossier-content {\n  position: relative;\n  z-index: 1;\n}.ds-dossier{font-family:var(--font-body, 'Source Sans 3 Variable', sans-serif);font-size:17px;line-height:1.5}.ds-dossier h2{font-family:var(--font-display, 'Newsreader Variable', Georgia, serif);font-size:32px;font-weight:550;line-height:1.12;margin:0 0 14px}.ds-dossier p{margin:0}\n.ds-panel-corner {\n  position: absolute;\n  width: 43px;\n  height: 43px;\n  color: #a58b5d;\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 0.8;\n  pointer-events: none;\n}\n.ds-corner-tl {\n  top: 2px;\n  left: 2px;\n}\n.ds-corner-tr {\n  top: 2px;\n  right: 2px;\n  rotate: 90deg;\n}\n.ds-corner-bl {\n  bottom: 2px;\n  left: 2px;\n  rotate: -90deg;\n}\n.ds-corner-br {\n  bottom: 2px;\n  right: 2px;\n  rotate: 180deg;\n}"
+    },
+    {
+      "name": "Archive Project Link",
+      "kind": "chip",
+      "refersTo": "archive-link",
+      "description": "A compact real link, including current-project treatment.",
+      "html": "<nav class=\"ds-archive-project-list\" aria-label=\"Project archive\"><a href=\"#project-courtside\" aria-current=\"true\">Courtside</a> <a href=\"#project-beaconnect\">Beaconnect</a></nav>",
+      "css": ".ds-archive-project-list a {\n  display: inline-block;\n  padding: 7px 10px;\n  border: 1px solid #a5906666;\n  border-radius: 3px;\n  font-size: 14px;\n  text-decoration: none;\n  transition:\n    background 0.2s,\n    translate 0.2s;\n}\n.ds-archive-project-list a[aria-current='true'],\n.ds-archive-project-list a:hover {\n  background: #243b50;\n  color: #fff1d8;\n  translate: 0 -1px;\n}.ds-archive-project-list{color:var(--ink, #25354b);font-family:var(--font-body, 'Source Sans 3 Variable', sans-serif);line-height:1.5}.ds-archive-project-list a:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }"
+    },
+    {
+      "name": "Celestial Navigation",
+      "kind": "nav",
+      "description": "Labeled SVG navigation with glowing active icon, underline and diamond.",
+      "html": "<nav class=\"ds-main-nav\" aria-label=\"Main navigation\"><a class=\"ds-nav-item\" href=\"#profile\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" fill=\"none\" stroke=\"currentColor\" class=\"ds-celestial-icon\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m16 2 3.5 10.5L30 16l-10.5 3.5L16 30l-3.5-10.5L2 16l10.5-3.5Z\"/><circle cx=\"16\" cy=\"16\" r=\"10\"/><path d=\"M16 7v18M7 16h18\"/></svg>\n<span>Profile</span><span class=\"ds-nav-active\" aria-hidden=\"true\"></span></a><a class=\"ds-nav-item\" href=\"#projects\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" fill=\"none\" stroke=\"currentColor\" class=\"ds-celestial-icon\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 8 16 3l9 5v16l-9 5-9-5Z M7 8l9 5 9-5 M16 13v16 M12 10l9-5\"/><path d=\"M11 17v5m10-5v5\"/></svg>\n<span>Projects</span><span class=\"ds-nav-active\" aria-hidden=\"true\"></span></a></nav>",
+      "css": ".ds-nav-item {\n  position: relative;\n  min-width: 70px;\n  min-height: 65px;\n  padding: 0 8px 12px;\n  color: #d2cfca;\n  text-decoration: none;\n  font-family: var(--font-display, 'Newsreader Variable', Georgia, serif);\n  font-size: 17px;\n  transition:\n    translate 0.2s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    color 0.2s;\n}\n.ds-nav-item .ds-celestial-icon {\n  width: 27px;\n  height: 27px;\n}\n.ds-nav-item[aria-current='page'] {\n  color: #fff4d7;\n}\n.ds-nav-item[aria-current='page'] .ds-celestial-icon {\n  filter: drop-shadow(0 1px 5px #d5b96c80);\n}\n.ds-nav-active {\n  position: absolute;\n  left: 50%;\n  bottom: 2px;\n  width: 5px;\n  height: 5px;\n  background: #f4ddb0;\n  rotate: 45deg;\n  opacity: 0;\n}\n.ds-nav-item[aria-current='page'] .ds-nav-active {\n  opacity: 1;\n}\n.ds-nav-item[aria-current='page']::after {\n  content: '';\n  position: absolute;\n  bottom: 4px;\n  left: 0;\n  right: 0;\n  height: 1px;\n  background: linear-gradient(90deg, transparent, #d4b788, transparent);\n}\n.ds-nav-item:hover {\n  color: #fff5dc;\n  translate: 0 -2px;\n}.ds-main-nav{display:flex;gap:34px;background:var(--color-midnight,#0c1829);padding:16px}.ds-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}.ds-nav-item:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }@media(prefers-reduced-motion:reduce){.ds-nav-item{transition:none}}"
+    },
+    {
+      "name": "Selected Project Emblem",
+      "kind": "custom",
+      "refersTo": "project-emblem",
+      "description": "Circular original project icon with selected rings and diamond points.",
+      "html": "<a class=\"ds-project-choice\" href=\"#project-courtside\" aria-current=\"true\"><span class=\"ds-emblem\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" class=\"ds-celestial-icon\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m26 38 8 7 22-25-3-5-6 1-1-6-6 2-3-5-20 26 7 3Z M27 35l20-19m-17 22 23-23m-30 17L40 12m-20 18L37 7 M26 38l8 7-5 6c-4 5-13-2-10-6Z\"/><path d=\"m19 48-5 7\"/></svg>\n</span><span>Courtside</span></a>",
+      "css": ".ds-project-choice {\n  color: #f5eddd;\n  text-decoration: none;\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.ds-emblem {\n  position: relative;\n  width: 72px;\n  height: 72px;\n  border: 1px solid #c9ad78a6;\n  border-radius: 50%;\n  display: grid;\n  place-items: center;\n  color: #dbc59a;\n  background: radial-gradient(ellipse at 50% 65%, #4c677b9c, #0e2035bd 72%);\n  box-shadow:\n    inset 0 0 0 4px #14263d,\n    inset 0 0 0 5px #a08a5b66;\n  transition:\n    scale 0.3s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    border-color 0.3s,\n    box-shadow 0.3s;\n}\n.ds-emblem .ds-celestial-icon {\n  width: 49px;\n  height: 49px;\n}\n.ds-project-choice:hover .ds-emblem {\n  scale: 1.07;\n  border-color: #f8e7c0;\n}\n.ds-project-choice[aria-current='true'] .ds-emblem {\n  border-color: #fff0c9;\n  color: #fff0ce;\n  box-shadow:\n    inset 0 0 0 4px #203246,\n    inset 0 0 0 5px #eedab3,\n    0 3px 18px #e6cd913b;\n}\n.ds-project-choice[aria-current='true'] .ds-emblem::before,\n.ds-project-choice[aria-current='true'] .ds-emblem::after {\n  content: '';\n  position: absolute;\n  width: 6px;\n  height: 6px;\n  rotate: 45deg;\n  background: #f9e6bd;\n  left: calc(50% - 3px);\n}\n.ds-project-choice[aria-current='true'] .ds-emblem::before {\n  top: -4px;\n}\n.ds-project-choice[aria-current='true'] .ds-emblem::after {\n  content: '';\n  position: absolute;\n  width: 6px;\n  height: 6px;\n  rotate: 45deg;\n  background: #f9e6bd;\n  left: calc(50% - 3px);\n}.ds-project-choice{font-family:var(--font-display, 'Newsreader Variable', Georgia, serif);font-size:20px;padding:12px;background:var(--color-midnight,#0c1829)}.ds-project-choice:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }@media(prefers-reduced-motion:reduce){.ds-emblem{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Celestial Archive",
+    "overview": "An original celestial archive gives real engineering work the atmosphere of a carefully kept dossier. Desaturated midnight scenery, pale orbital geometry and warm ivory reading surfaces form a calm, luminous world inspired by the approved Genshin reference. Its visual vocabulary is original: the `I` monogram, project emblems, constellation geometry and corner ornaments are authored SVG assets.\n\nThe ornament frames selectable, readable content. Source Sans 3 supports practical information, while Newsreader gives names, headings and actions an archival character. Project stages remain explicit; decorative stars never become invented ratings, levels or performance claims.",
+    "keyCharacteristics": [
+      "Atmospheric blue scenery behind warm ivory dossiers.",
+      "Fine pale-gold geometry, inset borders and asymmetric corners.",
+      "Original SVG identity and project symbols.",
+      "Readable text, real links and restrained motion."
+    ],
+    "rules": [
+      {
+        "name": "The Reading Surface Rule",
+        "body": "Put extended reading on parchment with dark ink; keep environmental glows and texture subordinate to text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Identity Type Rule",
+        "body": "Reserve Cinzel for identity; use Newsreader and Source Sans 3 for readable interface text.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "**Do** use original SVG symbols and the authored monogram for celestial identity.",
+      "**Do** keep parchment text selectable, readable and clear of decorative geometry.",
+      "**Do** preserve visible labels, keyboard focus, selected-state semantics and reduced-motion behavior.",
+      "**Do** use actual application captures and explicit project-stage labels."
+    ],
+    "donts": [
+      "**Don't** substitute extracted game assets or a screenshot of the approved reference for the interface.",
+      "**Don't** turn stars or emblems into unsupported levels, ratings, metrics or awards.",
+      "**Don't** replace the reading fonts with ornamental identity typography.",
+      "**Don't** trap long content inside a fixed-height game screen or let bottom navigation cover it."
+    ]
+  }
+}

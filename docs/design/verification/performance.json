@@ -1,0 +1,113 @@
+{
+  "lcp": 1856,
+  "cls": 0.002319130298061589,
+  "shifts": [
+    {
+      "value": 0.002319130298061589,
+      "time": 1364.9000000003725,
+      "sources": [
+        {
+          "node": "DIV",
+          "id": "",
+          "cls": "dossier-projects",
+          "previous": {
+            "x": 42,
+            "y": 761,
+            "width": 306,
+            "height": 83,
+            "top": 761,
+            "right": 348,
+            "bottom": 844,
+            "left": 42
+          },
+          "current": {
+            "x": 42,
+            "y": 741,
+            "width": 306,
+            "height": 103,
+            "top": 741,
+            "right": 348,
+            "bottom": 844,
+            "left": 42
+          }
+        },
+        {
+          "node": "ARTICLE",
+          "id": "project-courtside",
+          "cls": "project-dossier",
+          "previous": {
+            "x": 42,
+            "y": 835,
+            "width": 330,
+            "height": 9,
+            "top": 835,
+            "right": 372,
+            "bottom": 844,
+            "left": 42
+          },
+          "current": {
+            "x": 42,
+            "y": 815,
+            "width": 330,
+            "height": 29,
+            "top": 815,
+            "right": 372,
+            "bottom": 844,
+            "left": 42
+          }
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "name": "source-sans-3-latin-wght-normal.Bo_j9asI.woff2",
+      "bytes": 29172
+    },
+    {
+      "name": "newsreader-latin-wght-normal.CCVVNp6i.woff2",
+      "bytes": 58384
+    },
+    {
+      "name": "ClientRouter.astro_astro_type_script_index_0_lang.BBp9seDQ.js",
+      "bytes": 4977
+    },
+    {
+      "name": "Action.CDBex-sE.css",
+      "bytes": 7827
+    },
+    {
+      "name": "page.i27NMnLY.js",
+      "bytes": 347
+    },
+    {
+      "name": "celestial-city-mobile.webp",
+      "bytes": 128004
+    },
+    {
+      "name": "monogram.svg",
+      "bytes": 849
+    },
+    {
+      "name": "court.svg",
+      "bytes": 1176
+    },
+    {
+      "name": "BaseLayout.astro_astro_type_script_index_0_lang.DO2C-axk.js",
+      "bytes": 28526
+    },
+    {
+      "name": "symbols.svg#profile",
+      "bytes": 1358
+    },
+    {
+      "name": "prefetch.CoRm9hMA.js",
+      "bytes": 1422
+    }
+  ],
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "overflow": false
+}

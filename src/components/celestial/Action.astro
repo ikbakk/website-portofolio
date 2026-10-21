@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  href?: string;
+  icon?: string;
+  dark?: boolean;
+  download?: boolean;
+  class?: string;
+}
+const { href, icon, dark = false, download, class: className = '' } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  data-navigation={href?.startsWith('#') ? true : undefined}
+  type={!href ? 'button' : undefined}
+  download={download}
+  class:list={['game-button', { 'game-button-dark': dark }, className]}
+>
+  {icon && <Icon name={icon} class="action-icon" />}
+  <span><slot /></span><Icon name="arrow" class="action-arrow" />
+</Tag>

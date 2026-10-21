@@ -6,7 +6,8 @@
  * folio bar. The markdown body here is the long-form text for the
  * entry's "body" slot, rendered through the ProjectEntry component.
  */
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const projects = defineCollection({

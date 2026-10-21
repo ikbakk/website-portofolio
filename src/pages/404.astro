@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Panel from '../components/celestial/Panel.astro';
+import Action from '../components/celestial/Action.astro';
+import Icon from '../components/celestial/Icon.astro';
+---
+
+<BaseLayout
+  title="Page not found | Muhammad Iqbal Firdaus"
+  description="This page is missing from the archive. Return to Iqbal's portfolio."
+>
+  <div class="not-found-shell mx-auto">
+    <Panel
+      ><Icon name="profile" class="lost-crest" /><p class="lost-code">404</p><h1>
+        A little off the map.
+      </h1><p>This page is not in the archive. The path back is just below.</p><Action
+        href="/"
+        icon="profile"
+        dark>Return to profile</Action
+      ></Panel
+    >
+  </div>
+</BaseLayout>

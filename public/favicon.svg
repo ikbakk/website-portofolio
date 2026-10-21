@@ -1,15 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
-  <title id="title">Muhammad Iqbal favicon modular mark</title>
-  <desc id="desc">Small-size favicon version of the optically centered modular-grid mark with slightly larger modules and orange i dot for legibility.</desc>
-  <rect width="256" height="256" rx="48" fill="#111111"/>
-  <g transform="translate(4 3)">
-    <g fill="#F4EFE5">
-      <rect x="42" y="46" width="29" height="158" rx="9"/>
-      <rect x="90" y="94" width="29" height="70" rx="9"/>
-      <rect x="134" y="46" width="80" height="29" rx="9"/>
-      <rect x="134" y="101" width="61" height="29" rx="9"/>
-      <rect x="134" y="149" width="29" height="61" rx="9"/>
-    </g>
-    <circle cx="105" cy="61" r="15" fill="#FF6B35"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+ <defs><linearGradient id="g" x1="160" y1="76" x2="260" y2="318" gradientUnits="userSpaceOnUse"><stop stop-color="#fff5d3"/><stop offset=".32" stop-color="#d9c39a"/><stop offset=".55" stop-color="#fff7e0"/><stop offset=".72" stop-color="#a68b5d"/><stop offset="1" stop-color="#f9eac5"/></linearGradient><radialGradient id="b"><stop stop-color="#547286" stop-opacity=".43"/><stop offset="1" stop-color="#112940" stop-opacity=".06"/></radialGradient></defs>
+ <circle cx="200" cy="200" r="138" fill="url(#b)" stroke="#baa576" stroke-opacity=".48"/>
+ <circle cx="200" cy="200" r="126" stroke="#d7c198" stroke-opacity=".2"/>
+ <path d="M140 82h120v5l-22 12c-12 7-15 17-15 38v126c0 25 4 34 18 42l19 10v5H140v-5l19-10c14-8 18-17 18-42V137c0-21-3-31-15-38l-22-12Z" fill="url(#g)" stroke="#eee0bd" stroke-width="1.2"/>
+ <path d="m151 89 28 14c8 11 8 21 8 36v122c0 27-3 36-15 46l-20 7m97-225-28 14c-8 11-8 21-8 36v122c0 27 3 36 15 46l20 7" stroke="#fff9df" stroke-opacity=".65"/>
+ <path d="m193 111 7-12 7 12-7 12Z M193 290l7-12 7 12-7 12Z" fill="#f5e9c5"/>
 </svg>
