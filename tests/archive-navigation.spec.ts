@@ -6,7 +6,7 @@ test('deep link selects a project; selection and browser Back stay synchronized'
   await page.goto('/#project-courtside');
   await expect(page.locator('[data-project-dossier="courtside"]')).toBeVisible();
   await page
-    .locator('.project-rail')
+    .locator('.archive-project-list')
     .getByRole('link', { name: 'Sungkar Group', exact: true })
     .click();
   await expect(page).toHaveURL(/#project-sungkar-group$/);
@@ -19,7 +19,7 @@ test('deep link selects a project; selection and browser Back stay synchronized'
 test('invalid project IDs fall back to an existing profile and project', async ({ page }) => {
   await page.goto('/#project-does-not-exist');
   await expect(page.locator('[data-section="profile"]')).toBeVisible();
-  await expect(page.locator('[data-project-dossier="courtside"]')).toBeVisible();
+  await expect(page.locator('[data-project-dossier="courtside"]')).toBeHidden();
 });
 
 test('navigation is reachable by keyboard and a resume is a real PDF', async ({
@@ -54,7 +54,9 @@ test('project selection animates the incoming dossier', async ({ page }) => {
   await expect(page.locator('[data-archive-ready]')).toBeVisible();
   const opacity = await page.evaluate(() => {
     (
-      document.querySelector('.project-rail a[data-project-link="sungkar-group"]') as HTMLElement
+      document.querySelector(
+        '.archive-project-list a[data-project-link="sungkar-group"]',
+      ) as HTMLElement
     ).click();
     return Number(
       getComputedStyle(document.querySelector('[data-project-dossier="sungkar-group"]')!).opacity,

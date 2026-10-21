@@ -19,7 +19,7 @@ export function initArchive(root: HTMLElement): () => void {
       el.hidden = el.dataset.projectDossier !== state.projectId;
     });
     root.querySelectorAll<HTMLElement>('[data-project-area]').forEach((el) => {
-      el.hidden = state.section === 'experience' || state.section === 'contact';
+      el.hidden = state.section !== 'projects';
     });
     document.querySelectorAll<HTMLElement>('[data-section-link]').forEach((el) => {
       if (el.dataset.sectionLink === state.section) el.setAttribute('aria-current', 'page');
@@ -33,6 +33,9 @@ export function initArchive(root: HTMLElement): () => void {
     if (title) title.textContent = state.section.charAt(0).toUpperCase() + state.section.slice(1);
     root.dataset.activeSection = state.section;
     root.dataset.archiveReady = 'true';
+    root
+      .querySelector<HTMLElement>('.main-dossier .dossier-content')
+      ?.scrollTo({ top: 0, behavior: 'instant' });
     if (wasReady) {
       const active =
         state.section === 'projects'
@@ -73,8 +76,18 @@ export function initArchive(root: HTMLElement): () => void {
   window.addEventListener('popstate', update);
   update();
   const stopMotion = initAmbientMotion(root);
+  const scroller = root.querySelector<HTMLElement>('.main-dossier .dossier-content');
+  const end = scroller?.querySelector('[data-scroll-end]');
+  const scrollObserver = new IntersectionObserver(
+    ([entry]) => {
+      root.toggleAttribute('data-dossier-more', !entry.isIntersecting);
+    },
+    { root: scroller, threshold: 1 },
+  );
+  if (end) scrollObserver.observe(end);
   return () => {
     stopMotion();
+    scrollObserver.disconnect();
     [...sections, ...dossiers].forEach(stopDossierMotion);
     document.removeEventListener('click', click, true);
     window.removeEventListener('hashchange', update);

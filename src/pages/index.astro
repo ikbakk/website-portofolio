@@ -4,7 +4,6 @@ import Panel from '../components/celestial/Panel.astro';
 import Icon from '../components/celestial/Icon.astro';
 import Action from '../components/celestial/Action.astro';
 import IdentityMark from '../components/celestial/IdentityMark.astro';
-import ProjectSelector from '../components/celestial/ProjectSelector.astro';
 import ProfileDossier from '../components/celestial/ProfileDossier.astro';
 import ProjectDossier from '../components/celestial/ProjectDossier.astro';
 import { archiveProjects } from '../data/archive';
@@ -14,7 +13,6 @@ import { experience } from '../data/experience';
 <BaseLayout home>
   <div class="archive-world" data-archive-root>
     <div class="archive-grid">
-      <ProjectSelector variant="rail" />
       <div class="identity-column flex flex-col items-center justify-center">
         <IdentityMark />
         <div class="identity-caption text-center">
@@ -23,11 +21,10 @@ import { experience } from '../data/experience';
           <span>Independent builds. Real-world problems.</span>
         </div>
         <div class="identity-actions flex flex-wrap justify-center gap-3">
-          <Action href="#projects" icon="profile" class="view-projects">View projects</Action>
           <Action href="/resume.pdf" icon="download" dark>Open resume</Action>
         </div>
       </div>
-      <Panel class="main-dossier">
+      <Panel class="main-dossier" scrollable>
         <ProfileDossier />
         <section id="projects" data-section="projects" aria-labelledby="projects-title">
           <h2 id="projects-title" class="section-title">Project archive</h2>
@@ -38,6 +35,7 @@ import { experience } from '../data/experience';
             {
               archiveProjects.map((project) => (
                 <a href={`#project-${project.id}`} data-project-link={project.id} data-navigation>
+                  <Icon name={project.id} />
                   {project.title}
                 </a>
               ))
@@ -87,15 +85,11 @@ import { experience } from '../data/experience';
         <div class="dossier-projects" data-project-area>
           <div class="ornament-rule" aria-hidden="true"><Icon name="spark" /></div>
           <div class="project-section-topline flex items-center justify-between">
-            <span>Selected project</span><a href="#projects" data-navigation class="archive-link"
-              >Browse archive</a
-            >
+            <span>Selected project</span>
           </div>
           {archiveProjects.map((project) => <ProjectDossier project={project} />)}
         </div>
       </Panel>
     </div>
-    <ProjectSelector variant="strip" />
-    <p class="world-note text-center">Every project has a story. Choose an emblem to explore.</p>
   </div>
 </BaseLayout>

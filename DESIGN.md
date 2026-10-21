@@ -18,6 +18,10 @@ colors:
   action-dark-bottom: '#101e30'
   action-dark-text: '#f7eedb'
   focus: '#e7c477'
+  screen-paper: '#f6f0e4'
+  screen-ink: '#1b2c40'
+  screen-muted-ink: '#3e4c5e'
+  screen-chrome: '#08182b'
 typography:
   display:
     fontFamily: "'Newsreader Variable', Georgia, serif"
@@ -68,8 +72,8 @@ spacing:
   action: '9px 19px'
   action-compact: '7px 13px'
   panel: '30px'
-  panel-home: '34px 35px 26px'
-  panel-mobile: '32px 24px 28px'
+  panel-home: '30px 28px'
+  panel-mobile: '22px 18px'
   gap-small: '12px'
   gap-medium: '20px'
   gap-large: '24px'
@@ -97,10 +101,15 @@ components:
     rounded: '{rounded.emblem}'
     width: '72px'
     height: '72px'
+  screen-dossier:
+    backgroundColor: '{colors.screen-paper}'
+    textColor: '{colors.screen-ink}'
+    rounded: '{rounded.dossier}'
+    padding: '{spacing.panel-home}'
   archive-link:
     rounded: '{rounded.archive-link}'
-    padding: '7px 10px'
-    typography: '{typography.label}'
+    padding: '8px 12px'
+    height: '44px'
 ---
 
 # Design System: Iqbal Celestial Archive
@@ -163,26 +172,27 @@ Newsreader has a literary, open character; Source Sans 3 keeps metadata and long
 
 ## Layout
 
-The environment is fixed, full bleed and noninteractive; the page scrolls naturally above it. Header and archive containers cap at 1600px. Wide layouts use 40px side padding and a three-column archive grid: 108px selector rail, a flexible identity region, and a 390–510px dossier. The default gap is 22px, increasing to 40px from 1600px.
+The home archive fills exactly one dynamic viewport (`100dvh`). Its document does not scroll. The header and bottom chrome occupy their own grid rows; the middle region shrinks with `minmax(0, 1fr)`. The framed dossier is the only vertical scroll surface, with keyboard focus, themed scrollbar and an overflow cue that clears at its end.
 
-At 1250px and below, padding drops to 28px and the grid tightens. At 1000px and below, the rail disappears and a two-column composition remains; the project strip supplies selection. At 700px and below, content stacks, the identity shrinks to at most 255px, and the dossier spans the available width with 17px outer gutters. Actions move into the profile. The project strip scrolls horizontally with readable titles.
+Wide layouts use an identity column and an ivory dossier, with 40px outer gutters and a fluid gap. Project selection lives inside the Projects tab. There is no left selector rail or bottom project strip. The desktop bottom bar contains the real location and social links.
 
-Mobile navigation is fixed to the bottom, includes safe-area padding, and has compensating footer clearance. The minimum supported canvas is 320px. Case-study shells cap at 1040px, with more generous reading padding and a single prose column. Use existing gaps and panel spacing rather than imposing an unrelated spacing scale.
+At 700px and below, the identity sits above the dossier and shrinks to at most 150px / 19dvh. Bottom navigation occupies a layout row, so it cannot cover the dossier. On short phones (up to 600px high), the decorative identity hides to preserve reading space. Landscape keeps a compact identity and resume action. All profile facts remain available in the mobile dossier.
+
+**The Screen Boundary Rule.** Home overflow stays inside the dossier. Do not restore body scrolling, duplicate project shortcuts, or place important content under persistent chrome. Case-study and not-found routes retain ordinary document scrolling and their existing reading layout. The minimum supported width is 320px.
 
 ## Elevation & Depth
 
-Depth combines scenery, translucent scrims, parchment gradients, inset strokes and restrained shadows. The panel's shadow separates it from the scene; button insets suggest a crafted rim. Original SVG orbital layers sit behind the monogram. The dossier's scenery watermark is only 0.045 opacity.
+Depth combines scenery, translucent scrims, parchment gradients, inset strokes and restrained shadows. The panel's shadow separates it from the scene; button insets suggest a crafted rim. Original SVG orbital layers sit behind the monogram. The home dossier uses opaque Screen Paper, Screen Ink text and a 0.018 watermark. Header/footer chrome and a stronger scene scrim protect contrast. Reading routes retain the original 0.045 watermark and parchment gradient.
 
 ### Shadow Vocabulary
 
 - **Dossier:** `0 14px 44px #040b1726`.
 - **Light action:** `inset 0 0 0 3px #fff9eb70, 0 4px 12px #02091526`.
 - **Dark action:** `inset 0 0 0 3px #293b4d, 0 4px 12px #02091526`.
-- **Selected emblem:** `inset 0 0 0 4px #203246, inset 0 0 0 5px #eedab3, 0 3px 18px #e6cd913b`.
 
 ## Shapes
 
-Dossiers use asymmetric rounded corners with a finer inset border at 7px. They are rounded, not polygon-clipped. Small corner SVGs preserve ornamental proportions. Buttons reverse the corner emphasis into elongated opposing curves. Project emblems are circular; active selectors add small diamonds above and below the rim. Thin strokes, diamonds, rings and four-point stars form the shared geometry.
+Dossiers use asymmetric rounded corners with a finer inset border at 7px. They are rounded, not polygon-clipped. Small corner SVGs preserve ornamental proportions. Buttons reverse the corner emphasis into elongated opposing curves. Project illustrations use circular emblems; the active navigation marker is a small diamond. Thin strokes, diamonds, rings and four-point stars form the shared geometry.
 
 ## Components
 
@@ -204,7 +214,7 @@ Compact project links use a thin muted-gold border and small radius. Hover and s
 
 ### Project Emblems
 
-Circular project selectors use inset rings over a radial blue material. Hover enlarges the emblem to 1.07; selected emblems brighten and gain two diamond points. Keep the original tourism, badminton, connection, document and monitor SVG motifs and visible names. Rail, strip and dossier illustration sizes are purposeful variants.
+Dossier illustrations use circular project emblems with inset rings over a radial blue material. Project selection uses labelled, icon-bearing links with a minimum height of 44px. Keep the original tourism, badminton, connection, document and monitor SVG motifs and visible names. Project motifs now appear in the Projects tab links and dossier illustrations; the former rail and strip are retired.
 
 ### Identity and Motion
 

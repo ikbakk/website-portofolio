@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-21T17:38:51.020257+00:00",
+  "generatedAt": "2026-10-22T01:15:00+08:00",
   "title": "Design System: Iqbal Celestial Archive",
   "extensions": {
     "colorMeta": {
@@ -325,7 +325,13 @@
         "name": "mobile-max",
         "value": "700px"
       }
-    ]
+    ],
+    "layout": {
+      "home": "100dvh; header / minmax(0, 1fr) / footer or mobile navigation",
+      "scroll": "Only the home dossier scrolls; reading routes use document scrolling",
+      "projectEntry": "Projects navigation tab; no rail or strip",
+      "mobileIdentity": "min(19dvh, 150px); hidden below 600px viewport height on phones"
+    }
   },
   "components": [
     {
@@ -356,9 +362,9 @@
       "name": "Archive Project Link",
       "kind": "chip",
       "refersTo": "archive-link",
-      "description": "A compact real link, including current-project treatment.",
+      "description": "Projects-tab selection link, with a minimum touch target of 44px.",
       "html": "<nav class=\"ds-archive-project-list\" aria-label=\"Project archive\"><a href=\"#project-courtside\" aria-current=\"true\">Courtside</a> <a href=\"#project-beaconnect\">Beaconnect</a></nav>",
-      "css": ".ds-archive-project-list a {\n  display: inline-block;\n  padding: 7px 10px;\n  border: 1px solid #a5906666;\n  border-radius: 3px;\n  font-size: 14px;\n  text-decoration: none;\n  transition:\n    background 0.2s,\n    translate 0.2s;\n}\n.ds-archive-project-list a[aria-current='true'],\n.ds-archive-project-list a:hover {\n  background: #243b50;\n  color: #fff1d8;\n  translate: 0 -1px;\n}.ds-archive-project-list{color:var(--ink, #25354b);font-family:var(--font-body, 'Source Sans 3 Variable', sans-serif);line-height:1.5}.ds-archive-project-list a:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }"
+      "css": ".ds-archive-project-list a {\n  display: inline-block;\n  padding: 8px 12px;\n  border: 1px solid #a5906666;\n  border-radius: 3px;\n  font-size: 16px;\n  text-decoration: none;\n  transition:\n    background 0.2s,\n    translate 0.2s;\n}\n.ds-archive-project-list a[aria-current='true'],\n.ds-archive-project-list a:hover {\n  background: #243b50;\n  color: #fff1d8;\n  translate: 0 -1px;\n}.ds-archive-project-list{color:var(--ink, #25354b);font-family:var(--font-body, 'Source Sans 3 Variable', sans-serif);line-height:1.5}.ds-archive-project-list a:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }"
     },
     {
       "name": "Celestial Navigation",
@@ -366,19 +372,11 @@
       "description": "Labeled SVG navigation with glowing active icon, underline and diamond.",
       "html": "<nav class=\"ds-main-nav\" aria-label=\"Main navigation\"><a class=\"ds-nav-item\" href=\"#profile\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" fill=\"none\" stroke=\"currentColor\" class=\"ds-celestial-icon\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m16 2 3.5 10.5L30 16l-10.5 3.5L16 30l-3.5-10.5L2 16l10.5-3.5Z\"/><circle cx=\"16\" cy=\"16\" r=\"10\"/><path d=\"M16 7v18M7 16h18\"/></svg>\n<span>Profile</span><span class=\"ds-nav-active\" aria-hidden=\"true\"></span></a><a class=\"ds-nav-item\" href=\"#projects\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" fill=\"none\" stroke=\"currentColor\" class=\"ds-celestial-icon\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 8 16 3l9 5v16l-9 5-9-5Z M7 8l9 5 9-5 M16 13v16 M12 10l9-5\"/><path d=\"M11 17v5m10-5v5\"/></svg>\n<span>Projects</span><span class=\"ds-nav-active\" aria-hidden=\"true\"></span></a></nav>",
       "css": ".ds-nav-item {\n  position: relative;\n  min-width: 70px;\n  min-height: 65px;\n  padding: 0 8px 12px;\n  color: #d2cfca;\n  text-decoration: none;\n  font-family: var(--font-display, 'Newsreader Variable', Georgia, serif);\n  font-size: 17px;\n  transition:\n    translate 0.2s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    color 0.2s;\n}\n.ds-nav-item .ds-celestial-icon {\n  width: 27px;\n  height: 27px;\n}\n.ds-nav-item[aria-current='page'] {\n  color: #fff4d7;\n}\n.ds-nav-item[aria-current='page'] .ds-celestial-icon {\n  filter: drop-shadow(0 1px 5px #d5b96c80);\n}\n.ds-nav-active {\n  position: absolute;\n  left: 50%;\n  bottom: 2px;\n  width: 5px;\n  height: 5px;\n  background: #f4ddb0;\n  rotate: 45deg;\n  opacity: 0;\n}\n.ds-nav-item[aria-current='page'] .ds-nav-active {\n  opacity: 1;\n}\n.ds-nav-item[aria-current='page']::after {\n  content: '';\n  position: absolute;\n  bottom: 4px;\n  left: 0;\n  right: 0;\n  height: 1px;\n  background: linear-gradient(90deg, transparent, #d4b788, transparent);\n}\n.ds-nav-item:hover {\n  color: #fff5dc;\n  translate: 0 -2px;\n}.ds-main-nav{display:flex;gap:34px;background:var(--color-midnight,#0c1829);padding:16px}.ds-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}.ds-nav-item:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }@media(prefers-reduced-motion:reduce){.ds-nav-item{transition:none}}"
-    },
-    {
-      "name": "Selected Project Emblem",
-      "kind": "custom",
-      "refersTo": "project-emblem",
-      "description": "Circular original project icon with selected rings and diamond points.",
-      "html": "<a class=\"ds-project-choice\" href=\"#project-courtside\" aria-current=\"true\"><span class=\"ds-emblem\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" class=\"ds-celestial-icon\" aria-hidden=\"true\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m26 38 8 7 22-25-3-5-6 1-1-6-6 2-3-5-20 26 7 3Z M27 35l20-19m-17 22 23-23m-30 17L40 12m-20 18L37 7 M26 38l8 7-5 6c-4 5-13-2-10-6Z\"/><path d=\"m19 48-5 7\"/></svg>\n</span><span>Courtside</span></a>",
-      "css": ".ds-project-choice {\n  color: #f5eddd;\n  text-decoration: none;\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.ds-emblem {\n  position: relative;\n  width: 72px;\n  height: 72px;\n  border: 1px solid #c9ad78a6;\n  border-radius: 50%;\n  display: grid;\n  place-items: center;\n  color: #dbc59a;\n  background: radial-gradient(ellipse at 50% 65%, #4c677b9c, #0e2035bd 72%);\n  box-shadow:\n    inset 0 0 0 4px #14263d,\n    inset 0 0 0 5px #a08a5b66;\n  transition:\n    scale 0.3s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),\n    border-color 0.3s,\n    box-shadow 0.3s;\n}\n.ds-emblem .ds-celestial-icon {\n  width: 49px;\n  height: 49px;\n}\n.ds-project-choice:hover .ds-emblem {\n  scale: 1.07;\n  border-color: #f8e7c0;\n}\n.ds-project-choice[aria-current='true'] .ds-emblem {\n  border-color: #fff0c9;\n  color: #fff0ce;\n  box-shadow:\n    inset 0 0 0 4px #203246,\n    inset 0 0 0 5px #eedab3,\n    0 3px 18px #e6cd913b;\n}\n.ds-project-choice[aria-current='true'] .ds-emblem::before,\n.ds-project-choice[aria-current='true'] .ds-emblem::after {\n  content: '';\n  position: absolute;\n  width: 6px;\n  height: 6px;\n  rotate: 45deg;\n  background: #f9e6bd;\n  left: calc(50% - 3px);\n}\n.ds-project-choice[aria-current='true'] .ds-emblem::before {\n  top: -4px;\n}\n.ds-project-choice[aria-current='true'] .ds-emblem::after {\n  content: '';\n  position: absolute;\n  width: 6px;\n  height: 6px;\n  rotate: 45deg;\n  background: #f9e6bd;\n  left: calc(50% - 3px);\n}.ds-project-choice{font-family:var(--font-display, 'Newsreader Variable', Georgia, serif);font-size:20px;padding:12px;background:var(--color-midnight,#0c1829)}.ds-project-choice:focus-visible { outline:2px solid #e7c477; outline-offset:5px; }@media(prefers-reduced-motion:reduce){.ds-emblem{transition:none}}"
     }
   ],
   "narrative": {
     "northStar": "The Celestial Archive",
-    "overview": "An original celestial archive gives real engineering work the atmosphere of a carefully kept dossier. Desaturated midnight scenery, pale orbital geometry and warm ivory reading surfaces form a calm, luminous world inspired by the approved Genshin reference. Its visual vocabulary is original: the `I` monogram, project emblems, constellation geometry and corner ornaments are authored SVG assets.\n\nThe ornament frames selectable, readable content. Source Sans 3 supports practical information, while Newsreader gives names, headings and actions an archival character. Project stages remain explicit; decorative stars never become invented ratings, levels or performance claims.",
+    "overview": "An original celestial game screen with a fixed dynamic viewport. A dark environment supports an ivory dossier and gold identity. The home dossier alone scrolls; case studies retain their natural reading layout. Projects has one navigation entry.",
     "keyCharacteristics": [
       "Atmospheric blue scenery behind warm ivory dossiers.",
       "Fine pale-gold geometry, inset borders and asymmetric corners.",
@@ -395,6 +393,11 @@
         "name": "The Identity Type Rule",
         "body": "Reserve Cinzel for identity; use Newsreader and Source Sans 3 for readable interface text.",
         "section": "typography"
+      },
+      {
+        "name": "The Screen Boundary Rule",
+        "body": "Keep home at 100dvh, scroll inside the dossier, and use only the Projects tab for project selection.",
+        "section": "layout"
       }
     ],
     "dos": [
