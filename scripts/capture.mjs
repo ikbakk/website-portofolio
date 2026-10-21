@@ -22,8 +22,11 @@ try {
   browser = await chromium.launch();
   const reports = [];
   for (const [name, width, height, path] of [
-    ['desktop', 1440, 1000, '/'],
-    ['mobile', 390, 1000, '/'],
+    ['desktop', 1440, 900, '/'],
+    ['mobile', 390, 844, '/'],
+    ['projects', 1440, 900, '/#projects'],
+    ['projects-mobile', 390, 844, '/#projects'],
+    ['landscape', 844, 390, '/'],
     ['case', 1440, 1000, '/projects/courtside/'],
     ['not-found', 390, 1000, '/404.html'],
   ]) {
@@ -32,6 +35,7 @@ try {
     page.on('pageerror', (e) => errors.push(e.message));
     await page.goto('http://127.0.0.1:4401' + path);
     await page.evaluate(() => document.fonts.ready);
+    if (path === '/' || path.startsWith('/#')) await page.locator('[data-archive-ready]').waitFor();
     await page.screenshot({ path: `${output}/${name}.png`, fullPage: true });
     reports.push({
       name,

@@ -2,14 +2,35 @@
   {
     "name": "desktop",
     "width": 1440,
-    "height": 1000,
+    "height": 900,
     "errors": [],
     "overflow": false
   },
   {
     "name": "mobile",
     "width": 390,
-    "height": 1000,
+    "height": 844,
+    "errors": [],
+    "overflow": false
+  },
+  {
+    "name": "projects",
+    "width": 1440,
+    "height": 900,
+    "errors": [],
+    "overflow": false
+  },
+  {
+    "name": "projects-mobile",
+    "width": 390,
+    "height": 844,
+    "errors": [],
+    "overflow": false
+  },
+  {
+    "name": "landscape",
+    "width": 844,
+    "height": 390,
     "errors": [],
     "overflow": false
   },

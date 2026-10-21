@@ -43,6 +43,10 @@ bun run dev
   for missing paths.
 - `/resume.pdf`: the existing resume, reachable as an ordinary link and download.
 
+The home archive occupies one `100dvh` screen. Only its keyboard-accessible dossier
+scrolls; case studies retain normal page scrolling. Projects are selected inside
+the Projects navigation tab. The former left rail and bottom project strip are removed.
+
 The home page contains all meaningful content without JavaScript. Enhancement
 switches visible panels, synchronizes URL/history, and runs optional ambient motion.
 Reduced motion disables the ambient/selection animation. Project emblems are normal

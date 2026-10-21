@@ -29,10 +29,8 @@ for (const hash of ['profile', 'projects', 'experience', 'contact']) {
 
 test('reduced motion and repeated page navigation preserve visible content', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
-  await expect(
-    page.getByRole('heading', { name: 'Muhammad Iqbal Firdaus', exact: true }),
-  ).toBeVisible();
+  await page.goto('/#project-courtside');
+  await expect(page.getByRole('heading', { name: 'Courtside', exact: true })).toBeVisible();
   for (let i = 0; i < 2; i++) {
     await page
       .locator('[data-project-dossier="courtside"]')

@@ -59,7 +59,7 @@ const jsonLd = {
               ? hash
               : 'profile';
         const initial = document.createElement('style');
-        initial.textContent = `.archive-world:not([data-archive-ready]) [data-section]:not([data-section="${section}"]), .archive-world:not([data-archive-ready]) [data-project-dossier]:not([data-project-dossier="${project}"]) { display:none; } .archive-world:not([data-archive-ready]) [data-section], .archive-world:not([data-archive-ready]) .project-dossier { margin-bottom:0; } .archive-world:not([data-archive-ready]) .identity-column { align-self:auto; } ${['experience', 'contact'].includes(section) ? '.archive-world:not([data-archive-ready]) [data-project-area] { display:none; }' : ''}`;
+        initial.textContent = `.archive-world:not([data-archive-ready]) [data-section]:not([data-section="${section}"]), .archive-world:not([data-archive-ready]) [data-project-dossier]:not([data-project-dossier="${project}"]) { display:none; } .archive-world:not([data-archive-ready]) [data-section], .archive-world:not([data-archive-ready]) .project-dossier { margin-bottom:0; } .archive-world:not([data-archive-ready]) .identity-column { align-self:auto; } ${section !== 'projects' ? '.archive-world:not([data-archive-ready]) [data-project-area] { display:none; }' : ''}`;
         document.head.append(initial);
       }
     </script>
@@ -88,7 +88,9 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <slot name="head" /><ClientRouter />
   </head>
-  <body class="min-h-svh bg-midnight font-body text-ivory antialiased">
+  <body
+    class:list={['min-h-svh bg-midnight font-body text-ivory antialiased', { 'game-screen': home }]}
+  >
     <a class="skip-link" href="#content">Skip to content</a>
     <picture class="environment" aria-hidden="true">
       <source
@@ -122,9 +124,32 @@ const jsonLd = {
     <main id="content" tabindex="-1"><slot /></main>
     <Navigation mobile home={home} />
     <footer class="site-footer text-center">
-      <span>Made with care in Mataram.</span><span>Astro &amp; Tailwind CSS</span><a
-        href="https://github.com/ikbakk/website-portofolio">Source code</a
-      >
+      {
+        home ? (
+          <>
+            <>
+              <span class="screen-location">
+                <Icon name="pin" />
+                Mataram, Indonesia
+              </span>
+              <nav aria-label="Social links">
+                <>
+                  <a href={site.github}>GitHub</a>
+                  <a href={site.linkedin}>LinkedIn</a>
+                </>
+              </nav>
+            </>
+          </>
+        ) : (
+          <>
+            <>
+              <span>Made with care in Mataram.</span>
+              <span>Astro &amp; Tailwind CSS</span>
+              <a href="https://github.com/ikbakk/website-portofolio">Source code</a>
+            </>
+          </>
+        )
+      }
     </footer>
     <script>
       import '../scripts/celestial/controller';

@@ -8,6 +8,23 @@ responsive scenery, four archive sections, five substantive case studies, themed
 are documented in [assets.md](assets.md). The approved reference is a direction and
 composition reference; this report makes no claim of pixel-perfect equivalence.
 
+## Game screen revision — 22 October 2026
+
+The home shell now occupies exactly `100dvh` with no document scroll. Only the
+keyboard-accessible dossier can scroll, with an overflow cue and end detection.
+Projects is the only project shortcut; the rail and strip are removed. The left
+area carries identity/resume; the bottom desktop bar carries location and social
+links. Text is darker on an opaque ivory panel; navigation has dark backing and
+larger, brighter labels. Case-study reading pages retain their existing layout.
+
+Seven new browser regressions cover all four tabs at 1440×900, 1280×720,
+390×844, 320×568 and 844×390, internal scroll/link reachability, normal case-study
+scrolling, and the overflow cue. Two core checks failed before implementation.
+Final captures include Projects on mobile and the compact landscape view.
+
+- [Mobile Projects with internal scroll](verification/projects-mobile.webp)
+- [Landscape screen](verification/landscape.webp)
+
 ## Production-build verification
 
 Run `bun run verify` after installing dependencies and Chromium. Verified with
@@ -16,7 +33,7 @@ Node 24.19.0 and the committed Bun lockfile:
 - Astro diagnostics: **0 errors, 0 warnings, 0 hints** across 33 files.
 - Formatting check: passed.
 - Static build: passed, seven HTML pages plus sitemap.
-- Playwright: **23 passed**, against `astro preview`, in 15 seconds.
+- Playwright: **30 passed**, against `astro preview`, in 10.3 seconds.
 - Four axe scans: no serious or critical violations in Profile, Projects,
   Experience or Contact. This is automated coverage, not a full accessibility audit.
 - No-JavaScript content, five project routes, real PDF signature, keyboard access,
@@ -45,7 +62,7 @@ The one mechanical Impeccable detector run returned an empty findings list.
 - [Mobile 404](verification/not-found.webp)
 - [Capture metadata](verification/capture-report.json)
 
-## Local performance sample
+## Initial redesign performance sample (before the game screen revision)
 
 `node scripts/measure.mjs` measures a cold Chromium page at 390×844, CPU slowed 4×,
 150ms network latency and 1.6Mbps download. The saved sample reports **LCP 1,856ms**,
@@ -66,7 +83,7 @@ next navigation rather than moving already visible text.
 
 Source scenery and the approved reference are archived as high-quality WebP; the share image is JPEG to keep repository transfer sizes bounded. Runtime scene and SVG assets are unchanged.
 
-No production deployment or merge was performed. The GitHub PR is the reviewable
-release candidate. Production deployment behavior remains to be checked after the
+No production deployment or merge was performed. The follow-up GitHub PR is the reviewable
+release candidate for this revision. Production deployment behavior remains to be checked after the
 owner approves it. Missing application screenshots are explicitly labelled original
 illustrations; no application UI or outcome metrics were fabricated.
