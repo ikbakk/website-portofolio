@@ -107,17 +107,18 @@ export function initMobilePanelMotion(root: HTMLElement) {
         );
       }
       if (content) {
-        timeline.fromTo(
+        // Hide content immediately. A delayed fromTo leaves it visible until the
+        // fade begins, which looks like a flash after the frame has expanded.
+        gsap.set(content, { opacity: 0 });
+        timeline.to(
           content,
-          { opacity: 0.35 },
           {
-            immediateRender: false,
             opacity: 1,
             duration: reduced.matches ? 0.15 : 0.3,
             ease: 'power2.out',
             clearProps: 'opacity',
           },
-          reduced.matches ? '>' : '+=0.15',
+          reduced.matches ? '>' : '+=0.3',
         );
       }
     },

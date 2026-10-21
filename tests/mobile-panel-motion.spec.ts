@@ -20,7 +20,7 @@ for (const [width, height] of [
   });
 }
 
-test('mobile underlines close locally and the frame expands while parchment stays stationary', async ({
+test('mobile underlines close locally, then reveal content after the frame and 300ms pause', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -56,18 +56,20 @@ test('mobile underlines close locally and the frame expands while parchment stay
       lines: [Number(oldLine.opacity), Number(newLine.opacity)],
       dots: [Number(outgoingDot.opacity), Number(activeDot.opacity)],
     };
-    await new Promise((r) => setTimeout(r, 360));
-    const afterFrame = {
+    await new Promise((r) => setTimeout(r, 300));
+    const afterFrameDuringPause = {
       frameTransform: getComputedStyle(frame).transform,
       contentOpacity: Number(getComputedStyle(content).opacity),
     };
-    await new Promise((r) => setTimeout(r, 100));
+    await new Promise((r) => setTimeout(r, 280));
     const duringFade = Number(getComputedStyle(content).opacity);
-    return { initial, transition, afterFrame, duringFade };
+    await new Promise((r) => setTimeout(r, 400));
+    const afterFade = Number(getComputedStyle(content).opacity);
+    return { initial, transition, afterFrameDuringPause, duringFade, afterFade };
   });
   expect(phases.initial.frame).not.toBe('none');
   expect(phases.initial.contentTransform).toBe('none');
-  expect(phases.initial.contentOpacity).toBe(1);
+  expect(phases.initial.contentOpacity).toBe(0);
   expect(phases.transition.lines[0]).toBeGreaterThan(0);
   expect(phases.transition.lines[0]).toBeLessThan(1);
   expect(phases.transition.lines[1]).toBeGreaterThan(0);
@@ -76,9 +78,11 @@ test('mobile underlines close locally and the frame expands while parchment stay
   expect(phases.transition.dots[0]).toBeLessThan(1);
   expect(phases.transition.dots[1]).toBeGreaterThan(0);
   expect(phases.transition.dots[1]).toBeLessThan(1);
-  expect(phases.afterFrame.frameTransform).toBe('none');
-  expect(phases.afterFrame.contentOpacity).toBe(1);
+  expect(phases.afterFrameDuringPause.frameTransform).toBe('none');
+  expect(phases.afterFrameDuringPause.contentOpacity).toBe(0);
+  expect(phases.duringFade).toBeGreaterThan(0);
   expect(phases.duringFade).toBeLessThan(1);
+  expect(phases.afterFade).toBe(1);
   expect(await panel.boundingBox()).toEqual(before);
   await expect(panel.locator('[data-panel-frame]')).toHaveCSS('transform', 'none');
   await expect(panel.locator('.dossier-content')).toHaveCSS('opacity', '1');
