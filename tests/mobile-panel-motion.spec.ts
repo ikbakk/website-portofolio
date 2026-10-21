@@ -20,7 +20,7 @@ for (const [width, height] of [
   });
 }
 
-test('mobile underlines close locally, then reveal content after the frame and 300ms pause', async ({
+test('mobile underlines close locally, then reveal content after the frame and 150ms pause', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -56,16 +56,18 @@ test('mobile underlines close locally, then reveal content after the frame and 3
       lines: [Number(oldLine.opacity), Number(newLine.opacity)],
       dots: [Number(outgoingDot.opacity), Number(activeDot.opacity)],
     };
-    await new Promise((r) => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, 260));
     const afterFrameDuringPause = {
       frameTransform: getComputedStyle(frame).transform,
       contentOpacity: Number(getComputedStyle(content).opacity),
     };
-    await new Promise((r) => setTimeout(r, 280));
+    await new Promise((r) => setTimeout(r, 100));
+    const beforeFade = Number(getComputedStyle(content).opacity);
+    await new Promise((r) => setTimeout(r, 80));
     const duringFade = Number(getComputedStyle(content).opacity);
     await new Promise((r) => setTimeout(r, 400));
     const afterFade = Number(getComputedStyle(content).opacity);
-    return { initial, transition, afterFrameDuringPause, duringFade, afterFade };
+    return { initial, transition, afterFrameDuringPause, beforeFade, duringFade, afterFade };
   });
   expect(phases.initial.frame).not.toBe('none');
   expect(phases.initial.contentTransform).toBe('none');
@@ -80,6 +82,7 @@ test('mobile underlines close locally, then reveal content after the frame and 3
   expect(phases.transition.dots[1]).toBeLessThan(1);
   expect(phases.afterFrameDuringPause.frameTransform).toBe('none');
   expect(phases.afterFrameDuringPause.contentOpacity).toBe(0);
+  expect(phases.beforeFade).toBe(0);
   expect(phases.duringFade).toBeGreaterThan(0);
   expect(phases.duringFade).toBeLessThan(1);
   expect(phases.afterFade).toBe(1);

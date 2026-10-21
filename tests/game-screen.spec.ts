@@ -61,7 +61,15 @@ test('overflowing projects show a scroll cue that clears at the panel end', asyn
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/#projects');
   const cue = page.locator('.dossier-scroll-hint');
+  const content = page.locator('.main-dossier .dossier-content');
   await expect(cue).toHaveCSS('opacity', '1');
+  await expect
+    .poll(() => content.evaluate((el) => getComputedStyle(el, '::after').opacity))
+    .toBe('1');
   await page.locator('[data-scroll-end]').scrollIntoViewIfNeeded();
   await expect(cue).toHaveCSS('opacity', '0');
+  await expect(content).toHaveCSS('opacity', '1');
+  await expect
+    .poll(() => content.evaluate((el) => getComputedStyle(el, '::after').opacity))
+    .toBe('0');
 });
