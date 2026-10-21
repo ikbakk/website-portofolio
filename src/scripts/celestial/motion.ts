@@ -118,7 +118,7 @@ export function initMobilePanelMotion(root: HTMLElement) {
             ease: 'power2.out',
             clearProps: 'opacity',
           },
-          reduced.matches ? '>' : '+=0.3',
+          reduced.matches ? '>' : '+=0.15',
         );
       }
     },
