@@ -13,12 +13,14 @@ interface Props {
   description?: string;
   home?: boolean;
   gameScreen?: boolean;
+  caseStudy?: boolean;
 }
 const {
   title = 'Muhammad Iqbal Firdaus | Frontend & mobile engineer',
   description = 'Web, mobile and practical tools by Muhammad Iqbal Firdaus, a frontend and mobile engineer based in Mataram, Indonesia.',
   home = false,
   gameScreen = false,
+  caseStudy = false,
 } = Astro.props;
 const origin = site.url;
 const canonical = new URL(Astro.url.pathname, origin).href;
@@ -120,7 +122,7 @@ const jsonLd = {
   <body
     class:list={[
       'min-h-svh bg-midnight font-body text-ivory antialiased',
-      { 'game-screen': home || gameScreen },
+      { 'game-screen': home || gameScreen, 'case-study-screen': caseStudy },
     ]}
   >
     <a class="skip-link" href="#content">Skip to content</a>

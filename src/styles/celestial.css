@@ -1925,8 +1925,8 @@ html[data-opening='pending'] .archive-opening {
   }
 }
 
-@media (min-width: 701px) and (orientation: landscape) {
-  .game-screen:has(.case-world) .site-header {
+@media (min-width: 701px) {
+  .game-screen.case-study-screen .site-header {
     background: linear-gradient(
       180deg,
       rgb(0 0 0 / 50%) 0%,
@@ -1935,7 +1935,7 @@ html[data-opening='pending'] .archive-opening {
     );
     border-bottom-color: transparent;
   }
-  .game-screen:has(.case-world) .site-footer {
+  .game-screen.case-study-screen .site-footer {
     display: none;
   }
   .game-screen .case-identity-info {
@@ -1959,7 +1959,7 @@ html[data-opening='pending'] .archive-opening {
   }
 }
 
-@media (min-width: 701px) and (orientation: landscape) and (max-height: 780px) {
+@media (min-width: 701px) and (max-height: 780px) {
   .game-screen .case-world .identity-art {
     width: min(100%, 27dvh, 288px);
   }

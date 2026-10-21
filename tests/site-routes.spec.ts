@@ -77,8 +77,9 @@ for (const [width, height] of [
 for (const [width, height] of [
   [1440, 900],
   [1024, 768],
+  [768, 1024],
 ]) {
-  test(`project detail keeps the landscape identity and dossier in balance at ${width}`, async ({
+  test(`project detail keeps the desktop identity and dossier in balance at ${width}`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height });
@@ -102,7 +103,7 @@ for (const [width, height] of [
       };
     });
     expect(layout.dossierLeft).toBeGreaterThan(layout.identityRight);
-    expect(layout.dossierWidth).toBeGreaterThan(layout.viewportWidth * 0.54);
+    expect(layout.dossierWidth).toBeGreaterThan(layout.viewportWidth * 0.5);
     expect(layout.documentHeight).toBeLessThanOrEqual(layout.viewportHeight + 1);
   });
 }
