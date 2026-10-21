@@ -3,6 +3,8 @@ import BaseLayout from './BaseLayout.astro';
 import Panel from '../components/celestial/Panel.astro';
 import Icon from '../components/celestial/Icon.astro';
 import Action from '../components/celestial/Action.astro';
+import Navigation from '../components/celestial/Navigation.astro';
+import IdentityMark from '../components/celestial/IdentityMark.astro';
 import type { ArchiveProject } from '../data/archive';
 import { archiveProjects, stageLabels } from '../data/archive';
 interface Props {
@@ -19,29 +21,45 @@ const schema = {
 };
 ---
 
-<BaseLayout title={`${project.title} | Muhammad Iqbal Firdaus`} description={project.source.lede}>
+<BaseLayout
+  title={`${project.title} | Muhammad Iqbal Firdaus`}
+  description={project.source.lede}
+  gameScreen
+>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <div class="case-shell mx-auto">
-    <a class="back-link inline-flex items-center gap-2" href={`/#project-${project.id}`}
-      ><Icon name="arrow" />Back to archive</a
-    >
-    <Panel class="case-panel">
-      <article>
-        <header class="case-heading">
-          <span class="case-stage" data-project-stage
-            >{project.kind} / {stageLabels[project.stage]}</span
-          >
-          <h1>{project.title}</h1><p class="case-summary">{project.summary}</p>
-          <dl class="case-facts grid gap-5 sm:grid-cols-2">
-            <div><dt>My role</dt><dd>{project.source.role}</dd></div><div>
-              <dt>Built with</dt><dd>{project.stack.join(', ')}</dd>
+  <div class="archive-world case-world" data-archive-ready="true">
+    <div class="archive-grid case-grid">
+      <div class="identity-column flex flex-col items-center justify-center">
+        <p class="mobile-section-title">Projects</p>
+        <IdentityMark />
+        <Navigation mobile home={false} constellation />
+        <div class="identity-caption text-center">
+          <div class="identity-rule" aria-hidden="true"><Icon name="spark" /></div>
+          <p>Project archive</p>
+          <span>{project.title}</span>
+        </div>
+      </div>
+      <Panel class="main-dossier case-dossier" scrollable>
+        <a class="case-back-link" href={`/#project-${project.id}`}>
+          <Icon name="arrow" />
+          <span>Back to archive</span>
+        </a>
+        <article class="case-article">
+          <header class="case-heading">
+            <div class="case-overline">
+              <span data-project-stage>{project.kind} / {stageLabels[project.stage]}</span>
+              <span>Project dossier</span>
             </div>
-          </dl>
-        </header>
-        {
-          project.image ? (
-            <figure class="case-capture">
-              <>
+            <h1>{project.title}</h1>
+            <p class="case-summary">{project.summary}</p>
+            <dl class="case-facts">
+              <div><dt>My role</dt><dd>{project.source.role}</dd></div>
+              <div><dt>Built with</dt><dd>{project.stack.join(', ')}</dd></div>
+            </dl>
+          </header>
+          {
+            project.image ? (
+              <figure class="case-capture">
                 <img
                   src={project.image.src}
                   alt={project.image.alt}
@@ -53,51 +71,52 @@ const schema = {
                   {project.image.caption}
                   {project.stage === 'prototype' ? ' Prototype with synthetic data.' : ''}
                 </figcaption>
-              </>
-            </figure>
-          ) : (
-            <figure class="case-illustration flex flex-col items-center justify-center gap-4">
-              {project.id === 'courtside' ? (
-                <img
-                  src="/celestial/court.svg"
-                  alt="Illustration of a badminton court"
-                  width="320"
-                  height="240"
-                />
-              ) : (
-                <span class="emblem case-emblem">
-                  <Icon name={project.id} />
-                </span>
-              )}
-              <figcaption>Original project illustration. Not an application screenshot.</figcaption>
-            </figure>
-          )
-        }
-        <div class="case-prose"><slot /></div>
-        <aside class="case-disclosure">
-          <Icon name="projects" /><p>{project.source.disclosure}</p>
-        </aside>
-        <Action href={project.source.link.href} icon="projects" dark
-          >{project.source.link.label}</Action
-        >
-      </article>
-    </Panel>
-    <nav class="other-projects" aria-label="Other case studies">
-      <h2>Continue exploring</h2><div class="flex flex-wrap gap-3">
-        {
-          archiveProjects
-            .filter((p) => p.id !== project.id)
-            .map((p) => (
-              <a href={p.caseHref}>
-                <>
-                  <Icon name={p.id} />
-                  <span>{p.title}</span>
-                  <Icon name="arrow" />
-                </>
-              </a>
-            ))
-        }
-      </div>
-    </nav>
+              </figure>
+            ) : (
+              <figure class="case-illustration">
+                {project.id === 'courtside' ? (
+                  <img
+                    src="/celestial/court.svg"
+                    alt="Illustration of a badminton court"
+                    width="320"
+                    height="240"
+                  />
+                ) : (
+                  <span class="emblem case-emblem">
+                    <Icon name={project.id} />
+                  </span>
+                )}
+                <figcaption>
+                  Original project illustration. Not an application screenshot.
+                </figcaption>
+              </figure>
+            )
+          }
+          <div class="case-prose"><slot /></div>
+          <aside class="case-disclosure">
+            <Icon name="projects" /><p>{project.source.disclosure}</p>
+          </aside>
+          <Action href={project.source.link.href} icon="projects" dark
+            >{project.source.link.label}</Action
+          >
+        </article>
+        <nav class="other-projects" aria-label="Other case studies">
+          <h2>Continue exploring</h2>
+          <div class="other-project-list">
+            {
+              archiveProjects
+                .filter((p) => p.id !== project.id)
+                .map((p) => (
+                  <a href={p.caseHref}>
+                    <Icon name={p.id} />
+                    <span>{p.title}</span>
+                    <Icon name="arrow" />
+                  </a>
+                ))
+            }
+          </div>
+        </nav>
+      </Panel>
+    </div>
   </div>
 </BaseLayout>

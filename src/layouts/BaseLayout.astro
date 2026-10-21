@@ -12,11 +12,13 @@ interface Props {
   title?: string;
   description?: string;
   home?: boolean;
+  gameScreen?: boolean;
 }
 const {
   title = 'Muhammad Iqbal Firdaus | Frontend & mobile engineer',
   description = 'Web, mobile and practical tools by Muhammad Iqbal Firdaus, a frontend and mobile engineer based in Mataram, Indonesia.',
   home = false,
+  gameScreen = false,
 } = Astro.props;
 const origin = site.url;
 const canonical = new URL(Astro.url.pathname, origin).href;
@@ -116,7 +118,10 @@ const jsonLd = {
     <slot name="head" /><ClientRouter />
   </head>
   <body
-    class:list={['min-h-svh bg-midnight font-body text-ivory antialiased', { 'game-screen': home }]}
+    class:list={[
+      'min-h-svh bg-midnight font-body text-ivory antialiased',
+      { 'game-screen': home || gameScreen },
+    ]}
   >
     <a class="skip-link" href="#content">Skip to content</a>
     <picture class="environment" aria-hidden="true">
@@ -150,7 +155,7 @@ const jsonLd = {
       <div class="header-ornament" aria-hidden="true"><span></span><Icon name="profile" /></div>
     </header>
     <main id="content" tabindex="-1"><slot /></main>
-    {!home && <Navigation mobile home={home} />}
+    {!home && !gameScreen && <Navigation mobile home={home} />}
     <footer class="site-footer text-center">
       {
         home ? (

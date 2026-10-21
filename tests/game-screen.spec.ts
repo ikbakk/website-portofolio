@@ -42,9 +42,7 @@ for (const [width, height] of [
   });
 }
 
-test('long experience content scrolls inside its dossier; case studies scroll normally', async ({
-  page,
-}) => {
+test('long experience and case study content scroll inside their dossiers', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 667 });
   await page.goto('/#experience');
   const resume = page.getByRole('link', { name: 'Download full resume (PDF)' });
@@ -54,7 +52,13 @@ test('long experience content scrolls inside its dossier; case studies scroll no
   ).toBeGreaterThan(0);
   expect(await page.evaluate(() => window.scrollY)).toBe(0);
   await page.goto('/projects/courtside/');
-  expect(await page.evaluate(() => document.documentElement.scrollHeight > innerHeight)).toBe(true);
+  const caseContent = page.locator('.case-dossier .dossier-content');
+  await expect(page.locator('body')).toHaveClass(/game-screen/);
+  await expect
+    .poll(() => caseContent.evaluate((el) => el.scrollHeight > el.clientHeight))
+    .toBe(true);
+  await caseContent.evaluate((el) => el.scrollTo({ top: el.scrollHeight, behavior: 'instant' }));
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
 });
 
 test('overflowing projects show a scroll cue that clears at the panel end', async ({ page }) => {

@@ -34,6 +34,45 @@ for (const [id, title] of projects) {
     }
   });
 }
+for (const [width, height] of [
+  [1440, 900],
+  [390, 844],
+]) {
+  test(`project dossier uses the fixed game screen and internal scrolling at ${width}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height });
+    await page.goto('/projects/courtside/');
+    await expect(page.locator('body')).toHaveClass(/game-screen/);
+    const content = page.locator('.case-dossier .dossier-content');
+    const world = page.locator('.case-world');
+    const scrollState = await page.evaluate(() => ({
+      viewport: window.innerHeight,
+      document: document.documentElement.scrollHeight,
+      panel: document.querySelector('.case-dossier .dossier-content')!.clientHeight,
+      panelContent: document.querySelector('.case-dossier .dossier-content')!.scrollHeight,
+    }));
+    expect(scrollState.document).toBeLessThanOrEqual(scrollState.viewport + 1);
+    expect(scrollState.panelContent).toBeGreaterThan(scrollState.panel);
+    await expect(world).toHaveAttribute('data-dossier-more', '');
+    await expect
+      .poll(() => content.evaluate((el) => getComputedStyle(el, '::after').opacity))
+      .toBe('1');
+    await content.evaluate((el) => el.scrollTo({ top: el.scrollHeight, behavior: 'instant' }));
+    await expect(world).not.toHaveAttribute('data-dossier-more');
+    await expect
+      .poll(() => content.evaluate((el) => getComputedStyle(el, '::after').opacity))
+      .toBe('0');
+    await expect.poll(() => content.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    if (width <= 700) {
+      await expect(page.locator('.site-header')).toBeHidden();
+      await expect(page.locator('.mobile-nav')).toHaveCount(0);
+      await expect(page.locator('.constellation-nav')).toBeVisible();
+      await expect(page.locator('.mobile-section-title')).toHaveText('Projects');
+    }
+  });
+}
 test('unknown routes use a useful 404', async ({ page }) => {
   expect((await page.goto('/not-a-real-route'))?.status()).toBe(404);
   await expect(page.getByRole('heading', { name: 'A little off the map.' })).toBeVisible();

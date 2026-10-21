@@ -117,6 +117,23 @@ export function initArchive(root: HTMLElement): () => void {
   };
 }
 
+function initCaseStudy(root: HTMLElement): () => void {
+  const content = root.querySelector<HTMLElement>('.case-dossier .dossier-content');
+  const end = content?.querySelector('[data-scroll-end]');
+  const scrollObserver = new IntersectionObserver(
+    ([entry]) => root.toggleAttribute('data-dossier-more', !entry.isIntersecting),
+    { root: content, threshold: 1 },
+  );
+  if (end) scrollObserver.observe(end);
+  const stopMotion = initAmbientMotion(root);
+  const stopFeedback = initUIFeedback(document.body);
+  return () => {
+    scrollObserver.disconnect();
+    stopMotion();
+    stopFeedback();
+  };
+}
+
 let cleanup: (() => void) | undefined;
 let activeBody: HTMLElement | undefined;
 function boot() {
@@ -124,7 +141,12 @@ function boot() {
   cleanup?.();
   activeBody = document.body;
   const root = document.querySelector<HTMLElement>('[data-archive-root]');
-  cleanup = root ? initArchive(root) : initUIFeedback(document.body);
+  const caseStudy = document.querySelector<HTMLElement>('.case-world');
+  cleanup = root
+    ? initArchive(root)
+    : caseStudy
+      ? initCaseStudy(caseStudy)
+      : initUIFeedback(document.body);
 }
 document.addEventListener('astro:before-swap', () => {
   cleanup?.();
