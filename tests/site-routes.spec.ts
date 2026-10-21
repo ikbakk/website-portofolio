@@ -73,6 +73,33 @@ for (const [width, height] of [
     }
   });
 }
+for (const [width, height] of [
+  [1440, 900],
+  [1024, 768],
+]) {
+  test(`project detail keeps the landscape identity and dossier in balance at ${width}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height });
+    await page.goto('/projects/courtside/');
+    await expect(page.locator('.case-world .mobile-section-title')).toBeVisible();
+    const layout = await page.evaluate(() => {
+      const identity = document.querySelector('.identity-column')!.getBoundingClientRect();
+      const dossier = document.querySelector('.case-dossier')!.getBoundingClientRect();
+      return {
+        identityRight: identity.right,
+        dossierLeft: dossier.left,
+        dossierWidth: dossier.width,
+        viewportWidth: window.innerWidth,
+        documentHeight: document.documentElement.scrollHeight,
+        viewportHeight: window.innerHeight,
+      };
+    });
+    expect(layout.dossierLeft).toBeGreaterThan(layout.identityRight);
+    expect(layout.dossierWidth).toBeGreaterThan(layout.viewportWidth * 0.54);
+    expect(layout.documentHeight).toBeLessThanOrEqual(layout.viewportHeight + 1);
+  });
+}
 test('unknown routes use a useful 404', async ({ page }) => {
   expect((await page.goto('/not-a-real-route'))?.status()).toBe(404);
   await expect(page.getByRole('heading', { name: 'A little off the map.' })).toBeVisible();
