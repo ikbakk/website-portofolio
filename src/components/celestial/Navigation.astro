@@ -3,8 +3,9 @@ import Icon from './Icon.astro';
 interface Props {
   mobile?: boolean;
   home?: boolean;
+  constellation?: boolean;
 }
-const { mobile = false, home = false } = Astro.props;
+const { mobile = false, home = false, constellation = false } = Astro.props;
 const items = [
   { id: 'profile', label: 'Profile' },
   { id: 'projects', label: 'Projects' },
@@ -14,10 +15,34 @@ const items = [
 ---
 
 <nav
-  class:list={[mobile ? 'mobile-nav' : 'main-nav', 'flex items-center justify-center']}
+  class:list={[
+    constellation ? 'constellation-nav' : mobile ? 'mobile-nav' : 'main-nav',
+    'flex items-center justify-center',
+  ]}
   data-motion-nav
+  data-constellation={constellation || undefined}
   aria-label={mobile ? 'Mobile navigation' : 'Main navigation'}
 >
+  {
+    constellation && (
+      <svg
+        class="constellation-links"
+        viewBox="0 0 360 170"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <>
+          <path
+            d="M48 40 180 85 48 130M312 40 180 85 312 130"
+            fill="none"
+            stroke="currentColor"
+            stroke-width=".7"
+          />
+          <circle cx="180" cy="85" r="3" fill="currentColor" />
+        </>
+      </svg>
+    )
+  }
   {
     items.map((item) => (
       <a

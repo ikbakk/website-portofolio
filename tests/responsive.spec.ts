@@ -8,7 +8,7 @@ for (const width of [320, 390, 768, 1280, 1440]) {
       true,
     );
     await page
-      .locator(width <= 700 ? '.mobile-nav' : '.main-nav')
+      .locator(width <= 700 ? '.constellation-nav' : '.main-nav')
       .getByRole('link', { name: 'Contact', exact: true })
       .click();
     await expect(page.locator('[data-section="contact"]')).toBeVisible();

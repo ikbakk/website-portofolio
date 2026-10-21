@@ -97,3 +97,9 @@ Production build and Astro diagnostics pass with zero errors, warnings or hints.
 The current cold mobile lab sample reports **LCP 1,716ms and CLS 0**, with no overflow, using the same throttled setup described above. This is a local sample, not production field data.
 
 [Motion recording](verification/celestial-motion.mp4) · [Motion capture report](verification/motion-capture-report.json) · [Current lab sample](verification/motion-performance.json).
+
+## Constellation layout revision
+
+Mobile home replaces bottom navigation with four labelled controls around the monogram, two on each side. Short viewports keep a compact, visible constellation. Desktop uses a 30/70 identity/content split and side-by-side project selection/detail. Active markers share the item centre.
+
+Astro check: zero errors, warnings and hints (40 files). Static build, formatting and all **42 Playwright tests** pass. New regressions check mobile control positions and touch targets at 390px and 320px, desktop content allocation and marker alignment. Final desktop/mobile/landscape captures report no page errors or horizontal overflow. Case-study routes keep their existing navigation and reading layout.

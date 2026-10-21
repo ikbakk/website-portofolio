@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Panel from '../components/celestial/Panel.astro';
 import Icon from '../components/celestial/Icon.astro';
 import Action from '../components/celestial/Action.astro';
+import Navigation from '../components/celestial/Navigation.astro';
 import IdentityMark from '../components/celestial/IdentityMark.astro';
 import ProfileDossier from '../components/celestial/ProfileDossier.astro';
 import ProjectDossier from '../components/celestial/ProjectDossier.astro';
@@ -15,6 +16,7 @@ import { experience } from '../data/experience';
     <div class="archive-grid">
       <div class="identity-column flex flex-col items-center justify-center">
         <IdentityMark />
+        <Navigation mobile home constellation />
         <div class="identity-caption text-center">
           <div class="identity-rule" aria-hidden="true"><Icon name="spark" /></div>
           <p>Frontend &amp; mobile engineer</p>

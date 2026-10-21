@@ -38,7 +38,7 @@ test('rapid menu changes settle on the final state and the nav tracer follows af
   await expect(page.locator('[data-section="contact"]')).toHaveCSS('opacity', '1');
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 844 });
-    const nav = page.locator(width > 700 ? '.main-nav' : '.mobile-nav');
+    const nav = page.locator(width > 700 ? '.main-nav' : '.constellation-nav');
     await expect(nav.locator('[data-nav-indicator]')).toHaveCSS('opacity', '1');
     await expect(async () => {
       const active = await nav.locator('[aria-current="page"]').boundingBox();

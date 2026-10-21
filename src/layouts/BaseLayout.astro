@@ -150,7 +150,7 @@ const jsonLd = {
       <div class="header-ornament" aria-hidden="true"><span></span><Icon name="profile" /></div>
     </header>
     <main id="content" tabindex="-1"><slot /></main>
-    <Navigation mobile home={home} />
+    {!home && <Navigation mobile home={home} />}
     <footer class="site-footer text-center">
       {
         home ? (
