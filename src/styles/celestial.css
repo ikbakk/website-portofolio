@@ -1765,6 +1765,9 @@ html[data-opening='pending'] .archive-opening {
 .mobile-section-title {
   display: none;
 }
+.case-identity-info {
+  display: none;
+}
 @media (max-width: 700px) {
   .game-screen {
     padding-top: env(safe-area-inset-top);
@@ -1919,5 +1922,50 @@ html[data-opening='pending'] .archive-opening {
   }
   .game-screen .case-dossier {
     padding-block: 24px;
+  }
+}
+
+@media (min-width: 701px) and (orientation: landscape) {
+  .game-screen:has(.case-world) .site-header {
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 50%) 0%,
+      rgb(0 0 0 / 28%) 58%,
+      transparent 100%
+    );
+    border-bottom-color: transparent;
+  }
+  .game-screen:has(.case-world) .site-footer {
+    display: none;
+  }
+  .game-screen .case-identity-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 14px;
+    max-width: 32ch;
+    margin-top: clamp(10px, 1.5vh, 18px);
+    color: #e9dfc8;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    text-shadow: 0 1px 5px #020b16;
+  }
+  .game-screen .case-identity-info a {
+    color: #f4d99c;
+    text-decoration: underline;
+    text-decoration-color: #d1b67599;
+    text-underline-offset: 3px;
+  }
+}
+
+@media (min-width: 701px) and (orientation: landscape) and (max-height: 780px) {
+  .game-screen .case-world .identity-art {
+    width: min(100%, 27dvh, 288px);
+  }
+  .game-screen .case-identity-info {
+    margin-top: 7px;
+    gap: 2px 10px;
+    font-size: 11px;
   }
 }

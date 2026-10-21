@@ -70,6 +70,7 @@ for (const [width, height] of [
       await expect(page.locator('.mobile-nav')).toHaveCount(0);
       await expect(page.locator('.constellation-nav')).toBeVisible();
       await expect(page.locator('.mobile-section-title')).toHaveText('Projects');
+      await expect(page.locator('.case-identity-info')).toBeHidden();
     }
   });
 }
@@ -83,6 +84,11 @@ for (const [width, height] of [
     await page.setViewportSize({ width, height });
     await page.goto('/projects/courtside/');
     await expect(page.locator('.case-world .mobile-section-title')).toBeVisible();
+    await expect(page.locator('.case-identity-info')).toBeVisible();
+    await expect(page.locator('.site-footer')).toBeHidden();
+    expect(
+      await page.locator('.site-header').evaluate((el) => getComputedStyle(el).backgroundImage),
+    ).toContain('linear-gradient');
     const layout = await page.evaluate(() => {
       const identity = document.querySelector('.identity-column')!.getBoundingClientRect();
       const dossier = document.querySelector('.case-dossier')!.getBoundingClientRect();
