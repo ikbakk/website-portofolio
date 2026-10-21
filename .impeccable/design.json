@@ -345,7 +345,8 @@
       "home": "100dvh; header / minmax(0, 1fr) / footer or mobile navigation",
       "scroll": "Only the home dossier scrolls; reading routes use document scrolling",
       "projectEntry": "Projects navigation tab; no rail or strip",
-      "mobileIdentity": "min(19dvh, 150px); hidden below 600px viewport height on phones"
+      "mobileIdentity": "Labelled 2-left/2-right constellation navigation around monogram; 150\u2013180px region, 116px on short screens; no bottom home navigation",
+      "desktop": "30/70 identity/content; Projects selection and detail in two inner columns"
     }
   },
   "components": [

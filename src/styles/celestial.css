@@ -1490,3 +1490,144 @@ html[data-opening='pending'] .archive-opening {
     translate: none;
   }
 }
+
+/* Constellation layout: compact identity, generous reading surface. */
+.nav-active {
+  translate: -50% 0;
+}
+.main-nav .nav-item {
+  width: 104px;
+  padding-inline: 0;
+}
+.constellation-nav {
+  display: none;
+}
+.game-screen .archive-grid {
+  grid-template-columns: minmax(230px, 3fr) minmax(0, 7fr);
+  gap: clamp(24px, 3vw, 48px);
+}
+.game-screen .identity-art {
+  width: min(100%, 38dvh, 360px);
+}
+.game-screen .main-dossier {
+  padding: 32px clamp(24px, 3vw, 48px);
+}
+.game-screen .profile-bio,
+.game-screen .section-description,
+.game-screen .experience-list {
+  max-width: 70ch;
+}
+.game-screen [data-section='projects'] {
+  grid-column: 1;
+}
+.game-screen [data-active-section='projects'] .dossier-content {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.75fr) minmax(0, 1.6fr);
+  gap: 0 28px;
+  align-content: start;
+}
+.game-screen [data-active-section='projects'] .dossier-content .dossier-projects {
+  grid-column: 2;
+  grid-row: 1;
+}
+.game-screen [data-active-section='projects'] .dossier-content .archive-project-list {
+  flex-direction: column;
+  align-items: stretch;
+}
+.game-screen [data-active-section='projects'] .dossier-content .ornament-rule {
+  display: none;
+}
+@media (max-width: 700px) {
+  body.game-screen {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .game-screen .archive-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 10px;
+  }
+  .game-screen .identity-column {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: clamp(150px, 21dvh, 180px);
+  }
+  .game-screen .identity-art {
+    width: min(39vw, 145px);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+  }
+  .game-screen .constellation-nav {
+    display: grid;
+    position: absolute;
+    inset: 0;
+    grid-template-columns: 88px 1fr 88px;
+    grid-template-rows: 1fr 1fr;
+    padding: 0;
+    gap: 4px;
+    color: #d5bc82;
+  }
+  .constellation-links {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .constellation-nav .nav-item {
+    min-width: 0;
+    width: 88px;
+    min-height: 60px;
+    padding: 4px 0 12px;
+    gap: 3px;
+    font-size: 14px;
+    line-height: 1.1;
+  }
+  .constellation-nav .nav-item:nth-of-type(1) {
+    grid-area: 1 / 1;
+  }
+  .constellation-nav .nav-item:nth-of-type(2) {
+    grid-area: 2 / 1;
+  }
+  .constellation-nav .nav-item:nth-of-type(3) {
+    grid-area: 1 / 3;
+  }
+  .constellation-nav .nav-item:nth-of-type(4) {
+    grid-area: 2 / 3;
+  }
+  .constellation-nav .celestial-icon {
+    width: 27px;
+    height: 27px;
+  }
+  .constellation-nav .nav-item[aria-current='page'] .celestial-icon {
+    filter: drop-shadow(0 2px 7px #ebc878b0);
+  }
+  .game-screen .main-dossier {
+    padding: 22px 18px;
+  }
+  .game-screen [data-active-section='projects'] .dossier-content {
+    display: block;
+  }
+  .game-screen [data-active-section='projects'] .dossier-content .archive-project-list {
+    flex-direction: row;
+  }
+}
+@media (max-width: 700px) and (max-height: 600px) {
+  .game-screen .identity-column {
+    height: 116px;
+  }
+  .game-screen .identity-art {
+    width: 100px;
+  }
+  .constellation-nav .nav-item {
+    min-height: 48px;
+    font-size: 13px;
+  }
+  .constellation-nav .celestial-icon {
+    width: 22px;
+    height: 22px;
+  }
+}

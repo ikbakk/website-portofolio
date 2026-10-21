@@ -14,7 +14,14 @@ export function initNavigationMotion(scope: HTMLElement) {
       const section = active.dataset.sectionLink || '';
       const moved = previous.has(nav) && previous.get(nav) !== section;
       previous.set(nav, section);
-      const position = { x: active.offsetLeft, scaleX: active.offsetWidth / 100, opacity: 1 };
+      const position = {
+        x: active.offsetLeft,
+        y: nav.hasAttribute('data-constellation')
+          ? active.offsetTop + active.offsetHeight - nav.offsetHeight
+          : 0,
+        scaleX: active.offsetWidth / 100,
+        opacity: 1,
+      };
       gsap.killTweensOf(marker);
       if (animate && moved && !media.matches && !keyboard) {
         gsap.to(marker, { ...position, duration: 0.25, ease: 'power2.inOut' });

@@ -235,3 +235,7 @@ The original `I` monogram is layered separately from SVG orbits and stars. The f
 - **Don't** turn stars or emblems into unsupported levels, ratings, metrics or awards.
 - **Don't** replace the reading fonts with ornamental identity typography.
 - **Don't** trap long content inside a fixed-height game screen or let bottom navigation cover it.
+
+### Constellation navigation revision
+
+Mobile home has no bottom navigation. Four labelled constellation controls surround the central monogram: Profile/Projects left, Experience/Contact right. Their positions remain stable and touch targets stay at least 44px. Short screens use a smaller identity region. Reading routes retain their existing navigation. Desktop uses roughly 30/70 identity/content columns, with project selection beside its dossier. The active diamond and shared brush tracer align to each item centre; the mobile tracer follows both row and column. Home remains 100dvh with only inner dossier scrolling.
