@@ -1,0 +1,18 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 900,
+    "intro": "running",
+    "errors": [],
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "height": 844,
+    "intro": "running",
+    "errors": [],
+    "overflow": false
+  }
+]

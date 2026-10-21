@@ -18,6 +18,7 @@ const Tag = href ? 'a' : 'button';
   download={download}
   class:list={['game-button', { 'game-button-dark': dark }, className]}
 >
+  <span class="interaction-ripple" data-interaction-ripple aria-hidden="true"></span>
   {icon && <Icon name={icon} class="action-icon" />}
   <span><slot /></span><Icon name="arrow" class="action-arrow" />
 </Tag>

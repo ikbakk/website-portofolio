@@ -35,6 +35,11 @@ import { experience } from '../data/experience';
             {
               archiveProjects.map((project) => (
                 <a href={`#project-${project.id}`} data-project-link={project.id} data-navigation>
+                  <span class="selection-flare" data-selection-flare aria-hidden="true">
+                    <svg viewBox="0 0 52 52" fill="currentColor">
+                      <path d="m26 3 3 17 17 6-17 4-3 18-5-18L4 26l17-6ZM43 4l1.5 5.5L50 11l-5.5 1.5L43 18l-1.5-5.5L36 11l5.5-1.5Z" />
+                    </svg>
+                  </span>
                   <Icon name={project.id} />
                   {project.title}
                 </a>

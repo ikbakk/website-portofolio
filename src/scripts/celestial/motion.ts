@@ -2,16 +2,22 @@ import { gsap } from 'gsap';
 
 export function stopDossierMotion(element: HTMLElement): void {
   gsap.killTweensOf(element);
-  gsap.set(element, { clearProps: 'transform,opacity' });
+  gsap.set(element, { clearProps: 'transform,opacity,clipPath' });
 }
 
-export function revealDossier(element: HTMLElement): void {
-  gsap.killTweensOf(element);
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+export function revealDossier(element: HTMLElement, keyboard = false): void {
+  stopDossierMotion(element);
+  const gentle = keyboard || matchMedia('(prefers-reduced-motion: reduce)').matches;
   gsap.fromTo(
     element,
-    { opacity: 0.65, y: 6 },
-    { opacity: 1, y: 0, duration: 0.32, ease: 'power3.out', clearProps: 'transform,opacity' },
+    gentle ? { opacity: 0.8 } : { opacity: 0.7, y: 8, clipPath: 'inset(0 4% 0 0)' },
+    {
+      opacity: 1,
+      ...(gentle ? {} : { y: 0, clipPath: 'inset(0 0% 0 0)' }),
+      duration: gentle ? 0.15 : 0.32,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity,clipPath',
+    },
   );
 }
 
@@ -24,6 +30,12 @@ export function initAmbientMotion(root: HTMLElement): () => void {
     context = undefined;
     if (media.matches || document.hidden || !visible) return;
     context = gsap.context(() => {
+      gsap.to('[data-star]', {
+        opacity: 0.55,
+        duration: 2.8,
+        stagger: { each: 0.7, repeat: -1, yoyo: true },
+        ease: 'sine.inOut',
+      });
       gsap.to('[data-orbit="outer"]', {
         rotation: 360,
         svgOrigin: '230 230',

@@ -295,7 +295,7 @@
       {
         "name": "dossier-reveal",
         "value": "0.32s power3.out",
-        "purpose": "Opacity 0.65 to 1 and y 6 to 0; bypass for reduced motion"
+        "purpose": "Opacity 0.7 to 1, y 8 to 0 and clip reveal; 150ms opacity-only for keyboard/reduced motion"
       },
       {
         "name": "outer-orbit",
@@ -306,6 +306,21 @@
         "name": "inner-orbit",
         "value": "320s linear infinite",
         "purpose": "Counterclockwise, only visible and without reduced motion"
+      },
+      {
+        "name": "opening",
+        "value": "~1s power2.out; 1600ms hard deadline",
+        "purpose": "Once-per-session original SVG sigil and iris; immediately interruptible; skip deep links and reduced motion"
+      },
+      {
+        "name": "nav-tracer",
+        "value": "250ms power2.inOut",
+        "purpose": "Shared gold brush follows selected tab; snaps for keyboard/reduced motion"
+      },
+      {
+        "name": "press-ripple",
+        "value": "350ms; 160ms reduced motion",
+        "purpose": "Bounded radial response; reduced motion uses opacity only"
       }
     ],
     "breakpoints": [

@@ -87,3 +87,13 @@ No production deployment or merge was performed. The follow-up GitHub PR is the 
 release candidate for this revision. Production deployment behavior remains to be checked after the
 owner approves it. Missing application screenshots are explicitly labelled original
 illustrations; no application UI or outcome metrics were fabricated.
+
+## Interactive motion revision
+
+Original SVG opening plays once per session and can be dismissed by pointer, keyboard or click-only activation. A shared navigation tracer, dossier reveal, button ripple and project flare respond immediately to state changes. Reduced motion skips the opening and uses opacity-only feedback. Cleanup covers Astro navigation, visibility and preference changes.
+
+Production build and Astro diagnostics pass with zero errors, warnings or hints. **39 browser regressions pass**, including failed-bundle fallback, repeated route visits, rapid menu changes and click-only interruption. The independent code reviewer reported no critical or important findings. Desktop and mobile captures show no page errors or overflow.
+
+The current cold mobile lab sample reports **LCP 1,716ms and CLS 0**, with no overflow, using the same throttled setup described above. This is a local sample, not production field data.
+
+[Motion recording](verification/celestial-motion.mp4) · [Motion capture report](verification/motion-capture-report.json) · [Current lab sample](verification/motion-performance.json).

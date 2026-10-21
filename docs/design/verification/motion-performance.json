@@ -1,0 +1,56 @@
+{
+  "lcp": 1716,
+  "cls": 0,
+  "shifts": [],
+  "resources": [
+    {
+      "name": "source-sans-3-latin-wght-normal.Bo_j9asI.woff2",
+      "bytes": 29172
+    },
+    {
+      "name": "newsreader-latin-wght-normal.CCVVNp6i.woff2",
+      "bytes": 58384
+    },
+    {
+      "name": "ClientRouter.astro_astro_type_script_index_0_lang.BBp9seDQ.js",
+      "bytes": 4977
+    },
+    {
+      "name": "Action.BhjEFIqA.css",
+      "bytes": 8903
+    },
+    {
+      "name": "page.i27NMnLY.js",
+      "bytes": 347
+    },
+    {
+      "name": "celestial-city-mobile.webp",
+      "bytes": 128004
+    },
+    {
+      "name": "symbols.svg#profile",
+      "bytes": 1358
+    },
+    {
+      "name": "monogram.svg",
+      "bytes": 849
+    },
+    {
+      "name": "court.svg",
+      "bytes": 1176
+    },
+    {
+      "name": "BaseLayout.astro_astro_type_script_index_0_lang.C-bdU0yL.js",
+      "bytes": 29997
+    },
+    {
+      "name": "prefetch.CoRm9hMA.js",
+      "bytes": 1422
+    }
+  ],
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "overflow": false
+}

@@ -32,3 +32,5 @@ Newsreader, Cinzel and Source Sans 3 are self-hosted through Fontsource packages
 Existing screenshots are retained at `docs/design/assets/sungkargroup-source.png` and `docs/design/assets/ward-monitor-source.png`. Optimized WebP deliveries live in `public/projects/`. Ward Monitor depicts prototype/synthetic patient data. Projects without an actual screenshot use the original emblem with an illustration label.
 
 Standalone icon exports are in `public/celestial/icons/`; regenerate with `bun run assets:svg` after building. `constellation.svg` exports the actual rendered orbit geometry. Font redistribution notices are in `public/celestial/licenses/`.
+
+The opening sigil, circular SVG aperture, navigation brush tracer and selection flare are original inline SVG geometry authored for this portfolio. No extracted game animation assets are used.
