@@ -20,9 +20,6 @@ export function initOpening(root: HTMLElement): () => void {
   const core = overlay.querySelector('[data-opening-core]');
   const aperture = overlay.querySelector('[data-aperture]');
   const identity = root.querySelector('.identity-art');
-  const dossier = matchMedia('(max-width: 700px)').matches
-    ? null
-    : root.querySelector('.main-dossier .dossier-content');
   const navigation = body.querySelectorAll('.nav-item');
   let timeline: gsap.core.Timeline | undefined;
   let finished = false;
@@ -30,7 +27,7 @@ export function initOpening(root: HTMLElement): () => void {
     if (finished) return;
     finished = true;
     timeline?.kill();
-    gsap.set([identity, dossier, ...navigation].filter(Boolean), {
+    gsap.set([identity, ...navigation].filter(Boolean), {
       clearProps: 'transform,opacity,clipPath',
     });
     delete html.dataset.opening;
@@ -94,19 +91,6 @@ export function initOpening(root: HTMLElement): () => void {
         clearProps: 'transform,opacity',
       },
       0.35,
-    );
-  if (dossier)
-    timeline.fromTo(
-      dossier,
-      { opacity: 0.65, x: 12, clipPath: 'inset(0 7% 0 0)' },
-      {
-        opacity: 1,
-        x: 0,
-        clipPath: 'inset(0 0% 0 0)',
-        duration: 0.4,
-        clearProps: 'transform,opacity,clipPath',
-      },
-      0.5,
     );
   timeline.fromTo(
     navigation,

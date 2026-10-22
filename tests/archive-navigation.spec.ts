@@ -59,9 +59,9 @@ test('project selection animates the incoming dossier', async ({ page }) => {
       ) as HTMLElement
     ).click();
     return Number(
-      getComputedStyle(document.querySelector('[data-project-dossier="sungkar-group"]')!).opacity,
+      getComputedStyle(document.querySelector('.main-dossier .dossier-content')!).opacity,
     );
   });
   expect(opacity).toBeLessThan(1);
-  await expect(page.locator('[data-project-dossier="sungkar-group"]')).toHaveCSS('opacity', '1');
+  await expect(page.locator('.main-dossier .dossier-content')).toHaveCSS('opacity', '1');
 });

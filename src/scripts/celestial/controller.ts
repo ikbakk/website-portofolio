@@ -2,20 +2,15 @@ import { initOpening } from './opening';
 import { initNavigationMotion } from './navigation-motion';
 import { initUIFeedback } from './interaction-motion';
 import { readArchiveLocation } from './location';
-import {
-  initAmbientMotion,
-  initMobilePanelMotion,
-  revealDossier,
-  stopDossierMotion,
-} from './motion';
+import { initAmbientMotion, initPanelMotion } from './motion';
 
-export function initArchive(root: HTMLElement): () => void {
+export function initArchive(root: HTMLElement, entering = false): () => void {
   const dossiers = [...root.querySelectorAll<HTMLElement>('[data-project-dossier]')];
   const knownIds = dossiers.map((el) => el.dataset.projectDossier!);
   const sections = [...root.querySelectorAll<HTMLElement>('[data-section]')];
   const navMotion = initNavigationMotion(root.closest('body')!);
   const stopFeedback = initUIFeedback(root.closest('body')!);
-  const panelMotion = initMobilePanelMotion(root);
+  const panelMotion = initPanelMotion(root);
   let previous = '';
   const update = (keyboard = false) => {
     const state = readArchiveLocation(location.hash, knownIds);
@@ -23,7 +18,6 @@ export function initArchive(root: HTMLElement): () => void {
     if (key === previous) return;
     const wasReady = Boolean(previous);
     previous = key;
-    [...sections, ...dossiers].forEach(stopDossierMotion);
     sections.forEach((el) => {
       el.hidden = el.dataset.section !== state.section;
     });
@@ -50,14 +44,7 @@ export function initArchive(root: HTMLElement): () => void {
     root
       .querySelector<HTMLElement>('.main-dossier .dossier-content')
       ?.scrollTo({ top: 0, behavior: 'instant' });
-    if (wasReady) {
-      const active =
-        state.section === 'projects'
-          ? dossiers.find((el) => !el.hidden)
-          : sections.find((el) => !el.hidden);
-      if (panelMotion.mobile()) panelMotion.reveal();
-      else if (active) revealDossier(active, keyboard);
-    }
+    if (wasReady || entering) panelMotion.reveal();
   };
   const click = (event: MouseEvent) => {
     if (event.target instanceof Element && event.target.closest('.skip-link')) {
@@ -110,14 +97,15 @@ export function initArchive(root: HTMLElement): () => void {
     stopFeedback();
     stopMotion();
     scrollObserver.disconnect();
-    [...sections, ...dossiers].forEach(stopDossierMotion);
     document.removeEventListener('click', click, true);
     window.removeEventListener('hashchange', historyUpdate);
     window.removeEventListener('popstate', historyUpdate);
   };
 }
 
-function initCaseStudy(root: HTMLElement): () => void {
+function initCaseStudy(root: HTMLElement, entering = false): () => void {
+  const panelMotion = initPanelMotion(root);
+  if (entering) panelMotion.reveal();
   const content = root.querySelector<HTMLElement>('.case-dossier .dossier-content');
   const end = content?.querySelector('[data-scroll-end]');
   const scrollObserver = new IntersectionObserver(
@@ -128,6 +116,7 @@ function initCaseStudy(root: HTMLElement): () => void {
   const stopMotion = initAmbientMotion(root);
   const stopFeedback = initUIFeedback(document.body);
   return () => {
+    panelMotion.dispose();
     scrollObserver.disconnect();
     stopMotion();
     stopFeedback();
@@ -136,16 +125,16 @@ function initCaseStudy(root: HTMLElement): () => void {
 
 let cleanup: (() => void) | undefined;
 let activeBody: HTMLElement | undefined;
-function boot() {
+function boot(entering = false) {
   if (activeBody === document.body && cleanup) return;
   cleanup?.();
   activeBody = document.body;
   const root = document.querySelector<HTMLElement>('[data-archive-root]');
   const caseStudy = document.querySelector<HTMLElement>('.case-world');
   cleanup = root
-    ? initArchive(root)
+    ? initArchive(root, entering)
     : caseStudy
-      ? initCaseStudy(caseStudy)
+      ? initCaseStudy(caseStudy, entering)
       : initUIFeedback(document.body);
 }
 document.addEventListener('astro:before-swap', () => {
@@ -153,5 +142,8 @@ document.addEventListener('astro:before-swap', () => {
   cleanup = undefined;
   activeBody = undefined;
 });
-document.addEventListener('astro:page-load', boot);
+// Start on the incoming DOM before Astro's page-load event, avoiding a visible
+// content flash and any competing full-page transition.
+document.addEventListener('astro:after-swap', () => boot(true));
+document.addEventListener('astro:page-load', () => boot());
 boot();
