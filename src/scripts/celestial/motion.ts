@@ -1,26 +1,5 @@
 import { gsap } from 'gsap';
 
-export function stopDossierMotion(element: HTMLElement): void {
-  gsap.killTweensOf(element);
-  gsap.set(element, { clearProps: 'transform,opacity,clipPath' });
-}
-
-export function revealDossier(element: HTMLElement, keyboard = false): void {
-  stopDossierMotion(element);
-  const gentle = keyboard || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  gsap.fromTo(
-    element,
-    gentle ? { opacity: 0.8 } : { opacity: 0.7, y: 8, clipPath: 'inset(0 4% 0 0)' },
-    {
-      opacity: 1,
-      ...(gentle ? {} : { y: 0, clipPath: 'inset(0 0% 0 0)' }),
-      duration: gentle ? 0.15 : 0.32,
-      ease: 'power3.out',
-      clearProps: 'transform,opacity,clipPath',
-    },
-  );
-}
-
 export function initAmbientMotion(root: HTMLElement): () => void {
   const media = matchMedia('(prefers-reduced-motion: reduce)');
   let context: gsap.Context | undefined;
@@ -70,29 +49,29 @@ export function initAmbientMotion(root: HTMLElement): () => void {
 }
 
 /** Animate only content and the decorative frame; the parchment never moves. */
-export function initMobilePanelMotion(root: HTMLElement) {
-  const mobile = matchMedia('(max-width: 700px)');
+export function initPanelMotion(root: HTMLElement) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const content = root.querySelector<HTMLElement>('.main-dossier .dossier-content');
   const frame = root.querySelector<HTMLElement>('.main-dossier [data-panel-frame]');
   const targets = [content, frame].filter((el): el is HTMLElement => Boolean(el));
+  let timeline: gsap.core.Timeline | undefined;
   const reset = () => {
+    timeline?.kill();
+    timeline = undefined;
     gsap.killTweensOf(targets);
     gsap.set(targets, { clearProps: 'transform,opacity' });
   };
   const visibility = () => {
     if (document.hidden) reset();
   };
-  mobile.addEventListener('change', reset);
   reduced.addEventListener('change', reset);
   document.addEventListener('visibilitychange', visibility);
   return {
-    mobile: () => mobile.matches,
     reveal() {
       reset();
-      if (!mobile.matches || document.hidden) return;
+      if (document.hidden) return;
       const duration = reduced.matches ? 0.15 : 0.4;
-      const timeline = gsap.timeline();
+      timeline = gsap.timeline();
       if (frame) {
         timeline.fromTo(
           frame,
@@ -124,7 +103,6 @@ export function initMobilePanelMotion(root: HTMLElement) {
     },
     dispose() {
       reset();
-      mobile.removeEventListener('change', reset);
       reduced.removeEventListener('change', reset);
       document.removeEventListener('visibilitychange', visibility);
     },

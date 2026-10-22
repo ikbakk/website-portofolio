@@ -6,9 +6,11 @@ This is an original interpretation, not a claim to reproduce official game timin
 
 - Focal moment: one roughly one-second opening per browser session. An original
   SVG sigil draws, rotates and opens a circular aperture onto the actual screen;
-  the identity and dossier settle into place. It can be interrupted immediately.
+  the identity settles into place over the stationary dossier. It can be interrupted immediately.
 - Continuity: one shared gold brush tracer per visible navigation bar, 250ms;
-  incoming dossier resolves in about320ms. Repeated menu changes overwrite the
+  the independent panel frame expands over 400ms, waits 150ms, then content fades
+  in over 300ms. Route navigation, including Back to archive, uses the same sequence
+  with Astro’s default full-page animation disabled. Repeated menu changes overwrite the
   previous motion and never delay the URL or content state change.
 - Feedback: 200ms hover illumination, 100ms press compression, a bounded 350ms
   radial ripple, and a short sparkle on the selected project emblem.
@@ -27,4 +29,4 @@ Guidance: Impeccable animate/craft floor; GreenSock official gsap-timeline and
 gsap-performance skills (https://github.com/greensock/gsap-skills). The existing
 Astro lifecycle owns cleanup for all tweens, observers and event listeners.
 
-Mobile refinement: the current page title moves above the monogram. Each menu owns a centred underline that fades open/closed rather than travelling between controls; the centred diamond selection dot is retained. The panel background is fixed while its independent decorative frame expands from the centre over 400ms. After a 150ms pause, content fades in over 300ms. The outgoing underline holds for 100ms before fading for 320ms, while its scale closes over 250ms. Reduced motion removes spatial animation. Desktop motion remains as before.
+Mobile refinement: the current page title moves above the monogram. Each menu owns a centred underline that fades open/closed rather than travelling between controls; the centred diamond selection dot is retained. The panel background is fixed while its independent decorative frame expands from the centre over 400ms. After a 150ms pause, content fades in over 300ms. The outgoing underline holds for 100ms before fading for 320ms, while its scale closes over 250ms. Reduced motion removes spatial animation. Desktop uses the same frame/content sequence.

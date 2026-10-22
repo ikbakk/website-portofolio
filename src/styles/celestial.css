@@ -1758,6 +1758,30 @@ html[data-opening='pending'] .archive-opening {
   }
 }
 
+/* Shared panel frame: parchment stays stationary at every viewport width. */
+.game-screen .main-dossier {
+  border-color: transparent;
+}
+.game-screen .main-dossier::before {
+  border: none;
+}
+.game-screen .main-dossier .dossier-frame {
+  display: block;
+  position: absolute;
+  inset: 0;
+  border: 1px solid #c4ad81;
+  border-radius: inherit;
+  pointer-events: none;
+  transform-origin: center;
+}
+.game-screen .dossier-frame::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #b5a28280;
+  border-radius: 9px 3px 9px 3px;
+}
+
 /* Mobile: local underlines open/close in place; the parchment is stationary. */
 .dossier-frame {
   display: contents;
@@ -1833,28 +1857,6 @@ html[data-opening='pending'] .archive-opening {
   }
   .constellation-nav .nav-active {
     transition: opacity 0.2s ease-out;
-  }
-  .game-screen .main-dossier {
-    border-color: transparent;
-  }
-  .game-screen .main-dossier::before {
-    border: none;
-  }
-  .game-screen .main-dossier .dossier-frame {
-    display: block;
-    position: absolute;
-    inset: 0;
-    border: 1px solid #c4ad81;
-    border-radius: inherit;
-    pointer-events: none;
-    transform-origin: center;
-  }
-  .game-screen .dossier-frame::before {
-    content: '';
-    position: absolute;
-    inset: 7px;
-    border: 1px solid #b5a28280;
-    border-radius: 9px 3px 9px 3px;
   }
 }
 @media (max-width: 700px) and (max-height: 600px) {
