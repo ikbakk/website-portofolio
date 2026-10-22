@@ -174,7 +174,7 @@ Newsreader has a literary, open character; Source Sans 3 keeps metadata and long
 
 The home archive fills exactly one dynamic viewport (`100dvh`). Its document does not scroll. The header and bottom chrome occupy their own grid rows; the middle region shrinks with `minmax(0, 1fr)`. The framed dossier is the only vertical scroll surface, with keyboard focus, themed scrollbar and an overflow cue that clears at its end.
 
-Wide layouts use an identity column and an ivory dossier, with 40px outer gutters and a fluid gap. Project selection lives inside the Projects tab. There is no left selector rail or bottom project strip. The desktop bottom bar contains the real location and social links.
+Wide layouts use an identity column and an ivory dossier, with 40px outer gutters and a fluid gap. Project selection lives inside the Projects tab. There is no left selector rail or bottom project strip. Desktop uses the same shell on home and project details: a transparent header with a black-to-transparent gradient, the current section above a compact monogram, and portfolio information beneath the identity. Home shows location and social links there; project details show their source and build information. There is no desktop footer bar.
 
 At 700px and below, the identity sits above the dossier and shrinks to at most 150px / 19dvh. Bottom navigation occupies a layout row, so it cannot cover the dossier. On short phones (up to 600px high), the decorative identity hides to preserve reading space. Landscape keeps a compact identity and resume action. All profile facts remain available in the mobile dossier.
 

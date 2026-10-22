@@ -9,6 +9,7 @@ import ProfileDossier from '../components/celestial/ProfileDossier.astro';
 import ProjectDossier from '../components/celestial/ProjectDossier.astro';
 import { archiveProjects } from '../data/archive';
 import { experience } from '../data/experience';
+import { site } from '../data/site';
 ---
 
 <BaseLayout home>
@@ -25,6 +26,11 @@ import { experience } from '../data/experience';
         </div>
         <div class="identity-actions flex flex-wrap justify-center gap-3">
           <Action href="/resume.pdf" icon="download" dark>Open resume</Action>
+        </div>
+        <div class="identity-info" aria-label="Portfolio information">
+          <span>Mataram, Indonesia</span>
+          <a href={site.github}>GitHub</a>
+          <a href={site.linkedin}>LinkedIn</a>
         </div>
       </div>
       <Panel class="main-dossier" scrollable>
