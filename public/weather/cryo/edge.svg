@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="170" viewBox="0 0 1200 170" role="img" aria-labelledby="title">
+<title>Snowdrift edge ornament</title>
+<path d="M0 125Q165 76 295 121T600 119Q770 83 912 127T1200 110V170H0Z" fill="#D9F0F8"/>
+<path d="M0 146Q114 101 235 137T487 135Q648 107 802 140T1200 130V170H0Z" fill="#ABD5E8"/>
+<path d="M0 157Q122 129 272 154T536 150Q711 131 839 154T1200 147V170H0Z" fill="#77BAD9"/>
+<path d="M0 166Q195 147 342 166T709 160Q897 149 1016 162T1200 158V170H0Z" fill="#3284AD" opacity=".46"/>
+<path d="M0 125Q165 76 295 121T600 119Q770 83 912 127T1200 110" stroke="#F8FDFF" stroke-width="2" fill="none" opacity=".8"/>
+<g fill="none" stroke="#3284AD" stroke-width="3" stroke-linecap="round"><path d="M1105 111v38m-19-19h38m-32-32 26 62m0-62-26 62"/></g><path d="M1098 91l7-14 7 14-7 7Z" fill="#B8E9FD"/>
+</svg>

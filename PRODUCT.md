@@ -47,6 +47,10 @@ the distinction; credentials and outcomes must never be invented.
   2026. The owner reviewed and accepted the written specification, with Astro and
   Tailwind CSS mandatory. Implementation-plan review is pending.
 
+## Active Homepage Direction (2026-11-03)
+
+The current owner-approved homepage proposal on branch `ikbakk/inspire-portfolio-jmancheta-design` is **Soft Grid / Weather Themes**, with Normal, Cryo and Electro. It replaces the earlier celestial homepage decision for this branch only. See [P1 design brief](docs/design/P1-SOFT-GRID.md) and its approval gates. P1 records tokens and ornaments; it does **not** authorize P2 layout changes or P4 motion.
+
 ## Evidence on Hand
 
 - Profile and contact data: `src/data/profile.ts`, `src/data/contact.ts`.

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="170" viewBox="0 0 1200 170" role="img" aria-labelledby="title">
+<title>Twilight edge ornament</title>
+<path d="M0 125Q165 76 295 121T600 119Q770 83 912 127T1200 110V170H0Z" fill="#4A3A72"/>
+<path d="M0 146Q114 101 235 137T487 135Q648 107 802 140T1200 130V170H0Z" fill="#5F4489"/>
+<path d="M0 157Q122 129 272 154T536 150Q711 131 839 154T1200 147V170H0Z" fill="#463167"/>
+<path d="M0 166Q195 147 342 166T709 160Q897 149 1016 162T1200 158V170H0Z" fill="#A178EE" opacity=".46"/>
+<path d="M0 125Q165 76 295 121T600 119Q770 83 912 127T1200 110" stroke="#8B6BC1" stroke-width="2" fill="none" opacity=".8"/>
+<path d="m1096 97 22-22-8 25 18-3-31 40 10-29-15 3Z" fill="#B898FF"/><path d="m1095 97 12-12" stroke="#EBDEFF" stroke-width="2" stroke-linecap="round"/>
+</svg>

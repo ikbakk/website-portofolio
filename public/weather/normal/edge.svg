@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="170" viewBox="0 0 1200 170" role="img" aria-labelledby="title">
+<title>Meadow edge ornament</title>
+<path d="M0 125Q165 76 295 121T600 119Q770 83 912 127T1200 110V170H0Z" fill="#D6EBBE"/>
+<path d="M0 146Q114 101 235 137T487 135Q648 107 802 140T1200 130V170H0Z" fill="#ACD59A"/>
+<path d="M0 157Q122 129 272 154T536 150Q711 131 839 154T1200 147V170H0Z" fill="#6BAB70"/>
+<path d="M0 166Q195 147 342 166T709 160Q897 149 1016 162T1200 158V170H0Z" fill="#3E8853" opacity=".46"/>
+<path d="M0 125Q165 76 295 121T600 119Q770 83 912 127T1200 110" stroke="#E9F4D8" stroke-width="2" fill="none" opacity=".8"/>
+<g fill="#3E8853"><path d="M1100 135q-20-24-1-39 21 7 1 39Z"/><path d="M1101 134q19-32 39-20-1 23-39 20Z"/><path d="M1123 144q12-23 26-17-2 17-26 17Z"/></g><path d="M1103 146v-48" stroke="#326E47" stroke-width="3" stroke-linecap="round"/>
+</svg>

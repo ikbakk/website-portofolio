@@ -111,6 +111,11 @@ components:
     padding: '8px 12px'
     height: '44px'
 ---
+<!-- Homepage branch status: P1 Soft Grid supersedes the legacy Celestial homepage. -->
+
+> **Homepage design notice (2026-11-03):** The approved replacement homepage is **Soft Grid / Weather Themes**, documented in [P1 — Soft Grid](docs/design/P1-SOFT-GRID.md). All Celestial guidance below is **legacy for the homepage** and must not guide the next homepage implementation. Case-study styling is out of the P1 scope.
+
+
 
 # Design System: Iqbal Celestial Archive
 

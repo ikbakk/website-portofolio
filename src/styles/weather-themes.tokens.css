@@ -1,0 +1,55 @@
+/*
+ * P1 design tokens for Soft Grid / Paper Landscape + Pixel Accents.
+ * Intentionally NOT imported by global.css until the P2 layout approval.
+ * Tokens describe static surfaces only. Weather motion/cursors are reserved for P4.
+ */
+:root,
+[data-weather='normal'] {
+  color-scheme: light;
+  --weather-background: #f7f8f2;
+  --weather-surface: #ffffff;
+  --weather-surface-soft: #dcf3d7;
+  --weather-primary: #269b43;
+  --weather-primary-ink: #17482c;
+  --weather-text: #18291e;
+  --weather-muted: #4a5e50;
+  --weather-stroke: #cbd8c9;
+  --weather-grid: rgba(46, 92, 54, 0.045);
+  --weather-focus: #17482c;
+  --weather-ornament: url('/weather/normal/edge.svg');
+  --weather-corner: url('/weather/normal/corner.svg');
+  --weather-panel-radius: 18px;
+  --weather-card-radius: 14px;
+  --weather-ui-font: 'Source Sans 3 Variable', system-ui, sans-serif;
+}
+[data-weather='cryo'] {
+  color-scheme: light;
+  --weather-background: #f0f7fa;
+  --weather-surface: #ffffff;
+  --weather-surface-soft: #dff4fa;
+  --weather-primary: #50a9d1;
+  --weather-primary-ink: #20536c;
+  --weather-text: #173343;
+  --weather-muted: #416172;
+  --weather-stroke: #bcd7e4;
+  --weather-grid: rgba(29, 95, 133, 0.045);
+  --weather-focus: #20536c;
+  --weather-ornament: url('/weather/cryo/edge.svg');
+  --weather-corner: url('/weather/cryo/corner.svg');
+}
+[data-weather='electro'] {
+  color-scheme: dark;
+  --weather-background: #201a35;
+  --weather-surface: #302842;
+  --weather-surface-soft: #39265d;
+  --weather-primary: #a178ee;
+  --weather-primary-ink: #e8ddfb;
+  --weather-text: #f6f0ff;
+  --weather-muted: #cec1e5;
+  --weather-stroke: #5b4d78;
+  --weather-grid: rgba(218, 189, 255, 0.045);
+  --weather-focus: #e8ddfb;
+  --weather-ornament: url('/weather/electro/edge.svg');
+  --weather-corner: url('/weather/electro/corner.svg');
+}
+/* P2 may consume these variables; never style .jmfolio-* here during P1. */
