@@ -1,109 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Panel from '../components/celestial/Panel.astro';
-import Icon from '../components/celestial/Icon.astro';
-import Action from '../components/celestial/Action.astro';
-import Navigation from '../components/celestial/Navigation.astro';
-import IdentityMark from '../components/celestial/IdentityMark.astro';
-import ProfileDossier from '../components/celestial/ProfileDossier.astro';
-import ProjectDossier from '../components/celestial/ProjectDossier.astro';
 import { archiveProjects } from '../data/archive';
 import { experience } from '../data/experience';
 import { site } from '../data/site';
+const featured = archiveProjects.filter((project) => project.featured);
+const skills = ['React', 'Astro', 'TypeScript', 'Flutter', 'React Native', 'Node.js', 'Firebase', 'Tailwind CSS'];
 ---
 
 <BaseLayout home>
-  <div class="archive-world" data-archive-root>
-    <div class="archive-grid">
-      <div class="identity-column flex flex-col items-center justify-center">
-        <p class="mobile-section-title" data-current-title>Profile</p>
-        <IdentityMark />
-        <Navigation mobile home constellation />
-        <div class="identity-caption text-center">
-          <div class="identity-rule" aria-hidden="true"><Icon name="spark" /></div>
-          <p>Frontend &amp; mobile engineer</p>
-          <span>Independent builds. Real-world problems.</span>
-        </div>
-        <div class="identity-actions flex flex-wrap justify-center gap-3">
-          <Action href="/resume.pdf" icon="download" dark>Open resume</Action>
-        </div>
-        <div class="identity-info" aria-label="Portfolio information">
-          <span>Mataram, Indonesia</span>
-          <a href={site.github}>GitHub</a>
-          <a href={site.linkedin}>LinkedIn</a>
-        </div>
-      </div>
-      <Panel class="main-dossier" scrollable>
-        <ProfileDossier />
-        <section id="projects" data-section="projects" aria-labelledby="projects-title">
-          <h2 id="projects-title" class="section-title">Project archive</h2>
-          <p class="section-description">
-            A few things I have built, and the decisions behind them.
-          </p>
-          <nav class="archive-project-list flex flex-wrap gap-2" aria-label="All projects">
-            {
-              archiveProjects.map((project) => (
-                <a href={`#project-${project.id}`} data-project-link={project.id} data-navigation>
-                  <span class="selection-flare" data-selection-flare aria-hidden="true">
-                    <svg viewBox="0 0 52 52" fill="currentColor">
-                      <path d="m26 3 3 17 17 6-17 4-3 18-5-18L4 26l17-6ZM43 4l1.5 5.5L50 11l-5.5 1.5L43 18l-1.5-5.5L36 11l5.5-1.5Z" />
-                    </svg>
-                  </span>
-                  <Icon name={project.id} />
-                  {project.title}
-                </a>
-              ))
-            }
-          </nav>
-        </section>
-        <section id="experience" data-section="experience" aria-labelledby="experience-title">
-          <h2 id="experience-title" class="section-title">Experience</h2>
-          <p class="section-description">
-            Web, mobile, and operational interfaces. Working with people, from the first requirement
-            to the last detail.
-          </p>
-          <ol class="experience-list grid gap-5">
-            {
-              experience.map((item) => (
-                <li>
-                  <>
-                    <p class="experience-period">{item.period}</p>
-                    <h3>{item.title}</h3>
-                    <p class="experience-organization">{item.organization}</p>
-                    <p>{item.description}</p>
-                  </>
-                </li>
-              ))
-            }
-          </ol>
-          <a class="text-link" href="/resume.pdf" download>Download full resume (PDF)</a>
-        </section>
-        <section id="contact" data-section="contact" aria-labelledby="contact-title">
-          <Icon name="contact" class="contact-crest" />
-          <h2 id="contact-title" class="section-title">A new connection.</h2>
-          <p class="section-description">
-            Have a role, a project, or a problem worth working on? I would like to hear about it.
-          </p>
-          <dl class="contact-details grid gap-4">
-            <div><dt>Based in</dt><dd>Mataram, Indonesia</dd></div><div>
-              <dt>Open to</dt><dd>Remote roles, freelance work and relocation</dd>
-            </div>
-          </dl>
-          <div class="contact-actions grid gap-3">
-            <Action href="mailto:ikbakfir@gmail.com" icon="contact" dark>Email me</Action>
-            <Action href="https://github.com/ikbakk" icon="github">GitHub</Action>
-            <a class="text-link" href="https://linkedin.com/in/ikbakk">Find me on LinkedIn</a>
-            <a class="text-link" href="/resume.pdf" download>Download resume (PDF)</a>
-          </div>
-        </section>
-        <div class="dossier-projects" data-project-area>
-          <div class="ornament-rule" aria-hidden="true"><Icon name="spark" /></div>
-          <div class="project-section-topline flex items-center justify-between">
-            <span>Selected project</span>
-          </div>
-          {archiveProjects.map((project) => <ProjectDossier project={project} />)}
-        </div>
-      </Panel>
-    </div>
+  <div class="jmfolio-layout">
+    <aside class="jmfolio-column jmfolio-left" aria-label="Profile and experience">
+      <section class="jm-profile">
+        <div class="jm-avatar" aria-hidden="true">IF</div>
+        <h1>{site.name}</h1><p class="jm-role">Frontend &amp; mobile engineer</p><p class="jm-bio">I build web and mobile software for everyday problems.</p>
+        <div class="jm-profile-actions"><a class="jm-primary" href={site.github} target="_blank" rel="noreferrer">Follow <span aria-hidden="true">↗</span></a><a class="jm-secondary" href={`mailto:${site.email}`}>Message</a></div>
+        <nav class="jm-shortcuts" aria-label="Portfolio sections"><a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
+      </section>
+      <section id="about" class="jm-section"><h2>About</h2><p>Independent frontend and mobile engineer based in Mataram, Indonesia. I work across product interfaces, mobile apps, and practical tools, from early requirements through the details that make them useful.</p><dl class="jm-facts"><div><dt>Based in</dt><dd>Mataram, Indonesia</dd></div><div><dt>Focus</dt><dd>Web &amp; mobile products</dd></div><div><dt>Working on</dt><dd>Useful software for real people</dd></div></dl></section>
+      <section id="experience" class="jm-section"><h2>Experience</h2><ol class="jm-timeline">{experience.map((item) => <li><p class="jm-meta">{item.period}</p><h3>{item.title}</h3><p class="jm-org">{item.organization}</p><p class="jm-copy">{item.description}</p></li>)}</ol><a class="jm-inline-link" href="/resume.pdf" download>Download resume <span aria-hidden="true">↗</span></a></section>
+      <section id="contact" class="jm-section jm-contact"><h2>Let’s talk</h2><p>Have a role, a project, or a problem worth working on?</p><a class="jm-inline-link" href={`mailto:${site.email}`}>{site.email} <span aria-hidden="true">↗</span></a></section>
+    </aside>
+    <section class="jmfolio-column jmfolio-center" aria-label="Selected work">
+      <section class="jm-featured"><div class="jm-section-heading"><h2>Featured project</h2><span>{featured.length ? `1 / ${featured.length}` : ''}</span></div>{featured.slice(0, 1).map((project) => <a class="jm-feature-card" href={project.caseHref}>{project.image ? <img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} /> : <span class="jm-feature-visual" data-project-visual={project.id}><span>{project.title}</span><small>{project.source.role}</small></span>}<div class="jm-feature-copy"><p class="jm-meta">{project.kind} · {project.stage}</p><h3>{project.title}</h3><p>{project.summary}</p><span class="jm-inline-link">Read case study <span class="jm-arrow" aria-hidden="true"></span></span></div></a>)}</section>
+      <section id="projects" class="jm-section jm-projects"><div class="jm-section-heading"><h2>Project archive</h2><span>{archiveProjects.length}</span></div><div class="jm-project-list">{archiveProjects.map((project) => <a class="jm-project-row" href={project.caseHref}>{project.image ? <img src={project.image.src} alt="" width={project.image.width} height={project.image.height} loading="lazy" /> : <span class="jm-project-visual" data-project-visual={project.id} aria-hidden="true">{project.title.slice(0, 2)}</span>}<span class="jm-project-copy"><span class="jm-project-title">{project.title}</span><span class="jm-meta">{project.kind} · {project.stage}</span><span class="jm-copy">{project.summary}</span><span class="jm-tags">{project.stack.slice(0, 3).join(' · ')}</span></span><span class="jm-row-arrow jm-arrow" aria-hidden="true"></span></a>)}</div></section>
+    </section>
+    <aside class="jmfolio-column jmfolio-right" aria-label="Tools and links">
+      <section class="jm-section jm-now"><h2>Right now</h2><p class="jm-status"><span aria-hidden="true"></span> Open to new opportunities</p><p class="jm-copy">Remote roles, freelance work, and thoughtful collaborations.</p></section>
+      <section class="jm-section"><h2>Toolbox</h2><p class="jm-copy">Tools I reach for when turning a real need into a useful product.</p><ul class="jm-skill-list">{skills.map((skill) => <li>{skill}</li>)}</ul></section>
+      <section class="jm-section"><h2>Elsewhere</h2><a class="jm-social-link" href={site.github} target="_blank" rel="noreferrer"><span>GitHub</span><span aria-hidden="true">↗</span></a><a class="jm-social-link" href={site.linkedin} target="_blank" rel="noreferrer"><span>LinkedIn</span><span aria-hidden="true">↗</span></a><a class="jm-social-link" href="/resume.pdf" download><span>Resume</span><span aria-hidden="true">↓</span></a></section>
+      <section class="jm-section jm-location"><p class="jm-meta">Currently based in</p><p>{site.location}</p></section>
+    </aside>
   </div>
 </BaseLayout>

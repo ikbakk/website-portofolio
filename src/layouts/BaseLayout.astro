@@ -51,7 +51,11 @@ const jsonLd = {
     >
       (() => {
         const config = document.currentScript;
-        if (config instanceof HTMLScriptElement && config.dataset.home === 'true') {
+        if (
+          config instanceof HTMLScriptElement &&
+          config.dataset.home === 'true' &&
+          document.querySelector('[data-archive-root]')
+        ) {
           const projectIds = JSON.parse(config.dataset.projects || '[]');
           const hash = location.hash.slice(1);
           const project =
