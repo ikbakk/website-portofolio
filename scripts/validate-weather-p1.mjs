@@ -1,0 +1,76 @@
+/**
+ * Non-runtime P1 validation. Runs on Node, no extra packages.
+ * It does not approve the design or validate visual fidelity.
+ */
+import { existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { join } from 'node:path';
+
+const root = process.cwd();
+let failures = 0;
+const fail = (message) => {
+  console.error('FAIL:', message);
+  failures++;
+};
+const requireFile = (path) => {
+  const absolute = join(root, path);
+  if (!existsSync(absolute)) {
+    fail('Missing ' + path);
+    return null;
+  }
+  return readFileSync(absolute);
+};
+
+const cssBuffer = requireFile('src/styles/weather-themes.tokens.css');
+const configBuffer = requireFile('src/theme/weather.config.ts');
+const css = cssBuffer?.toString('utf8') ?? '';
+const config = configBuffer?.toString('utf8') ?? '';
+const ids = ['normal', 'cryo', 'electro'];
+for (const id of ids) {
+  if (!config.includes("id: '" + id + "'")) fail('Missing theme config ' + id);
+  if (id !== 'normal' && !css.includes("[data-weather='" + id + "']")) {
+    fail('Missing CSS selector for ' + id);
+  }
+  for (const type of ['edge', 'corner']) {
+    const path = 'public/weather/' + id + '/' + type + '.svg';
+    const data = requireFile(path)?.toString('utf8') ?? '';
+    if (data && (!data.startsWith('<svg') || !data.includes('</svg>'))) {
+      fail('SVG is missing root/closing tag: ' + path);
+    }
+    if (data && /<script\b|onload\s*=|<foreignObject\b/i.test(data)) {
+      fail('Suspicious executable SVG markup in ' + path);
+    }
+  }
+}
+if (!config.includes("defaultWeatherTheme: WeatherThemeId = 'normal'")) {
+  fail('Default weather theme is not normal');
+}
+for (const key of ['--weather-background', '--weather-surface', '--weather-primary', '--weather-text', '--weather-ornament']) {
+  if (!css.includes(key)) fail('Missing token ' + key);
+}
+
+const pngs = [
+  ['01-normal-master.png', '64c5116914745e6b3677f0ada5bc238a221afd2e963fdf59f5dc07c91a7fdc57'],
+  ['02-cryo-variant.png', '015d742ea2d4297eaaf2db61ac476e941f467cac0ca4adb9186f0c19ca8109bd'],
+  ['03-electro-variant.png', '2811e80e892d132647fc2b544d7a6af74cd510baef5254a02367f8707e01a841'],
+];
+let count = 0;
+for (const [name, expected] of pngs) {
+  const path = 'docs/design/references/' + name;
+  if (!existsSync(join(root, path))) {
+    console.warn('PENDING: approved frozen image not yet uploaded:', path);
+    continue;
+  }
+  count++;
+  const actual = createHash('sha256').update(readFileSync(join(root, path))).digest('hex');
+  if (actual !== expected) fail('Frozen source hash mismatch: ' + name);
+}
+if (count !== pngs.length) {
+  console.warn('P1 readiness incomplete: ' + count + '/3 reference PNGs available');
+}
+if (failures) {
+  console.error(failures + ' P1 structural validation failures');
+  process.exitCode = 1;
+} else {
+  console.log('P1 structural checks passed; reference images ' + count + '/3; final owner approval remains separate.');
+}
