@@ -45,6 +45,30 @@ for (const id of ids) {
     }
   }
 }
+// For filled actions, both the background and text color must be contrast-safe.
+function relativeLuminance(hex) {
+  const channels = hex.replace('#', '').match(/.{2}/g).map((part) => parseInt(part, 16) / 255);
+  const linear = channels.map((value) => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+  return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722;
+}
+function contrast(a, b) {
+  const values = [relativeLuminance(a), relativeLuminance(b)].sort((x, y) => x - y);
+  return (values[1] + 0.05) / (values[0] + 0.05);
+}
+for (const id of ids) {
+  const selector = id === 'normal'
+    ? /:root,\s*\[data-weather='normal'\]\s*\{([^}]*)\}/
+    : new RegExp("\\[data-weather='" + id + "'\\]\\s*\\{([^}]*)\\}");
+  const block = css.match(selector)?.[1];
+  if (!block) { fail('Could not find CSS rule for ' + id); continue; }
+  const getHex = (key) => block.match(new RegExp(key + "\\s*:\\s*(#[0-9a-fA-F]{6})\\s*;"))?.[1];
+  const bg = getHex('--weather-action-bg');
+  const fg = getHex('--weather-action-text');
+  if (!bg || !fg) { fail('Action tokens missing in ' + id); continue; }
+  const value = contrast(bg, fg);
+  if (value < 4.5) fail(id + ': text/action contrast ' + value.toFixed(2) + ':1 < 4.5:1');
+}
+
 if (!config.includes("defaultWeatherTheme: WeatherThemeId = 'normal'")) {
   fail('Default weather theme is not normal');
 }

@@ -1,6 +1,6 @@
 # P1 — Reference measurements and visual-diff cautions
 
-Source of truth: \`docs/design/references/01-normal-master.png\`, \`02-cryo-variant.png\`, \`03-electro-variant.png\`, verified against SHA-256 in \`references/README.md\`.
+Source of truth: `docs/design/references/01-normal-master.png`, `02-cryo-variant.png`, `03-electro-variant.png`, verified against SHA-256 in `references/README.md`.
 
 ## Visible proportions, NOT final CSS values
 
@@ -11,7 +11,7 @@ Looking at the *visible framed interface* rather than the entire image, the appr
 What the approved image actually shows:
 
 - Left panel starts with a green angular mark, portrait illustration, full name, role, location, status, short intro, nav, About and icons; it is narrow but full height.
-- Center panel is top-aligned with small \`/ work\` kicker, Featured Project card, carousel dots, a row of three Selected Works cards, then a Tech Stack band. There is **no hero marketing headline**.
+- Center panel is top-aligned with small `/ work` kicker, Featured Project card, carousel dots, a row of three Selected Works cards, then a Tech Stack band. There is **no hero marketing headline**.
 - Right panel stacks Focus checklist, Playground scene, then GitHub Activity at the bottom. The latter mockup contains **illustrative**, not verified, numbers.
 - Bottom of the *board* has a narrow seasonal papercut band: rolling green meadow and leaves for Normal, snowbanks and crystals for Cryo, deep violet hills and flowering branches for Electro.
 - Fine thin background grid is visible in Normal and subtle in themed variants; don't paint an atmospheric 100%-height landscape.
@@ -20,7 +20,7 @@ What the approved image actually shows:
 
 ## Fidelity protocol
 
-1. Confirm actual PNG bytes exist and hashes match; run \`node scripts/validate-weather-p1.mjs --strict\`.
+1. Confirm actual PNG bytes exist and hashes match; run `node scripts/validate-weather-p1.mjs --strict`.
 2. Crop the original Normal design board to the framed layout bounds before comparing against a browser screenshot. The 4608px image contains generous side margins.
 3. Align content regions **and** normalize scale independently for Cryo and Electro. Never run naive whole-image pixel-diff on unaligned sources.
 4. Measure major card bounding boxes, title baselines, column gaps and vertical alignment. Prioritize these before ornament similarity.

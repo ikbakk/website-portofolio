@@ -24,7 +24,7 @@
 - [x] Weather token and static asset contract committed without importing.
 - [x] Custom-vs-reuse decision documented; no unnecessary dependencies.
 - [x] Original frozen PNG filenames, dimensions and SHA-256 recorded.
-- [x] Non-runtime validation script authored (run with `--strict` to require all reference PNGs).
+- [x] Non-runtime validation script authored (run with `--strict` to require all reference PNGs and to check themed action contrast).
 - [x] Three optional bottom-horizon SVG candidates added for review; no production styling changed.
 - [x] Added accessible action-color tokens without changing the frozen decorative accents.
 - [ ] Browser screenshots of horizon ornaments reviewed against freeze (asset approval pending).
@@ -38,3 +38,6 @@ These uncompleted checks are real blockers. Do not mark P1 “approved” on beh
 ## P2 launch gate
 
 At the moment P2 is approved, open `P2-AGENT-HANDOFF.md` and follow its dependency and scope constraints. Document and compare screenshots in a separate P2 change; no merge/deploy without approval.
+## Automated checks vs. outstanding approvals
+
+Action color pairs now have a WCAG 2.x 4.5:1 guard in `scripts/validate-weather-p1.mjs`. This confirms text contrast for **tokens**, not full-rendered component accessibility. No build, Playwright or deployed screenshot verification has been run through this GitHub-only workspace. The three original binary mockups still require upload before `--strict` can pass.
