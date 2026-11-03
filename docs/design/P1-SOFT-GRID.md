@@ -4,7 +4,7 @@ Status: **P1 foundation committed; the three horizon SVG assets approved by owne
 
 ## Current visual authority
 
-1. The owner-approved **three-theme frozen mockup** from the portfolio design conversation is the visual authority. Capture the actual approved high-resolution images under `docs/design/references/` before any P2 layout work. **The original three approved PNG files have been identified and checksummed (see [reference manifest](references/README.md)), but their binary bytes have not yet been pushed into this repository.** Do not substitute AI-regenerated compositions or infer exact measurements from written prose.
+1. The owner-approved **three-theme frozen mockup** from the portfolio design conversation is the visual authority. The exact original images have been identified in [the reference manifest](P1-REFERENCE-MANIFEST.md); copy their original bytes under `docs/design/references/` before any P2 layout work. **The original three approved PNG files have been identified and checksummed (see [reference manifest](references/README.md)), but their binary bytes have not yet been pushed into this repository.** Do not substitute AI-regenerated compositions or infer exact measurements from written prose.
 2. This document records immutable composition rules for P1. The theme values in `src/styles/weather-themes.tokens.css` define the three approved color directions.
 3. `DESIGN.md` still documents the historical Celestial experience; it is **not the governing homepage design** for this branch. Existing case-study routes remain untouched until explicitly scoped.
 

@@ -1,6 +1,6 @@
 # Frozen mockup fidelity gate (P1 -> P2)
 
-The owner approved a specific three-theme concept in conversation. This checklist is the **review contract**, not permission to implement P2.
+The owner approved a specific three-theme concept in conversation. Original reference files have now been identified and checksummed; see [P1-REFERENCE-MANIFEST.md](P1-REFERENCE-MANIFEST.md). They still need to be copied into GitHub before P2. This checklist is the **review contract**, not permission to implement P2.
 
 ## Before P2 can begin
 
