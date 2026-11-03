@@ -1,0 +1,30 @@
+name: One-time P1 frozen PNG restore
+on:
+  push:
+    branches:
+      - ikbakk/inspire-portfolio-jmancheta-design
+    paths:
+      - docs/design/references/.source/**
+      - .github/workflows/p1-restore-references.yml
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore exact PNG and validate references
+        run: |
+          node scripts/rebuild-p1-reference.mjs
+          node scripts/validate-weather-p1.mjs --strict
+      - name: Commit exact image to feature branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/design/references/01-normal-master.png
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(design): restore exact P1 Normal master PNG"
+            git push origin HEAD:refs/heads/ikbakk/inspire-portfolio-jmancheta-design
+          fi
