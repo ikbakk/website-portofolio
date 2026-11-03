@@ -30,10 +30,14 @@ HASHES=(
 if [[ -f "$SOURCE" ]]; then
   command -v unzip >/dev/null 2>&1 || { echo "unzip is required" >&2; exit 2; }
   for name in "${NAMES[@]}"; do
-    unzip -p "$SOURCE" "references/$name" > "$TMP/$name" || {
-      echo "Archive missing references/$name" >&2
+    if unzip -Z1 "$SOURCE" | grep -Fqx "references/$name"; then
+      unzip -p "$SOURCE" "references/$name" > "$TMP/$name"
+    elif unzip -Z1 "$SOURCE" | grep -Fqx "docs/design/references/$name"; then
+      unzip -p "$SOURCE" "docs/design/references/$name" > "$TMP/$name"
+    else
+      echo "Archive missing $name (expected references/ or docs/design/references/)" >&2
       exit 1
-    }
+    fi
   done
 elif [[ -d "$SOURCE" ]]; then
   for name in "${NAMES[@]}"; do

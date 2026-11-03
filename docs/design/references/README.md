@@ -10,7 +10,7 @@ The three **exact** PNGs approved by the portfolio owner have been identified in
 
 **Do not** mistake the three files for three independent page designs: the first is a wider master crop from the agreed comparison board and the other two are narrower theme crops. They are different canvases and cannot be used for naive pixel overlays without cropping/alignment. Preserve their dimensions and provenance; use semantic/region-specific comparisons in addition to screenshots.
 
-The exact source bundle is `portfolio-p1-frozen-reference-pack.zip`, available as an artifact in the portfolio conversation. It contains `references/*.png` plus `references/MANIFEST.json`. **Do not replace these with thumbnails or newly generated lookalikes.**
+The original source bundle is `portfolio-p1-frozen-reference-pack.zip`. A repository-path-ready archive, `P1-portfolio-reference-repo-ready.zip`, is also available in the same conversation. The import helper accepts either ZIP structure and verifies all three exact file hashes. **Do not replace these with thumbnails or newly generated lookalikes.**
 
 From a checkout of this branch, import the archive and verify:
 
