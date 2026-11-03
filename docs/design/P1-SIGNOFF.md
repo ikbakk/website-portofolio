@@ -17,12 +17,12 @@ Date: 2026-11-03
 
 - `src/styles/weather-themes.tokens.css` and `src/theme/weather.config.ts` are isolated and not imported into the active Astro layout.
 - Three approved `horizon.svg` files are committed; no runtime animations or dependencies were introduced.
-- Three **exact original PNGs** are checksummed and available in the conversation archive `portfolio-p1-frozen-reference-pack.zip`, but **their bytes are not in this repository yet**. The GitHub chat connector cannot read local binary files. [Import instructions](references/README.md), [import helper](../../scripts/import-p1-references.sh).
+- All three **exact original PNGs** are committed in `docs/design/references/` and validated against approved SHA-256 values in [GitHub Actions run 41663423056](https://github.com/ikbakk/website-portofolio/actions/runs/41663423056). No manual transfer is required.
 - P1 SVG shape review: layouts/ornament motifs match the low-edge direction of frozen mockups. A browser-based overlay/scale review is still required in P2.
 - Existing Celestial shell remains. P2 must isolate homepage shell first, preserving case-study pages.
 
 ## Lock and authorization
 
-**Design decisions locked / P1 content frozen.** Only missing source-binary import and in-browser visual verification remain operational prerequisites; this record does not claim those are complete.
+**P1 design decisions locked; reference image import complete and verified.** Browser layout/horizon placement is the first P2 visual QA gate, not a claimed P1 implementation result. The final logo treatment still needs confirmation because the earlier logo asset differs from the frozen mockup.
 
-**P2 code changes are not authorized by this record.** Before P2, original PNG hashes must pass `node scripts/validate-weather-p1.mjs --strict`. After images are imported, receive explicit user approval to start P2. Keep changes in the feature branch; don't create PR, merge, push to main or deploy without permission.
+**P2 code changes are not authorized by this record.** The strict reference check already passed. Receive explicit user approval before P2; keep all changes in the feature branch. Do not create PR, merge, push to main, or deploy without permission.

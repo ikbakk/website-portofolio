@@ -1,10 +1,10 @@
 # P1 — Soft Grid / Weather Themes (active homepage design contract)
 
-Status: **P1 design decisions locked; exact frozen PNG import and P2 authorization pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
+Status: **P1 design decisions locked; exact frozen PNG files committed and verified; P2 authorization pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
 
 ## Current visual authority
 
-1. The owner-approved **three-theme frozen mockup** from the portfolio design conversation is the visual authority. The exact original images have been identified in [the reference manifest](P1-REFERENCE-MANIFEST.md); copy their original bytes under `docs/design/references/` before any P2 layout work. **The original three approved PNG files have been identified and checksummed (see [reference manifest](references/README.md)), but their binary bytes have not yet been pushed into this repository.** Do not substitute AI-regenerated compositions or infer exact measurements from written prose.
+1. The owner-approved **three-theme frozen mockup** from the portfolio design conversation is the visual authority. The exact original images are committed under [docs/design/references/](references/) and their hashes are listed in [the reference manifest](P1-REFERENCE-MANIFEST.md); the strict source check passed in [GitHub Actions run 41663423056](https://github.com/ikbakk/website-portofolio/actions/runs/41663423056). Do not substitute AI-regenerated compositions or infer exact measurements from written prose.
 2. This document records immutable composition rules for P1. The theme values in `src/styles/weather-themes.tokens.css` define the three approved color directions.
 3. `DESIGN.md` still documents the historical Celestial experience; it is **not the governing homepage design** for this branch. Existing case-study routes remain untouched until explicitly scoped.
 
@@ -35,7 +35,7 @@ Excluded: replacing `index.astro`, altering `BaseLayout.astro`, importing the ne
 
 ### Not yet final
 
-- Approved mockup image bytes need to be stored in the repository before visual implementation begins.
+- Approved mockup image bytes are committed and SHA-256 verified; preserve them unchanged.
 - Final card dimensions, typography scale and responsive breakpoints must be **measured from the approved reference and browser captures**, not guessed.
 - The published `public/logo-mark.svg` currently uses black/cream/orange, whereas this approved theme is green; the actual logo to ship needs an explicit brand asset review before replacing any identity.
 - The owner approved the `horizon.svg` motif family, recorded in [P1-SIGNOFF.md](P1-SIGNOFF.md). The six `edge.svg`/`corner.svg` experiments are inactive. Exact scale/contrast inside Astro still requires browser verification during P2.

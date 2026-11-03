@@ -1,10 +1,11 @@
 # Frozen mockup fidelity gate (P1 -> P2)
 
-The owner approved a specific three-theme concept in conversation. Original reference files have now been identified and checksummed; see [P1-REFERENCE-MANIFEST.md](P1-REFERENCE-MANIFEST.md). They still need to be copied into GitHub before P2. This checklist is the **review contract**, not permission to implement P2.
+The owner approved a specific three-theme concept in conversation. Original reference files have now been identified and checksummed; see [P1-REFERENCE-MANIFEST.md](P1-REFERENCE-MANIFEST.md). They have now been copied into GitHub and verified, including the larger Normal master restored by an isolated workflow. This checklist is the **review contract**, not permission to implement P2.
 
 ## Before P2 can begin
 
-- [ ] The three original approved high-resolution mockup files are committed under `docs/design/references/`. Do not use cropped, resized, newly generated or approximated replacements as the only source of truth.
+- [x] All three original high-resolution mockups are committed under `docs/design/references/`, with exact SHA-256 and Git blob SHA verified.
+- [x] Strict reference-validation script passed in GitHub Actions on 2026-11-03 (run 41663423056).
 - [x] Owner approved `horizon.svg` visual direction for all three themes (2026-11-03). These are the primary decorative assets.
 - [x] Reviewed SVG family and limited active art to `horizon.svg`. The experimental `edge.svg` and `corner.svg` must not be consumed by P2.
 - [ ] Verify horizon placement and scaling in browser against native frozen mockup screenshots during P2 visual regression; do not claim this was performed in P1.

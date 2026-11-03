@@ -8,11 +8,11 @@
 - `src/data/archive.ts` uses existing project records and truthful stage labels. Do not replace its project data with the demo titles, metrics or checklist shown in the mockup.
 - `public/projects/` currently has `sungkargroup.webp` and `ward-monitor-dashboard.webp` only. Beaconnect, Rentalin and Drama Stream screenshots shown in the mockup are not yet available as verified repository assets.
 - The current black/cream/orange logo in `public/logo-mark.svg` differs from the green monogram in the frozen design. Brand identity approval is still required.
-- The three original reference images are identified in [P1-REFERENCE-MANIFEST.md](P1-REFERENCE-MANIFEST.md), but the image bytes are **not yet committed to GitHub**. The checksummed archive is available in the conversation. Use [the verified import helper](../../scripts/import-p1-references.sh) when the archive is accessible locally.
+- All three original reference images are committed byte-for-byte in [docs/design/references/](references/) with SHA-256 checks recorded in [P1-REFERENCE-MANIFEST.md](P1-REFERENCE-MANIFEST.md). GitHub Actions [run 41663423056](https://github.com/ikbakk/website-portofolio/actions/runs/41663423056) passed strict reference validation.
 
 ## Tokens and ornaments — technical checks
 
-- `src/theme/weather.config.ts` declares exactly Normal, Cryo, Electro and references six existing SVGs under `public/weather/`.
+- `src/theme/weather.config.ts` declares exactly Normal, Cryo, Electro and references only the three approved `horizon.svg` assets under `public/weather/`.
 - CSS variables cover background, surface, border, grid, accent, text, focus and ornament for each weather mode.
 - Electro has dark `color-scheme` and light foreground. Cryo and Normal use a darker semantic `--weather-primary-ink` for small text rather than the bright accent color.
 - All SVGs have a `viewBox` and static vector elements. The owner selected the three `horizon.svg` variants as the active **bottom-edge** decorative direction; `edge.svg` and `corner.svg` are older unapproved experiments and have been removed from the active config/tokens.
@@ -20,7 +20,7 @@
 
 ## Proposed P2 sequence, after explicit approval
 
-1. Save and verify reference PNGs in repository.
+1. Read all three now-committed original reference PNGs and prepare matched-viewport screenshot baselines.
 2. Create a homepage-specific shell isolated from Celestial global/layout behavior; retain legacy case routes.
 3. Match macro geometry in Normal at the reference viewport before adding any decoration.
 4. Populate truthful project content and actual screenshots; document missing assets.
@@ -31,6 +31,6 @@
 
 - Frozen concept: approved.
 - P1 documentation and starter tokens: committed.
-- Exact mockup PNGs in GitHub: **pending**.
+- Exact mockup PNGs in GitHub: **done; strict validation succeeded**.
 - SVG family reviewed for thematic correspondence: **done**. True in-browser placement/scale review: **pending P2**.
-- P1 design direction: **locked**, see [decision record](P1-SIGNOFF.md). Full pre-P2 gate: **blocked only by original binary reference import, identity decision, and owner authorization**.
+- P1 design direction: **locked**, see [decision record](P1-SIGNOFF.md). The binary-reference gate is complete. Remaining P2 prerequisites: owner authorization and specific logo treatment review. Browser fidelity verification is planned within P2.

@@ -1,6 +1,6 @@
-# Frozen reference images — identified, not yet uploaded to GitHub
+# Frozen reference images — uploaded and verified
 
-These are the original design images recovered from the portfolio conversation's local artifact directory. The **exact original bytes** are included in the owner review archive `portfolio-p1-frozen-reference-pack.zip` delivered in chat. They are **not** in this Git repository yet; do not claim otherwise.
+These are the **exact original design images** recovered from the portfolio conversation. All three PNG files are now present under [references/](references/) and their Git blob SHA values match the source originals. GitHub Actions [run 41663423056](https://github.com/ikbakk/website-portofolio/actions/runs/41663423056) reconstructed the large Normal PNG and passed strict reference validation.
 
 | Image | Native size | SHA-256 |
 | --- | --- | --- |
@@ -8,12 +8,9 @@ These are the original design images recovered from the portfolio conversation's
 | `02-cryo-variant.png` | 2286 × 1338 | `015d742ea2d4297eaaf2db61ac476e941f467cac0ca4adb9186f0c19ca8109bd` |
 | `03-electro-variant.png` | 2277 × 1338 | `2811e80e892d132647fc2b544d7a6af74cd510baef5254a02367f8707e01a841` |
 
-## Required handoff
+## Verification
 
-1. Copy the original PNG files from the archive to `docs/design/references/` without resizing or editing. Run `bash scripts/import-p1-references.sh /path/to/portfolio-p1-frozen-reference-pack.zip` from the repository root (or pass a directory containing the three files).
-2. Compare `sha256sum docs/design/references/*.png` against the hashes above.
-3. Keep the reference files in a separate P1-only commit; no layout or dependency edits.
-4. Ask the owner to review the **actual** assets in-context. The written approval for the three weather concepts is not automatic acceptance of these P1 starter ornaments.
+Run `node scripts/validate-weather-p1.mjs --strict` and `sha256sum docs/design/references/*.png` in a branch checkout. The expected SHA-256 values appear in the table above. All three original file paths are committed; there is **no remaining manual upload**.
 
 ## Fidelity notes from visual inspection
 
@@ -24,4 +21,4 @@ These are the original design images recovered from the portfolio conversation's
 - The Focus checklist, GitHub counts and activity percentages are illustrative only. Do not ship as verified personal data.
 - A screenshot in the mockup is not evidence of a live product or a published release.
 
-**Gate status:** P1 visual direction is approved, with only the three `horizon.svg` assets active. The strict reference-import gate stays blocked until the exact original PNGs are in the repository. Scale/contrast must be verified from P2 browser captures before approving the implementation.
+**Gate status:** Source-reference gate complete. P1 visual direction is locked; only the three `horizon.svg` assets are active. The logo treatment needs owner review, and horizon/browser layout placement will be verified in P2 after explicit implementation approval.
