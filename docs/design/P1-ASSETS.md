@@ -39,6 +39,6 @@ Three theme-specific `horizon.svg` files are provided in `public/weather/{theme}
 - Cryo: shallow snowdrifts and a crystal cluster.
 - Electro: twilight hills and tiny flowering branches.
 
-These are **new review candidates**, not final-approved decorative artwork. They deliberately differ by theme as the frozen mockups do, while leaving the content columns unchanged. They should be rendered in a small bottom strip rather than as a full-viewport scene.
+The owner **approved the three horizon SVG designs as the chosen decorative direction** on 2026-11-03. This approves the asset design, not the browser placement or the rest of P1. They deliberately differ by theme as the frozen mockups do, while leaving the content columns unchanged. They should be rendered in a small bottom strip rather than as a full-viewport scene.
 
 Use `--weather-horizon` in a background-only decorative layer after P2 approval. Keep that layer `aria-hidden`, and do not obscure navigation, hit targets or text.

@@ -1,6 +1,6 @@
 # P1 readiness report — Soft Grid Weather Portfolio
 
-**State: READY FOR OWNER REVIEW — NOT YET FINAL-APPROVED.** No P2 homepage markup, runtime theme switching or P4 effects were implemented.
+**State: P1 HORIZON ARTWORK APPROVED; OTHER P1 GATES STILL OPEN.** No P2 homepage markup, runtime theme switching or P4 effects were implemented.
 
 ## Confirmed on active branch
 
@@ -27,9 +27,9 @@
 - [x] Non-runtime validation script authored (run with `--strict` to require all reference PNGs and to check themed action contrast).
 - [x] Three optional bottom-horizon SVG candidates added for review; no production styling changed.
 - [x] Added accessible action-color tokens without changing the frozen decorative accents.
-- [ ] Browser screenshots of horizon ornaments reviewed against freeze (asset approval pending).
+- [x] Owner explicitly approved the new three `horizon.svg` theme ornaments in conversation (2026-11-03). This is **direction/asset approval**; no in-browser implementation reviewed.
 - [ ] Original frozen PNG bytes uploaded and hashes matched in GitHub.
-- [ ] Owner reviews ornament variants **in context**, including whether they are sufficiently subtle.
+- [ ] In-browser context check for approved `horizon.svg` against frozen mockups. `edge.svg` and `corner.svg` are still unapproved prototypes and are optional; do not treat them as final.
 - [ ] Owner confirms the correct brand logo and the use of a real avatar versus a placeholder.
 - [ ] Owner explicitly grants **P1 final approval** and separately authorizes P2.
 

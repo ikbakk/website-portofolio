@@ -1,6 +1,6 @@
 # P1 — Soft Grid / Weather Themes (active homepage design contract)
 
-Status: **P1 foundation committed; visual/final P1 approval pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
+Status: **P1 foundation committed; the three horizon SVG assets approved by owner; remaining P1 gates pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
 
 ## Current visual authority
 

@@ -16,6 +16,7 @@
 - Implement homepage as reusable Astro components styled with Tailwind 4 + semantic CSS tokens.
 - Render the approved three columns, matching the high-resolution approved reference. Center starts directly with Featured Project, then Selected Works and Tech Stack. Left contains profile/about/socials. Right contains Focus, a reserved Playground and GitHub activity below.
 - Use real project images already in `public/projects/`. Request/collect genuine assets for projects with missing screenshots; don't reconstruct fake apps from the mockup.
+- The three `public/weather/{normal,cryo,electro}/horizon.svg` artworks have **owner approval** as visual assets. Use these first as narrow bottom decorative strips, preserving their intended per-theme differences. `edge.svg`/`corner.svg` are optional prototypes, not approved assets.
 - Theme picker switches normal/cryo/electro **statically** (colors, ornaments, surface treatments). A `data-weather` attribute is one possible implementation. No animated weather, cursor trail or motion effects.
 - Replace or isolate old Celestial page-specific layout/background/intro scripts for the new homepage, without breaking case-study routes or route metadata.
 - Keep Focus and Playground visibly present but **non-fake**: e.g. clearly labeled preview, not fabricated task completion, accounts, or functional game UI. True behavior is P3.

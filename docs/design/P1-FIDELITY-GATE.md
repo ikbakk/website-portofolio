@@ -5,7 +5,8 @@ The owner approved a specific three-theme concept in conversation. This checklis
 ## Before P2 can begin
 
 - [ ] The three original approved high-resolution mockup files are committed under `docs/design/references/`. Do not use cropped, resized, newly generated or approximated replacements as the only source of truth.
-- [ ] Owner reviews the six weather ornament SVGs in context against that reference. Replace/refine them if too flat or conspicuous.
+- [x] Owner approved `horizon.svg` visual direction for all three themes (2026-11-03). These are the primary decorative assets.
+- [ ] Verify their actual placement in browser against the frozen mockup; `edge.svg` and `corner.svg` remain optional, unapproved prototypes. Remove rather than embellish if not needed.
 - [ ] Brand logo source and relationship to the existing black/orange `public/logo-mark.svg` are confirmed.
 - [ ] P1 art/token/documentation changes receive an explicit owner sign-off.
 - [ ] If adding dependencies in P2, list package, version, license, weight and reason for each before installing.
