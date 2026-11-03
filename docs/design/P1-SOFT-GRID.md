@@ -1,6 +1,6 @@
 # P1 — Soft Grid / Weather Themes (active homepage design contract)
 
-Status: **P1 foundation committed; the three horizon SVG assets approved by owner; remaining P1 gates pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
+Status: **P1 design decisions locked; exact frozen PNG import and P2 authorization pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
 
 ## Current visual authority
 
@@ -24,7 +24,7 @@ The **same content, card geometry, typography, spacing and order** appear in Nor
 - **Cryo / Blizzard**: `#50A9D1` accent, `#F0F7FA` background, `#20536C` functional ink.
 - **Electro / Storm**: `#A178EE` accent, `#201A35` background, `#E8DDFB` readable light ink. Dark panels must remain readable.
 - Papercut is the **primary material language**, pixel details are small and secondary. No copyrighted Genshin or motorsport logos, game assets or copied interface patterns.
-- Theme ornament should stay inside/at edges of the panels and widgets; it must not dominate the document.
+- Approved weather artwork is a **narrow bottom horizon strip**, anchored behind the three columns; do not place its landscape inside project cards. `edge.svg` and `corner.svg` prototypes are excluded from P2. The decorative horizon must never dominate the page.
 - Theme selection is user-driven (not live weather). Theme changes are **static** in P2. Falling snow, lightning, trails, cursor replacements, GSAP and Lenis belong to **P4**.
 
 ## P1 scope
@@ -38,7 +38,7 @@ Excluded: replacing `index.astro`, altering `BaseLayout.astro`, importing the ne
 - Approved mockup image bytes need to be stored in the repository before visual implementation begins.
 - Final card dimensions, typography scale and responsive breakpoints must be **measured from the approved reference and browser captures**, not guessed.
 - The published `public/logo-mark.svg` currently uses black/cream/orange, whereas this approved theme is green; the actual logo to ship needs an explicit brand asset review before replacing any identity.
-- The SVG ornaments in `public/weather` are deliberately **small starter assets**, not a claim that final papercut fidelity has already been achieved. P1 final requires visual sign-off on the ornaments in-context.
+- The owner approved the `horizon.svg` motif family, recorded in [P1-SIGNOFF.md](P1-SIGNOFF.md). The six `edge.svg`/`corner.svg` experiments are inactive. Exact scale/contrast inside Astro still requires browser verification during P2.
 
 See [asset inventory](P1-ASSETS.md), [library decisions](P1-LIBRARIES.md), and [fidelity gate](P1-FIDELITY-GATE.md).
 ## Contrast implementation note (P1 audit)

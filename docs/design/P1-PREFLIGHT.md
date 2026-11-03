@@ -8,14 +8,14 @@
 - `src/data/archive.ts` uses existing project records and truthful stage labels. Do not replace its project data with the demo titles, metrics or checklist shown in the mockup.
 - `public/projects/` currently has `sungkargroup.webp` and `ward-monitor-dashboard.webp` only. Beaconnect, Rentalin and Drama Stream screenshots shown in the mockup are not yet available as verified repository assets.
 - The current black/cream/orange logo in `public/logo-mark.svg` differs from the green monogram in the frozen design. Brand identity approval is still required.
-- The three original reference images are identified in [P1-REFERENCE-MANIFEST.md](P1-REFERENCE-MANIFEST.md), but the image bytes are **not yet committed to GitHub**.
+- The three original reference images are identified in [P1-REFERENCE-MANIFEST.md](P1-REFERENCE-MANIFEST.md), but the image bytes are **not yet committed to GitHub**. The checksummed archive is available in the conversation. Use [the verified import helper](../../scripts/import-p1-references.sh) when the archive is accessible locally.
 
 ## Tokens and ornaments — technical checks
 
 - `src/theme/weather.config.ts` declares exactly Normal, Cryo, Electro and references six existing SVGs under `public/weather/`.
 - CSS variables cover background, surface, border, grid, accent, text, focus and ornament for each weather mode.
 - Electro has dark `color-scheme` and light foreground. Cryo and Normal use a darker semantic `--weather-primary-ink` for small text rather than the bright accent color.
-- Ornament SVGs have an intrinsic `viewBox` and use only static vector elements. They are **prototypes**, not signed-off final art.
+- All SVGs have a `viewBox` and static vector elements. The owner selected the three `horizon.svg` variants as the active **bottom-edge** decorative direction; `edge.svg` and `corner.svg` are older unapproved experiments and have been removed from the active config/tokens.
 - **No build/test run claimed**: this is a connector-side GitHub commit, not a checked-out and built site. The first P2 implementation commit must run Astro typecheck, build, format check, and browser screenshot comparison.
 
 ## Proposed P2 sequence, after explicit approval
@@ -32,5 +32,5 @@
 - Frozen concept: approved.
 - P1 documentation and starter tokens: committed.
 - Exact mockup PNGs in GitHub: **pending**.
-- Final ornament-in-context review: **pending**.
-- Final P1 lock / authorization to start P2: **pending explicit owner sign-off**.
+- SVG family reviewed for thematic correspondence: **done**. True in-browser placement/scale review: **pending P2**.
+- P1 design direction: **locked**, see [decision record](P1-SIGNOFF.md). Full pre-P2 gate: **blocked only by original binary reference import, identity decision, and owner authorization**.

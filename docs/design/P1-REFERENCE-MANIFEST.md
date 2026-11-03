@@ -10,7 +10,7 @@ These are the original design images recovered from the portfolio conversation's
 
 ## Required handoff
 
-1. Copy the original PNG files from the archive to `docs/design/references/` without resizing or editing.
+1. Copy the original PNG files from the archive to `docs/design/references/` without resizing or editing. Run `bash scripts/import-p1-references.sh /path/to/portfolio-p1-frozen-reference-pack.zip` from the repository root (or pass a directory containing the three files).
 2. Compare `sha256sum docs/design/references/*.png` against the hashes above.
 3. Keep the reference files in a separate P1-only commit; no layout or dependency edits.
 4. Ask the owner to review the **actual** assets in-context. The written approval for the three weather concepts is not automatic acceptance of these P1 starter ornaments.
@@ -24,4 +24,4 @@ These are the original design images recovered from the portfolio conversation's
 - The Focus checklist, GitHub counts and activity percentages are illustrative only. Do not ship as verified personal data.
 - A screenshot in the mockup is not evidence of a live product or a published release.
 
-**Gate status:** P1 cannot be fully locked until original reference images are in the repo and the owner signs off on final in-context ornament scale and contrast.
+**Gate status:** P1 visual direction is approved, with only the three `horizon.svg` assets active. The strict reference-import gate stays blocked until the exact original PNGs are in the repository. Scale/contrast must be verified from P2 browser captures before approving the implementation.

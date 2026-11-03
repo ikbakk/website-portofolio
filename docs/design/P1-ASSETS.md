@@ -1,44 +1,41 @@
-# P1 asset manifest — custom only where it adds theme identity
+# P1 asset manifest — confirmed design direction
 
 ## Existing verified repository assets
 
-- `public/projects/sungkargroup.webp`: real project image candidate. Verify screenshot content and caption at render time.
-- `public/projects/ward-monitor-dashboard.webp`: prototype screenshot; never present as production data.
+- `public/projects/sungkargroup.webp`: real project screenshot candidate, verify caption and crop in P2.
+- `public/projects/ward-monitor-dashboard.webp`: prototype screenshot; do not suggest live production metrics.
 - `public/resume.pdf`: existing resume.
-- `public/logo-mark.svg`: current black/cream/orange modular mark, **not** the green symbol shown in the mockup. Do not recolor or replace without review.
-- No verified Beaconnect, Rentalin, or drama-stream screenshots were observed in `public/projects/` at P1 audit time. Do not fabricate app screens; use labelled truthful placeholders until actual image files are supplied.
+- `public/logo-mark.svg`: black/cream/orange logo from earlier version. **Not** the approved green logo artwork shown in the frozen normal mockup. Do not replace without specific owner decision.
+- Missing verified screenshots: Beaconnect, Rentalin and Drama Stream mockup illustrations are **not** shippable as pretend evidence. Use actual images when provided or accurately labelled placeholders.
 
-## New, reviewed-as-concept SVG asset slots
+## Approved decorative SVG family: bottom horizons only
 
-| Location | Intended use | Constraint |
+| Normal / Green Meadow | Cryo / Blizzard | Electro / Storm |
 | --- | --- | --- |
-| `public/weather/normal/edge.svg` | Green layered papercut edge | Place inside or just behind a panel, max subtle visual footprint |
-| `public/weather/cryo/edge.svg` | Snowdrift version, same geometry | No animated snowfall in P1/P2 |
-| `public/weather/electro/edge.svg` | Violet layered paper edge | No lightning flash in P1/P2 |
-| `public/weather/*/corner.svg` | Small theme-specific leaf/crystal/spark | Decorative only, hide from accessibility tree in UI |
-| `src/styles/weather-themes.tokens.css` | Static semantic tokens | Not imported until P2 approval |
-| `src/theme/weather.config.ts` | Typed theme identifiers and asset paths | Not connected until P2 approval |
+| `public/weather/normal/horizon.svg` | `public/weather/cryo/horizon.svg` | `public/weather/electro/horizon.svg` |
+| Low green paper hills and short leaf sprig near footer | Shallow snowdrifts and small frost crystals at lower left | Layered violet hills with small flowering branches |
 
-The edge SVG files intentionally share the same geometry, so switching themes does not move layout. These are **P1 prototypes** and must be compared with the frozen mockup before any final asset approval.
+**Approved 2026-11-03:** the owner accepted the three `horizon.svg` illustrations as the *visual direction*. This does **not** prove pixel-level placement in an Astro browser capture. Apply them as a restrained decorative strip at the bottom behind content, not over cards or click targets.
+
+The typed theme configuration `src/theme/weather.config.ts` exposes only `horizon`. `--weather-horizon` is the canonical CSS asset token and `--weather-ornament` is an alias to the same approved horizon, for compatibility during P2. Neither is imported by the current homepage yet.
+
+## Explicitly excluded from P2 until new approval
+
+- `public/weather/{normal,cryo,electro}/{edge,corner}.svg`: these six earlier experimental SVGs remain in the repository solely as historical prototypes. **Do not apply or consume them** in the P2 layout.
+- Any custom SVG representation of the project cards, Playground, or a full-screen illustrated backdrop.
+- Decorative icons that can be sourced from a vetted icon set.
 
 ## Sourcing rules
 
-1. Use actual project screenshots for real work and meaningful alt text. Maintain their aspect ratios using CSS `object-fit`; never distort, invent UIs or recolor screenshots to pretend the app is themed.
-2. Prefer `@lucide/astro` for general interface icons if P2 confirms suitability. Existing custom logo and branded technology icons are separate concerns.
-3. Playground visual/game logic is postponed to P3; research lightweight open-source interactive options then. No custom pixel character SVG is required in P1.
-4. Animated component patterns may be borrowed only after checking license, package footprint, Astro compatibility, accessibility, and theme-ability. Motion belongs to P4.
-5. Record for every third-party asset: canonical URL, license, attribution rules, whether modified, and saved version/commit. Do not scrape or reuse copyrighted game assets.
+1. Actual project screenshots/images come from the project's real UI. Respect ratio and legibility with `object-fit`. Don't present conceptual artwork as deployed product screenshots.
+2. Prefer a consistent vetted icon library for normal UI symbols; verify Astro API and license before adding a dependency.
+3. Playground is a placeholder until P3. Its interactive library/mini-game is selected by fitting the reserved dimensions, not by changing the frozen layout.
+4. GSAP effects and optional component-animation sources are P4 only. Respect reduced motion.
+5. Record canonical source URL, license, attribution requirements, version and local modifications for every third-party asset.
 
-## Anti-drift
+## Layout constraints
 
-No SVG depicting full project screenshots, no gigantic horizon background, no decorating every card with the same ornament. One subtle thematic detail per relevant region is enough.
-## Additional horizon-only SVG prototypes
-
-Three theme-specific `horizon.svg` files are provided in `public/weather/{theme}/`. They are intentionally restricted to the bottom edge:
-- Normal: green rolling paper hills and a compact leaf sprig.
-- Cryo: shallow snowdrifts and a crystal cluster.
-- Electro: twilight hills and tiny flowering branches.
-
-The owner **approved the three horizon SVG designs as the chosen decorative direction** on 2026-11-03. This approves the asset design, not the browser placement or the rest of P1. They deliberately differ by theme as the frozen mockups do, while leaving the content columns unchanged. They should be rendered in a small bottom strip rather than as a full-viewport scene.
-
-Use `--weather-horizon` in a background-only decorative layer after P2 approval. Keep that layer `aria-hidden`, and do not obscure navigation, hit targets or text.
+- Weather horizon art does not affect the three-column DOM order, panel heights, content padding or theme switch geometry.
+- Do not duplicate the landscape on every panel.
+- Keep ornaments non-interactive and outside screen-reader output.
+- Overlay, crop, scale and stacking order must be reviewed at native reference sizes and actual browser widths. No browser verification has happened in P1.

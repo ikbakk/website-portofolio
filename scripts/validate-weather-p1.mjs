@@ -76,6 +76,11 @@ for (const key of ['--weather-background', '--weather-surface', '--weather-prima
   if (!css.includes(key)) fail('Missing token ' + key);
 }
 
+// Do not accidentally activate experimental ornaments in the P2 surface.
+if (/\/weather\/(normal|cryo|electro)\/(edge|corner)\.svg/.test(css + config)) {
+  fail('Experimental edge/corner SVG referenced by active P1 config or tokens');
+}
+
 const pngs = [
   ['01-normal-master.png', '64c5116914745e6b3677f0ada5bc238a221afd2e963fdf59f5dc07c91a7fdc57'],
   ['02-cryo-variant.png', '015d742ea2d4297eaaf2db61ac476e941f467cac0ca4adb9186f0c19ca8109bd'],

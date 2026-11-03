@@ -6,9 +6,10 @@ The owner approved a specific three-theme concept in conversation. Original refe
 
 - [ ] The three original approved high-resolution mockup files are committed under `docs/design/references/`. Do not use cropped, resized, newly generated or approximated replacements as the only source of truth.
 - [x] Owner approved `horizon.svg` visual direction for all three themes (2026-11-03). These are the primary decorative assets.
-- [ ] Verify their actual placement in browser against the frozen mockup; `edge.svg` and `corner.svg` remain optional, unapproved prototypes. Remove rather than embellish if not needed.
+- [x] Reviewed SVG family and limited active art to `horizon.svg`. The experimental `edge.svg` and `corner.svg` must not be consumed by P2.
+- [ ] Verify horizon placement and scaling in browser against native frozen mockup screenshots during P2 visual regression; do not claim this was performed in P1.
 - [ ] Brand logo source and relationship to the existing black/orange `public/logo-mark.svg` are confirmed.
-- [ ] P1 art/token/documentation changes receive an explicit owner sign-off.
+- [x] P1 design and asset-sourcing direction approved; see [P1-SIGNOFF.md](P1-SIGNOFF.md). This does not waive missing source PNGs, logo treatment decision, or P2 approval.
 - [ ] If adding dependencies in P2, list package, version, license, weight and reason for each before installing.
 
 ## P2 screenshot comparisons (future work, not done yet)

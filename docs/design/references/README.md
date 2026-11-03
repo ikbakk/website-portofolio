@@ -10,13 +10,19 @@ The three **exact** PNGs approved by the portfolio owner have been identified in
 
 **Do not** mistake the three files for three independent page designs: the first is a wider master crop from the agreed comparison board and the other two are narrower theme crops. They are different canvases and cannot be used for naive pixel overlays without cropping/alignment. Preserve their dimensions and provenance; use semantic/region-specific comparisons in addition to screenshots.
 
-A separate file bundle `portfolio-P1-frozen-references.zip` was prepared for the owner. Its paths are already organized beneath `docs/design/references/`.
+The exact source bundle is `portfolio-p1-frozen-reference-pack.zip`, available as an artifact in the portfolio conversation. It contains `references/*.png` plus `references/MANIFEST.json`. **Do not replace these with thumbnails or newly generated lookalikes.**
 
-After upload, run:
+From a checkout of this branch, import the archive and verify:
 
 ```sh
-sha256sum docs/design/references/{01-normal-master,02-cryo-variant,03-electro-variant}.png
-node scripts/validate-weather-p1.mjs
+bash scripts/import-p1-references.sh /path/to/portfolio-p1-frozen-reference-pack.zip
+node scripts/validate-weather-p1.mjs --strict
+# Only after the hashes match, commit and push these three PNGs on this branch:
+git add docs/design/references/*.png
+git commit -m "docs(design): add original P1 frozen mockup references"
+git push origin ikbakk/inspire-portfolio-jmancheta-design
 ```
+
+The import helper is **idempotent** and checks all three SHA-256 values before installing any files. It does not commit or push.
 
 Only after verification can this checkpoint be considered fulfilled.
