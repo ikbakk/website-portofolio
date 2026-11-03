@@ -7,6 +7,7 @@ import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 
 const root = process.cwd();
+const strict = process.argv.includes('--strict');
 let failures = 0;
 const fail = (message) => {
   console.error('FAIL:', message);
@@ -28,10 +29,12 @@ const config = configBuffer?.toString('utf8') ?? '';
 const ids = ['normal', 'cryo', 'electro'];
 for (const id of ids) {
   if (!config.includes("id: '" + id + "'")) fail('Missing theme config ' + id);
+  if (!css.includes("--weather-horizon: url('/weather/" + id + "/horizon.svg')")) fail('Horizon token missing: ' + id);
+  if (!css.includes("--weather-action-bg:")) fail('Missing action background token');
   if (id !== 'normal' && !css.includes("[data-weather='" + id + "']")) {
     fail('Missing CSS selector for ' + id);
   }
-  for (const type of ['edge', 'corner']) {
+  for (const type of ['edge', 'corner', 'horizon']) {
     const path = 'public/weather/' + id + '/' + type + '.svg';
     const data = requireFile(path)?.toString('utf8') ?? '';
     if (data && (!data.startsWith('<svg') || !data.includes('</svg>'))) {
@@ -67,6 +70,7 @@ for (const [name, expected] of pngs) {
 }
 if (count !== pngs.length) {
   console.warn('P1 readiness incomplete: ' + count + '/3 reference PNGs available');
+  if (strict) fail('Strict P1 validation requires all three frozen mockup images');
 }
 if (failures) {
   console.error(failures + ' P1 structural validation failures');

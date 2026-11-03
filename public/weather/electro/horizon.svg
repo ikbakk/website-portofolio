@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 180" width="1600" height="180" role="img" aria-labelledby="title"><title>Storm — violet hills and flowering branches</title>
+<path d="M0 154Q120 121 224 151T432 159Q616 139 808 160T1100 150Q1288 136 1430 153T1600 148V180H0Z" fill="#5d438b"/>
+<path d="M0 169Q128 144 262 165T519 169Q671 146 819 172T1098 165Q1379 145 1600 164V180H0Z" fill="#7951a1"/>
+<path d="M0 178Q147 164 287 176T613 174Q904 168 1177 175T1600 172V180H0Z" fill="#372552"/>
+<path d="M0 154Q120 121 224 151T432 159Q616 139 808 160T1100 150Q1288 136 1430 153T1600 148" stroke="#8e60c3" stroke-width="2" fill="none" opacity=".65"/>
+<g stroke="#b57ac8" stroke-width="3" stroke-linecap="round" fill="none"><path d="M24 170Q40 120 55 104"/><path d="M29 153Q9 132 4 118"/><path d="M45 140Q74 122 78 108"/><path d="M1549 170Q1531 126 1516 111"/><path d="M1540 149Q1563 132 1583 123"/><path d="M1554 155Q1530 139 1501 142"/></g>
+<g fill="#d493df"><path d="M47 110l9-13 4 10 14 4-13 6-4 12-9-12-12-2Z"/><path d="M13 124l8-11 4 10 11 5-12 5-4 10-8-10-9-2Z"/><path d="M80 119l8-10 4 7 11 5-10 4-3 10-7-9-10-2Z"/><path d="M1520 115l8-12 4 10 12 4-11 5-3 11-8-9-12-2Z"/><path d="M1567 128l7-11 3 10 12 4-11 4-3 10-8-8-10-3Z"/><path d="M1505 146l6-8 4 8 11 4-10 4-3 9-7-9-9-2Z"/></g>
+<g fill="#f4c3f7"><circle cx="57" cy="109" r="4"/><circle cx="1519" cy="114" r="4"/><circle cx="1575" cy="129" r="3"/></g>
+</svg>

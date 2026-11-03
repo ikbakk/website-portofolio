@@ -4,14 +4,14 @@
 
 ## Confirmed on active branch
 
-- Correct branch: \`ikbakk/inspire-portfolio-jmancheta-design\` in \`ikbakk/website-portofolio\`.
+- Correct branch: `ikbakk/inspire-portfolio-jmancheta-design` in `ikbakk/website-portofolio`.
 - Existing homepage already contains an early J. Mancheta-inspired three-column concept, but its composition and all of its labels do **not** match the approved mockup. It must be treated as an incumbent to replace *in P2*, not a finished implementation.
-- Existing \`BaseLayout.astro\` / \`global.css\` / \`celestial.css\` still initialize a legacy Celestial UI. Do not blindly carry its layout or opening motion into the new page.
-- Theme IDs: \`normal\`, \`cryo\`, \`electro\`; default \`normal\`. Token file is deliberately not yet imported.
-- Six P1 ornament prototypes exist as \`edge.svg\` and \`corner.svg\` for each theme. They are **not** screenshots, not pixel-game assets, and not a replacement for actual project thumbnails.
-- \`public/projects/sungkargroup.webp\` and \`public/projects/ward-monitor-dashboard.webp\` exist. Other project imagery shown in concept mockups must be sourced from verified real screenshots or replaced by accurate placeholders.
-- \`public/logo-mark.svg\` is black/cream/orange; the green visual logo in the approved mockup has not been verified as the current identity asset. Brand mark choice remains open.
-- Local PNG frozen reference artifacts have been identified and checksummed. They have **not yet been committed**; see \`references/README.md\`.
+- Existing `BaseLayout.astro` / `global.css` / `celestial.css` still initialize a legacy Celestial UI. Do not blindly carry its layout or opening motion into the new page.
+- Theme IDs: `normal`, `cryo`, `electro`; default `normal`. Token file is deliberately not yet imported.
+- Nine P1 ornament prototypes now exist as `edge.svg`, `corner.svg`, and `horizon.svg` for each theme. They are **not** screenshots, not pixel-game assets, and not a replacement for actual project thumbnails.
+- `public/projects/sungkargroup.webp` and `public/projects/ward-monitor-dashboard.webp` exist. Other project imagery shown in concept mockups must be sourced from verified real screenshots or replaced by accurate placeholders.
+- `public/logo-mark.svg` is black/cream/orange; the green visual logo in the approved mockup has not been verified as the current identity asset. Brand mark choice remains open.
+- Local PNG frozen reference artifacts have been identified and checksummed. They have **not yet been committed**; see `references/README.md`.
 
 ## Design contract
 
@@ -24,7 +24,10 @@
 - [x] Weather token and static asset contract committed without importing.
 - [x] Custom-vs-reuse decision documented; no unnecessary dependencies.
 - [x] Original frozen PNG filenames, dimensions and SHA-256 recorded.
-- [x] Non-runtime validation script authored.
+- [x] Non-runtime validation script authored (run with `--strict` to require all reference PNGs).
+- [x] Three optional bottom-horizon SVG candidates added for review; no production styling changed.
+- [x] Added accessible action-color tokens without changing the frozen decorative accents.
+- [ ] Browser screenshots of horizon ornaments reviewed against freeze (asset approval pending).
 - [ ] Original frozen PNG bytes uploaded and hashes matched in GitHub.
 - [ ] Owner reviews ornament variants **in context**, including whether they are sufficiently subtle.
 - [ ] Owner confirms the correct brand logo and the use of a real avatar versus a placeholder.
@@ -34,4 +37,4 @@ These uncompleted checks are real blockers. Do not mark P1 “approved” on beh
 
 ## P2 launch gate
 
-At the moment P2 is approved, open \`P2-AGENT-HANDOFF.md\` and follow its dependency and scope constraints. Document and compare screenshots in a separate P2 change; no merge/deploy without approval.
+At the moment P2 is approved, open `P2-AGENT-HANDOFF.md` and follow its dependency and scope constraints. Document and compare screenshots in a separate P2 change; no merge/deploy without approval.

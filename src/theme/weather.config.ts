@@ -12,6 +12,7 @@ export interface WeatherThemeDefinition {
   icon: 'sun' | 'snowflake' | 'cloud-lightning';
   ornament: string;
   corner: string;
+  horizon: string;
 }
 
 export const weatherThemes: Record<WeatherThemeId, WeatherThemeDefinition> = {
@@ -22,6 +23,7 @@ export const weatherThemes: Record<WeatherThemeId, WeatherThemeDefinition> = {
     icon: 'sun',
     ornament: '/weather/normal/edge.svg',
     corner: '/weather/normal/corner.svg',
+    horizon: '/weather/normal/horizon.svg',
   },
   cryo: {
     id: 'cryo',
@@ -30,6 +32,7 @@ export const weatherThemes: Record<WeatherThemeId, WeatherThemeDefinition> = {
     icon: 'snowflake',
     ornament: '/weather/cryo/edge.svg',
     corner: '/weather/cryo/corner.svg',
+    horizon: '/weather/cryo/horizon.svg',
   },
   electro: {
     id: 'electro',
@@ -38,6 +41,7 @@ export const weatherThemes: Record<WeatherThemeId, WeatherThemeDefinition> = {
     icon: 'cloud-lightning',
     ornament: '/weather/electro/edge.svg',
     corner: '/weather/electro/corner.svg',
+    horizon: '/weather/electro/horizon.svg',
   },
 };
 

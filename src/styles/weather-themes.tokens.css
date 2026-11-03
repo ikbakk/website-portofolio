@@ -17,6 +17,9 @@
   --weather-grid: rgba(46, 92, 54, 0.045);
   --weather-focus: #17482c;
   --weather-ornament: url('/weather/normal/edge.svg');
+  --weather-horizon: url('/weather/normal/horizon.svg');
+  --weather-action-bg: #166b2e;
+  --weather-action-text: #ffffff;
   --weather-corner: url('/weather/normal/corner.svg');
   --weather-panel-radius: 18px;
   --weather-card-radius: 14px;
@@ -35,6 +38,9 @@
   --weather-grid: rgba(29, 95, 133, 0.045);
   --weather-focus: #20536c;
   --weather-ornament: url('/weather/cryo/edge.svg');
+  --weather-horizon: url('/weather/cryo/horizon.svg');
+  --weather-action-bg: #1f6386;
+  --weather-action-text: #ffffff;
   --weather-corner: url('/weather/cryo/corner.svg');
 }
 [data-weather='electro'] {
@@ -50,6 +56,9 @@
   --weather-grid: rgba(218, 189, 255, 0.045);
   --weather-focus: #e8ddfb;
   --weather-ornament: url('/weather/electro/edge.svg');
+  --weather-horizon: url('/weather/electro/horizon.svg');
+  --weather-action-bg: #a178ee;
+  --weather-action-text: #201a35;
   --weather-corner: url('/weather/electro/corner.svg');
 }
 /* P2 may consume these variables; never style .jmfolio-* here during P1. */
