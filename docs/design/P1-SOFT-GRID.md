@@ -6,6 +6,10 @@ Status: **P1 design decisions locked; exact frozen PNG files committed and verif
 
 The owner revised the desktop proportions to **30% left / 40% center / 30% right**, superseding the original mockup proportions. The desktop shell is viewport-bound; only the center work column scrolls, with neutral blurred gradient fades at its top and bottom (the owner clarified “blurred,” not blue). Existing experience records live in that scroll region to keep the identity column stationary. Narrow layouts retain normal document scrolling.
 
+## Owner ornament and element revision — 2026-11-04
+
+The owner explicitly requested Genshin elemental logos in the weather selector and more theme-matched pixel/paper ornaments on the columns. This supersedes the earlier no-game-logo and horizon-only restrictions for this specific scope. Green Meadow uses Dendro, Blizzard uses Cryo, and Storm uses Electro. New original `column-foot.svg` / `column-corner.svg` assets may decorate each column; the six old `edge.svg` / `corner.svg` prototypes remain inactive. Preserve 30 / 40 / 30 tracks, center-only desktop scrolling, neutral blur edges, and theme-identical content.
+
 ## Current visual authority
 
 1. The owner-approved **three-theme frozen mockup** from the portfolio design conversation is the visual authority. The exact original images are committed under [docs/design/references/](references/) and their hashes are listed in [the reference manifest](P1-REFERENCE-MANIFEST.md); the strict source check passed in [GitHub Actions run 41663423056](https://github.com/ikbakk/website-portofolio/actions/runs/41663423056). Do not substitute AI-regenerated compositions or infer exact measurements from written prose.

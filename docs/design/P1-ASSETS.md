@@ -39,3 +39,13 @@ The typed theme configuration `src/theme/weather.config.ts` exposes only `horizo
 - Do not duplicate the landscape on every panel.
 - Keep ornaments non-interactive and outside screen-reader output.
 - Overlay, crop, scale and stacking order must be reviewed at native reference sizes and actual browser widths. No browser verification has happened in P1.
+
+
+## Owner-requested additions — 2026-11-04
+
+- `public/weather/elements/{dendro,cryo,electro}.svg`: static Genshin elemental emblems ported from the MIT-licensed `genshin-icon` 1.0.20-alpha2 path definitions; upstream notice is in `public/licenses/genshin-icons-MIT.txt`. These are the explicit exception requested by the owner, not new portfolio brand marks. Provenance/modifications are recorded in `public/weather/elements/README.md`.
+- `public/weather/{normal,cryo,electro}/column-foot.svg`: original, small layered paper landscapes with pixel accents, leaves / ice / violet flower branches.
+- `public/weather/{normal,cryo,electro}/column-corner.svg`: original folded-paper details with leaf / crystal / lightning motifs and pixel flecks.
+- `ThemeOrnament.astro` renders reusable decorative, screen-reader-hidden, pointer-transparent wrappers. Theme variables choose each original SVG family, keeping layout and content independent of the art.
+
+The owner’s latest request supersedes the previous horizon-only restriction for the new column assets. Historical `edge.svg` and `corner.svg` remain unused. No generated bitmap artwork or fake project/game screenshots were introduced.

@@ -1,7 +1,8 @@
 /**
- * P1 static design contract. Not connected to the current page until P2 approval.
+ * Static theme definitions used by the homepage.
  * No event listeners, persistence, weather simulation or animation belong here.
- * Only horizon.svg is approved for P2. edge/corner prototypes are excluded.
+ * The owner authorized elemental controls and column ornaments on 2026-11-04.
+ * Earlier edge.svg/corner.svg experiments remain unused.
  */
 export const weatherThemeIds = ['normal', 'cryo', 'electro'] as const;
 export type WeatherThemeId = (typeof weatherThemeIds)[number];
@@ -10,7 +11,7 @@ export interface WeatherThemeDefinition {
   id: WeatherThemeId;
   title: string;
   description: string;
-  icon: 'sun' | 'snowflake' | 'cloud-lightning';
+  icon: 'dendro' | 'cryo' | 'electro';
   horizon: string;
 }
 
@@ -19,21 +20,21 @@ export const weatherThemes: Record<WeatherThemeId, WeatherThemeDefinition> = {
     id: 'normal',
     title: 'Green Meadow',
     description: 'Quiet, natural, default',
-    icon: 'sun',
+    icon: 'dendro',
     horizon: '/weather/normal/horizon.svg',
   },
   cryo: {
     id: 'cryo',
     title: 'Blizzard',
     description: 'Calm, cool, frosted',
-    icon: 'snowflake',
+    icon: 'cryo',
     horizon: '/weather/cryo/horizon.svg',
   },
   electro: {
     id: 'electro',
     title: 'Storm',
     description: 'Dark, electric, deliberate',
-    icon: 'cloud-lightning',
+    icon: 'electro',
     horizon: '/weather/electro/horizon.svg',
   },
 };

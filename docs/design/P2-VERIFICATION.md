@@ -96,3 +96,20 @@ Typecheck passed for 49 files with zero errors, warnings or hints. Production bu
 ### Still different from the concept
 
 This correction improves structure and styling; it is **not an exact visual match or owner sign-off**. The approved green logo and portrait illustration are still unavailable as separate identity assets. The Playground illustration/characters and verified Beaconnect/CV Builder screenshots are missing. Widget data remains unconnected. Project content differs from illustrative concept titles because only the real existing project records are presented. Tech labels remain text chips rather than a fully sourced set of brand logos. Inter is a deliberate closer UI font choice; the raster mockup does not identify its original typeface. These gaps must remain visible in review rather than being disguised as completed assets.
+
+
+## Elemental selector and pixel / paper column ornaments — 2026-11-04
+
+The owner requested actual Genshin elemental logos in the weather controls and more theme-specific pixel/paper ornamentation. The selector now maps Green Meadow to **Dendro**, Blizzard to **Cryo**, and Storm to **Electro**. Its three buttons use local crisp SVG emblems, accessible theme/element names, pressed state, tooltips and visible keyboard focus. The original `normal` theme ID remains unchanged.
+
+Six original vector decorations form the new column family: a folded-paper corner and a layered low paper strip per theme. Meadow uses leaves, green paper layers and pixel sprouts; Blizzard uses snowdrifts, faceted ice and pixel snow; Storm uses violet folds, pixel lightning and flowering branches. A reusable component renders corner/footer decorations for each column. Decorations are non-interactive and excluded from assistive output. Narrow and short screens get smaller edge details; work content retains bottom padding and the GitHub link reserves room above its paper edge.
+
+The explicit owner request authorizes these element emblems and new column ornaments despite the earlier P1 restrictions. Existing experimental `edge.svg` / `corner.svg` assets are still unused. The SVG emblem source and MIT notice are retained; no package, React runtime, animation, weather simulation or dependency was added.
+
+Browser review confirmed all three theme switches, keyboard Enter activation, six ornament wrappers, pointer-events none, document scrollY 0 while the center scroll position changes, and unchanged 375.97 / 501.30 / 375.98 px tracks (30 / 40 / 30) at 1363 × 936. The document remains exactly one viewport tall. Neutral blurred scroll edges remain active.
+
+- [Meadow / Dendro](verification/p2/ornaments-normal.jpg)
+- [Blizzard / Cryo](verification/p2/ornaments-cryo.jpg)
+- [Storm / Electro](verification/p2/ornaments-electro.jpg)
+
+Astro diagnostics passed for 50 files with zero errors, warnings or hints; production build and changed-file formatting passed. The artwork and identity gaps recorded in the previous review remain separate from this update. No PR, merge or deployment.

@@ -1,10 +1,13 @@
 ---
+import ThemeOrnament from './ThemeOrnament.astro';
 import { site } from '../../data/site';
 import UIIcon from './UIIcon.astro';
 import Icon from '../celestial/Icon.astro';
 ---
 
 <aside class="widgets" aria-label="More from Iqbal">
+  <ThemeOrnament placement="corner" />
+  <ThemeOrnament placement="foot" />
   <section class="widget panel focus-widget">
     <div class="widget-heading">
       <h2><UIIcon name="focus" /> Focus</h2><span class="preview-label">Preview</span>

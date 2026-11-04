@@ -1,0 +1,8 @@
+---
+interface Props {
+  placement: 'corner' | 'foot';
+}
+const { placement } = Astro.props;
+---
+
+<span class="theme-ornament" data-placement={placement} aria-hidden="true"></span>

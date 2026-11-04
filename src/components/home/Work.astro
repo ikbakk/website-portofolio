@@ -1,4 +1,5 @@
 ---
+import ThemeOrnament from './ThemeOrnament.astro';
 import { archiveProjects, stageLabels } from '../../data/archive';
 import { experience } from '../../data/experience';
 import UIIcon from './UIIcon.astro';
@@ -10,6 +11,8 @@ const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase'
 ---
 
 <section class="work panel" aria-label="Selected work">
+  <ThemeOrnament placement="corner" />
+  <ThemeOrnament placement="foot" />
   <div class="work-scroll" tabindex="0" role="region" aria-label="Work and experience">
     <p id="work-start" class="section-path" tabindex="-1">/ &nbsp; work</p>
     <h2 class="section-title">Featured Project</h2>
