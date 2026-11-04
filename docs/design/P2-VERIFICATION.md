@@ -113,3 +113,13 @@ Browser review confirmed all three theme switches, keyboard Enter activation, si
 - [Storm / Electro](verification/p2/ornaments-electro.jpg)
 
 Astro diagnostics passed for 50 files with zero errors, warnings or hints; production build and changed-file formatting passed. The artwork and identity gaps recorded in the previous review remain separate from this update. No PR, merge or deployment.
+
+## Custom themed controls — 2026-11-04
+
+The owner requested custom buttons with theme-specific states. A reusable `PaperControl.astro` and `paper-controls.css` now supply primary, secondary, icon and navigation variants. They share paper corners, inset rims, a stepped pixel fold and a tactile lower edge. Green, icy-blue and violet pigment sets cover default, hover, pressed, selected, keyboard focus and disabled states. The component is applied to elemental selectors, navigation, socials/resume and the GitHub CTA. No package or animation dependency was added.
+
+Browser checks verified the three primary theme colors, Normal hover changing from #247936 to #1C682C, a keyboard-visible solid outline at 5 px offset, native disabled buttons, disabled anchors without hrefs, and Tab skipping both disabled controls. On the homepage, Projects receives `aria-current="location"`, Enter switches the selector to Cryo, document scrollY stays 0 while center scrollTop changes, and desktop tracks remain 375.97 / 501.30 / 375.98 px (30 / 40 / 30). Pressed styling is implemented in CSS; the transient pressed state was not captured as a separate browser image.
+
+A temporary component review route rendered real components in all three theme contexts for the [state screenshot](verification/p2/paper-control-states.jpg). It was removed before the final production build. [Cryo homepage screenshot](verification/p2/paper-controls-cryo.jpg) shows the applied controls. Primary-label contrast is at least 5.11:1 across all nine default/hover/pressed color pairs. See [the control contract](PAPER-CONTROLS.md).
+
+Astro diagnostics passed for 51 files with zero errors, warnings or hints. Production build passed. No merge or deployment was performed. Unrelated local workspace deletions were preserved and excluded from this change.

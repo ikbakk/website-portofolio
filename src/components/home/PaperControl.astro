@@ -1,0 +1,54 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'button'> & {
+  href?: string;
+  target?: HTMLAttributes<'a'>['target'];
+  rel?: string;
+  download?: HTMLAttributes<'a'>['download'];
+  variant?: 'primary' | 'secondary' | 'icon' | 'nav';
+  selected?: boolean;
+};
+const {
+  href,
+  target,
+  rel,
+  download,
+  variant = 'secondary',
+  selected = false,
+  disabled = false,
+  type = 'button',
+  class: className,
+  ...attributes
+} = Astro.props;
+---
+
+{
+  href ? (
+    <a
+      {...attributes}
+      class:list={['paper-control', className]}
+      data-variant={variant}
+      data-selected={selected ? 'true' : undefined}
+      href={disabled ? undefined : href}
+      target={disabled ? undefined : target}
+      rel={rel}
+      download={disabled ? undefined : download}
+      aria-disabled={disabled ? 'true' : undefined}
+      tabindex={disabled ? -1 : undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      {...attributes}
+      class:list={['paper-control', className]}
+      data-variant={variant}
+      data-selected={selected ? 'true' : undefined}
+      type={type}
+      disabled={disabled}
+    >
+      <slot />
+    </button>
+  )
+}

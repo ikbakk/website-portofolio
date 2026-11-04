@@ -1,6 +1,7 @@
 ---
 import ThemeOrnament from './ThemeOrnament.astro';
 import { site } from '../../data/site';
+import PaperControl from './PaperControl.astro';
 import UIIcon from './UIIcon.astro';
 import Icon from '../celestial/Icon.astro';
 ---
@@ -53,8 +54,13 @@ import Icon from '../celestial/Icon.astro';
         ><div class="empty-grid" aria-hidden="true">{Array.from({ length: 147 }, () => <i />)}</div>
       </div><p>Connect activity data to display contributions.</p>
     </div>
-    <a class="github-link" href={site.github} target="_blank" rel="noreferrer"
-      ><Icon name="github" /> github.com/ikbakk <UIIcon name="external" size={16} /></a
+    <PaperControl
+      variant="primary"
+      class="github-link"
+      href={site.github}
+      target="_blank"
+      rel="noreferrer"
+      ><Icon name="github" /> github.com/ikbakk <UIIcon name="external" size={16} /></PaperControl
     >
   </section>
 </aside>

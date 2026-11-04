@@ -1,0 +1,214 @@
+/* One paper material and interaction contract, with per-theme pigments. */
+:root,
+[data-weather='normal'] {
+  --control-face: #fdfef8;
+  --control-hover: #edf5dd;
+  --control-pressed: #dcebc9;
+  --control-edge: #aebf9e;
+  --control-rim: #ffffff;
+  --control-ink: #17482c;
+  --control-accent: #4f8e39;
+  --control-shadow: #45642e1f;
+  --control-primary: #247936;
+  --control-primary-hover: #1c682c;
+  --control-primary-pressed: #155422;
+  --control-primary-edge: #104b21;
+  --control-primary-ink: #ffffff;
+}
+[data-weather='cryo'] {
+  --control-face: #f2fbff;
+  --control-hover: #def3fc;
+  --control-pressed: #c8e9f6;
+  --control-edge: #9abfce;
+  --control-rim: #ffffff;
+  --control-ink: #20536c;
+  --control-accent: #438caa;
+  --control-shadow: #20536c24;
+  --control-primary: #226c90;
+  --control-primary-hover: #195c7d;
+  --control-primary-pressed: #124761;
+  --control-primary-edge: #153e55;
+  --control-primary-ink: #ffffff;
+}
+[data-weather='electro'] {
+  --control-face: #40305b;
+  --control-hover: #574077;
+  --control-pressed: #302042;
+  --control-edge: #1a102b;
+  --control-rim: #c7abe76b;
+  --control-ink: #f6f0ff;
+  --control-accent: #c3a0ee;
+  --control-shadow: #0e071e66;
+  --control-primary: #b18aee;
+  --control-primary-hover: #c4a4f3;
+  --control-primary-pressed: #a178ee;
+  --control-primary-edge: #624385;
+  --control-primary-ink: #201a35;
+}
+.paper-control[data-variant] {
+  --button-face: var(--control-face);
+  --button-hover: var(--control-hover);
+  --button-pressed: var(--control-pressed);
+  --button-edge: var(--control-edge);
+  --button-ink: var(--control-ink);
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 8px 13px;
+  border: 1px solid color-mix(in srgb, var(--button-edge) 75%, var(--control-accent));
+  border-radius: 5px 10px 5px 10px;
+  background: var(--button-face);
+  color: var(--button-ink);
+  box-shadow:
+    inset 0 1px 0 var(--control-rim),
+    0 3px 0 var(--button-edge),
+    0 5px 6px var(--control-shadow);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.paper-control[data-variant]::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  z-index: -1;
+  border: 1px solid color-mix(in srgb, var(--control-rim) 60%, transparent);
+  border-radius: 2px 7px 2px 7px;
+  pointer-events: none;
+}
+.paper-control[data-variant]::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  right: 4px;
+  bottom: 4px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%, 50% 50%, 0 50%);
+  background: currentColor;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.paper-control[data-variant='primary'] {
+  --button-face: var(--control-primary);
+  --button-hover: var(--control-primary-hover);
+  --button-pressed: var(--control-primary-pressed);
+  --button-edge: var(--control-primary-edge);
+  --button-ink: var(--control-primary-ink);
+}
+.paper-control[data-variant='icon'] {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  padding: 7px;
+}
+.paper-control[data-variant='nav'] {
+  justify-content: flex-start;
+  width: 100%;
+  gap: 12px;
+  padding: 7px 10px;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  font-size: 13px;
+}
+.paper-control[data-variant='nav']::before {
+  border-color: transparent;
+}
+.paper-control[data-variant='nav']::after {
+  opacity: 0;
+}
+.paper-control[data-variant][data-selected='true'],
+.paper-control[data-variant][aria-pressed='true'],
+.paper-control[data-variant][aria-current] {
+  --button-face: var(--weather-surface-soft);
+  --button-hover: var(--control-hover);
+  --button-pressed: var(--control-pressed);
+  background: var(--button-face);
+  border-color: var(--control-accent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--control-accent) 25%, transparent),
+    0 3px 0 var(--button-edge);
+}
+@media (hover: hover) {
+  .paper-control[data-variant]:hover:not(:disabled):not([aria-disabled='true']) {
+    background: var(--button-hover);
+    border-color: var(--control-accent);
+    box-shadow:
+      inset 0 1px 0 var(--control-rim),
+      0 3px 0 var(--button-edge),
+      0 5px 9px var(--control-shadow);
+  }
+}
+.paper-control[data-variant]:active:not(:disabled):not([aria-disabled='true']) {
+  transform: translateY(2px);
+  background: var(--button-pressed);
+  box-shadow:
+    inset 0 1px 2px var(--control-shadow),
+    0 1px 0 var(--button-edge);
+}
+.paper-control[data-variant]:focus-visible {
+  outline: 2px solid var(--weather-focus);
+  outline-offset: 5px;
+}
+.paper-control[data-variant]:disabled,
+.paper-control[data-variant][aria-disabled='true'] {
+  background: color-mix(in srgb, var(--weather-surface) 75%, var(--weather-stroke));
+  color: var(--weather-muted);
+  border-color: var(--weather-stroke);
+  box-shadow: inset 0 1px 0 var(--control-rim);
+  transform: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.paper-control[data-variant][aria-disabled='true'] {
+  pointer-events: none;
+}
+@media (forced-colors: active) {
+  .paper-control[data-variant] {
+    border: 1px solid ButtonText;
+    color: ButtonText;
+    background: ButtonFace;
+    box-shadow: none;
+  }
+  .paper-control[data-variant][aria-pressed='true'],
+  .paper-control[data-variant][aria-current] {
+    outline: 2px solid Highlight;
+  }
+  .paper-control[data-variant]:disabled,
+  .paper-control[data-variant][aria-disabled='true'] {
+    color: GrayText;
+    border-color: GrayText;
+  }
+}
+.github-link.paper-control {
+  display: flex;
+  width: 100%;
+}
+.playground-categories > span {
+  border-radius: 4px 8px 4px 8px;
+  box-shadow:
+    inset 0 1px 0 var(--control-rim),
+    0 2px 0 var(--control-edge);
+}
+@media (min-width: 1101px) and (max-height: 800px) {
+  .paper-control[data-variant='nav'] {
+    min-height: 30px;
+    padding-block: 5px;
+  }
+  .socials .paper-control[data-variant='icon'] {
+    width: 34px;
+    height: 34px;
+    min-height: 34px;
+    padding: 6px;
+  }
+}

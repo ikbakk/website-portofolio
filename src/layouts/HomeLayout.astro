@@ -1,5 +1,6 @@
 ---
 import '../styles/home.css';
+import '../styles/paper-controls.css';
 import { site } from '../data/site';
 ---
 
@@ -36,6 +37,16 @@ import { site } from '../data/site';
           if (!theme) return;
           document.documentElement.dataset.weather = theme;
           buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        }),
+      );
+      const navigation = document.querySelectorAll<HTMLAnchorElement>('.profile-nav a[href^="#"]');
+      navigation.forEach((link) =>
+        link.addEventListener('click', () => {
+          navigation.forEach((item) => {
+            item.dataset.selected = String(item === link);
+            if (item === link) item.setAttribute('aria-current', 'location');
+            else item.removeAttribute('aria-current');
+          });
         }),
       );
     </script>

@@ -1,5 +1,6 @@
 ---
 import HomeLayout from '../layouts/HomeLayout.astro';
+import PaperControl from '../components/home/PaperControl.astro';
 import Profile from '../components/home/Profile.astro';
 import Work from '../components/home/Work.astro';
 import Widgets from '../components/home/Widgets.astro';
@@ -15,8 +16,9 @@ import { weatherThemeIds, weatherThemes, defaultWeatherTheme } from '../theme/we
           weatherThemeIds.map((id) => {
             const theme = weatherThemes[id];
             return (
-              <button
+              <PaperControl
                 class="element-choice"
+                variant="icon"
                 type="button"
                 data-set-weather={id}
                 data-theme-name={theme.title}
@@ -25,7 +27,7 @@ import { weatherThemeIds, weatherThemes, defaultWeatherTheme } from '../theme/we
                 title={`${theme.title} · ${theme.icon}`}
               >
                 <img src={`/weather/elements/${theme.icon}.svg`} width="28" height="28" alt="" />
-              </button>
+              </PaperControl>
             );
           })
         }
