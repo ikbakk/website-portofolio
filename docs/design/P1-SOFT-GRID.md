@@ -1,6 +1,6 @@
 # P1 — Soft Grid / Weather Themes (active homepage design contract)
 
-Status: **P1 design decisions locked; exact frozen PNG files committed and verified; P2 authorization pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
+Status: **P1 design decisions locked; exact frozen PNG files committed and verified; P2 implementation authorized by the owner’s 2026-11-04 continuation request; final visual acceptance pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
 
 ## Current visual authority
 

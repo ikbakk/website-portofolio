@@ -1,5 +1,7 @@
 # P1 decision log — frozen design and theme ornaments
 
+> **Historical snapshot:** Reference import was completed in commit `49dc43b`; the strict reference check passes for all three originals. The owner requested continuation on 2026-11-04, authorizing P2 implementation. See `P2-VERIFICATION.md` for current results. Earlier unchecked reference-import items below describe the state when this record was written. Logo/portrait acceptance and final visual sign-off remain open.
+
 ## Confirmed by the owner (2026-11-03)
 
 1. The high-resolution frozen **Soft Grid, Paper Landscape + Pixel Accents** mockup is the visual authority. The three-column composition must not drift.

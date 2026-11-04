@@ -1,0 +1,31 @@
+---
+import { site } from '../../data/site';
+import Icon from '../celestial/Icon.astro';
+---
+
+<aside class="widgets" aria-label="More from Iqbal">
+  <section class="widget panel focus-widget">
+    <h2><Icon name="profile" /> Focus</h2><p class="widget-label">Preview</p><div
+      class="placeholder-lines"
+      aria-hidden="true"
+    >
+      <i></i><i></i><i></i>
+    </div><p class="widget-note">Focus updates are not connected yet.</p>
+  </section>
+  <section class="widget panel playground-widget">
+    <h2><Icon name="courtside" /> Playground</h2><div class="playground-preview">
+      <span class="preview-symbol" aria-hidden="true">✳</span><strong
+        >A little space to explore</strong
+      ><p>Playground preview · coming later</p>
+    </div>
+  </section>
+  <section class="widget panel activity-widget">
+    <h2><Icon name="github" /> GitHub Activity</h2><div class="activity-empty">
+      <div class="empty-grid" aria-hidden="true">{Array.from({ length: 84 }, () => <i />)}</div><p>
+        Activity is not connected yet.
+      </p>
+    </div><a class="github-link" href={site.github} target="_blank" rel="noreferrer"
+      >Visit GitHub profile <span aria-hidden="true">↗</span></a
+    >
+  </section>
+</aside>

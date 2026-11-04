@@ -1,4 +1,6 @@
-# P2 coding agent handoff (do NOT execute before approval)
+# P2 coding agent handoff
+
+> **Continuation, 2026-11-04:** The owner requested that the unfinished portfolio work be carried out in the new conversation. P2 static implementation is now in progress on the existing feature branch. This authorizes implementation and verification; it does not constitute visual sign-off, approval of replacement identity assets, P3/P4 work, merge, or deployment.
 
 ## Read first
 1. `docs/design/P1-SOFT-GRID.md`
@@ -9,7 +11,7 @@
 6. `PRODUCT.md` and relevant frontend-design/impeccable skills already present in `.agents/skills/`
 
 ## Gate
-**Stop unless P1 has explicit owner approval AND separate P2 execution approval.** Existing mockup direction approval does not approve final assets or authorize a redesign commit.
+The 2026-11-04 continuation request authorizes P2 implementation using the locked P1 direction. Preserve the existing logo and use an explicitly neutral portrait fallback while identity decisions remain open. Final visual acceptance remains with the owner.
 
 ## Scope after approval
 

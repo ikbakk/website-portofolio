@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   vite: {
+    server: { allowedHosts: ['terminal.local'] },
     plugins: [tailwindcss()],
   },
   // Bound the site to a single domain for the build's absolute URLs.

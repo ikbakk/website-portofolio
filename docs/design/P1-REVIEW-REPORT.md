@@ -1,5 +1,7 @@
 # P1 readiness report — Soft Grid Weather Portfolio
 
+> **Historical snapshot:** Reference import was completed in commit `49dc43b`; the strict reference check passes for all three originals. The owner requested continuation on 2026-11-04, authorizing P2 implementation. See `P2-VERIFICATION.md` for current results. Earlier unchecked reference-import items below describe the state when this record was written. Logo/portrait acceptance and final visual sign-off remain open.
+
 **State: P1 HORIZON ARTWORK APPROVED; OTHER P1 GATES STILL OPEN.** No P2 homepage markup, runtime theme switching or P4 effects were implemented.
 
 ## Confirmed on active branch

@@ -1,34 +1,24 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { archiveProjects } from '../data/archive';
-import { experience } from '../data/experience';
-import { site } from '../data/site';
-const featured = archiveProjects.filter((project) => project.featured);
-const skills = ['React', 'Astro', 'TypeScript', 'Flutter', 'React Native', 'Node.js', 'Firebase', 'Tailwind CSS'];
+import HomeLayout from '../layouts/HomeLayout.astro';
+import Profile from '../components/home/Profile.astro';
+import Work from '../components/home/Work.astro';
+import Widgets from '../components/home/Widgets.astro';
 ---
 
-<BaseLayout home>
-  <div class="jmfolio-layout">
-    <aside class="jmfolio-column jmfolio-left" aria-label="Profile and experience">
-      <section class="jm-profile">
-        <div class="jm-avatar" aria-hidden="true">IF</div>
-        <h1>{site.name}</h1><p class="jm-role">Frontend &amp; mobile engineer</p><p class="jm-bio">I build web and mobile software for everyday problems.</p>
-        <div class="jm-profile-actions"><a class="jm-primary" href={site.github} target="_blank" rel="noreferrer">Follow <span aria-hidden="true">↗</span></a><a class="jm-secondary" href={`mailto:${site.email}`}>Message</a></div>
-        <nav class="jm-shortcuts" aria-label="Portfolio sections"><a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
-      </section>
-      <section id="about" class="jm-section"><h2>About</h2><p>Independent frontend and mobile engineer based in Mataram, Indonesia. I work across product interfaces, mobile apps, and practical tools, from early requirements through the details that make them useful.</p><dl class="jm-facts"><div><dt>Based in</dt><dd>Mataram, Indonesia</dd></div><div><dt>Focus</dt><dd>Web &amp; mobile products</dd></div><div><dt>Working on</dt><dd>Useful software for real people</dd></div></dl></section>
-      <section id="experience" class="jm-section"><h2>Experience</h2><ol class="jm-timeline">{experience.map((item) => <li><p class="jm-meta">{item.period}</p><h3>{item.title}</h3><p class="jm-org">{item.organization}</p><p class="jm-copy">{item.description}</p></li>)}</ol><a class="jm-inline-link" href="/resume.pdf" download>Download resume <span aria-hidden="true">↗</span></a></section>
-      <section id="contact" class="jm-section jm-contact"><h2>Let’s talk</h2><p>Have a role, a project, or a problem worth working on?</p><a class="jm-inline-link" href={`mailto:${site.email}`}>{site.email} <span aria-hidden="true">↗</span></a></section>
-    </aside>
-    <section class="jmfolio-column jmfolio-center" aria-label="Selected work">
-      <section class="jm-featured"><div class="jm-section-heading"><h2>Featured project</h2><span>{featured.length ? `1 / ${featured.length}` : ''}</span></div>{featured.slice(0, 1).map((project) => <a class="jm-feature-card" href={project.caseHref}>{project.image ? <img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} /> : <span class="jm-feature-visual" data-project-visual={project.id}><span>{project.title}</span><small>{project.source.role}</small></span>}<div class="jm-feature-copy"><p class="jm-meta">{project.kind} · {project.stage}</p><h3>{project.title}</h3><p>{project.summary}</p><span class="jm-inline-link">Read case study <span class="jm-arrow" aria-hidden="true"></span></span></div></a>)}</section>
-      <section id="projects" class="jm-section jm-projects"><div class="jm-section-heading"><h2>Project archive</h2><span>{archiveProjects.length}</span></div><div class="jm-project-list">{archiveProjects.map((project) => <a class="jm-project-row" href={project.caseHref}>{project.image ? <img src={project.image.src} alt="" width={project.image.width} height={project.image.height} loading="lazy" /> : <span class="jm-project-visual" data-project-visual={project.id} aria-hidden="true">{project.title.slice(0, 2)}</span>}<span class="jm-project-copy"><span class="jm-project-title">{project.title}</span><span class="jm-meta">{project.kind} · {project.stage}</span><span class="jm-copy">{project.summary}</span><span class="jm-tags">{project.stack.slice(0, 3).join(' · ')}</span></span><span class="jm-row-arrow jm-arrow" aria-hidden="true"></span></a>)}</div></section>
-    </section>
-    <aside class="jmfolio-column jmfolio-right" aria-label="Tools and links">
-      <section class="jm-section jm-now"><h2>Right now</h2><p class="jm-status"><span aria-hidden="true"></span> Open to new opportunities</p><p class="jm-copy">Remote roles, freelance work, and thoughtful collaborations.</p></section>
-      <section class="jm-section"><h2>Toolbox</h2><p class="jm-copy">Tools I reach for when turning a real need into a useful product.</p><ul class="jm-skill-list">{skills.map((skill) => <li>{skill}</li>)}</ul></section>
-      <section class="jm-section"><h2>Elsewhere</h2><a class="jm-social-link" href={site.github} target="_blank" rel="noreferrer"><span>GitHub</span><span aria-hidden="true">↗</span></a><a class="jm-social-link" href={site.linkedin} target="_blank" rel="noreferrer"><span>LinkedIn</span><span aria-hidden="true">↗</span></a><a class="jm-social-link" href="/resume.pdf" download><span>Resume</span><span aria-hidden="true">↓</span></a></section>
-      <section class="jm-section jm-location"><p class="jm-meta">Currently based in</p><p>{site.location}</p></section>
-    </aside>
+<HomeLayout>
+  <div class="board">
+    <div class="board-top">
+      <fieldset class="theme-picker">
+        <legend>Theme</legend><button type="button" data-set-weather="normal" aria-pressed="true"
+          >Normal</button
+        ><button type="button" data-set-weather="cryo" aria-pressed="false">Cryo</button><button
+          type="button"
+          data-set-weather="electro"
+          aria-pressed="false">Electro</button
+        >
+      </fieldset>
+    </div>
+    <main id="content" class="home-grid" tabindex="-1"><Profile /><Work /><Widgets /></main>
+    <div class="horizon" aria-hidden="true"></div>
   </div>
-</BaseLayout>
+</HomeLayout>

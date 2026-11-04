@@ -25,4 +25,4 @@ Date: 2026-11-03
 
 **P1 design decisions locked; reference image import complete and verified.** Browser layout/horizon placement is the first P2 visual QA gate, not a claimed P1 implementation result. The final logo treatment still needs confirmation because the earlier logo asset differs from the frozen mockup.
 
-**P2 code changes are not authorized by this record.** The strict reference check already passed. Receive explicit user approval before P2; keep all changes in the feature branch. Do not create PR, merge, push to main, or deploy without permission.
+**Continuation, 2026-11-04:** The owner requested execution of the unfinished portfolio work in the new conversation. P2 static implementation and verification are authorized on this feature branch. This does not approve the resulting visuals or replacement identity assets. Do not create a PR, merge, push to main, or deploy without permission.

@@ -1,0 +1,56 @@
+---
+import { site } from '../../data/site';
+import { experience } from '../../data/experience';
+import Icon from '../celestial/Icon.astro';
+---
+
+<aside class="profile panel" aria-label="Profile">
+  <a class="brand" href="/" aria-label="Home"
+    ><img src="/logo-mark.svg" alt="" width="42" height="42" /></a
+  >
+  <div class="avatar" aria-hidden="true">IF</div>
+  <h1>Muhammad<br />Iqbal Firdaus</h1>
+  <p class="role">Frontend &amp; mobile engineer</p>
+  <p class="location"><span aria-hidden="true">⌖</span> {site.location}</p>
+  <p class="intro">I build web and mobile software for everyday problems.</p>
+  <nav class="profile-nav" aria-label="Portfolio sections">
+    <a class="active" href="#content"><Icon name="profile" /> Home</a>
+    <a href="#projects"><Icon name="projects" /> Projects</a>
+    <a href="#about"><Icon name="spark" /> About</a>
+    <a href="#experience"><Icon name="experience" /> Experience</a>
+    <a href={`mailto:${site.email}`}><Icon name="contact" /> Contact</a>
+  </nav>
+  <section id="about" class="about">
+    <h2>About me</h2>
+    <p>
+      I develop and maintain web and mobile apps, connect APIs, and improve existing codebases. I
+      enjoy making useful products easier to use.
+    </p>
+  </section>
+  <details id="experience" class="experience">
+    <summary>Experience</summary><ol>
+      {
+        experience.map((item) => (
+          <li>
+            <>
+              <strong>{item.title}</strong>
+              <span>
+                {item.organization} · {item.period}
+              </span>
+              <p>{item.description}</p>
+            </>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
+  <div class="socials" aria-label="Social links">
+    <a href={site.github} target="_blank" rel="noreferrer"
+      >GitHub <span aria-hidden="true">↗</span></a
+    >
+    <a href={site.linkedin} target="_blank" rel="noreferrer"
+      >LinkedIn <span aria-hidden="true">↗</span></a
+    >
+    <a href={site.resume} download>Resume <span aria-hidden="true">↓</span></a>
+  </div>
+</aside>
