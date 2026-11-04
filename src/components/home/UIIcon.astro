@@ -1,0 +1,51 @@
+---
+import {
+  House,
+  Layers,
+  BriefcaseBusiness,
+  Sparkles,
+  Mail,
+  MapPin,
+  Target,
+  Gamepad2,
+  Download,
+  ArrowUpRight,
+  Sun,
+  Snowflake,
+  Zap,
+  Flag,
+  Feather,
+  Image,
+  ChevronDown,
+  CodeXml,
+} from '@lucide/astro';
+const icons = {
+  home: House,
+  projects: Layers,
+  experience: BriefcaseBusiness,
+  approach: Sparkles,
+  contact: Mail,
+  location: MapPin,
+  focus: Target,
+  playground: Gamepad2,
+  download: Download,
+  external: ArrowUpRight,
+  normal: Sun,
+  cryo: Snowflake,
+  electro: Zap,
+  flag: Flag,
+  badminton: Feather,
+  image: Image,
+  chevron: ChevronDown,
+  code: CodeXml,
+};
+interface Props {
+  name: keyof typeof icons;
+  size?: number;
+  class?: string;
+}
+const { name, size = 20, class: className } = Astro.props;
+const Glyph = icons[name];
+---
+
+<Glyph size={size} stroke-width={2} class={className} aria-hidden="true" />

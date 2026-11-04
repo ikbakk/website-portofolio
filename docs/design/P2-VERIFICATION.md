@@ -65,3 +65,34 @@ The owner clarified that the intended reference was the original J. Mancheta ins
 Our implementation adapts that soft fade/blur treatment to both requested edges of the center column using a 48 px masked backdrop blur and theme-neutral surface tint. This confines the effect to the edge instead of fading an entire partially visible project card. There is no copied React component or added animation dependency. The former blue overlays and blue scrollbar color are removed; 30 / 40 / 30 proportions and center-only desktop scrolling remain unchanged. The effect follows the current panel color in Normal, Cryo and Electro. Without backdrop-filter support the neutral masked fade remains usable.
 
 Browser verification at 1363 × 936 confirmed `backdrop-filter: blur(4px)`, a white surface tint (35% alpha) in Normal, center scrollTop 670, document scrollY 0, and unchanged 375.97 / 501.30 / 375.98 px columns. [Blurred edge capture](verification/p2/blurred-scroll-edges.jpg) supersedes the earlier blue-edge screenshot. Build and changed-file formatting checks passed.
+
+
+## Frozen-mockup fidelity correction — keeping 30 / 40 / 30
+
+The owner reported that the implemented visuals still differed from the frozen boards and explicitly reiterated **30 / 40 / 30**. The original references were visually inspected again. Their older column proportions were not restored.
+
+| Visual issue | Correction |
+| --- | --- |
+| Oversized stacked featured card | Compact side-by-side image/copy; actual measured height 177 px at the reviewed desktop viewport |
+| Selected projects in one tall column | Restored three equal cards in a row, approximately 145.77 px each inside the existing center track |
+| Two-column sidebar navigation | Restored vertical Home, Projects, Experience, Approach, Contact order |
+| Narrow reading type and faint symbols | Inter Latin UI font with heavier headings; consistent Lucide Astro UI icons |
+| Flat panels | Subtle warm/icy/violet materials, thin themed borders and paper-like inset highlights/shadows |
+| Widget blocks without reference structure | Checklist-shaped empty Focus rows, three Playground interest labels, framed artwork placeholder, seven-row empty calendar with weekday labels and profile footer |
+| Large missing-image blocks | Compact image-ratio placeholders with an image symbol and explicit pending label |
+| Social text pills | Accessible icon-sized links, including the original GitHub symbol and labelled resume download |
+
+Measured desktop tracks remain **375.97 / 501.30 / 375.98 px** at a 1363 × 936 viewport, with document height 936 px. Only the center scroll region overflows on desktop. Neutral blurred edges are preserved.
+
+### Review evidence
+
+- [Normal](verification/p2/fidelity-normal.jpg)
+- [Cryo](verification/p2/fidelity-cryo.jpg)
+- [Electro](verification/p2/fidelity-electro.jpg)
+- [Short desktop and phone](verification/p2/fidelity-responsive.jpg): real 1363 × 720 and 320 × 800 iframe viewports. At 720 px, the social links end at 665.95 px within the profile panel ending at 678 px; the final GitHub footer ends at 664.98 px within its panel ending at 677.98 px. Phone document client/scroll widths both equal 305 px after scrollbar reservation.
+
+Typecheck passed for 49 files with zero errors, warnings or hints. Production build and formatting checks passed. The temporary review page was removed. Added source dependencies are pinned and recorded in `P1-LIBRARIES.md`; Bun remains the canonical lockfile. No new browser runtime, main merge or deployment.
+
+### Still different from the concept
+
+This correction improves structure and styling; it is **not an exact visual match or owner sign-off**. The approved green logo and portrait illustration are still unavailable as separate identity assets. The Playground illustration/characters and verified Beaconnect/CV Builder screenshots are missing. Widget data remains unconnected. Project content differs from illustrative concept titles because only the real existing project records are presented. Tech labels remain text chips rather than a fully sourced set of brand logos. Inter is a deliberate closer UI font choice; the raster mockup does not identify its original typeface. These gaps must remain visible in review rather than being disguised as completed assets.

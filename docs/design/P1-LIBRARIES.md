@@ -35,3 +35,15 @@ Links: https://github.com/lucide-icons/lucide and https://docs.astro.build/en/gu
 The official Lucide installation documentation lists `@lucide/astro` as the Astro adapter (https://github.com/lucide-icons/lucide/blob/main/docs/guide/installation.md). Astro's current transition documentation explains that `<ClientRouter />` is opt-in and that normal navigation remains the default (https://docs.astro.build/en/guides/view-transitions/). Therefore **do not add ClientRouter during P2 just to obtain visual motion**; page transitions remain deferred to P4.
 
 Neither package was installed or changed in this P1 review.
+## P2 fidelity correction — 2026-11-04
+
+Before installation, the official npm registry reports:
+
+| Package | Version | License | Unpacked package | Reason |
+| --- | --- | --- | --- | --- |
+| `@lucide/astro` | 1.68.0 | ISC | 3,729,950 bytes | Consistent 24 px UI icons, replacing the unrelated Celestial symbols on the homepage. Named icons render as inline SVG with no client runtime. |
+| `@fontsource-variable/inter` | 5.3.0 | OFL-1.1 | 1,909,049 bytes | A wider, heavier UI sans-serif that better matches the frozen reference hierarchy than Source Sans 3. Use its Latin normal subset only; actual shipped WOFF2 size is measured after install/build. |
+
+The visual brief remains authoritative; these dependencies adapt to it. Package archive sizes above are not shipped JavaScript payloads.
+
+Installed the two pinned packages and updated the existing `bun.lock`. The homepage emits one Inter Latin WOFF2 file (48 KiB on disk), and icons render as static inline SVG. Redistributable license notices are retained at `public/licenses/inter-OFL.txt` and `public/licenses/lucide-ISC.txt`. No additional browser JavaScript was introduced.

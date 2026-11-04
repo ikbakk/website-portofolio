@@ -1,5 +1,6 @@
 ---
 import { site } from '../../data/site';
+import UIIcon from './UIIcon.astro';
 import Icon from '../celestial/Icon.astro';
 ---
 
@@ -10,29 +11,29 @@ import Icon from '../celestial/Icon.astro';
   <div class="avatar" aria-hidden="true">IF</div>
   <h1>Muhammad<br />Iqbal Firdaus</h1>
   <p class="role">Frontend &amp; mobile engineer</p>
-  <p class="location"><span aria-hidden="true">⌖</span> {site.location}</p>
+  <p class="location"><UIIcon name="location" size={15} /> {site.location}</p>
   <p class="intro">I build web and mobile software for everyday problems.</p>
   <nav class="profile-nav" aria-label="Portfolio sections">
-    <a class="active" href="#work-start"><Icon name="profile" /> Home</a>
-    <a href="#projects"><Icon name="projects" /> Projects</a>
-    <a href="#about"><Icon name="spark" /> About</a>
-    <a href="#experience"><Icon name="experience" /> Experience</a>
-    <a href={`mailto:${site.email}`}><Icon name="contact" /> Contact</a>
+    <a class="active" href="#work-start"><UIIcon name="home" /> Home</a>
+    <a href="#projects"><UIIcon name="projects" /> Projects</a>
+    <a href="#experience"><UIIcon name="experience" /> Experience</a>
+    <a href="#about"><UIIcon name="approach" /> Approach</a>
+    <a href={`mailto:${site.email}`}><UIIcon name="contact" /> Contact</a>
   </nav>
   <section id="about" class="about">
     <h2>About me</h2>
     <p>
-      I develop and maintain web and mobile apps, connect APIs, and improve existing codebases. I
-      enjoy making useful products easier to use.
+      Builder, problem solver, and lifelong learner. I enjoy creating, improving systems, and
+      exploring product ideas.
     </p>
   </section>
   <div class="socials" aria-label="Social links">
-    <a href={site.github} target="_blank" rel="noreferrer"
-      >GitHub <span aria-hidden="true">↗</span></a
+    <a href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub"
+      ><Icon name="github" /></a
     >
-    <a href={site.linkedin} target="_blank" rel="noreferrer"
-      >LinkedIn <span aria-hidden="true">↗</span></a
+    <a href={site.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"
+      ><span class="linkedin-mark" aria-hidden="true">in</span></a
     >
-    <a href={site.resume} download>Resume <span aria-hidden="true">↓</span></a>
+    <a href={site.resume} download aria-label="Download resume"><UIIcon name="download" /></a>
   </div>
 </aside>

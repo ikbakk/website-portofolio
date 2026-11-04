@@ -1,6 +1,7 @@
 ---
 import { archiveProjects, stageLabels } from '../../data/archive';
 import { experience } from '../../data/experience';
+import UIIcon from './UIIcon.astro';
 const feature = archiveProjects.find((project) => project.id === 'sungkar-group')!;
 const selected = ['beaconnect', 'cv-builder', 'ward-monitor'].map((id) =>
   archiveProjects.find((project) => project.id === id)!,
@@ -23,7 +24,7 @@ const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase'
         <span class="badge">{feature.kind}</span><h3>
           {feature.title}
           <span aria-hidden="true">↗</span>
-        </h3><p>{feature.source.outcome}</p><div class="tags">
+        </h3><p>Tourism website for Lombok, Sumbawa, and Labuan Bajo.</p><div class="tags">
           {feature.stack.slice(0, 3).map((tag) => <span>{tag}</span>)}
         </div>
       </div>
@@ -49,8 +50,8 @@ const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase'
                 />
               ) : (
                 <div class="image-placeholder">
-                  <span>{project.title}</span>
-                  <small>Screenshot not available</small>
+                  <UIIcon name="image" size={22} />
+                  <small>Screenshot pending</small>
                 </div>
               )}
               <>
