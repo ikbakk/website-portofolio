@@ -219,7 +219,11 @@ h3 {
   font-weight: 700;
 }
 .work {
+  min-width: 0;
+}
+.work-scroll {
   padding: clamp(18px, 1.7vw, 28px);
+  min-width: 0;
 }
 .section-path {
   color: var(--weather-primary-ink);
@@ -574,4 +578,157 @@ h3 {
 .experience li span,
 .experience li p {
   color: var(--weather-muted);
+}
+
+/* The desktop shell stays still; only work and experience scroll. */
+@media (min-width: 1101px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+  .board {
+    height: 100dvh;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    padding-bottom: 42px;
+  }
+  .board-top {
+    width: 100%;
+  }
+  .home-grid {
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    grid-template-columns: minmax(0, 30fr) minmax(0, 40fr) minmax(0, 30fr);
+    align-items: stretch;
+  }
+  .profile {
+    min-height: 0;
+    padding: clamp(18px, 2vw, 32px);
+  }
+  .profile-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .work {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .work-scroll {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #4c9ee6 transparent;
+    scrollbar-gutter: stable;
+    scroll-padding-block: 36px;
+    padding-block: 28px 38px;
+  }
+  .work::before,
+  .work::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    height: 30px;
+    pointer-events: none;
+  }
+  .work::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgb(76 158 230 / 32%), rgb(76 158 230 / 0%));
+  }
+  .work::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgb(76 158 230 / 32%), rgb(76 158 230 / 0%));
+  }
+  .featured,
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .featured {
+    gap: 8px;
+  }
+  .project-grid {
+    gap: 14px;
+  }
+  .section-heading {
+    flex-wrap: wrap;
+  }
+  .stack {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .widgets {
+    min-height: 0;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.1fr);
+  }
+  .widget {
+    min-width: 0;
+    min-height: 0;
+    padding: clamp(12px, 1.2vw, 20px);
+    display: flex;
+    flex-direction: column;
+  }
+  .widget h2 {
+    font-size: clamp(18px, 1.5vw, 24px);
+  }
+  .playground-preview {
+    min-height: 0;
+    flex: 1;
+    padding: 12px;
+  }
+  .activity-empty {
+    margin-block: 12px;
+  }
+  .github-link {
+    margin-top: auto;
+    font-size: 14px;
+  }
+  .horizon {
+    height: 42px;
+  }
+}
+
+@media (min-width: 1101px) and (max-height: 800px) {
+  .profile {
+    padding: 18px;
+  }
+  .brand {
+    margin-bottom: 8px;
+  }
+  .avatar {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 8px;
+    font-size: 24px;
+  }
+  .profile h1 {
+    font-size: 24px;
+  }
+  .intro {
+    margin-block: 10px;
+  }
+  .about {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  .socials {
+    margin-top: 14px;
+  }
+  .widget-label {
+    margin-top: 10px;
+  }
+  .placeholder-lines {
+    gap: 6px;
+    margin-block: 8px;
+  }
+  .placeholder-lines i {
+    height: 9px;
+  }
 }

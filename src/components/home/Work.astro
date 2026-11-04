@@ -1,5 +1,6 @@
 ---
 import { archiveProjects, stageLabels } from '../../data/archive';
+import { experience } from '../../data/experience';
 const feature = archiveProjects.find((project) => project.id === 'sungkar-group')!;
 const selected = ['beaconnect', 'cv-builder', 'ward-monitor'].map((id) =>
   archiveProjects.find((project) => project.id === id)!,
@@ -8,67 +9,85 @@ const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase'
 ---
 
 <section class="work panel" aria-label="Selected work">
-  <p class="section-path">/ &nbsp; work</p>
-  <h2 class="section-title">Featured Project</h2>
-  <a id={`project-${feature.id}`} class="featured card" href={feature.caseHref}>
-    <img
-      src={feature.image!.src}
-      alt={feature.image!.alt}
-      width={feature.image!.width}
-      height={feature.image!.height}
-    />
-    <div class="feature-copy">
-      <span class="badge">{feature.kind}</span><h3>
-        {feature.title}
-        <span aria-hidden="true">↗</span>
-      </h3><p>{feature.source.outcome}</p><div class="tags">
-        {feature.stack.slice(0, 3).map((tag) => <span>{tag}</span>)}
+  <div class="work-scroll" tabindex="0" role="region" aria-label="Work and experience">
+    <p id="work-start" class="section-path" tabindex="-1">/ &nbsp; work</p>
+    <h2 class="section-title">Featured Project</h2>
+    <a id={`project-${feature.id}`} class="featured card" href={feature.caseHref}>
+      <img
+        src={feature.image!.src}
+        alt={feature.image!.alt}
+        width={feature.image!.width}
+        height={feature.image!.height}
+      />
+      <div class="feature-copy">
+        <span class="badge">{feature.kind}</span><h3>
+          {feature.title}
+          <span aria-hidden="true">↗</span>
+        </h3><p>{feature.source.outcome}</p><div class="tags">
+          {feature.stack.slice(0, 3).map((tag) => <span>{tag}</span>)}
+        </div>
       </div>
-    </div>
-  </a>
-  <section id="projects" class="selected">
-    <div class="section-heading">
-      <h2 class="section-title">Selected Works</h2><a
-        id="project-courtside"
-        href="/projects/courtside/">Also see Courtside ↗</a
-      >
-    </div>
-    <div class="project-grid">
-      {
-        selected.map((project) => (
-          <a id={`project-${project.id}`} class="project card" href={project.caseHref}>
-            {project.image ? (
-              <img
-                src={project.image.src}
-                alt={project.image.alt}
-                width={project.image.width}
-                height={project.image.height}
-                loading="lazy"
-              />
-            ) : (
-              <div class="image-placeholder">
-                <span>{project.title}</span>
-                <small>Screenshot not available</small>
-              </div>
-            )}
-            <>
-              <h3>
-                {project.title} <span aria-hidden="true">↗</span>
-              </h3>
-              <p>{project.summary}</p>
-              <span class="project-stage">{stageLabels[project.stage]}</span>
-              <div class="tags">
-                {project.stack.slice(0, 2).map((tag) => (
-                  <span>{tag}</span>
-                ))}
-              </div>
-            </>
-          </a>
-        ))
-      }
-    </div>
-  </section>
-  <section class="stack">
-    <h2 class="section-title">Tech Stack</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
-  </section>
+    </a>
+    <section id="projects" class="selected">
+      <div class="section-heading">
+        <h2 class="section-title">Selected Works</h2><a
+          id="project-courtside"
+          href="/projects/courtside/">Also see Courtside ↗</a
+        >
+      </div>
+      <div class="project-grid">
+        {
+          selected.map((project) => (
+            <a id={`project-${project.id}`} class="project card" href={project.caseHref}>
+              {project.image ? (
+                <img
+                  src={project.image.src}
+                  alt={project.image.alt}
+                  width={project.image.width}
+                  height={project.image.height}
+                  loading="lazy"
+                />
+              ) : (
+                <div class="image-placeholder">
+                  <span>{project.title}</span>
+                  <small>Screenshot not available</small>
+                </div>
+              )}
+              <>
+                <h3>
+                  {project.title} <span aria-hidden="true">↗</span>
+                </h3>
+                <p>{project.summary}</p>
+                <span class="project-stage">{stageLabels[project.stage]}</span>
+                <div class="tags">
+                  {project.stack.slice(0, 2).map((tag) => (
+                    <span>{tag}</span>
+                  ))}
+                </div>
+              </>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+    <section class="stack">
+      <h2 class="section-title">Tech Stack</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
+    </section>
+    <section id="experience" class="experience">
+      <h2 class="section-title">Experience</h2>
+      <ol>
+        {
+          experience.map((item) => (
+            <li>
+              <strong>{item.title}</strong>
+              <span>
+                {item.organization} · {item.period}
+              </span>
+              <p>{item.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+  </div>
 </section>

@@ -2,6 +2,10 @@
 
 Status: **P1 design decisions locked; exact frozen PNG files committed and verified; P2 implementation authorized by the owner’s 2026-11-04 continuation request; final visual acceptance pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
 
+## Owner layout revision — 2026-11-04
+
+The owner revised the desktop proportions to **30% left / 40% center / 30% right**, superseding the original mockup proportions. The desktop shell is viewport-bound; only the center work column scrolls, with static blue gradient overlays at its top and bottom. Existing experience records live in that scroll region to keep the identity column stationary. Narrow layouts retain normal document scrolling.
+
 ## Current visual authority
 
 1. The owner-approved **three-theme frozen mockup** from the portfolio design conversation is the visual authority. The exact original images are committed under [docs/design/references/](references/) and their hashes are listed in [the reference manifest](P1-REFERENCE-MANIFEST.md); the strict source check passed in [GitHub Actions run 41663423056](https://github.com/ikbakk/website-portofolio/actions/runs/41663423056). Do not substitute AI-regenerated compositions or infer exact measurements from written prose.

@@ -47,3 +47,12 @@ Temporary iframe review pages were removed before the final build. No synthetic 
 - **Acceptance:** native-resolution reference overlay comparison, complete keyboard/accessibility regression, and final owner visual sign-off remain open. The responsive iframe checks verify CSS reflow and overflow, not device-specific touch behavior.
 
 P3 live widgets and P4 motion were not implemented. No pull request, main merge or deployment was performed.
+
+
+## Owner revision — 30 / 40 / 30 and center-only scrolling
+
+The owner’s final ratio request on 2026-11-04 supersedes the prior 1 : 3.2 : 2.1 composition. Desktop widths (above 1100 px) now use 30 / 40 / 30 after the two fixed gutters. At the 1363 × 936 browser viewport, measured tracks were approximately 375.97 / 501.30 / 375.98 px.
+
+The document and both outer columns stay stationary; a labelled, keyboard-focusable center region owns vertical scrolling. Its top and bottom have pointer-transparent static blue gradients and a blue scrollbar. Project cards stack inside the narrower work column. Experience moved from a sidebar disclosure into the center so opening long content cannot overflow the fixed profile. The Home link returns to the top of this region; project and experience anchors stay reachable. At 1100 px and below, the existing responsive document flow is retained.
+
+Browser PageDown verification observed center scrollTop > 0 while page scrollY remained 0 and left/right column tops remained approximately 53.55 px. Document height equalled viewport height (936 px); the center content was 2501 px in an 838 px scroll viewport. [Updated layout capture](verification/p2/ratio-30-40-30.jpg) supersedes earlier geometry screenshots. Short desktop viewports use a more compact profile treatment.

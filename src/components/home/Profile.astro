@@ -1,6 +1,5 @@
 ---
 import { site } from '../../data/site';
-import { experience } from '../../data/experience';
 import Icon from '../celestial/Icon.astro';
 ---
 
@@ -14,7 +13,7 @@ import Icon from '../celestial/Icon.astro';
   <p class="location"><span aria-hidden="true">⌖</span> {site.location}</p>
   <p class="intro">I build web and mobile software for everyday problems.</p>
   <nav class="profile-nav" aria-label="Portfolio sections">
-    <a class="active" href="#content"><Icon name="profile" /> Home</a>
+    <a class="active" href="#work-start"><Icon name="profile" /> Home</a>
     <a href="#projects"><Icon name="projects" /> Projects</a>
     <a href="#about"><Icon name="spark" /> About</a>
     <a href="#experience"><Icon name="experience" /> Experience</a>
@@ -27,23 +26,6 @@ import Icon from '../celestial/Icon.astro';
       enjoy making useful products easier to use.
     </p>
   </section>
-  <details id="experience" class="experience">
-    <summary>Experience</summary><ol>
-      {
-        experience.map((item) => (
-          <li>
-            <>
-              <strong>{item.title}</strong>
-              <span>
-                {item.organization} · {item.period}
-              </span>
-              <p>{item.description}</p>
-            </>
-          </li>
-        ))
-      }
-    </ol>
-  </details>
   <div class="socials" aria-label="Social links">
     <a href={site.github} target="_blank" rel="noreferrer"
       >GitHub <span aria-hidden="true">↗</span></a
