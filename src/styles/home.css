@@ -623,28 +623,48 @@ h3 {
     overflow-y: auto;
     overscroll-behavior-y: contain;
     scrollbar-width: thin;
-    scrollbar-color: #4c9ee6 transparent;
+    scrollbar-color: var(--weather-stroke) transparent;
     scrollbar-gutter: stable;
     scroll-padding-block: 36px;
     padding-block: 28px 38px;
+  }
+  .work-scroll {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent
+    );
   }
   .work::before,
   .work::after {
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
+    inset-inline: 0;
     z-index: 2;
-    height: 30px;
+    height: 48px;
     pointer-events: none;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    background: color-mix(in srgb, var(--weather-surface) 35%, transparent);
   }
   .work::before {
     top: 0;
-    background: linear-gradient(to bottom, rgb(76 158 230 / 32%), rgb(76 158 230 / 0%));
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent);
+    mask-image: linear-gradient(to bottom, #000, transparent);
   }
   .work::after {
     bottom: 0;
-    background: linear-gradient(to top, rgb(76 158 230 / 32%), rgb(76 158 230 / 0%));
+    -webkit-mask-image: linear-gradient(to top, #000, transparent);
+    mask-image: linear-gradient(to top, #000, transparent);
   }
   .featured,
   .project-grid {

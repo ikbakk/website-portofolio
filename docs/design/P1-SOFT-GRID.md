@@ -4,7 +4,7 @@ Status: **P1 design decisions locked; exact frozen PNG files committed and verif
 
 ## Owner layout revision — 2026-11-04
 
-The owner revised the desktop proportions to **30% left / 40% center / 30% right**, superseding the original mockup proportions. The desktop shell is viewport-bound; only the center work column scrolls, with static blue gradient overlays at its top and bottom. Existing experience records live in that scroll region to keep the identity column stationary. Narrow layouts retain normal document scrolling.
+The owner revised the desktop proportions to **30% left / 40% center / 30% right**, superseding the original mockup proportions. The desktop shell is viewport-bound; only the center work column scrolls, with neutral blurred gradient fades at its top and bottom (the owner clarified “blurred,” not blue). Existing experience records live in that scroll region to keep the identity column stationary. Narrow layouts retain normal document scrolling.
 
 ## Current visual authority
 
