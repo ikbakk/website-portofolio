@@ -3,11 +3,11 @@ import ThemeOrnament from './ThemeOrnament.astro';
 import { archiveProjects, stageLabels } from '../../data/archive';
 import { experience } from '../../data/experience';
 import UIIcon from './UIIcon.astro';
+import PaperControl from './PaperControl.astro';
 const feature = archiveProjects.find((project) => project.id === 'sungkar-group')!;
-const selected = ['beaconnect', 'cv-builder', 'ward-monitor'].map((id) =>
+const selected = ['beaconnect', 'cv-builder', 'ward-monitor', 'courtside'].map((id) =>
   archiveProjects.find((project) => project.id === id)!,
 );
-const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase', 'Tailwind CSS'];
 ---
 
 <section class="work panel" aria-label="Selected work">
@@ -36,49 +36,46 @@ const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase'
     </a>
     <section id="projects" class="selected">
       <div class="section-heading">
-        <h2 class="section-title">Selected Works</h2><a
-          id="project-courtside"
-          href="/projects/courtside/">Also see Courtside ↗</a
-        >
+        <h2 class="section-title">Selected Works</h2>
       </div>
-      <div class="project-grid">
+      <div class="project-list">
         {
           selected.map((project) => (
-            <a id={`project-${project.id}`} class="project card" href={project.caseHref}>
-              {project.image ? (
-                <img
-                  src={project.image.src}
-                  alt={project.image.alt}
-                  width={project.image.width}
-                  height={project.image.height}
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <div class="image-placeholder">
-                  <UIIcon name="image" size={22} />
-                  <small>Screenshot pending</small>
-                </div>
-              )}
-              <>
-                <h3>
-                  {project.title} <span aria-hidden="true">↗</span>
-                </h3>
-                <p>{project.summary}</p>
+            <PaperControl
+              id={`project-${project.id}`}
+              class="project project-row"
+              href={project.caseHref}
+            >
+              <span class="project-thumb">
+                {project.image ? (
+                  <img
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    width={project.image.width}
+                    height={project.image.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <span class="project-thumb-fallback">
+                    <UIIcon name="image" size={22} />
+                    <span>Image pending</span>
+                  </span>
+                )}
+              </span>
+              <div class="project-row-copy">
+                <h3>{project.title}</h3>
                 <span class="project-stage">{stageLabels[project.stage]}</span>
-                <div class="tags">
-                  {project.stack.slice(0, 2).map((tag) => (
-                    <span>{tag}</span>
-                  ))}
-                </div>
-              </>
-            </a>
+                <span class="project-row-summary">{project.summary}</span>
+                <span class="tags">
+                  {project.stack.slice(0, 2).map((tag) => <span>{tag}</span>)}
+                </span>
+              </div>
+              <span class="project-row-arrow" aria-hidden="true">↗</span>
+            </PaperControl>
           ))
         }
       </div>
-    </section>
-    <section class="stack">
-      <h2 class="section-title">Tech Stack</h2><ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
     </section>
     <section id="experience" class="experience">
       <h2 class="section-title">Experience</h2>

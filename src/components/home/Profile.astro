@@ -1,6 +1,7 @@
 ---
 import ThemeOrnament from './ThemeOrnament.astro';
 import { site } from '../../data/site';
+import { techStack } from '../../data/tech-stack';
 import PaperControl from './PaperControl.astro';
 import UIIcon from './UIIcon.astro';
 import Icon from '../celestial/Icon.astro';
@@ -36,6 +37,12 @@ import Icon from '../celestial/Icon.astro';
       Builder, problem solver, and lifelong learner. I enjoy creating, improving systems, and
       exploring product ideas.
     </p>
+    <div class="profile-stack">
+      <h3>Tech Stack</h3>
+      <ul aria-label="Technologies">
+        {techStack.map((skill) => <li>{skill}</li>)}
+      </ul>
+    </div>
   </section>
   <div class="socials" role="group" aria-label="Social links">
     <PaperControl

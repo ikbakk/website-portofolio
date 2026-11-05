@@ -1,5 +1,7 @@
 # P5 readiness pass — 2026-11-06
 
+> **Structural revision queued, 2026-11-06:** The owner subsequently requested single-column styled project links, moving Tech Stack below About, Projects/Experience tabs with current-theme transition effects, and matching detail pages. These revisions take priority before the next P5 run. The results below describe commit `8d28425`, not the subsequent source-only structure edits. See `WORK-STRUCTURE-REVISION.md`; fresh build/browser verification is blocked while the execution environment is unavailable.
+
 The owner accepted the weather transitions for now and requested continuation with other planned work. This pass addresses performance, cross-layout navigation, generated-build regression checks and maintenance of the current test suite. It preserves the accepted 30/40/30 layout and weather choreography. No merge or deployment.
 
 ## Changes and evidence

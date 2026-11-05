@@ -2,6 +2,10 @@
 
 Status: **P1 design decisions locked; exact frozen PNG files committed and verified; P2 implementation authorized by the owner’s 2026-11-04 continuation request; final visual acceptance pending**. The owner approved the three visual directions and the core layout, but this commit does not approve P2 implementation.
 
+## Owner content-structure revision — 2026-11-06
+
+The owner superseded the original three-card Selected Works layout with a **single-column list of styled project links**, using the existing paper controls. Tech Stack moves from the center to the bottom of About in the left column. Projects and Experience are to become separate tabs; switching those tabs should reuse the active weather transition rather than changing the theme. Project detail pages must be brought into the same visual system. Preserve the 30 / 40 / 30 desktop tracks and center-only desktop scrolling. The owner asked to prioritize necessary work first: see [the ordered implementation record](WORK-STRUCTURE-REVISION.md). Source-only progress is not browser acceptance.
+
 ## Owner layout revision — 2026-11-04
 
 The owner revised the desktop proportions to **30% left / 40% center / 30% right**, superseding the original mockup proportions. The desktop shell is viewport-bound; only the center work column scrolls, with neutral blurred gradient fades at its top and bottom (the owner clarified “blurred,” not blue). Existing experience records live in that scroll region to keep the identity column stationary. Narrow layouts retain normal document scrolling.
