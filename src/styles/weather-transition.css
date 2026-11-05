@@ -1,0 +1,113 @@
+.weather-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+  perspective: 900px;
+}
+.weather-transition[hidden] {
+  display: none !important;
+}
+.weather-shapes {
+  position: absolute;
+  overflow: hidden;
+}
+.weather-particles {
+  position: absolute;
+  inset: 0;
+  perspective: 900px;
+}
+.weather-particle {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.weather-particle > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.weather-veil {
+  position: absolute;
+  opacity: 0;
+}
+.weather-transition[data-kind='normal'] .weather-veil {
+  inset: 0 0 auto;
+  height: 160%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    #d9ebc83b 15%,
+    #dfedcbbf 38%,
+    #e8f2d7e8 53%,
+    #d8e9bc80 68%,
+    transparent 90%
+  );
+}
+.weather-transition[data-kind='cryo'] .weather-veil {
+  top: -45%;
+  left: -50%;
+  width: 200%;
+  height: 190%;
+  background: linear-gradient(
+    130deg,
+    transparent 20%,
+    #d9f0fa33 30%,
+    #e7f6ffdc 45%,
+    #f4fbfff2 52%,
+    #cce8f59c 61%,
+    transparent 74%
+  );
+}
+.weather-transition[data-kind='reduced'] .weather-veil {
+  inset: 0;
+  background: var(--weather-surface);
+}
+.weather-snow-dot {
+  border-radius: 50%;
+  background: #ecf9ff;
+}
+.weather-snow-streak {
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f4fbffcf);
+}
+.weather-charge {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(ellipse at 73% 15%, #d9b7ffb3, #8c52c742 45%, transparent 78%);
+}
+.weather-lightning {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  fill: none;
+  stroke-linejoin: bevel;
+  stroke-linecap: round;
+}
+.bolt-halo {
+  stroke: #a86de4;
+  stroke-width: 27px;
+  opacity: 0.13;
+}
+.bolt-color {
+  stroke: #c499ff;
+  stroke-width: 9px;
+  opacity: 0.65;
+}
+.bolt-core {
+  stroke: #faf2ff;
+  stroke-width: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .weather-particles,
+  .weather-lightning,
+  .weather-charge {
+    display: none;
+  }
+}

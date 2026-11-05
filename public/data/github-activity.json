@@ -1,8 +1,8 @@
 {
   "status": "ready",
   "username": "ikbakk",
-  "fetchedAt": "2026-11-04T11:05:00.528Z",
-  "asOf": "2026-11-04",
+  "fetchedAt": "2026-11-05T15:56:17.855Z",
+  "asOf": "2026-11-05",
   "startsOn": "2026-08-16",
   "source": "https://github-contributions-api.jogruber.de/v4/ikbakk?y=last",
   "days": [
@@ -413,8 +413,8 @@
     },
     {
       "date": "2026-11-05",
-      "count": null,
-      "level": null
+      "count": 0,
+      "level": 0
     },
     {
       "date": "2026-11-06",

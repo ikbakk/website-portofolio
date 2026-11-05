@@ -1,5 +1,7 @@
 # P2 coding agent handoff
 
+> **Weather motion continuation, 2026-11-05:** The owner requested, reviewed and authorized the three full-viewport weather-switch transitions. See `P4-WEATHER-TRANSITIONS.md`. Other P4 motion, merge and deployment remain outside this change.
+
 > **P3 continuation, 2026-11-04:** The owner accepted the themed controls and asked to enter the next stage. P3 widget behavior is authorized and implemented; see `P3-VERIFICATION.md`. The P2-only gates below are historical. P4 weather/macro motion, merge and deployment remain outside this change.
 
 > **Continuation, 2026-11-04:** The owner requested that the unfinished portfolio work be carried out in the new conversation. P2 static implementation is now in progress on the existing feature branch. This authorizes implementation and verification; it does not constitute visual sign-off, approval of replacement identity assets, P3/P4 work, merge, or deployment.

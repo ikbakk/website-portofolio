@@ -2,6 +2,8 @@
 import '../styles/home.css';
 import '../styles/paper-controls.css';
 import '../styles/widgets.css';
+import '../styles/weather-transition.css';
+import WeatherTransition from '../components/home/WeatherTransition.astro';
 import { site } from '../data/site';
 ---
 
@@ -30,16 +32,10 @@ import { site } from '../data/site';
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
     <slot />
+    <WeatherTransition />
     <script>
-      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-set-weather]');
-      buttons.forEach((button) =>
-        button.addEventListener('click', () => {
-          const theme = button.dataset.setWeather;
-          if (!theme) return;
-          document.documentElement.dataset.weather = theme;
-          buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-        }),
-      );
+      import { mountWeatherTransitions } from '../scripts/weather/transitions';
+      mountWeatherTransitions();
       const navigation = document.querySelectorAll<HTMLAnchorElement>('.profile-nav a[href^="#"]');
       navigation.forEach((link) =>
         link.addEventListener('click', () => {
