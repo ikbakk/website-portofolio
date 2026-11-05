@@ -4,6 +4,6 @@ export const focus = {
   items: [
     { id: 'design', title: 'Refine the weather themes', done: true },
     { id: 'widgets', title: 'Connect the live widgets', done: true },
-    { id: 'motion', title: 'Add weather effects', done: false },
+    { id: 'motion', title: 'Add weather effects', done: true },
   ],
 } as const;

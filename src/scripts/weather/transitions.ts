@@ -17,6 +17,12 @@ export function createWeatherTransitions() {
   let requested: WeatherThemeId = initial && isWeatherThemeId(initial) ? initial : 'normal';
   let sequence: gsap.core.Timeline | undefined;
   let lastLightning = -Infinity;
+  let pendingContent: (() => void) | undefined;
+  const flushContent = () => {
+    const commit = pendingContent;
+    pendingContent = undefined;
+    commit?.();
+  };
 
   const selectButtons = (theme: WeatherThemeId) =>
     buttons.forEach((button) => {
@@ -33,6 +39,7 @@ export function createWeatherTransitions() {
     stage.hidden = true;
     delete stage.dataset.kind;
     delete html.dataset.weatherTransition;
+    flushContent();
   };
   const settle = () => {
     commit(requested);
@@ -56,10 +63,16 @@ export function createWeatherTransitions() {
   };
   const random = gsap.utils.random;
 
-  const meadow = (tl: gsap.core.Timeline, w: number, h: number, compact: boolean) => {
+  const meadow = (
+    tl: gsap.core.Timeline,
+    w: number,
+    h: number,
+    compact: boolean,
+    midpoint: () => void,
+  ) => {
     gsap.set(veil, { y: -h * 1.5, opacity: 1 });
     tl.to(veil, { y: h * 1.1, duration: 2.05, ease: 'sine.inOut' }, 0);
-    tl.call(() => commit('normal'), [], 0.87);
+    tl.call(midpoint, [], 0.87);
     const count = compact ? 30 : 62;
     for (let i = 0; i < count; i++) {
       const depth = i % 3;
@@ -106,10 +119,16 @@ export function createWeatherTransitions() {
     }
   };
 
-  const blizzard = (tl: gsap.core.Timeline, w: number, h: number, compact: boolean) => {
+  const blizzard = (
+    tl: gsap.core.Timeline,
+    w: number,
+    h: number,
+    compact: boolean,
+    midpoint: () => void,
+  ) => {
     gsap.set(veil, { x: w * 1.45, y: -h * 0.35, opacity: 1 });
     tl.to(veil, { x: -w * 1.45, y: h * 0.4, duration: 1.5, ease: 'power2.inOut' }, 0);
-    tl.call(() => commit('cryo'), [], 0.69);
+    tl.call(midpoint, [], 0.69);
     const count = compact ? 52 : 100;
     for (let i = 0; i < count; i++) {
       const depth = i % 3;
@@ -152,25 +171,21 @@ export function createWeatherTransitions() {
     }
   };
 
-  const electro = (tl: gsap.core.Timeline) => {
+  const electro = (tl: gsap.core.Timeline, midpoint: () => void) => {
     // A single strike; rapid repeated selection degrades to a gentle color fade.
     lastLightning = performance.now();
     tl.to(charge, { opacity: 0.25, duration: 0.18, ease: 'power2.in' }, 0);
     tl.to(lightning, { opacity: 1, duration: 0.035, ease: 'none' }, 0.18);
     tl.to(charge, { opacity: 0.8, duration: 0.045, ease: 'none' }, 0.18);
-    tl.call(() => commit('electro'), [], 0.23);
+    tl.call(midpoint, [], 0.23);
     tl.to(lightning, { opacity: 0, duration: 0.3, ease: 'power3.out' }, 0.23);
     tl.to(charge, { opacity: 0, duration: 0.6, ease: 'power2.out' }, 0.23);
   };
 
-  const request = (theme: WeatherThemeId) => {
-    if (theme === requested) return;
-    clear();
-    requested = theme;
-    selectButtons(theme);
-    if (theme === html.dataset.weather) return;
+  const animate = (theme: WeatherThemeId, midpoint: () => void) => {
     if (document.hidden) {
-      settle();
+      midpoint();
+      clear();
       return;
     }
     stage.hidden = false;
@@ -181,16 +196,29 @@ export function createWeatherTransitions() {
     const tl = gsap.timeline({ onComplete: clear });
     sequence = tl;
     if (reduced) {
-      commit(theme);
+      midpoint();
       gsap.set(veil, { opacity: 0.15 });
       tl.to(veil, { opacity: 0, duration: 0.18, ease: 'none' });
     } else {
       const w = window.innerWidth,
         h = window.innerHeight;
-      if (theme === 'normal') meadow(tl, w, h, w < 741);
-      else if (theme === 'cryo') blizzard(tl, w, h, w < 741);
-      else electro(tl);
+      if (theme === 'normal') meadow(tl, w, h, w < 741, midpoint);
+      else if (theme === 'cryo') blizzard(tl, w, h, w < 741, midpoint);
+      else electro(tl, midpoint);
     }
+  };
+  const request = (theme: WeatherThemeId) => {
+    if (theme === requested) return;
+    clear();
+    requested = theme;
+    selectButtons(theme);
+    if (theme === html.dataset.weather) return;
+    animate(theme, () => commit(theme));
+  };
+  const transitionContent = (commitContent: () => void) => {
+    settle();
+    pendingContent = commitContent;
+    animate(requested, flushContent);
   };
   document.addEventListener(
     'visibilitychange',
@@ -212,6 +240,7 @@ export function createWeatherTransitions() {
   );
   return {
     request,
+    transitionContent,
     dispose: () => {
       settle();
       events.abort();

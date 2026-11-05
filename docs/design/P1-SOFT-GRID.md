@@ -4,7 +4,7 @@ Status: **P1 design decisions locked; exact frozen PNG files committed and verif
 
 ## Owner content-structure revision — 2026-11-06
 
-The owner superseded the original three-card Selected Works layout with a **single-column list of styled project links**, using the existing paper controls. Tech Stack moves from the center to the bottom of About in the left column. Projects and Experience are to become separate tabs; switching those tabs should reuse the active weather transition rather than changing the theme. Project detail pages must be brought into the same visual system. Preserve the 30 / 40 / 30 desktop tracks and center-only desktop scrolling. The owner asked to prioritize necessary work first: see [the ordered implementation record](WORK-STRUCTURE-REVISION.md). Source-only progress is not browser acceptance.
+The owner superseded the original three-card Selected Works layout with a **single-column list of styled project links**, using the existing paper controls. Tech Stack moves from the center to the bottom of About in the left column. Projects and Experience now use separate tabs; switching reuses the active weather transition without changing the theme. Project detail pages share the same visual system. Preserve the 30 / 40 / 30 desktop tracks and center-only desktop scrolling. The owner asked to prioritize necessary work first: see [the ordered implementation record](WORK-STRUCTURE-REVISION.md). Implementation and managed-browser checks are recorded there; final visual acceptance remains pending.
 
 ## Owner layout revision — 2026-11-04
 
@@ -18,7 +18,7 @@ The owner explicitly requested Genshin elemental logos in the weather selector a
 
 1. The owner-approved **three-theme frozen mockup** from the portfolio design conversation is the visual authority. The exact original images are committed under [docs/design/references/](references/) and their hashes are listed in [the reference manifest](P1-REFERENCE-MANIFEST.md); the strict source check passed in [GitHub Actions run 41663423056](https://github.com/ikbakk/website-portofolio/actions/runs/41663423056). Do not substitute AI-regenerated compositions or infer exact measurements from written prose.
 2. This document records immutable composition rules for P1. The theme values in `src/styles/weather-themes.tokens.css` define the three approved color directions.
-3. `DESIGN.md` still documents the historical Celestial experience; it is **not the governing homepage design** for this branch. Existing case-study routes remain untouched until explicitly scoped.
+3. `DESIGN.md` still documents the historical Celestial experience; it is **not the governing homepage design** for this branch. The owner explicitly scoped matching case-study layouts on 2026-11-06; those routes now use the shared paper shell.
 
 ## Frozen desktop composition
 

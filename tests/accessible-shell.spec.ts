@@ -50,7 +50,7 @@ test('skip link, keyboard theme choice and native case return keep the homepage 
   for (let i = 0; i < 2; i++) {
     await page.locator('#project-courtside').click();
     await expect(page).toHaveURL(/\/projects\/courtside\/$/);
-    await page.getByRole('link', { name: 'Back to archive' }).click();
+    await page.getByRole('link', { name: 'Back to projects' }).click();
     await expect(page.locator('#project-courtside')).toBeVisible();
     await page.getByRole('button', { name: 'Blizzard (cryo)', exact: true }).press('Enter');
     await expect(page.locator('html')).toHaveAttribute('data-weather', 'cryo');

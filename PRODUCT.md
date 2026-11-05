@@ -80,8 +80,12 @@ art direction. These are design guidance, not claims that the site has won an aw
 ## Readiness record — 2026-11-06
 
 - Source configuration now declares Astro and `https://ikbak.vercel.app`; obsolete origin/OG findings above were historical. `public/og.jpg`, canonical and sitemap metadata exist.
-- Homepage/case-study return paths and Contact links are aligned with Soft Grid. Native navigation crosses the two layout systems.
+- Homepage/case-study return paths and Contact links are aligned with Soft Grid. The homepage and all five case studies now share the paper layout and use native navigation; session weather is retained.
 - The weather engine is loaded on demand; measured production bundle sizes and generated-link audit are in `docs/design/verification/p5/build-audit.json`.
-- Current browser scenarios replace obsolete Celestial-home assertions; case-study tests remain. Actual execution and remaining verification limits are recorded in `docs/design/P5-VERIFICATION.md`.
+- Current browser scenarios cover the paper homepage, section tabs and case studies; obsolete Celestial-detail assertions were replaced. Actual execution and remaining verification limits are recorded in `docs/design/P5-VERIFICATION.md`.
 - Approved green identity mark, portrait artwork, Playground character art and verified Beaconnect/CV Builder screenshots remain unresolved. Existing honest fallbacks are retained.
 - Hosting behavior, field performance, merge and production deployment have not been changed or verified by these local checks.
+
+## Work structure — 2026-11-06
+
+Selected Works is a single column of custom paper links; Tech Stack sits below About in the left column. Projects and Experience have separate accessible tabs, per-view scroll positions and current-weather transitions. The desktop tracks remain 30/40/30 with scrolling in the center. Detail pages reuse that shell with contextual project facts on the right; mobile detail pages condense the repeated profile. See the work-structure verification record for checks and remaining automation limits.

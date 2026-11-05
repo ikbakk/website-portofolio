@@ -3,33 +3,50 @@ import '../styles/home.css';
 import '../styles/paper-controls.css';
 import '../styles/widgets.css';
 import '../styles/work-structure.css';
+import '../styles/work-sections.css';
 import '../styles/weather-transition.css';
 import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import WeatherTransition from '../components/home/WeatherTransition.astro';
 import { site } from '../data/site';
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  structuredData?: Record<string, unknown>;
+}
+const {
+  title = 'Muhammad Iqbal Firdaus | Frontend & mobile engineer',
+  description = 'Web, mobile and practical tools by Muhammad Iqbal Firdaus, a frontend and mobile engineer based in Mataram, Indonesia.',
+  canonicalPath = '/',
+  structuredData,
+} = Astro.props;
+const canonical = new URL(canonicalPath, site.url).href;
 ---
 
 <!doctype html>
 <html lang="en" data-weather="normal">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      try {
+        const theme = sessionStorage.getItem('portfolio-weather');
+        if (['normal', 'cryo', 'electro'].includes(theme))
+          document.documentElement.dataset.weather = theme;
+      } catch {
+        /* optional session preference */
+      }
+    </script>
     <link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin />
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="theme-color" content="#f7f8f2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Muhammad Iqbal Firdaus | Frontend &amp; mobile engineer</title>
-    <meta
-      name="description"
-      content="Web, mobile and practical tools by Muhammad Iqbal Firdaus, a frontend and mobile engineer based in Mataram, Indonesia."
-    />
-    <link rel="canonical" href={site.url + '/'} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:title" content="Muhammad Iqbal Firdaus | Frontend & mobile engineer" />
-    <meta
-      property="og:description"
-      content="Web, mobile and practical tools by Muhammad Iqbal Firdaus."
-    />
-    <meta property="og:url" content={site.url + '/'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={site.url + '/og.jpg'} />
     <meta property="og:image:width" content="1200" />
@@ -45,6 +62,11 @@ import { site } from '../data/site';
         sameAs: [site.github, site.linkedin],
       })}
     />
+    {
+      structuredData && (
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>

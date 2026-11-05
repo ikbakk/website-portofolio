@@ -1,6 +1,6 @@
 # Iqbal / Soft Grid portfolio
 
-Muhammad Iqbal Firdaus's frontend and mobile engineering portfolio. The homepage uses a paper-inspired three-column layout with Meadow, Cryo and Electro themes. Static project case studies retain their existing Celestial presentation.
+Muhammad Iqbal Firdaus's frontend and mobile engineering portfolio. The homepage uses a paper-inspired three-column layout with Meadow, Cryo and Electro themes. Projects and Experience use separate tabs. All five static case studies share the same paper shell and retain the selected weather across navigation.
 
 ## Run locally
 
@@ -58,6 +58,6 @@ Meaningful content, project links, resume and contact are rendered without JavaS
 
 ## Verification and release
 
-See [PRODUCT.md](PRODUCT.md), [the active design contract](docs/design/P1-SOFT-GRID.md), [P3](docs/design/P3-VERIFICATION.md), [weather transitions](docs/design/P4-WEATHER-TRANSITIONS.md) and [P5 readiness](docs/design/P5-VERIFICATION.md). Historical Celestial documents remain references for the existing case studies.
+See [PRODUCT.md](PRODUCT.md), [the active design contract](docs/design/P1-SOFT-GRID.md), [P3](docs/design/P3-VERIFICATION.md), [weather transitions](docs/design/P4-WEATHER-TRANSITIONS.md) and [P5 readiness](docs/design/P5-VERIFICATION.md). Historical Celestial documents describe the retired presentation; the current work structure is recorded in [WORK-STRUCTURE-REVISION.md](docs/design/WORK-STRUCTURE-REVISION.md).
 
 The configured public origin is `https://ikbak.vercel.app`, consistently used by canonical, sitemap and social metadata. `vercel.json` selects Astro, `bun run build` and `dist/`. No merge or deployment is implied by local verification or a feature-branch commit.

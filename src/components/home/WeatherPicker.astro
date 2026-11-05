@@ -1,0 +1,28 @@
+---
+import PaperControl from './PaperControl.astro';
+import { weatherThemeIds, weatherThemes, defaultWeatherTheme } from '../../theme/weather.config';
+---
+
+<div class="board-top">
+  <fieldset class="theme-picker">
+    <legend>Element</legend>
+    {
+      weatherThemeIds.map((id) => {
+        const theme = weatherThemes[id];
+        return (
+          <PaperControl
+            class="element-choice"
+            variant="icon"
+            data-set-weather={id}
+            data-theme-name={theme.title}
+            aria-pressed={id === defaultWeatherTheme ? 'true' : 'false'}
+            aria-label={`${theme.title} (${theme.icon})`}
+            title={`${theme.title} · ${theme.icon}`}
+          >
+            <img src={`/weather/elements/${theme.icon}.svg`} width="28" height="28" alt="" />
+          </PaperControl>
+        );
+      })
+    }
+  </fieldset>
+</div>

@@ -1,43 +1,29 @@
 # Work structure revision — 2026-11-06
 
-The owner requested:
-1. A single-column project list with styling consistent with the custom paper buttons.
-2. Tech Stack at the bottom of About in the left column.
-3. Separate Projects and Experience views, with transitions using the currently active weather effect.
-4. Matching project detail pages.
-5. Prioritize the necessary work first.
+The owner's requested structure is implemented on `ikbakk/inspire-portfolio-jmancheta-design`. This supersedes the relevant frozen content arrangement, while retaining 30/40/30 desktop tracks, actual project evidence, theme colors and the accepted weather choreography.
 
-This supersedes the relevant frozen content arrangement. It does not change the 30/40/30 tracks, actual project evidence, theme colors, or existing weather choreography.
+## Result
 
-## Priority 1 — source prepared, not runtime-verified
+- Sungkar Group remains the featured project. Beaconnect, CV Builder, Ward Monitor and Courtside form one vertical list of custom PaperControl links with existing theme hover, press and focus states. Real screenshots remain real; missing screenshots have explicit fallbacks.
+- The seven existing technology labels render below About in the left column. Short desktop navigation uses two columns to keep technologies and social/resume links reachable without a left scroller.
+- Projects and Experience are separate tabs above the central scroller. Each retains its own scroll position. Arrow/Home/End keys move focus; Enter/Space activate. Hash links, project-row returns and browser Back/Forward work. Without JavaScript, both sections remain ordinary readable sections and navigation remains anchors.
+- Tab selection calls the same lazy weather engine as the weather picker. Normal uses falling leaves, Cryo uses diagonal snow, and Electro uses its single strike with the existing cooldown. The section changes at the effect midpoint without changing the selected weather. Reduced motion commits immediately; interruptions settle the requested content and clear the overlay. A failed optional animation chunk still reveals the requested content.
+- All five case studies share PortfolioFrame, weather picker, paper ornaments and native navigation. The project title is the only h1; metadata and CreativeWork schema remain route-specific. The right column contains role, status, stack and links to other case studies. Mobile condenses the repeated profile so project reading starts sooner.
+- Weather is stored as an optional session preference and restored before paint, including on detail/return navigation. Back to projects returns to the originating row. Old copy referring to removed illustrative emblems was replaced with truthful screenshot availability text. The roadmap now marks the already accepted weather effects complete.
+- Center fades remain neutral blurred masks, scoped below the fixed tabs/toolbar. Desktop scrolling stays in the center; narrower layouts use document scrolling.
 
-- Selected Works now renders one vertical list. Each row reuses PaperControl, including its selected-theme hover, press and focus styling.
-- Sungkar Group remains the distinct Featured Project. Beaconnect, CV Builder, Ward Monitor and Courtside are all ordinary project rows; Courtside's former small side link becomes the fourth row. Existing project IDs and destination routes remain intact.
-- Rows use genuine screenshots where available and explicitly labelled image fallbacks otherwise. There is no fake application artwork.
-- The same seven existing technology labels now live in a shared static data file and render at the bottom of About. The center no longer renders Tech Stack.
-- A separate stylesheet scopes the list/stack rules. Short desktop layouts use two navigation columns to reserve room for the moved stack while retaining all existing navigation and keeping the left column non-scrollable.
-- Added browser checks for row alignment, stack placement and short-screen left-column clipping.
+## Verification
 
-The execution environment and browser were unavailable during this change. Source was read and edited through the repository connector. **Astro check, Prettier, build, automated browser tests and screenshots have not been run for this revision.** The 720px desktop profile is a specific review target before accepting the moved stack. The earlier P5 results apply only to the previous commit.
+- Astro diagnostics: zero errors, warnings or hints.
+- Source formatting, production build, nine widget/model tests and three generated-build tests pass.
+- Generated export: seven HTML pages, 207 valid local references, no audit errors. Initial homepage JavaScript is 16,628 bytes raw / 7,259 bytes gzip across eager modules; the animation engine remains lazy. See `verification/structure/build-audit.json`.
+- Managed browser review: Normal, Cryo and Electro section changes preserve weather; section scroll restoration; keyboard focus without premature activation; direct #experience entry; repeated tab requests; browser Back/Forward; native Courtside detail/return with theme retained and originating row visible. No orphan overlay/particles remained after settling.
+- Desktop 1363×936: profile and detail sidebar fit; document height remains 936; center scrolls. Short desktop 1363×720: homepage profile 612/612px, detail profile 612/613px (rounding), detail sidebar 612/612px; resume remains inside the frame. No horizontal overflow.
+- Responsive iframe review: 320×800 home and detail, and 768×1024 detail, have no horizontal overflow and use document scrolling. Mobile detail profile condenses to 89px. These are same-origin rendered viewport checks, not claims about physical-device testing.
+- Proof images: `verification/structure/projects-electro.jpg` and `verification/structure/detail-electro.jpg`.
 
-## Priority 2 — implement together after structural verification
+## Remaining verification limits
 
-### Projects / Experience tabs
+Browser scenarios were updated for the new tabs and paper detail layout, including reduced motion, no-JavaScript reading, hash/history, interrupted requests, scroll retention and theme-preserving return navigation. Playwright discovery lists 36 scenarios in six files, but the full suite and Axe analysis were **not executed**: this environment uses the managed browser for UI review and does not permit starting another browser/server for that suite. Reduced motion and no-JavaScript behavior therefore have source/build coverage and authored scenarios, not fresh end-to-end results. Run `npm run test` locally or in CI before complete P5 automation sign-off.
 
-Use two paper-styled tabs at the top of the center column, above its independent scrolling area. Projects is the default. Each view preserves its own scroll position. Tab state must support keyboard operation, direct #experience links, #project-{id} returns, and browser Back/Forward. Without JavaScript, both sections remain readable through ordinary anchors.
-
-The theme control chooses weather; the content tab chooses a section. Selecting Experience under Cryo must play the Cryo effect and reveal Experience at its midpoint, while the chosen theme remains Cryo. Selecting Projects under Electro must use the Electro sequence, with the existing flash cooldown and reduced-motion alternative.
-
-Refactor the current weather engine to expose a shared transition/midpoint callback. Keep one overlay and one active sequence. Coalesce rapid selections and prevent obsolete callbacks from changing the visible section. Do not copy particles/timelines into a second component, eagerly download GSAP, or add a new animation library. Initial/deep-link restoration should reveal content immediately.
-
-### Project detail pages
-
-Replace the retained Celestial detail layout with the same paper controls, weather tokens, column ornaments and typography. Preserve actual project prose, screenshots, stage disclosures, canonicals and structured data. Keep one h1 for the project title. On narrow screens, prioritize the project reading area over repeating a full profile panel.
-
-Return to Projects and the originating row, with the chosen weather retained across navigation. Central scrolling/fades and mobile document scrolling must remain coherent. Do not silently leave the existing detail-route tests asserting the retired Celestial layout.
-
-## Priority 3 — P5 rerun
-
-After the structural/detail changes: run Astro diagnostics, formatting, production build, widget and build-artifact suites; update and execute the browser scenarios for the new tabs/detail layout. Check 320px mobile, 768px tablet, 1363px desktop at 720px and 936px heights, all three themes, keyboard navigation, no-JavaScript reading, deep links, interrupted transitions and return navigation.
-
-Update bundle measurements after the final structure stabilizes. Previously measured sizes are not proof of this revision's runtime behavior. No merge, deployment, final visual acceptance or P5 sign-off is implied.
+Missing portrait, approved green identity mark and unprovided screenshots remain honest fallbacks. No merge, production deployment, hosting validation or final visual acceptance is implied by this change.

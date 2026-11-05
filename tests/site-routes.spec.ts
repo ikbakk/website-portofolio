@@ -16,7 +16,7 @@ for (const [id, title] of projects) {
       'href',
       `https://ikbak.vercel.app/projects/${id}/`,
     );
-    await expect(page.getByRole('link', { name: 'Back to archive' })).toHaveAttribute(
+    await expect(page.getByRole('link', { name: 'Back to projects' })).toHaveAttribute(
       'href',
       `/#project-${id}`,
     );
@@ -36,75 +36,44 @@ for (const [id, title] of projects) {
 }
 for (const [width, height] of [
   [1440, 900],
+  [1363, 720],
+  [768, 1024],
   [390, 844],
 ]) {
-  test(`project dossier uses the fixed game screen and internal scrolling at ${width}`, async ({
+  test(`paper case study keeps reading and navigation reachable at ${width} by ${height}`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height });
     await page.goto('/projects/courtside/');
-    await expect(page.locator('body')).toHaveClass(/game-screen/);
-    const content = page.locator('.case-dossier .dossier-content');
-    const world = page.locator('.case-world');
-    const scrollState = await page.evaluate(() => ({
-      viewport: window.innerHeight,
-      document: document.documentElement.scrollHeight,
-      panel: document.querySelector('.case-dossier .dossier-content')!.clientHeight,
-      panelContent: document.querySelector('.case-dossier .dossier-content')!.scrollHeight,
+    await expect(page.getByRole('heading', { name: 'Project details', exact: true })).toBeVisible();
+    const layout = await page.evaluate(() => ({
+      height: document.documentElement.scrollHeight,
+      overflow: document.documentElement.scrollWidth > innerWidth,
+      widths: [...document.querySelector('.home-grid')!.children].map(
+        (el) => el.getBoundingClientRect().width,
+      ),
     }));
-    expect(scrollState.document).toBeLessThanOrEqual(scrollState.viewport + 1);
-    expect(scrollState.panelContent).toBeGreaterThan(scrollState.panel);
-    await expect(world).toHaveAttribute('data-dossier-more', '');
-    await expect
-      .poll(() => content.evaluate((el) => getComputedStyle(el, '::after').opacity))
-      .toBe('1');
-    await content.evaluate((el) => el.scrollTo({ top: el.scrollHeight, behavior: 'instant' }));
-    await expect(world).not.toHaveAttribute('data-dossier-more');
-    await expect
-      .poll(() => content.evaluate((el) => getComputedStyle(el, '::after').opacity))
-      .toBe('0');
-    await expect.poll(() => content.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
-    expect(await page.evaluate(() => window.scrollY)).toBe(0);
-    if (width <= 700) {
-      await expect(page.locator('.site-header')).toBeHidden();
-      await expect(page.locator('.mobile-nav')).toHaveCount(0);
-      await expect(page.locator('.constellation-nav')).toBeVisible();
-      await expect(page.locator('.mobile-section-title')).toHaveText('Projects');
-      await expect(page.locator('.case-identity-info')).toBeHidden();
+    expect(layout.overflow).toBe(false);
+    if (width > 1100) {
+      const total = layout.widths.reduce((n, w) => n + w, 0);
+      expect(layout.widths.map((w) => Math.round((w / total) * 100))).toEqual([30, 40, 30]);
+      expect(layout.height).toBeLessThanOrEqual(height + 1);
+      await page.locator('.work-scroll').evaluate((el) => el.scrollTo(0, el.scrollHeight));
+      expect(await page.locator('.work-scroll').evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+      expect(await page.evaluate(() => scrollY)).toBe(0);
+      expect(
+        await page
+          .locator('.detail-sidebar')
+          .evaluate((el) => el.scrollHeight <= el.clientHeight + 1),
+      ).toBe(true);
+    } else {
+      expect(layout.height).toBeGreaterThan(height);
+      if (width <= 740)
+        await expect(page.locator('.project-detail-page .profile .about')).toBeHidden();
     }
-  });
-}
-for (const [width, height] of [
-  [1440, 900],
-  [1024, 768],
-  [768, 1024],
-]) {
-  test(`project detail keeps the desktop identity and dossier in balance at ${width}`, async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width, height });
-    await page.goto('/projects/courtside/');
-    await expect(page.locator('.case-world .mobile-section-title')).toBeVisible();
-    await expect(page.locator('.case-identity-info')).toBeVisible();
-    await expect(page.locator('.site-footer')).toBeHidden();
-    expect(
-      await page.locator('.site-header').evaluate((el) => getComputedStyle(el).backgroundImage),
-    ).toContain('linear-gradient');
-    const layout = await page.evaluate(() => {
-      const identity = document.querySelector('.identity-column')!.getBoundingClientRect();
-      const dossier = document.querySelector('.case-dossier')!.getBoundingClientRect();
-      return {
-        identityRight: identity.right,
-        dossierLeft: dossier.left,
-        dossierWidth: dossier.width,
-        viewportWidth: window.innerWidth,
-        documentHeight: document.documentElement.scrollHeight,
-        viewportHeight: window.innerHeight,
-      };
-    });
-    expect(layout.dossierLeft).toBeGreaterThan(layout.identityRight);
-    expect(layout.dossierWidth).toBeGreaterThan(layout.viewportWidth * 0.5);
-    expect(layout.documentHeight).toBeLessThanOrEqual(layout.viewportHeight + 1);
+    await page.getByRole('link', { name: 'Back to projects', exact: true }).click();
+    await expect(page.locator('#project-courtside')).toBeVisible();
+    await expect(page.locator('#tab-projects')).toHaveAttribute('aria-selected', 'true');
   });
 }
 test('unknown routes use a useful 404', async ({ page }) => {

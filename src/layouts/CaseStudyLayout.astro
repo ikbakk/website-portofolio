@@ -1,12 +1,11 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import Panel from '../components/celestial/Panel.astro';
+import PortfolioFrame from './PortfolioFrame.astro';
+import ThemeOrnament from '../components/home/ThemeOrnament.astro';
+import PaperControl from '../components/home/PaperControl.astro';
 import Icon from '../components/celestial/Icon.astro';
-import Action from '../components/celestial/Action.astro';
-import Navigation from '../components/celestial/Navigation.astro';
-import IdentityMark from '../components/celestial/IdentityMark.astro';
 import type { ArchiveProject } from '../data/archive';
 import { archiveProjects, stageLabels } from '../data/archive';
+import { site } from '../data/site';
 interface Props {
   project: ArchiveProject;
 }
@@ -16,56 +15,39 @@ const schema = {
   '@type': 'CreativeWork',
   name: project.title,
   description: project.summary,
-  url: `https://ikbak.vercel.app${project.caseHref}`,
-  author: { '@type': 'Person', name: 'Muhammad Iqbal Firdaus' },
+  url: site.url + project.caseHref,
+  author: { '@type': 'Person', name: site.name },
 };
 ---
 
-<BaseLayout
-  title={`${project.title} | Muhammad Iqbal Firdaus`}
+<PortfolioFrame
+  detail
+  title={`${project.title} | ${site.name}`}
   description={project.source.lede}
-  gameScreen
-  caseStudy
+  canonicalPath={project.caseHref}
+  structuredData={schema}
 >
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <div class="archive-world case-world" data-archive-ready="true">
-    <div class="archive-grid case-grid">
-      <div class="identity-column flex flex-col items-center justify-center">
-        <p class="mobile-section-title">Projects</p>
-        <IdentityMark />
-        <Navigation mobile home={false} constellation />
-        <div class="identity-caption text-center">
-          <div class="identity-rule" aria-hidden="true"><Icon name="spark" /></div>
-          <p>Project archive</p>
-          <span>{project.title}</span>
-        </div>
-        <div
-          class="identity-info case-identity-info"
-          role="group"
-          aria-label="Portfolio information"
-        >
-          <span>Made with care in Mataram.</span>
-          <span>Astro &amp; Tailwind CSS</span>
-          <a href="https://github.com/ikbakk/website-portofolio">Source code</a>
-        </div>
-      </div>
-      <Panel class="main-dossier case-dossier" scrollable>
-        <a data-astro-reload class="case-back-link" href={`/#project-${project.id}`}>
-          <Icon name="arrow" />
-          <span>Back to archive</span>
-        </a>
+  <section
+    class="work panel project-detail"
+    data-detail-work
+    aria-label={`${project.title} case study`}
+  >
+    <ThemeOrnament placement="corner" /><ThemeOrnament placement="foot" />
+    <div class="detail-toolbar">
+      <PaperControl class="case-back-link" data-astro-reload href={`/#project-${project.id}`}>
+        <span aria-hidden="true">←</span> Back to projects
+      </PaperControl>
+      <span class="detail-path">/ project</span>
+    </div>
+    <div class="work-body">
+      <div class="work-scroll" tabindex="0" role="region" aria-label="Project case study">
         <article class="case-article">
           <header class="case-heading">
-            <div class="case-overline">
-              <span data-project-stage>{project.kind} / {stageLabels[project.stage]}</span>
-              <span>Project dossier</span>
-            </div>
+            <span class="badge" data-project-stage
+              >{project.kind} / {stageLabels[project.stage]}</span
+            >
             <h1>{project.title}</h1>
             <p class="case-summary">{project.summary}</p>
-            <dl class="case-facts">
-              <div><dt>My role</dt><dd>{project.source.role}</dd></div>
-              <div><dt>Built with</dt><dd>{project.stack.join(', ')}</dd></div>
-            </dl>
           </header>
           {
             project.image ? (
@@ -75,7 +57,8 @@ const schema = {
                   alt={project.image.alt}
                   width={project.image.width}
                   height={project.image.height}
-                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
                 />
                 <figcaption>
                   {project.image.caption}
@@ -83,50 +66,40 @@ const schema = {
                 </figcaption>
               </figure>
             ) : (
-              <figure class="case-illustration">
-                {project.id === 'courtside' ? (
-                  <img
-                    src="/celestial/court.svg"
-                    alt="Illustration of a badminton court"
-                    width="320"
-                    height="240"
-                  />
-                ) : (
-                  <span class="emblem case-emblem">
-                    <Icon name={project.id} />
-                  </span>
-                )}
-                <figcaption>
-                  Original project illustration. Not an application screenshot.
-                </figcaption>
-              </figure>
+              <p class="case-image-note">Application screenshot not yet available.</p>
             )
           }
           <div class="case-prose"><slot /></div>
           <aside class="case-disclosure">
             <Icon name="projects" /><p>{project.source.disclosure}</p>
           </aside>
-          <Action href={project.source.link.href} icon="projects" dark
-            >{project.source.link.label}</Action
+          <PaperControl variant="primary" href={project.source.link.href}
+            >{project.source.link.label}</PaperControl
           >
         </article>
-        <nav class="other-projects" aria-label="Other case studies">
-          <h2>Continue exploring</h2>
-          <div class="other-project-list">
-            {
-              archiveProjects
-                .filter((p) => p.id !== project.id)
-                .map((p) => (
-                  <a href={p.caseHref}>
-                    <Icon name={p.id} />
-                    <span>{p.title}</span>
-                    <Icon name="arrow" />
-                  </a>
-                ))
-            }
-          </div>
-        </nav>
-      </Panel>
+      </div>
     </div>
-  </div>
-</BaseLayout>
+  </section>
+  <aside slot="sidebar" class="detail-sidebar panel" aria-label="Project information">
+    <ThemeOrnament placement="corner" /><ThemeOrnament placement="foot" />
+    <h2>Project details</h2>
+    <dl class="detail-facts">
+      <div><dt>My role</dt><dd>{project.source.role}</dd></div>
+      <div><dt>Status</dt><dd>{stageLabels[project.stage]}</dd></div>
+      <div><dt>Built with</dt><dd>{project.stack.join(', ')}</dd></div>
+    </dl>
+    <nav class="detail-other" aria-label="Other case studies">
+      <h2>Continue exploring</h2>
+      {
+        archiveProjects
+          .filter((p) => p.id !== project.id)
+          .map((p) => (
+            <PaperControl class="detail-next" href={p.caseHref}>
+              {p.title}
+              <span aria-hidden="true">↗</span>
+            </PaperControl>
+          ))
+      }
+    </nav>
+  </aside>
+</PortfolioFrame>

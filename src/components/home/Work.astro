@@ -10,88 +10,120 @@ const selected = ['beaconnect', 'cv-builder', 'ward-monitor', 'courtside'].map((
 );
 ---
 
-<section class="work panel" aria-label="Selected work">
+<section class="work panel" data-work-area aria-label="Work and experience">
   <ThemeOrnament placement="corner" />
   <ThemeOrnament placement="foot" />
-  <div class="work-scroll" tabindex="0" role="region" aria-label="Work and experience">
-    <p id="work-start" class="section-path" tabindex="-1">/ &nbsp; work</p>
-    <h2 class="section-title">Featured Project</h2>
-    <a id={`project-${feature.id}`} class="featured card" href={feature.caseHref}>
-      <img
-        src={feature.image!.src}
-        alt={feature.image!.alt}
-        width={feature.image!.width}
-        height={feature.image!.height}
-        fetchpriority="high"
-        decoding="async"
-      />
-      <div class="feature-copy">
-        <span class="badge">{feature.kind}</span><h3>
-          {feature.title}
-          <span aria-hidden="true">↗</span>
-        </h3><p>Tourism website for Lombok, Sumbawa, and Labuan Bajo.</p><div class="tags">
-          {feature.stack.slice(0, 3).map((tag) => <span>{tag}</span>)}
-        </div>
-      </div>
-    </a>
-    <section id="projects" class="selected">
-      <div class="section-heading">
-        <h2 class="section-title">Selected Works</h2>
-      </div>
-      <div class="project-list">
-        {
-          selected.map((project) => (
-            <PaperControl
-              id={`project-${project.id}`}
-              class="project project-row"
-              href={project.caseHref}
-            >
-              <span class="project-thumb">
-                {project.image ? (
-                  <img
-                    src={project.image.src}
-                    alt={project.image.alt}
-                    width={project.image.width}
-                    height={project.image.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <span class="project-thumb-fallback">
-                    <UIIcon name="image" size={22} />
-                    <span>Image pending</span>
+  <nav class="work-tabs" data-work-tabs aria-label="Work sections">
+    <PaperControl
+      id="tab-projects"
+      href="#projects"
+      selected
+      aria-controls="projects"
+      data-work-tab="projects">Projects</PaperControl
+    >
+    <PaperControl
+      id="tab-experience"
+      href="#experience"
+      aria-controls="experience"
+      data-work-tab="experience">Experience</PaperControl
+    >
+  </nav>
+  <div class="work-body">
+    <div class="work-scroll" role="region" aria-label="Work and experience">
+      <section id="projects" data-work-panel="projects" aria-labelledby="tab-projects">
+        <p id="work-start" class="section-path" tabindex="-1">/ &nbsp; work</p>
+        <h2 class="section-title">Featured Project</h2>
+        <a id={`project-${feature.id}`} class="featured card" href={feature.caseHref}>
+          <img
+            src={feature.image!.src}
+            alt={feature.image!.alt}
+            width={feature.image!.width}
+            height={feature.image!.height}
+            fetchpriority="high"
+            decoding="async"
+          />
+          <div class="feature-copy">
+            <span class="badge">{feature.kind}</span><h3>
+              {feature.title}
+              <span aria-hidden="true">↗</span>
+            </h3><p>Tourism website for Lombok, Sumbawa, and Labuan Bajo.</p><div class="tags">
+              {feature.stack.slice(0, 3).map((tag) => <span>{tag}</span>)}
+            </div>
+          </div>
+        </a>
+        <section class="selected" aria-label="Selected works">
+          <div class="section-heading">
+            <h2 class="section-title">Selected Works</h2>
+          </div>
+          <div class="project-list">
+            {
+              selected.map((project) => (
+                <PaperControl
+                  id={`project-${project.id}`}
+                  class="project project-row"
+                  href={project.caseHref}
+                >
+                  <span class="project-thumb">
+                    {project.image ? (
+                      <img
+                        src={project.image.src}
+                        alt={project.image.alt}
+                        width={project.image.width}
+                        height={project.image.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <span class="project-thumb-fallback">
+                        <UIIcon name="image" size={22} />
+                        <span>Image pending</span>
+                      </span>
+                    )}
                   </span>
-                )}
-              </span>
-              <div class="project-row-copy">
-                <h3>{project.title}</h3>
-                <span class="project-stage">{stageLabels[project.stage]}</span>
-                <span class="project-row-summary">{project.summary}</span>
-                <span class="tags">
-                  {project.stack.slice(0, 2).map((tag) => <span>{tag}</span>)}
+                  <div class="project-row-copy">
+                    <h3>{project.title}</h3>
+                    <span class="project-stage">{stageLabels[project.stage]}</span>
+                    <span class="project-row-summary">{project.summary}</span>
+                    <span class="tags">
+                      {project.stack.slice(0, 2).map((tag) => (
+                        <span>{tag}</span>
+                      ))}
+                    </span>
+                  </div>
+                  <span class="project-row-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </PaperControl>
+              ))
+            }
+          </div>
+        </section>
+      </section>
+      <section
+        id="experience"
+        class="experience"
+        data-work-panel="experience"
+        aria-labelledby="tab-experience"
+      >
+        <h2 class="section-title">Experience</h2>
+        <ol>
+          {
+            experience.map((item) => (
+              <li>
+                <strong>{item.title}</strong>
+                <span>
+                  {item.organization} · {item.period}
                 </span>
-              </div>
-              <span class="project-row-arrow" aria-hidden="true">↗</span>
-            </PaperControl>
-          ))
-        }
-      </div>
-    </section>
-    <section id="experience" class="experience">
-      <h2 class="section-title">Experience</h2>
-      <ol>
-        {
-          experience.map((item) => (
-            <li>
-              <strong>{item.title}</strong>
-              <span>
-                {item.organization} · {item.period}
-              </span>
-              <p>{item.description}</p>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
+                <p>{item.description}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+    </div>
   </div>
 </section>
+<script>
+  import { mountWorkTabs } from '../../scripts/work/tabs';
+  document.querySelectorAll<HTMLElement>('[data-work-area]').forEach(mountWorkTabs);
+</script>

@@ -1,0 +1,31 @@
+---
+import HomeLayout from './HomeLayout.astro';
+import Profile from '../components/home/Profile.astro';
+import Widgets from '../components/home/Widgets.astro';
+import WeatherPicker from '../components/home/WeatherPicker.astro';
+interface Props {
+  detail?: boolean;
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  structuredData?: Record<string, unknown>;
+}
+const { detail = false, title, description, canonicalPath, structuredData } = Astro.props;
+---
+
+<HomeLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  structuredData={structuredData}
+>
+  <div class:list={['board', { 'project-detail-page': detail }]}>
+    <WeatherPicker />
+    <main id="content" class="home-grid" tabindex="-1">
+      <Profile detail={detail} />
+      <slot />
+      <slot name="sidebar"><Widgets /></slot>
+    </main>
+    <div class="horizon" aria-hidden="true"></div>
+  </div>
+</HomeLayout>

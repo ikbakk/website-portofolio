@@ -5,25 +5,38 @@ import { techStack } from '../../data/tech-stack';
 import PaperControl from './PaperControl.astro';
 import UIIcon from './UIIcon.astro';
 import Icon from '../celestial/Icon.astro';
+interface Props {
+  detail?: boolean;
+}
+const { detail = false } = Astro.props;
+const NameTag = detail ? 'h2' : 'h1';
+const AboutTag = detail ? 'h3' : 'h2';
+const StackTag = detail ? 'h4' : 'h3';
 ---
 
 <aside id="profile" class="profile panel" aria-label="Profile">
   <ThemeOrnament placement="corner" />
   <ThemeOrnament placement="foot" />
-  <a class="brand" href="/" aria-label="Home"
+  <a class="brand" href="/" data-astro-reload aria-label="Home"
     ><img src="/logo-mark.svg" alt="" width="42" height="42" /></a
   >
   <div class="avatar" aria-hidden="true">IF</div>
-  <h1>Muhammad<br />Iqbal Firdaus</h1>
+  <NameTag class="profile-name">Muhammad<br />Iqbal Firdaus</NameTag>
   <p class="role">Frontend &amp; mobile engineer</p>
   <p class="location"><UIIcon name="location" size={15} /> {site.location}</p>
   <p class="intro">I build web and mobile software for everyday problems.</p>
   <nav class="profile-nav" aria-label="Portfolio sections">
-    <PaperControl variant="nav" selected aria-current="location" href="#work-start"
-      ><UIIcon name="home" /> Home</PaperControl
+    <PaperControl
+      variant="nav"
+      selected={!detail}
+      aria-current={detail ? undefined : 'location'}
+      href={detail ? '/#work-start' : '#work-start'}
+      data-astro-reload><UIIcon name="home" /> Home</PaperControl
     >
-    <PaperControl variant="nav" href="#projects"><UIIcon name="projects" /> Projects</PaperControl>
-    <PaperControl variant="nav" href="#experience"
+    <PaperControl variant="nav" href={detail ? '/#projects' : '#projects'} data-astro-reload
+      ><UIIcon name="projects" /> Projects</PaperControl
+    >
+    <PaperControl variant="nav" href={detail ? '/#experience' : '#experience'} data-astro-reload
       ><UIIcon name="experience" /> Experience</PaperControl
     >
     <PaperControl variant="nav" href="#about"><UIIcon name="approach" /> Approach</PaperControl>
@@ -32,13 +45,13 @@ import Icon from '../celestial/Icon.astro';
     >
   </nav>
   <section id="about" class="about">
-    <h2>About me</h2>
+    <AboutTag>About me</AboutTag>
     <p>
       Builder, problem solver, and lifelong learner. I enjoy creating, improving systems, and
       exploring product ideas.
     </p>
     <div class="profile-stack">
-      <h3>Tech Stack</h3>
+      <StackTag>Tech Stack</StackTag>
       <ul aria-label="Technologies">
         {techStack.map((skill) => <li>{skill}</li>)}
       </ul>
