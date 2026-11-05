@@ -1,0 +1,39 @@
+{
+  "pages": 7,
+  "localReferences": 207,
+  "initialJavaScript": [
+    {
+      "file": "_astro/page.DdqQKad9.js",
+      "bytes": 47,
+      "gzipBytes": 67
+    },
+    {
+      "file": "_astro/prefetch.DxIALaZb.js",
+      "bytes": 2493,
+      "gzipBytes": 1124
+    },
+    {
+      "file": "_astro/Work.astro_astro_type_script_index_0_lang.DJPVwcc1.js",
+      "bytes": 2044,
+      "gzipBytes": 894
+    },
+    {
+      "file": "_astro/controls.CNqUcwnE.js",
+      "bytes": 3229,
+      "gzipBytes": 1530
+    },
+    {
+      "file": "_astro/Playground.astro_astro_type_script_index_0_lang.uofkSUgL.js",
+      "bytes": 8559,
+      "gzipBytes": 3432
+    },
+    {
+      "file": "_astro/HomeLayout.astro_astro_type_script_index_0_lang.BKX10dfC.js",
+      "bytes": 287,
+      "gzipBytes": 226
+    }
+  ],
+  "initialJavaScriptBytes": 16659,
+  "initialJavaScriptGzipBytes": 7273,
+  "errors": []
+}

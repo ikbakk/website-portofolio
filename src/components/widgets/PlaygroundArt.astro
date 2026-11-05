@@ -1,0 +1,97 @@
+---
+interface Props {
+  kind: 'badminton' | 'f1' | 'memory';
+}
+const { kind } = Astro.props;
+---
+
+<svg
+  class:list={['playground-art', `art-${kind}`]}
+  viewBox={kind === 'memory' ? '0 0 48 32' : '0 0 360 120'}
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  {
+    kind === 'badminton' && (
+      <>
+        <path class="art-ground" d="M0 0h360v120H0z" />
+        <path class="art-wash" d="M24 15h312v90H24z" />
+        <g class="art-line" fill="none" stroke-width="1.5">
+          <path d="M24 15h312v90H24zM24 32h312M24 88h312M86 15v90m188-90v90M24 60h312" />
+          <path d="M180 9v102" stroke-dasharray="3 3" />
+        </g>
+        <g class="art-ink" opacity=".3">
+          <path d="M13 6h15v3H16v13h-3zm319 0h15v16h-3V9h-12zM13 98h3v13h12v3H13zm331 0h3v16h-15v-3h12z" />
+          <path d="M44 96h10v3H44zm5-4h10v3H49zM299 20h12v3h-12zm7 5h11v3h-11z" />
+        </g>
+        <g class="art-racket" transform="translate(317 79) rotate(-28)">
+          <ellipse
+            class="art-paper"
+            cx="0"
+            cy="0"
+            rx="11"
+            ry="14"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            class="art-line"
+            d="M-6-10v20M0-12v24M6-10v20M-9-6H9M-10 0h20M-9 6H9M0 14v20"
+            fill="none"
+            stroke-width="1"
+          />
+          <path d="M-3 25h6v12h-6z" fill="currentColor" />
+        </g>
+      </>
+    )
+  }
+  {
+    kind === 'f1' && (
+      <>
+        <path class="art-ground" d="M0 0h360v120H0z" />
+        <path class="art-wash" d="M0 69h360v40H0z" />
+        <path class="art-line" d="M0 69h360M0 109h360" fill="none" stroke-width="2" />
+        <path
+          class="art-line"
+          d="M12 89h37m31 0h37m126 0h37m31 0h37"
+          fill="none"
+          stroke-width="2"
+          stroke-dasharray="9 7"
+        />
+        <g class="art-ink" opacity=".3">
+          <path d="M0 113h18v4H0zm36 0h18v4H36zm36 0h18v4H72zm36 0h18v4h-18zm36 0h18v4h-18zm36 0h18v4h-18zm36 0h18v4h-18zm36 0h18v4h-18zm36 0h18v4h-18zm36 0h18v4h-18z" />
+        </g>
+        <g class="art-car" stroke="currentColor" stroke-linejoin="bevel" stroke-width="1.5">
+          <path
+            class="art-ink"
+            d="M145 77h12v9h-12zm0 20h12v9h-12zm44-20h10v9h-10zm0 20h10v9h-10z"
+          />
+          <path class="art-paper" d="m154 82 15-5h12l6 9 18 3v6l-18 3-6 6h-12l-15-5z" />
+          <path class="art-accent" d="m158 85 12-4h9l5 9 16 2-16 3-5 6h-9l-12-5z" />
+          <path class="art-ink" d="m170 86 9 1 3 5-3 5-9 1-4-6z" />
+          <path class="art-paper" d="M147 81h6v20h-6zm54 3h5v17h-5z" />
+        </g>
+        <g class="art-ink" opacity=".3">
+          <path d="M294 16h8v8h-8zm8 8h8v8h-8zm0-16h8v8h-8zm8 8h8v8h-8zm8-8h8v8h-8zm0 16h8v8h-8z" />
+        </g>
+      </>
+    )
+  }
+  {
+    kind === 'memory' && (
+      <>
+        <path
+          class="art-line"
+          d="M4 9V4h8m24 0h8v5M4 23v5h8m24 0h8v-5"
+          fill="none"
+          stroke-width="1"
+        />
+        <path class="art-wash" d="m24 3 13 13-13 13L11 16z" />
+        <path class="art-accent" d="m24 5 3 8 9 3-9 3-3 8-3-8-9-3 9-3z" />
+        <path class="art-paper" d="m24 11 2 4 4 1-4 1-2 4-2-4-4-1 4-1z" />
+        <path class="art-ink" d="M8 14h3v3H8zm29 0h3v3h-3z" opacity=".55" />
+      </>
+    )
+  }
+</svg>

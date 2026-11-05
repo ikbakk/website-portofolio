@@ -67,3 +67,7 @@ The managed preview served the actual `dist/` export using Astro preview; `packa
 ## Remaining release work
 
 The full Playwright/Axe run in local/CI, physical-device performance profiling, and final artwork acceptance remain open. The existing logo/avatar, Playground character-art gap and missing Beaconnect/CV Builder screenshots are unchanged. Hosting/deployment and merging remain separate owner decisions. Weather polish is explicitly deferred at the owner's request.
+
+## Kinetic polish follow-up — 2026-11-06
+
+The owner subsequently authorized kinetic weather/content motion and Playground artwork, leaving project copy/assets to the desktop agent. See `KINETIC-POLISH.md` for the current build measurements, desktop browser checks and preview clip. The extra responsive browser pass was interrupted by an unresponsive managed browser; full Playwright/Axe execution remains pending.

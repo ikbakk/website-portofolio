@@ -17,6 +17,7 @@ export function createWeatherTransitions() {
   let requested: WeatherThemeId = initial && isWeatherThemeId(initial) ? initial : 'normal';
   let sequence: gsap.core.Timeline | undefined;
   let lastLightning = -Infinity;
+  let arrivals: HTMLElement[] = [];
   let pendingContent: (() => void) | undefined;
   const flushContent = () => {
     const commit = pendingContent;
@@ -35,6 +36,8 @@ export function createWeatherTransitions() {
     sequence?.kill();
     sequence = undefined;
     particles.replaceChildren();
+    if (arrivals.length) gsap.set(arrivals, { clearProps: 'transform,opacity,willChange' });
+    arrivals = [];
     gsap.set([veil, charge, lightning], { clearProps: 'all' });
     stage.hidden = true;
     delete stage.dataset.kind;
@@ -71,7 +74,8 @@ export function createWeatherTransitions() {
     midpoint: () => void,
   ) => {
     gsap.set(veil, { y: -h * 1.5, opacity: 1 });
-    tl.to(veil, { y: h * 1.1, duration: 2.05, ease: 'sine.inOut' }, 0);
+    tl.to(veil, { y: -h * 1.55, duration: 0.12, ease: 'sine.out' }, 0);
+    tl.to(veil, { y: h * 1.1, duration: 1.93, ease: 'power2.inOut' }, 0.12);
     tl.call(midpoint, [], 0.87);
     const count = compact ? 30 : 62;
     for (let i = 0; i < count; i++) {
@@ -91,14 +95,27 @@ export function createWeatherTransitions() {
         transformPerspective: 500,
       });
       tl.to(leaf, { opacity: [0.45, 0.7, 0.95][depth], duration: 0.16 }, start);
-      tl.to(leaf, { y: h + size * 2, duration, ease: 'none' }, start);
+      // A lift, gravity, a short float, then a heavier exit; depth changes the weight.
       tl.to(
         leaf,
         {
           keyframes: [
-            { x: x + sway, duration: duration * 0.35 },
-            { x: x - sway * 0.35, duration: duration * 0.35 },
-            { x: x + sway * 0.65, duration: duration * 0.3 },
+            { y: -size * 2 - 10, duration: duration * 0.08, ease: 'sine.out' },
+            { y: h * 0.36, duration: duration * 0.34, ease: 'power2.in' },
+            { y: h * 0.54, duration: duration * 0.22, ease: 'sine.out' },
+            { y: h + size * 2, duration: duration * 0.36, ease: 'power1.in' },
+          ],
+          ease: 'none',
+        },
+        start,
+      );
+      tl.to(
+        leaf,
+        {
+          keyframes: [
+            { x: x + sway, duration: duration * 0.35, ease: 'sine.out' },
+            { x: x - sway * 0.35, duration: duration * 0.35, ease: 'sine.inOut' },
+            { x: x + sway * 0.65, duration: duration * 0.3, ease: 'power1.in' },
           ],
           ease: 'sine.inOut',
         },
@@ -127,7 +144,8 @@ export function createWeatherTransitions() {
     midpoint: () => void,
   ) => {
     gsap.set(veil, { x: w * 1.45, y: -h * 0.35, opacity: 1 });
-    tl.to(veil, { x: -w * 1.45, y: h * 0.4, duration: 1.5, ease: 'power2.inOut' }, 0);
+    tl.to(veil, { x: w * 1.5, y: -h * 0.38, duration: 0.12, ease: 'sine.out' }, 0);
+    tl.to(veil, { x: -w * 1.45, y: h * 0.4, duration: 1.38, ease: 'power3.inOut' }, 0.12);
     tl.call(midpoint, [], 0.69);
     const count = compact ? 52 : 100;
     for (let i = 0; i < count; i++) {
@@ -149,11 +167,24 @@ export function createWeatherTransitions() {
       tl.to(
         flake,
         {
-          x: x - w * 1.65,
-          y: y + h * 0.8,
-          rotation: `+=${random(40, 150)}`,
-          duration,
-          ease: 'power1.in',
+          keyframes: [
+            { x: x + 18, y: y - 8, rotation: '-=8', duration: duration * 0.12, ease: 'sine.out' },
+            {
+              x: x - w * 0.9,
+              y: y + h * 0.42,
+              rotation: '+=55',
+              duration: duration * 0.52,
+              ease: 'power3.in',
+            },
+            {
+              x: x - w * 1.65,
+              y: y + h * 0.8,
+              rotation: '+=30',
+              duration: duration * 0.36,
+              ease: 'power1.out',
+            },
+          ],
+          ease: 'none',
         },
         start,
       );
@@ -175,7 +206,14 @@ export function createWeatherTransitions() {
     // A single strike; rapid repeated selection degrades to a gentle color fade.
     lastLightning = performance.now();
     tl.to(charge, { opacity: 0.25, duration: 0.18, ease: 'power2.in' }, 0);
-    tl.to(lightning, { opacity: 1, duration: 0.035, ease: 'none' }, 0.18);
+    gsap.set(lightning, { clipPath: 'inset(0 0 100% 0)', x: 3, y: -6, scaleX: 0.99 });
+    tl.to(
+      lightning,
+      { opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 0.065, ease: 'power4.in' },
+      0.18,
+    );
+    tl.to(lightning, { x: -2, y: 2, scaleX: 1.005, duration: 0.06, ease: 'power3.out' }, 0.23);
+    tl.to(lightning, { x: 0, y: 0, scaleX: 1, duration: 0.28, ease: 'power2.out' }, 0.29);
     tl.to(charge, { opacity: 0.8, duration: 0.045, ease: 'none' }, 0.18);
     tl.call(midpoint, [], 0.23);
     tl.to(lightning, { opacity: 0, duration: 0.3, ease: 'power3.out' }, 0.23);
@@ -218,7 +256,36 @@ export function createWeatherTransitions() {
   const transitionContent = (commitContent: () => void) => {
     settle();
     pendingContent = commitContent;
-    animate(requested, flushContent);
+    animate(requested, () => {
+      flushContent();
+      if (motion.matches || !sequence || stage.dataset.kind === 'reduced') return;
+      const panel = document.querySelector<HTMLElement>('[data-work-panel]:not([hidden])');
+      if (!panel) return;
+      arrivals = [...panel.children]
+        .filter((el): el is HTMLElement => el instanceof HTMLElement)
+        .slice(0, 4);
+      // Reattach the new paper contents to the fixed frame at the weather midpoint.
+      sequence.fromTo(
+        arrivals,
+        {
+          y: requested === 'cryo' ? 5 : 12,
+          x: requested === 'cryo' ? 12 : 0,
+          rotation: requested === 'electro' ? -0.35 : 0,
+          opacity: 0.72,
+          willChange: 'transform,opacity',
+        },
+        {
+          y: 0,
+          x: 0,
+          rotation: 0,
+          opacity: 1,
+          duration: 0.44,
+          stagger: 0.025,
+          ease: 'back.out(1.15)',
+        },
+        sequence.time(),
+      );
+    });
   };
   document.addEventListener(
     'visibilitychange',

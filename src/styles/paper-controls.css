@@ -212,3 +212,29 @@
     padding: 6px;
   }
 }
+
+/* The paper face travels a little; press feedback remains immediate. */
+@media (prefers-reduced-motion: no-preference) {
+  .paper-control[data-variant] {
+    transition:
+      transform 240ms cubic-bezier(0.2, 1.45, 0.35, 1),
+      background-color 140ms ease-out,
+      border-color 140ms ease-out;
+  }
+  .paper-control[data-variant]:active:not(:disabled):not([aria-disabled='true']) {
+    transform: translateY(2px) scale(0.985);
+    transition-duration: 65ms;
+    transition-timing-function: ease-out;
+  }
+  .project-row-arrow {
+    transition: transform 240ms cubic-bezier(0.2, 1.5, 0.35, 1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .paper-control[data-variant]:hover:not(:active):not(:disabled):not([aria-disabled='true']) {
+    transform: translateY(-1px);
+  }
+  .project-row:hover .project-row-arrow {
+    transform: translate(2px, -2px);
+  }
+}

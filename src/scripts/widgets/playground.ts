@@ -13,6 +13,7 @@ export function setupPlayground(root: HTMLElement) {
   const reactionScore = root.querySelector<HTMLElement>('[data-reaction-score]')!;
   const reactionStatus = root.querySelector<HTMLElement>('[data-reaction-status]')!;
   const lights = root.querySelector<HTMLElement>('[data-reaction-lights]')!;
+  const reactionStage = root.querySelector<HTMLElement>('[data-reaction-stage]')!;
   const cards = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-memory-card]'));
   const memoryReset = root.querySelector<HTMLButtonElement>('[data-memory-reset]')!;
   const memoryStatus = root.querySelector<HTMLElement>('[data-memory-status]')!;
@@ -47,16 +48,6 @@ export function setupPlayground(root: HTMLElement) {
     const w = canvas.width,
       h = canvas.height;
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = colors.surface;
-    ctx.fillRect(0, 0, w, h);
-    ctx.strokeStyle = colors.stroke;
-    ctx.lineWidth = 1;
-    for (let x = 12; x < w; x += 24) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, h);
-      ctx.stroke();
-    }
     ctx.fillStyle = colors.accent;
     ctx.globalAlpha = 0.2;
     ctx.fillRect(w * 0.4, 14, w * 0.2, h - 28);
@@ -143,6 +134,7 @@ export function setupPlayground(root: HTMLElement) {
       clearTimeout(signalTimer);
       const result = reaction.react(performance.now());
       lights.dataset.on = 'false';
+      reactionStage.dataset.state = result === null ? 'early' : 'result';
       reactionScore.textContent = result === null ? 'Jump start' : `${result} ms`;
       reactionStatus.textContent =
         result === null
@@ -150,6 +142,7 @@ export function setupPlayground(root: HTMLElement) {
           : `Your reaction was ${result} milliseconds.`;
       reactionAction.textContent = 'Try again';
     } else {
+      reactionStage.dataset.state = 'waiting';
       reaction.start();
       lights.dataset.on = 'true';
       reactionAction.textContent = 'Wait…';
@@ -159,6 +152,7 @@ export function setupPlayground(root: HTMLElement) {
         () => {
           if (active !== 'f1' || document.hidden) return;
           reaction.go(performance.now());
+          reactionStage.dataset.state = 'go';
           lights.dataset.on = 'false';
           reactionAction.textContent = 'React!';
           reactionStatus.textContent = 'Go!';
@@ -212,6 +206,7 @@ export function setupPlayground(root: HTMLElement) {
     stopRally();
     clearTimeout(signalTimer);
     reaction.reset();
+    delete reactionStage.dataset.state;
     lights.dataset.on = 'false';
     reactionAction.textContent = 'Start lights';
     reactionScore.textContent = 'Reaction test';
@@ -222,7 +217,9 @@ export function setupPlayground(root: HTMLElement) {
     paintMemory();
   };
   const select = (id: string, focus = false) => {
+    if (id === active) return;
     pause();
+    root.dataset.gameEnter = id;
     active = id;
     tabs.forEach((tab) => {
       const selected = tab.dataset.gameTab === id;

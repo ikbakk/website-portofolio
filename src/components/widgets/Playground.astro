@@ -1,6 +1,7 @@
 ---
 import PaperControl from '../home/PaperControl.astro';
 import UIIcon from '../home/UIIcon.astro';
+import PlaygroundArt from './PlaygroundArt.astro';
 ---
 
 <section class="widget panel playground-widget" data-playground>
@@ -41,12 +42,16 @@ import UIIcon from '../home/UIIcon.astro';
       id="panel-badminton"
       data-game-panel="badminton"
     >
-      <canvas
-        data-rally-canvas
-        width="360"
-        height="120"
-        role="img"
-        aria-label="Rally timing track. Hit while the shuttle is inside the marked zone."></canvas>
+      <div class="rally-stage">
+        <PlaygroundArt kind="badminton" />
+        <canvas
+          data-rally-canvas
+          width="360"
+          height="120"
+          role="img"
+          aria-label="Rally timing track. Hit while the shuttle is inside the marked zone."
+        ></canvas>
+      </div>
       <div class="game-toolbar">
         <PaperControl variant="primary" data-rally-action disabled>Start rally</PaperControl><span
           class="game-score"
@@ -65,8 +70,11 @@ import UIIcon from '../home/UIIcon.astro';
       data-game-panel="f1"
       hidden
     >
-      <div class="reaction-lights" data-reaction-lights aria-hidden="true">
-        {Array.from({ length: 5 }, () => <i />)}
+      <div class="reaction-stage" data-reaction-stage>
+        <PlaygroundArt kind="f1" />
+        <div class="reaction-lights" data-reaction-lights aria-hidden="true">
+          {Array.from({ length: 5 }, () => <i />)}
+        </div>
       </div>
       <div class="game-toolbar">
         <PaperControl variant="primary" data-reaction-action disabled>Start lights</PaperControl
@@ -96,7 +104,7 @@ import UIIcon from '../home/UIIcon.astro';
             >
               <>
                 <span data-card-face aria-hidden="true">
-                  ?
+                  <PlaygroundArt kind="memory" />
                 </span>
                 <img data-card-icon width="24" height="24" alt="" hidden />
               </>
