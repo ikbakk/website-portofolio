@@ -1,0 +1,36 @@
+---
+import { focus } from '../../data/focus';
+import UIIcon from '../home/UIIcon.astro';
+const complete = focus.items.filter((item) => item.done).length;
+---
+
+<section class="widget panel focus-widget">
+  <div class="widget-heading">
+    <h2><UIIcon name="focus" /> Focus</h2><span class="preview-label">Portfolio</span>
+  </div>
+  <ul class="focus-list" aria-label={focus.label}>
+    {
+      focus.items.map((item) => (
+        <li class="focus-item" data-complete={item.done}>
+          <>
+            <span class="focus-check" aria-hidden="true">
+              {item.done ? '✓' : ''}
+            </span>
+            <span>
+              {item.title}
+              <span class="sr-only"> — {item.done ? 'complete' : 'planned'}</span>
+            </span>
+          </>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="focus-progress">
+    <meter
+      min="0"
+      max={focus.items.length}
+      value={complete}
+      aria-label="Portfolio milestones completed">{complete} of {focus.items.length}</meter
+    ><span>{complete} / {focus.items.length}</span>
+  </div>
+</section>

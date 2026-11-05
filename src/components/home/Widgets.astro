@@ -1,66 +1,14 @@
 ---
 import ThemeOrnament from './ThemeOrnament.astro';
-import { site } from '../../data/site';
-import PaperControl from './PaperControl.astro';
-import UIIcon from './UIIcon.astro';
-import Icon from '../celestial/Icon.astro';
+import Focus from '../widgets/Focus.astro';
+import Playground from '../widgets/Playground.astro';
+import GitHubActivity from '../widgets/GitHubActivity.astro';
 ---
 
 <aside class="widgets" aria-label="More from Iqbal">
   <ThemeOrnament placement="corner" />
   <ThemeOrnament placement="foot" />
-  <section class="widget panel focus-widget">
-    <div class="widget-heading">
-      <h2><UIIcon name="focus" /> Focus</h2><span class="preview-label">Preview</span>
-    </div>
-    <div class="focus-rows" aria-hidden="true">
-      {
-        [1, 2, 3].map(() => (
-          <div class="focus-row">
-            <>
-              <span class="empty-checkbox" />
-              <span class="focus-line" />
-            </>
-          </div>
-        ))
-      }
-    </div>
-    <p class="widget-note">Focus updates are not connected yet.</p>
-  </section>
-  <section class="widget panel playground-widget">
-    <div class="widget-heading">
-      <h2><UIIcon name="playground" /> Playground</h2><span class="preview-label">Preview</span>
-    </div>
-    <div class="playground-categories" aria-label="Playground interests">
-      <span class="selected-interest"><UIIcon name="badminton" size={16} /> Badminton</span><span
-        ><UIIcon name="flag" size={16} /> F1</span
-      ><span><UIIcon name="approach" size={16} /> Genshin</span>
-    </div>
-    <div class="playground-preview">
-      <UIIcon name="playground" size={34} /><strong>Playground artwork pending</strong><p>
-        Static preview · game coming later
-      </p>
-    </div>
-  </section>
-  <section class="widget panel activity-widget">
-    <div class="widget-heading">
-      <h2><Icon name="github" /> GitHub Activity</h2><span class="preview-label">Not connected</span
-      >
-    </div>
-    <div class="activity-empty">
-      <div class="activity-calendar">
-        <span class="calendar-days" aria-hidden="true"
-          ><span>Mon</span><span>Wed</span><span>Fri</span></span
-        ><div class="empty-grid" aria-hidden="true">{Array.from({ length: 147 }, () => <i />)}</div>
-      </div><p>Connect activity data to display contributions.</p>
-    </div>
-    <PaperControl
-      variant="primary"
-      class="github-link"
-      href={site.github}
-      target="_blank"
-      rel="noreferrer"
-      ><Icon name="github" /> github.com/ikbakk <UIIcon name="external" size={16} /></PaperControl
-    >
-  </section>
+  <Focus />
+  <Playground />
+  <GitHubActivity />
 </aside>

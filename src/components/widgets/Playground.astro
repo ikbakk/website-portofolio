@@ -1,0 +1,128 @@
+---
+import PaperControl from '../home/PaperControl.astro';
+import UIIcon from '../home/UIIcon.astro';
+---
+
+<section class="widget panel playground-widget" data-playground>
+  <div class="widget-heading">
+    <h2><UIIcon name="playground" /> Playground</h2><span class="preview-label">Play a little</span>
+  </div>
+  <div class="playground-tabs" role="tablist" aria-label="Choose a mini-game">
+    <PaperControl
+      role="tab"
+      id="tab-badminton"
+      aria-controls="panel-badminton"
+      aria-selected="true"
+      selected
+      data-game-tab="badminton"><UIIcon name="badminton" size={14} /> Badminton</PaperControl
+    >
+    <PaperControl
+      role="tab"
+      id="tab-f1"
+      aria-controls="panel-f1"
+      aria-selected="false"
+      tabindex="-1"
+      data-game-tab="f1"><UIIcon name="flag" size={14} /> F1</PaperControl
+    >
+    <PaperControl
+      role="tab"
+      id="tab-genshin"
+      aria-controls="panel-genshin"
+      aria-selected="false"
+      tabindex="-1"
+      data-game-tab="genshin"><UIIcon name="approach" size={14} /> Genshin</PaperControl
+    >
+  </div>
+  <div class="playground-frame">
+    <div
+      class="playground-panel"
+      role="tabpanel"
+      aria-labelledby="tab-badminton"
+      id="panel-badminton"
+      data-game-panel="badminton"
+    >
+      <canvas
+        data-rally-canvas
+        width="360"
+        height="120"
+        role="img"
+        aria-label="Rally timing track. Hit while the shuttle is inside the marked zone."></canvas>
+      <div class="game-toolbar">
+        <PaperControl variant="primary" data-rally-action disabled>Start rally</PaperControl><span
+          class="game-score"
+          data-rally-score>0 hits</span
+        ><label class="calm-toggle"><input type="checkbox" data-calm-mode /> Calm mode</label>
+      </div>
+      <p class="game-status" data-rally-status role="status" aria-live="polite">
+        Hit inside the marked zone. Calm mode removes timing.
+      </p>
+    </div>
+    <div
+      class="playground-panel"
+      role="tabpanel"
+      aria-labelledby="tab-f1"
+      id="panel-f1"
+      data-game-panel="f1"
+      hidden
+    >
+      <div class="reaction-lights" data-reaction-lights aria-hidden="true">
+        {Array.from({ length: 5 }, () => <i />)}
+      </div>
+      <div class="game-toolbar">
+        <PaperControl variant="primary" data-reaction-action disabled>Start lights</PaperControl
+        ><span class="game-score" data-reaction-score>Reaction test</span>
+      </div>
+      <p class="game-status" data-reaction-status role="status" aria-live="polite">
+        Wait for lights out, then react. Early clicks count as a jump start.
+      </p>
+    </div>
+    <div
+      class="playground-panel"
+      role="tabpanel"
+      aria-labelledby="tab-genshin"
+      id="panel-genshin"
+      data-game-panel="genshin"
+      hidden
+    >
+      <div class="element-memory" aria-label="Find three matching element pairs">
+        {
+          Array.from({ length: 6 }, (_, index) => (
+            <PaperControl
+              class="memory-card"
+              data-memory-card={index}
+              aria-label={`Card ${index + 1}, hidden`}
+              aria-pressed="false"
+              disabled
+            >
+              <>
+                <span data-card-face aria-hidden="true">
+                  ?
+                </span>
+                <img data-card-icon width="24" height="24" alt="" hidden />
+              </>
+            </PaperControl>
+          ))
+        }
+      </div>
+      <div class="game-toolbar">
+        <PaperControl data-memory-reset disabled>Shuffle</PaperControl><p
+          class="game-status"
+          data-memory-status
+          role="status"
+          aria-live="polite"
+        >
+          Match the three element pairs.
+        </p>
+      </div>
+    </div>
+  </div>
+  <noscript
+    ><p class="game-status">
+      Enable JavaScript to play. Project content and links work without it.
+    </p></noscript
+  >
+</section>
+<script>
+  import { setupPlayground } from '../../scripts/widgets/playground';
+  document.querySelectorAll<HTMLElement>('[data-playground]').forEach(setupPlayground);
+</script>

@@ -47,3 +47,9 @@ Before installation, the official npm registry reports:
 The visual brief remains authoritative; these dependencies adapt to it. Package archive sizes above are not shipped JavaScript payloads.
 
 Installed the two pinned packages and updated the existing `bun.lock`. The homepage emits one Inter Latin WOFF2 file (48 KiB on disk), and icons render as static inline SVG. Redistributable license notices are retained at `public/licenses/inter-OFL.txt` and `public/licenses/lucide-ISC.txt`. No additional browser JavaScript was introduced.
+
+## P3 playground engine evaluation — 2026-11-04
+
+`kontra` **10.0.2**, MIT, official npm unpacked size **545,014 bytes**, selected for its small browser game-loop primitives and tree-shakeable ESM exports. Source: https://github.com/straker/kontra . Only the required loop/canvas primitives will ship; actual bundle size is measured after building. This is a game-engine dependency for the existing reserved widget, not a replacement UI/component system. Its license notice will be retained.
+
+Contribution data will use the public `grubersjoe/github-contributions-api` v4 endpoint for `ikbakk`, cached at build time. Official upstream documentation states one-hour upstream caching. The local pipeline validates completeness before replacing a last-good snapshot. No React calendar package or client-side token is needed.

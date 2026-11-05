@@ -1,0 +1,112 @@
+---
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { isActivitySnapshot } from '../../lib/github-activity';
+import { site } from '../../data/site';
+import PaperControl from '../home/PaperControl.astro';
+import UIIcon from '../home/UIIcon.astro';
+import Icon from '../celestial/Icon.astro';
+let raw: unknown;
+try {
+  raw = JSON.parse(
+    await readFile(resolve(process.cwd(), 'public/data/github-activity.json'), 'utf8'),
+  );
+} catch {
+  /* unavailable before first refresh */
+}
+const activity = isActivitySnapshot(raw) ? raw : null;
+const stale = activity ? Date.now() - Date.parse(activity.fetchedAt) > 86_400_000 : false;
+const dateLabel = activity
+  ? new Intl.DateTimeFormat('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      timeZone: 'Asia/Makassar',
+    }).format(new Date(activity.asOf + 'T00:00:00Z'))
+  : '';
+---
+
+<section class="widget panel activity-widget" aria-label="GitHub activity for ikbakk">
+  <div class="widget-heading">
+    <h2><Icon name="github" /> GitHub Activity</h2><span class="preview-label"
+      >{activity ? '12 weeks' : 'Unavailable'}</span
+    >
+  </div>
+  {
+    activity ? (
+      <div class="activity-content">
+        <div class="activity-calendar">
+          <span class="calendar-days" aria-hidden="true">
+            <>
+              <span>Mon</span>
+              <span>Wed</span>
+              <span>Fri</span>
+            </>
+          </span>
+          <div
+            class="contribution-grid"
+            role="img"
+            aria-label={`${activity.total} contributions across ${activity.activeDays} active days in the displayed 12 calendar weeks`}
+          >
+            {activity.days.map((day) => (
+              <i
+                data-level={day.level ?? 'future'}
+                title={
+                  day.count === null ? 'Future date' : `${day.date}: ${day.count} contributions`
+                }
+              />
+            ))}
+          </div>
+        </div>
+        <dl class="activity-stats">
+          <>
+            <div>
+              <>
+                <dt>Contributions</dt>
+                <dd>{activity.total}</dd>
+              </>
+            </div>
+            <div>
+              <>
+                <dt>Active days</dt>
+                <dd>{activity.activeDays}</dd>
+              </>
+            </div>
+            <div>
+              <>
+                <dt>Best streak</dt>
+                <dd>
+                  {activity.longestStreak}
+                  <small> days</small>
+                </dd>
+              </>
+            </div>
+          </>
+        </dl>
+        <p class="activity-updated">
+          {stale ? 'Cached data' : 'Data through'} <time datetime={activity.asOf}>{dateLabel}</time>
+        </p>
+        <ol class="sr-only" aria-label="Daily contribution counts">
+          {activity.days
+            .filter((day) => day.count !== null)
+            .map((day) => (
+              <li>
+                {day.date}: {day.count} contributions
+              </li>
+            ))}
+        </ol>
+      </div>
+    ) : (
+      <p class="activity-unavailable">
+        Activity is temporarily unavailable. The public profile is still available below.
+      </p>
+    )
+  }
+  <PaperControl
+    variant="primary"
+    class="github-link"
+    href={site.github}
+    target="_blank"
+    rel="noreferrer"
+    ><Icon name="github" /> github.com/ikbakk <UIIcon name="external" size={16} /></PaperControl
+  >
+</section>

@@ -1,0 +1,355 @@
+/* P3 behavior fits the existing fixed widget frames. */
+.focus-list {
+  padding: 0;
+  margin: 8px 0;
+  list-style: none;
+}
+.focus-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 30px;
+  padding-block: 5px;
+  border-bottom: 1px solid color-mix(in srgb, var(--weather-stroke) 55%, transparent);
+  font-size: 11px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+.focus-check {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--weather-stroke);
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  line-height: 1;
+}
+.focus-item[data-complete='true'] .focus-check {
+  background: var(--weather-action-bg);
+  color: var(--weather-action-text);
+  border-color: var(--weather-action-bg);
+}
+.focus-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  font-size: 11px;
+  font-weight: 750;
+}
+.focus-progress meter {
+  width: 100%;
+  height: 10px;
+  appearance: none;
+  border: 0;
+  border-radius: 8px;
+  background: var(--weather-stroke);
+}
+.focus-progress meter::-webkit-meter-bar {
+  background: var(--weather-stroke);
+  border: 0;
+  border-radius: 8px;
+}
+.focus-progress meter::-webkit-meter-optimum-value {
+  background: var(--weather-action-bg);
+  border-radius: 8px;
+}
+.focus-progress meter::-moz-meter-bar {
+  background: var(--weather-action-bg);
+  border-radius: 8px;
+}
+.focus-progress > span {
+  white-space: nowrap;
+}
+.activity-content {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding-block: 8px;
+}
+.activity-content .activity-calendar {
+  height: 84px;
+}
+.activity-content .calendar-days {
+  display: grid;
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+}
+.calendar-days > span:nth-child(1) {
+  grid-row: 2;
+}
+.calendar-days > span:nth-child(2) {
+  grid-row: 4;
+}
+.calendar-days > span:nth-child(3) {
+  grid-row: 6;
+}
+.contribution-grid {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-flow: column;
+  gap: 3px;
+}
+.contribution-grid i {
+  display: block;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--weather-stroke) 45%, var(--weather-surface));
+}
+.contribution-grid [data-level='1'] {
+  background: color-mix(in srgb, var(--weather-primary) 30%, var(--weather-surface));
+}
+.contribution-grid [data-level='2'] {
+  background: color-mix(in srgb, var(--weather-primary) 55%, var(--weather-surface));
+}
+.contribution-grid [data-level='3'] {
+  background: color-mix(in srgb, var(--weather-primary) 80%, var(--weather-surface));
+}
+.contribution-grid [data-level='4'] {
+  background: var(--weather-primary);
+}
+.contribution-grid [data-level='future'] {
+  background: transparent;
+}
+.activity-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  gap: 8px;
+}
+.activity-stats > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+}
+.activity-stats dt {
+  font-size: 9px;
+  color: var(--weather-muted);
+}
+.activity-stats dd {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+.activity-stats small {
+  font-size: 10px;
+  font-weight: 500;
+}
+.activity-updated,
+.activity-unavailable {
+  font-size: 10px;
+  color: var(--weather-muted);
+}
+.activity-unavailable {
+  margin-block: auto;
+  padding-block: 20px;
+  line-height: 1.5;
+}
+.playground-tabs {
+  display: flex;
+  gap: 5px;
+  margin-top: 11px;
+}
+.playground-tabs .paper-control {
+  flex: 1;
+  min-height: 28px;
+  font-size: 10px;
+  padding: 5px 3px;
+  gap: 4px;
+}
+.playground-frame {
+  min-height: 0;
+  flex: 1;
+  margin-top: 11px;
+  border: 1px solid var(--weather-stroke);
+  border-radius: 9px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--weather-surface-soft) 65%, var(--weather-surface));
+}
+.playground-panel {
+  height: 100%;
+  min-height: 0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+}
+.playground-panel[hidden],
+.memory-card [hidden] {
+  display: none !important;
+}
+[data-rally-canvas] {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  max-height: 100px;
+  flex: 1;
+  border-radius: 5px;
+  image-rendering: pixelated;
+}
+.game-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+.game-toolbar .paper-control {
+  min-height: 28px;
+  padding: 5px 9px;
+  font-size: 10px;
+}
+.game-score {
+  font-size: 10px;
+  font-weight: 750;
+  color: var(--weather-primary-ink);
+}
+.calm-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  cursor: pointer;
+}
+.calm-toggle input {
+  width: 12px;
+  height: 12px;
+  accent-color: var(--weather-action-bg);
+}
+.game-status {
+  font-size: 10px;
+  line-height: 1.45;
+  color: var(--weather-muted);
+  min-height: 15px;
+}
+.reaction-lights {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 0;
+}
+.reaction-lights i {
+  width: 26px;
+  height: 26px;
+  background: var(--weather-stroke);
+  border: 2px solid var(--weather-muted);
+  border-radius: 50%;
+}
+.reaction-lights[data-on='true'] i {
+  background: #c63a41;
+  border-color: #e66d68;
+  box-shadow: inset 0 1px 0 #ffa5a5;
+}
+.element-memory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.element-memory .paper-control {
+  min-height: 34px;
+  height: 34px;
+  padding: 3px;
+  font-size: 17px;
+}
+.memory-card img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.game-toolbar .game-status {
+  flex: 1;
+}
+@media (max-width: 1100px) and (min-width: 741px) {
+  .widgets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .playground-widget {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .playground-frame {
+    min-height: 170px;
+  }
+}
+@media (max-width: 740px) {
+  .playground-frame {
+    min-height: 170px;
+  }
+  .activity-content {
+    min-height: 190px;
+  }
+  .focus-progress {
+    margin-top: 10px;
+  }
+}
+@media (min-width: 1101px) and (max-height: 800px) {
+  .focus-item {
+    min-height: 23px;
+    padding-block: 3px;
+    font-size: 10px;
+  }
+  .focus-list {
+    margin-block: 5px;
+  }
+  .focus-progress {
+    font-size: 10px;
+  }
+  .activity-content {
+    gap: 4px;
+    padding-block: 4px;
+  }
+  .activity-content .activity-calendar {
+    height: 56px;
+  }
+  .activity-stats dd {
+    font-size: 15px;
+  }
+  .activity-stats dt,
+  .activity-updated {
+    font-size: 8px;
+  }
+  .playground-tabs {
+    margin-top: 7px;
+    gap: 4px;
+  }
+  .playground-tabs .paper-control {
+    min-height: 24px;
+    padding: 4px 2px;
+    font-size: 9px;
+  }
+  .playground-frame {
+    margin-top: 7px;
+  }
+  .playground-panel {
+    padding: 5px;
+    gap: 5px;
+  }
+  [data-rally-canvas] {
+    max-height: 60px;
+  }
+  .game-status {
+    font-size: 9px;
+  }
+  .reaction-lights {
+    padding-block: 8px;
+  }
+  .element-memory {
+    gap: 4px;
+  }
+  .element-memory .paper-control {
+    height: 26px;
+    min-height: 26px;
+  }
+  .memory-card img {
+    width: 20px;
+    height: 20px;
+  }
+}
