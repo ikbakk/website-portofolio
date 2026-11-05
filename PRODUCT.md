@@ -29,7 +29,7 @@ the distinction; credentials and outcomes must never be invented.
 - The existing source is an Astro static site with TypeScript, Tailwind CSS and GSAP.
 - GitHub source: `ikbakk/website-portofolio`, default branch `main`.
 - Vercel project: `ikbak`; intended public origin: `https://ikbak.vercel.app`.
-- The current production deployment references commit `bb95b7a` in this repository.
+- The last recorded production deployment referenced commit `bb95b7a`; production has not been re-verified during this branch work.
 - Project copy identifies Iqbal as a frontend and mobile engineer based in Mataram,
   Indonesia. Availability, experience and relocation details are existing claims,
   not newly independently verified facts.
@@ -49,19 +49,17 @@ the distinction; credentials and outcomes must never be invented.
 
 ## Active Homepage Direction (2026-11-03)
 
-The current owner-approved homepage proposal on branch `ikbakk/inspire-portfolio-jmancheta-design` is **Soft Grid / Weather Themes**, with Normal, Cryo and Electro. It replaces the earlier celestial homepage decision for this branch only. See [P1 design brief](docs/design/P1-SOFT-GRID.md) and its approval gates. P1 records tokens and ornaments; it does **not** authorize P2 layout changes or P4 motion.
+The current owner-approved homepage proposal on branch `ikbakk/inspire-portfolio-jmancheta-design` is **Soft Grid / Weather Themes**, with Normal, Cryo and Electro. It replaces the earlier celestial homepage decision for this branch only. See [P1 design brief](docs/design/P1-SOFT-GRID.md). Later continuation requests authorized P2 layout, P3 widgets and the three P4 weather-switch transitions. On 2026-11-06 the owner accepted those transitions for now and requested the next planned work, authorizing P5 readiness checks. Broader motion experiments, identity replacements, merge and deployment remain separate.
 
 ## Evidence on Hand
 
-- Profile and contact data: `src/data/profile.ts`, `src/data/contact.ts`.
+- Profile and contact data: `src/data/site.ts` and the homepage profile component.
 - Existing projects: Sungkar Group, Beaconnect, CV Builder and Ward Monitor in
   `src/data/projects.ts` and `src/content/projects/`.
-- Real project screenshots: `public/projects/sungkargroup.png` and
-  `public/projects/ward-monitor-dashboard.png`. The latter depicts prototype data.
+- Real project screenshots: `public/projects/sungkargroup.webp` and
+  `public/projects/ward-monitor-dashboard.webp`. The latter depicts prototype data.
 - Resume: `public/resume.pdf`.
-- Additional possible case study: Courtside, verified against the README of
-  `ikbakk/badminton-club-helper`. Adding it is a design/content proposal, not a
-  change already made to the portfolio.
+- Courtside has a static case study and a homepage link, verified against the README of `ikbakk/badminton-club-helper`.
 - No personal portrait, testimonials or independently verified business metrics
   have been provided for this redesign.
 
@@ -79,13 +77,11 @@ The owner explicitly requested the `frontend-design` skill from
 `anthropics/skills` and the `awwwards` skill from `juliobsz/skills` for design and
 art direction. These are design guidance, not claims that the site has won an award.
 
-## Known Audit Findings
+## Readiness record — 2026-11-06
 
-- Vercel project framework metadata still says Next.js; current source is Astro.
-- `astro.config.mjs` uses an old GitHub Pages origin.
-- `src/data/seo.ts` and the portfolio contact link use `ikbakk.vercel.app`, which
-  differs from the owner-specified `ikbak.vercel.app`.
-- The configured `/og.png` is absent from the current public assets.
-- README describes removed routes/files and an older version of the implementation.
-- The connector's protected-deployment fetch returned 403. This does not establish
-  whether unauthenticated public visitors can access the production site.
+- Source configuration now declares Astro and `https://ikbak.vercel.app`; obsolete origin/OG findings above were historical. `public/og.jpg`, canonical and sitemap metadata exist.
+- Homepage/case-study return paths and Contact links are aligned with Soft Grid. Native navigation crosses the two layout systems.
+- The weather engine is loaded on demand; measured production bundle sizes and generated-link audit are in `docs/design/verification/p5/build-audit.json`.
+- Current browser scenarios replace obsolete Celestial-home assertions; case-study tests remain. Actual execution and remaining verification limits are recorded in `docs/design/P5-VERIFICATION.md`.
+- Approved green identity mark, portrait artwork, Playground character art and verified Beaconnect/CV Builder screenshots remain unresolved. Existing honest fallbacks are retained.
+- Hosting behavior, field performance, merge and production deployment have not been changed or verified by these local checks.

@@ -149,7 +149,12 @@ const jsonLd = {
     <div class="environment-scrim" aria-hidden="true"></div>
     {home && <Opening />}
     <header class="site-header flex items-center justify-between">
-      <a href="/#profile" class="brand flex items-center gap-3" aria-label="Iqbal portfolio home">
+      <a
+        data-astro-reload
+        href="/#profile"
+        class="brand flex items-center gap-3"
+        aria-label="Iqbal portfolio home"
+      >
         <Icon name="profile" class="brand-icon" />
         <span
           ><span class="brand-title" data-current-title>{home ? 'Profile' : 'Archive'}</span><span

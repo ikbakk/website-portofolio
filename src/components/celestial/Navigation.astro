@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { site } from '../../data/site';
 interface Props {
   mobile?: boolean;
   home?: boolean;
@@ -46,12 +47,13 @@ const items = [
   {
     items.map((item) => (
       <a
-        href={`${home ? '' : '/'}#${item.id}`}
+        href={
+          !home && item.id === 'contact' ? `mailto:${site.email}` : `${home ? '' : '/'}#${item.id}`
+        }
+        data-astro-reload={!home || undefined}
         data-section-link={item.id}
         data-navigation
-        aria-current={
-          (home && item.id === 'profile') || (!home && item.id === 'projects') ? 'page' : undefined
-        }
+        aria-current={home && item.id === 'profile' ? 'page' : undefined}
         class="nav-item flex flex-col items-center justify-center gap-1.5"
       >
         <>

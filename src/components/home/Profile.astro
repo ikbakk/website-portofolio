@@ -6,7 +6,7 @@ import UIIcon from './UIIcon.astro';
 import Icon from '../celestial/Icon.astro';
 ---
 
-<aside class="profile panel" aria-label="Profile">
+<aside id="profile" class="profile panel" aria-label="Profile">
   <ThemeOrnament placement="corner" />
   <ThemeOrnament placement="foot" />
   <a class="brand" href="/" aria-label="Home"
@@ -37,7 +37,7 @@ import Icon from '../celestial/Icon.astro';
       exploring product ideas.
     </p>
   </section>
-  <div class="socials" aria-label="Social links">
+  <div class="socials" role="group" aria-label="Social links">
     <PaperControl
       variant="icon"
       href={site.github}

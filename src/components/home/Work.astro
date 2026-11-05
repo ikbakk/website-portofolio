@@ -22,6 +22,8 @@ const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase'
         alt={feature.image!.alt}
         width={feature.image!.width}
         height={feature.image!.height}
+        fetchpriority="high"
+        decoding="async"
       />
       <div class="feature-copy">
         <span class="badge">{feature.kind}</span><h3>
@@ -50,6 +52,7 @@ const skills = ['Astro', 'TypeScript', 'React', 'Flutter', 'Node.js', 'Firebase'
                   width={project.image.width}
                   height={project.image.height}
                   loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <div class="image-placeholder">

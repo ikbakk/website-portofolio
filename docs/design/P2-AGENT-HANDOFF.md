@@ -1,5 +1,7 @@
 # P2 coding agent handoff
 
+> **P5 continuation, 2026-11-06:** The owner accepted the weather transitions for now and requested other planned work. P5 performance/navigation checks and current regression tooling are implemented; see `P5-VERIFICATION.md` for exact results and the remaining full-browser-suite gate.
+
 > **Weather motion continuation, 2026-11-05:** The owner requested, reviewed and authorized the three full-viewport weather-switch transitions. See `P4-WEATHER-TRANSITIONS.md`. Other P4 motion, merge and deployment remain outside this change.
 
 > **P3 continuation, 2026-11-04:** The owner accepted the themed controls and asked to enter the next stage. P3 widget behavior is authorized and implemented; see `P3-VERIFICATION.md`. The P2-only gates below are historical. P4 weather/macro motion, merge and deployment remain outside this change.

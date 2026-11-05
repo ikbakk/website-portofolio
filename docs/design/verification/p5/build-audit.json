@@ -1,0 +1,160 @@
+{
+  "baselineCommit": "2e045a65f96d81fd299cf52afc7bb6affa0357e7",
+  "measurement": "Uncompressed and gzip sizes of initial script entries plus static imports. Dynamic imports excluded. Same dependency tree and build runtime. Not network transfer, Lighthouse, or field Web Vitals.",
+  "before": {
+    "pages": 7,
+    "localReferences": 337,
+    "initialJavaScript": [
+      {
+        "file": "_astro/page.DdqQKad9.js",
+        "bytes": 47,
+        "gzipBytes": 67
+      },
+      {
+        "file": "_astro/prefetch.DxIALaZb.js",
+        "bytes": 2493,
+        "gzipBytes": 1124
+      },
+      {
+        "file": "_astro/Playground.astro_astro_type_script_index_0_lang.EJt-KwSW.js",
+        "bytes": 8528,
+        "gzipBytes": 3417
+      },
+      {
+        "file": "_astro/HomeLayout.astro_astro_type_script_index_0_lang.Y6D_gyWV.js",
+        "bytes": 4688,
+        "gzipBytes": 2038
+      },
+      {
+        "file": "_astro/gsap.Dm7UF3sG.js",
+        "bytes": 69976,
+        "gzipBytes": 27196
+      }
+    ],
+    "initialJavaScriptBytes": 85732,
+    "initialJavaScriptGzipBytes": 33842,
+    "errors": [
+      "404.html: missing fragment /#profile",
+      "404.html: homepage boundary requires native navigation: /#profile",
+      "404.html: missing fragment /#profile",
+      "404.html: homepage boundary requires native navigation: /#profile",
+      "404.html: homepage boundary requires native navigation: /#projects",
+      "404.html: homepage boundary requires native navigation: /#experience",
+      "404.html: missing fragment /#contact",
+      "404.html: homepage boundary requires native navigation: /#contact",
+      "404.html: homepage boundary requires native navigation: /",
+      "404.html: missing fragment /#profile",
+      "404.html: homepage boundary requires native navigation: /#profile",
+      "404.html: homepage boundary requires native navigation: /#projects",
+      "404.html: homepage boundary requires native navigation: /#experience",
+      "404.html: missing fragment /#contact",
+      "404.html: homepage boundary requires native navigation: /#contact",
+      "projects/beaconnect/index.html: missing fragment /#profile",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/beaconnect/index.html: missing fragment /#profile",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/beaconnect/index.html: missing fragment /#contact",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/beaconnect/index.html: missing fragment /#profile",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/beaconnect/index.html: missing fragment /#contact",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/beaconnect/index.html: homepage boundary requires native navigation: /#project-beaconnect",
+      "projects/courtside/index.html: missing fragment /#profile",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/courtside/index.html: missing fragment /#profile",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/courtside/index.html: missing fragment /#contact",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/courtside/index.html: missing fragment /#profile",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/courtside/index.html: missing fragment /#contact",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/courtside/index.html: homepage boundary requires native navigation: /#project-courtside",
+      "projects/cv-builder/index.html: missing fragment /#profile",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/cv-builder/index.html: missing fragment /#profile",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/cv-builder/index.html: missing fragment /#contact",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/cv-builder/index.html: missing fragment /#profile",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/cv-builder/index.html: missing fragment /#contact",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/cv-builder/index.html: homepage boundary requires native navigation: /#project-cv-builder",
+      "projects/sungkar-group/index.html: missing fragment /#profile",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/sungkar-group/index.html: missing fragment /#profile",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/sungkar-group/index.html: missing fragment /#contact",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/sungkar-group/index.html: missing fragment /#profile",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/sungkar-group/index.html: missing fragment /#contact",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/sungkar-group/index.html: homepage boundary requires native navigation: /#project-sungkar-group",
+      "projects/ward-monitor/index.html: missing fragment /#profile",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/ward-monitor/index.html: missing fragment /#profile",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/ward-monitor/index.html: missing fragment /#contact",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/ward-monitor/index.html: missing fragment /#profile",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#profile",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#projects",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#experience",
+      "projects/ward-monitor/index.html: missing fragment /#contact",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#contact",
+      "projects/ward-monitor/index.html: homepage boundary requires native navigation: /#project-ward-monitor",
+      "index.html: weather animation engine is loaded before a user request"
+    ]
+  },
+  "after": {
+    "pages": 7,
+    "localReferences": 327,
+    "initialJavaScript": [
+      {
+        "file": "_astro/page.DdqQKad9.js",
+        "bytes": 47,
+        "gzipBytes": 67
+      },
+      {
+        "file": "_astro/prefetch.DxIALaZb.js",
+        "bytes": 2493,
+        "gzipBytes": 1124
+      },
+      {
+        "file": "_astro/Playground.astro_astro_type_script_index_0_lang.EJt-KwSW.js",
+        "bytes": 8528,
+        "gzipBytes": 3417
+      },
+      {
+        "file": "_astro/HomeLayout.astro_astro_type_script_index_0_lang.DHWML6Gm.js",
+        "bytes": 2989,
+        "gzipBytes": 1393
+      }
+    ],
+    "initialJavaScriptBytes": 14057,
+    "initialJavaScriptGzipBytes": 6001,
+    "errors": []
+  },
+  "reductionPercent": 83.6
+}

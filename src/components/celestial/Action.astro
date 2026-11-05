@@ -13,6 +13,7 @@ const Tag = href ? 'a' : 'button';
 
 <Tag
   href={href}
+  data-astro-reload={href === '/' || href?.startsWith('/#') || undefined}
   data-navigation={href?.startsWith('#') ? true : undefined}
   type={!href ? 'button' : undefined}
   download={download}

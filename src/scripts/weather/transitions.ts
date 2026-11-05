@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import { isWeatherThemeId, type WeatherThemeId } from '../../theme/weather.config';
 
 /** One bounded sequence per user choice; no idle particle loop or page-load animation. */
-export function mountWeatherTransitions() {
+export function createWeatherTransitions() {
   const html = document.documentElement;
   const stage = document.querySelector<HTMLElement>('[data-weather-stage]');
   const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-set-weather]')];
@@ -13,7 +13,8 @@ export function mountWeatherTransitions() {
   const lightning = stage.querySelector<SVGElement>('[data-weather-lightning]')!;
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const events = new AbortController();
-  let requested: WeatherThemeId = 'normal';
+  const initial = html.dataset.weather;
+  let requested: WeatherThemeId = initial && isWeatherThemeId(initial) ? initial : 'normal';
   let sequence: gsap.core.Timeline | undefined;
   let lastLightning = -Infinity;
 
@@ -191,16 +192,6 @@ export function mountWeatherTransitions() {
       else electro(tl);
     }
   };
-  buttons.forEach((button) =>
-    button.addEventListener(
-      'click',
-      () => {
-        const theme = button.dataset.setWeather;
-        if (theme && isWeatherThemeId(theme)) request(theme);
-      },
-      { signal: events.signal },
-    ),
-  );
   document.addEventListener(
     'visibilitychange',
     () => {

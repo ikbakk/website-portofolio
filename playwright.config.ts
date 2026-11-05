@@ -1,7 +1,7 @@
 import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
-  testIgnore: '**/widgets/**',
+  testIgnore: ['**/widgets/**', '**/build/**'],
   timeout: 20000,
   expect: { timeout: 5000 },
   fullyParallel: true,

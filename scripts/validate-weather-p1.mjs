@@ -29,8 +29,9 @@ const config = configBuffer?.toString('utf8') ?? '';
 const ids = ['normal', 'cryo', 'electro'];
 for (const id of ids) {
   if (!config.includes("id: '" + id + "'")) fail('Missing theme config ' + id);
-  if (!css.includes("--weather-horizon: url('/weather/" + id + "/horizon.svg')")) fail('Horizon token missing: ' + id);
-  if (!css.includes("--weather-action-bg:")) fail('Missing action background token');
+  if (!css.includes("--weather-horizon: url('/weather/" + id + "/horizon.svg')"))
+    fail('Horizon token missing: ' + id);
+  if (!css.includes('--weather-action-bg:')) fail('Missing action background token');
   if (id !== 'normal' && !css.includes("[data-weather='" + id + "']")) {
     fail('Missing CSS selector for ' + id);
   }
@@ -47,8 +48,13 @@ for (const id of ids) {
 }
 // For filled actions, both the background and text color must be contrast-safe.
 function relativeLuminance(hex) {
-  const channels = hex.replace('#', '').match(/.{2}/g).map((part) => parseInt(part, 16) / 255);
-  const linear = channels.map((value) => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+  const channels = hex
+    .replace('#', '')
+    .match(/.{2}/g)
+    .map((part) => parseInt(part, 16) / 255);
+  const linear = channels.map((value) =>
+    value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4,
+  );
   return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722;
 }
 function contrast(a, b) {
@@ -56,15 +62,22 @@ function contrast(a, b) {
   return (values[1] + 0.05) / (values[0] + 0.05);
 }
 for (const id of ids) {
-  const selector = id === 'normal'
-    ? /:root,\s*\[data-weather='normal'\]\s*\{([^}]*)\}/
-    : new RegExp("\\[data-weather='" + id + "'\\]\\s*\\{([^}]*)\\}");
+  const selector =
+    id === 'normal'
+      ? /:root,\s*\[data-weather='normal'\]\s*\{([^}]*)\}/
+      : new RegExp("\\[data-weather='" + id + "'\\]\\s*\\{([^}]*)\\}");
   const block = css.match(selector)?.[1];
-  if (!block) { fail('Could not find CSS rule for ' + id); continue; }
-  const getHex = (key) => block.match(new RegExp(key + "\\s*:\\s*(#[0-9a-fA-F]{6})\\s*;"))?.[1];
+  if (!block) {
+    fail('Could not find CSS rule for ' + id);
+    continue;
+  }
+  const getHex = (key) => block.match(new RegExp(key + '\\s*:\\s*(#[0-9a-fA-F]{6})\\s*;'))?.[1];
   const bg = getHex('--weather-action-bg');
   const fg = getHex('--weather-action-text');
-  if (!bg || !fg) { fail('Action tokens missing in ' + id); continue; }
+  if (!bg || !fg) {
+    fail('Action tokens missing in ' + id);
+    continue;
+  }
   const value = contrast(bg, fg);
   if (value < 4.5) fail(id + ': text/action contrast ' + value.toFixed(2) + ':1 < 4.5:1');
 }
@@ -72,7 +85,13 @@ for (const id of ids) {
 if (!config.includes("defaultWeatherTheme: WeatherThemeId = 'normal'")) {
   fail('Default weather theme is not normal');
 }
-for (const key of ['--weather-background', '--weather-surface', '--weather-primary', '--weather-text', '--weather-ornament']) {
+for (const key of [
+  '--weather-background',
+  '--weather-surface',
+  '--weather-primary',
+  '--weather-text',
+  '--weather-ornament',
+]) {
   if (!css.includes(key)) fail('Missing token ' + key);
 }
 
@@ -94,7 +113,9 @@ for (const [name, expected] of pngs) {
     continue;
   }
   count++;
-  const actual = createHash('sha256').update(readFileSync(join(root, path))).digest('hex');
+  const actual = createHash('sha256')
+    .update(readFileSync(join(root, path)))
+    .digest('hex');
   if (actual !== expected) fail('Frozen source hash mismatch: ' + name);
 }
 if (count !== pngs.length) {
@@ -105,5 +126,9 @@ if (failures) {
   console.error(failures + ' P1 structural validation failures');
   process.exitCode = 1;
 } else {
-  console.log('P1 structural checks passed; reference images ' + count + '/3; final owner approval remains separate.');
+  console.log(
+    'P1 structural checks passed; reference images ' +
+      count +
+      '/3; final owner approval remains separate.',
+  );
 }

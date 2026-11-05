@@ -3,6 +3,7 @@ import '../styles/home.css';
 import '../styles/paper-controls.css';
 import '../styles/widgets.css';
 import '../styles/weather-transition.css';
+import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import WeatherTransition from '../components/home/WeatherTransition.astro';
 import { site } from '../data/site';
 ---
@@ -11,6 +12,9 @@ import { site } from '../data/site';
 <html lang="en" data-weather="normal">
   <head>
     <meta charset="utf-8" />
+    <link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <meta name="theme-color" content="#f7f8f2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Muhammad Iqbal Firdaus | Frontend &amp; mobile engineer</title>
     <meta
@@ -27,6 +31,19 @@ import { site } from '../data/site';
     <meta property="og:url" content={site.url + '/'} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={site.url + '/og.jpg'} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: site.name,
+        jobTitle: 'Frontend and mobile engineer',
+        url: site.url,
+        sameAs: [site.github, site.linkedin],
+      })}
+    />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
@@ -34,8 +51,8 @@ import { site } from '../data/site';
     <slot />
     <WeatherTransition />
     <script>
-      import { mountWeatherTransitions } from '../scripts/weather/transitions';
-      mountWeatherTransitions();
+      import { mountWeatherControls } from '../scripts/weather/controls';
+      mountWeatherControls();
       const navigation = document.querySelectorAll<HTMLAnchorElement>('.profile-nav a[href^="#"]');
       navigation.forEach((link) =>
         link.addEventListener('click', () => {

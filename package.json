@@ -14,12 +14,14 @@
     "format:check": "prettier --check src tests scripts astro.config.mjs playwright.config.ts package.json",
     "check": "astro check",
     "test": "playwright test",
-    "verify": "bun run test:widgets && bun run check && bun run format:check && bun run build && bun run test",
+    "verify": "bun run test:widgets && bun run check && bun run format:check && bun run build && bun run test:build && bun run test",
     "assets:og": "node scripts/create-og.mjs",
     "capture": "node scripts/capture.mjs",
     "assets:svg": "node scripts/export-assets.mjs",
     "data:github": "node --experimental-strip-types scripts/update-github-activity.mjs",
-    "test:widgets": "node --experimental-strip-types --test tests/widgets/*.test.mjs"
+    "test:widgets": "node --experimental-strip-types --test tests/widgets/*.test.mjs",
+    "audit:build": "node scripts/audit-build.mjs",
+    "test:build": "node --test tests/build/*.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/cinzel": "^5.3.0",
