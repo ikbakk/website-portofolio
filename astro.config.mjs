@@ -9,6 +9,9 @@ export default defineConfig({
       // Allow the Vercel preview hostname used by the v0 iframe while keeping
       // Vite's host validation enabled for arbitrary external hosts.
       allowedHosts: ['terminal.local', '.v0.build'],
+      // The v0 preview proxy owns the outer origin; disable Vite's websocket
+      // HMR client so it cannot attempt a cross-origin connection in the iframe.
+      hmr: false,
     },
     plugins: [tailwindcss()],
   },
