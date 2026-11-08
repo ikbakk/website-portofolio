@@ -33,7 +33,16 @@ const selected = ['beaconnect', 'cv-builder', 'ward-monitor', 'courtside'].map((
       <section id="projects" data-work-panel="projects" aria-labelledby="tab-projects">
         <p id="work-start" class="section-path" tabindex="-1">/ &nbsp; work</p>
         <p class="eyebrow">Selected work / 01—05</p>
-        <h2 class="section-title">Ideas made useful.</h2>
+        <div class="work-intro">
+          <div>
+            <h2 class="section-title">Ideas made useful.</h2>
+            <p class="work-lede">Digital products with a clear point of view, built from the first sketch to the final detail.</p>
+          </div>
+          <div class="work-metrics" aria-label="Portfolio highlights">
+            <div><strong>06</strong><span>years building</span></div>
+            <div><strong>15+</strong><span>products shipped</span></div>
+          </div>
+        </div>
         <a id={`project-${feature.id}`} class="featured card" href={feature.caseHref}>
           <img
             src={feature.image!.src}

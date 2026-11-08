@@ -1307,6 +1307,51 @@ h3 {
 .profile-cta-secondary { color: var(--ink); }
 .profile-cta-secondary:hover { background: var(--paper-deep); }
 
+.work-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 20px;
+}
+.work-lede {
+  max-width: 470px;
+  margin-top: 12px;
+  color: var(--weather-muted);
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.45;
+}
+.work-metrics {
+  display: flex;
+  gap: 24px;
+  flex: none;
+  padding-bottom: 3px;
+}
+.work-metrics div {
+  display: grid;
+  gap: 3px;
+  min-width: 86px;
+  border-left: 1px solid var(--weather-stroke);
+  padding-left: 12px;
+}
+.work-metrics strong {
+  color: var(--weather-primary-ink);
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.work-metrics span {
+  color: var(--weather-muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+@media (max-width: 720px) {
+  .work-intro { display: grid; gap: 18px; }
+  .work-metrics { gap: 16px; }
+}
+
 @media (max-width: 740px) {
   .profile-cta a { flex: 1; }
 }
