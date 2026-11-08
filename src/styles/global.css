@@ -3,23 +3,26 @@
 @import './celestial.css';
 
 @theme {
-  --color-sky: #14263d;
-  --color-midnight: #0c1829;
-  --color-ivory: #f2ebdd;
-  --color-gold: #cbb88f;
-  --color-ink: #25354b;
-  --color-muted-ink: #5c6574;
+  --color-ink: #12271f;
+  --color-ink-soft: #41544c;
+  --color-paper: #f4f0e7;
+  --color-paper-deep: #e8e1d3;
+  --color-accent: #c8f04a;
+  --color-line: #c9c6ba;
   --font-display: 'Newsreader Variable', Georgia, serif;
   --font-emblem: 'Cinzel Variable', Georgia, serif;
-  --font-body: 'Source Sans 3 Variable', sans-serif;
+  --font-body: 'Inter Variable', Arial, sans-serif;
 }
 
 :root {
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --gold: #cbb88f;
-  --ivory: #f2ebdd;
-  --ink: #25354b;
-  color-scheme: dark;
+  --ink: #12271f;
+  --ink-soft: #41544c;
+  --paper: #f4f0e7;
+  --paper-deep: #e8e1d3;
+  --accent: #c8f04a;
+  --line: #c9c6ba;
+  color-scheme: light;
 }
 * {
   box-sizing: border-box;

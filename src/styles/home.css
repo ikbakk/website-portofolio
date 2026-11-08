@@ -765,6 +765,51 @@ h3 {
   }
 }
 
+/* Editorial portfolio layer: a quieter canvas, sharper hierarchy, and one electric signal color. */
+.board {
+  padding-inline: clamp(16px, 4vw, 64px);
+  background-color: var(--paper);
+  background-image: radial-gradient(circle at 15% 10%, rgb(200 240 74 / 18%), transparent 25%), linear-gradient(90deg, rgb(18 39 31 / 4%) 1px, transparent 1px), linear-gradient(rgb(18 39 31 / 4%) 1px, transparent 1px);
+  background-size: auto, 32px 32px, 32px 32px;
+}
+.board-top { max-width: 1440px; }
+.panel, .card {
+  background: color-mix(in srgb, var(--paper) 92%, white);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 45px rgb(18 39 31 / 7%);
+}
+.panel { border-radius: 2px; }
+.card { border-radius: 2px; }
+.profile { padding: clamp(20px, 2.5vw, 36px); }
+.avatar { border-radius: 50%; background: var(--ink); color: var(--accent); font-family: var(--font-emblem); font-size: 22px; letter-spacing: .08em; }
+.profile h1 { font-family: var(--font-display); font-size: clamp(28px, 2.4vw, 42px); font-weight: 500; letter-spacing: -.045em; }
+.role, .location { color: var(--ink-soft); }
+.intro { max-width: 24ch; font-family: var(--font-display); font-size: clamp(18px, 1.6vw, 24px); font-weight: 500; line-height: 1.12; }
+.profile-nav a { border-radius: 0; border-bottom: 1px solid transparent; padding-inline: 4px; }
+.profile-nav a:hover, .profile-nav .active { background: transparent; border-bottom-color: var(--ink); }
+.profile-nav a svg { color: var(--ink); }
+.about { border-top-color: var(--line); }
+.about p, .project-row-summary, .feature-copy p { color: var(--ink-soft); }
+.socials a { border-radius: 50%; background: var(--ink); color: var(--paper); }
+.work-scroll { padding: clamp(24px, 3vw, 52px); }
+.eyebrow, .section-path { color: var(--ink-soft); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.section-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 62px); font-weight: 500; letter-spacing: -.04em; }
+.section-title::before { width: 12px; height: 12px; border-radius: 0; background: var(--accent); }
+.featured { margin-top: 28px; padding: 0; overflow: hidden; border: 0; background: var(--ink); color: var(--paper); box-shadow: none; }
+.featured img { border-radius: 0; filter: saturate(.8); transition: transform .6s var(--ease), filter .6s var(--ease); }
+.featured:hover img { transform: scale(1.03); filter: saturate(1); }
+.feature-copy { padding: clamp(18px, 3vw, 38px); }
+.badge { background: var(--accent); color: var(--ink); border-radius: 0; text-transform: uppercase; letter-spacing: .1em; }
+.feature-copy p { color: color-mix(in srgb, var(--paper) 68%, transparent); }
+.tags span { border-radius: 0; background: transparent; border-color: color-mix(in srgb, currentColor 30%, transparent); }
+.project-row { border-radius: 0; border-inline: 0; border-top-color: var(--line); background: transparent; transition: background .25s ease, padding .25s ease; }
+.project-row:hover { background: var(--paper-deep); padding-inline: 12px; }
+.project-thumb { border-radius: 0; }
+.project-row-arrow { color: var(--ink); }
+.experience { border-top-color: var(--line); }
+.horizon { opacity: .18; }
+@media (max-width: 740px) { .work-scroll { padding: 24px 18px; } .section-title { font-size: 42px; } }
+
 /* Details measured against the frozen board, within the owner's 30/40/30 tracks. */
 .location {
   display: flex;
