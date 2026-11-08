@@ -25,6 +25,11 @@ const StackTag = detail ? 'h4' : 'h3';
   <p class="role">Frontend &amp; mobile engineer</p>
   <p class="location"><UIIcon name="location" size={15} /> {site.location}</p>
   <p class="intro">I design and build useful digital products for people, teams, and the messy problems in between.</p>
+  <p class="availability"><span class="availability-dot" aria-hidden="true"></span> Available for select projects</p>
+  <div class="profile-cta" aria-label="Get in touch">
+    <a class="profile-cta-primary" href={`mailto:${site.email}`}>Start a conversation <span aria-hidden="true">↗</span></a>
+    <a class="profile-cta-secondary" href={site.resume} download>Resume <span aria-hidden="true">↓</span></a>
+  </div>
   <nav class="profile-nav" aria-label="Portfolio sections">
     <PaperControl
       variant="nav"

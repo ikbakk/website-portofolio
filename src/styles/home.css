@@ -1266,3 +1266,47 @@ h3 {
     margin-top: 10px;
   }
 }
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 0 14px;
+  color: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.availability-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.profile-cta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.profile-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 34px;
+  padding: 8px 10px;
+  border: 1px solid var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  transition: transform .2s var(--ease), background .2s ease;
+}
+.profile-cta a:hover { transform: translateY(-2px); }
+.profile-cta-primary { background: var(--ink); color: var(--paper); }
+.profile-cta-secondary { color: var(--ink); }
+.profile-cta-secondary:hover { background: var(--paper-deep); }
+
+@media (max-width: 740px) {
+  .profile-cta a { flex: 1; }
+}
