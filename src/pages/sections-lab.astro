@@ -31,7 +31,7 @@ const proposals = [
       <div class="sl-wrap sl-hero-inner">
         <p class="sl-kicker">Portfolio / Content study</p>
         <h1 id="sl-title">What belongs<br />in this <em>world?</em></h1>
-        <p>Three ways to choose and arrange the sections. Each route below uses project material recovered from the earlier portfolio source.</p>
+        <p>Three ways to arrange the portfolio. Each route uses the same projects so you can compare the order and emphasis.</p>
         <a href="#compare" class="sl-down">Explore the routes <span aria-hidden="true">↓</span></a>
       </div>
       <div class="sl-hero-stamp" aria-hidden="true">CONTENT<br />BEFORE<br />CHROME</div>
@@ -52,10 +52,10 @@ const proposals = [
 
         <div class="sl-panel" id="panel-work" role="tabpanel" aria-labelledby="tab-work" tabindex="0">
           <div class="sl-panel-title"><p>Route 01 / Work first</p><h3>Show the work.<br />Then the person behind it.</h3><span>Four featured projects, one short experience section, and a direct contact action.</span></div>
-          <ol class="sl-route-list"><li><b>Opening</b><span>Name, role, location, one sentence.</span></li><li><b>Selected work</b><span>Sungkar Group, Rentalin, Courtside, CV Builder.</span></li><li><b>Experience</b><span>Freelance work and apprenticeship in one concise timeline.</span></li><li><b>Contact</b><span>Email, GitHub, LinkedIn, resume.</span></li></ol>
+          <ol class="sl-route-list"><li><b>Opening</b><span>Name, role, location, and a short introduction.</span></li><li><b>Selected work</b><span>Sungkar Group, Rentalin, Courtside, and CV Builder.</span></li><li><b>Experience</b><span>Web, mobile, product systems, and working practice.</span></li><li><b>Contact</b><span>Email, GitHub, and LinkedIn.</span></li></ol>
           <div class="sl-work-feature"><div class="sl-work-image"><img src="/images/sungkargroup-lab.webp" alt="Earlier portfolio capture of the Sungkar Group tourism homepage" width="1828" height="967" loading="lazy" /></div><div><span class="sl-tag">Featured / Public client work</span><h4>Sungkar Group</h4><p>{projects.sungkar.summary}</p><a href={projects.sungkar.href} target="_blank" rel="noreferrer">Visit public site ↗</a><small>Screenshot retained from earlier portfolio; live site may differ.</small></div></div>
           <div class="sl-project-rows">{[projects.rentalin, projects.courtside, projects.cv].map((project) => <a href={project.href} target="_blank" rel="noreferrer"><strong>{project.name}</strong><span>{project.stage}</span><small>{project.stack}</small><b aria-hidden="true">↗</b></a>)}</div>
-          <div class="sl-panel-bottom"><span>Data cut</span><p>Four featured projects keep the main page focused. Ward Monitor moves to an archive or secondary project page until a fuller case study is ready.</p></div>
+          <div class="sl-panel-bottom"><span>Layout choice</span><p>This version features four projects on the home page and keeps the Ward Monitor prototype on a separate page.</p></div>
         </div>
 
         <div class="sl-panel" id="panel-decisions" role="tabpanel" aria-labelledby="tab-decisions" tabindex="0" hidden>
@@ -66,11 +66,11 @@ const proposals = [
             <article><span>Make operations dependable</span><h4>Rentalin</h4><p>Bookings, access, and inspection details stay connected from request through return.</p><small>Next.js / Convex / in development</small></article>
             <article><span>Keep people in control</span><h4>Courtside</h4><p>Player rotation is a recommendation. The club operator can override it when the session changes.</p><small>SvelteKit / Supabase / product build</small></article>
           </div>
-          <div class="sl-panel-bottom"><span>Data cut</span><p>CV Builder and Ward Monitor become compact “More work” links. The three lead stories have the clearest documented product decisions.</p></div>
+          <div class="sl-panel-bottom"><span>Layout choice</span><p>This version leads with three case studies and keeps CV Builder and Ward Monitor in a separate project list.</p></div>
         </div>
 
         <div class="sl-panel" id="panel-atlas" role="tabpanel" aria-labelledby="tab-atlas" tabindex="0" hidden>
-          <div class="sl-panel-title"><p>Route 03 / Open world atlas</p><h3>Four destinations.<br />One connected practice.</h3><span>The map becomes a real content model: each destination represents a domain of work.</span></div>
+          <div class="sl-panel-title"><p>Route 03 / Open world atlas</p><h3>Group the work<br />by what it does.</h3><span>Give web, rental operations, local tools, and club sessions a place on the map.</span></div>
           <ol class="sl-route-list"><li><b>Opening</b><span>A personal introduction and the world map.</span></li><li><b>Destinations</b><span>Web, Mobile, Tools, and Operations.</span></li><li><b>Field notes</b><span>Short experience and working principles.</span></li><li><b>Contact</b><span>A clear next step, not another metaphor.</span></li></ol>
           <div class="sl-atlas-grid">
             <article><span class="sl-atlas-icon" aria-hidden="true">◈</span><small>01 / Web</small><h4>Sungkar Group</h4><p>Public facing sites that make content easy to find and use.</p><b>{projects.sungkar.stage}</b></article>
@@ -78,13 +78,13 @@ const proposals = [
             <article><span class="sl-atlas-icon" aria-hidden="true">▤</span><small>03 / Tools</small><h4>CV Builder</h4><p>Practical tools that keep personal data and editing control close.</p><b>{projects.cv.stage}</b></article>
             <article><span class="sl-atlas-icon" aria-hidden="true">⌘</span><small>04 / Operations</small><h4>Courtside</h4><p>Systems that help a person make decisions during a live session.</p><b>{projects.courtside.stage}</b></article>
           </div>
-          <div class="sl-panel-bottom"><span>Data cut</span><p>Ward Monitor sits in an archive as an additional operations example. A destination is only promoted when it has a project, clear status, and a useful story.</p></div>
+          <div class="sl-panel-bottom"><span>Layout choice</span><p>The four map stops use the projects featured on the home page. Ward Monitor stays outside the map as a prototype.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="sl-data" aria-labelledby="sl-data-title"><div class="sl-wrap sl-data-grid"><div><p class="sl-kicker">Data selection</p><h2 id="sl-data-title">What the source can support.</h2><p>The earlier portfolio records identify Muhammad Iqbal Firdaus as a frontend and mobile engineer in Mataram, Indonesia. They include four project summaries, a freelance experience timeline, public links, and a contact email. This lab treats them as working source material to verify before publishing.</p></div><div class="sl-data-list"><div><strong>Strong enough to lead</strong><p>Sungkar Group has a public site and an existing screenshot. Rentalin, Courtside, and CV Builder have documented problems, decisions, and source links.</p></div><div><strong>Hold for depth</strong><p>Ward Monitor has a prototype and screenshot, but its case study fields are mostly empty in the earlier source.</p></div><div><strong>Still needed</strong><p>Current project screenshots, permission to publish client details, verified release status, and a final contact route.</p></div></div></div></section>
-    <footer class="sl-footer sl-wrap"><span>Sections lab / Working proposal</span><a href="/">Back to portfolio ↗</a></footer>
+    <section class="sl-data" aria-labelledby="sl-data-title"><div class="sl-wrap sl-data-grid"><div><p class="sl-kicker">Project notes</p><h2 id="sl-data-title">Projects in this study.</h2><p>This page compares three ways to organize the portfolio. It uses the four projects featured on the home page and includes Ward Monitor as a prototype example.</p></div><div class="sl-data-list"><div><strong>Featured projects</strong><p>The home page features Sungkar Group, Rentalin, Courtside, and CV Builder with their current project status.</p></div><div><strong>Prototype example</strong><p>Ward Monitor is a prototype and is not one of the projects featured on the home page.</p></div><div><strong>The home page</strong><p>It leads with selected work, then shows experience areas and links to email, GitHub, and LinkedIn.</p></div></div></div></section>
+    <footer class="sl-footer sl-wrap"><span>Sections lab / Content study</span><a href="/">Back to portfolio ↗</a></footer>
   </main>
   <script>
     const tabs = [...document.querySelectorAll('[role="tab"][data-proposal]')];

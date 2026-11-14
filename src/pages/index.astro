@@ -15,7 +15,7 @@ import '../styles/work-first.css';
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Muhammad Iqbal Firdaus is a frontend and mobile engineer in Mataram, Indonesia. Explore selected web, mobile, and product work." />
+  <meta name="description" content="Selected projects by Muhammad Iqbal Firdaus, a frontend and mobile engineer in Mataram, Indonesia. Work includes a multilingual tourism site, rental operations software, a badminton club tool, and a local resume editor." />
   <title>Muhammad Iqbal Firdaus | Frontend and mobile engineer</title>
   <script is:inline>try { document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') === 'day' ? 'day' : 'night'; } catch {}</script>
 </head>
@@ -30,11 +30,11 @@ import '../styles/work-first.css';
     <section class="hero cinematic-hero" id="intro" aria-label="Introduction" data-od-id="hero">
       <div class="cinema-image"><img class="cinema-night-image" src="/images/hero-cinematic-night.png" width="1672" height="941" alt="Pixel art mountain valley and observatory at night" fetchpriority="high"/><img class="cinema-day-image" src="/images/hero-cinematic-day.png" width="1672" height="941" alt=""/><div class="cinema-shade"></div></div>
       <CinematicSky />
-      <div class="cinema-postcard-copy"><span class="cinema-symbol" aria-hidden="true">✦</span><h1 data-od-id="hero-title">I build for<br/>real life.</h1><p class="cinema-lede">I'm {portfolio.name}, a {portfolio.role.toLowerCase()} in {portfolio.location}. I make websites, apps, and tools for the people who use them.</p></div>
-      <div class="cinema-bottom"><a href="#work" data-od-id="view-work">Explore selected work <span aria-hidden="true">↓</span></a></div>
+      <div class="cinema-postcard-copy"><span class="cinema-symbol" aria-hidden="true">✦</span><h1 data-od-id="hero-title">I build interfaces<br/>and the systems behind them.</h1><p class="cinema-lede">I'm {portfolio.name}, a {portfolio.role.toLowerCase()} in {portfolio.location}. I work on multilingual websites, mobile flows, and product tools, including the data and permissions behind them.</p></div>
+      <div class="cinema-bottom"><a href="#work" data-od-id="view-work">View the projects <span aria-hidden="true">↓</span></a></div>
     </section>
     <section class="selected-work" id="work" data-od-id="work" aria-labelledby="work-title">
-      <div class="frame work-intro"><h2 id="work-title">Selected work.</h2><p>A live client site, an operations product in development, a React tool, and mobile software. Each shows a different kind of engineering ownership.</p></div>
+      <div class="frame work-intro"><h2 id="work-title">Selected work.</h2><p>The projects range from a multilingual tourism site to rental operations software, a badminton club tool, and a resume editor that keeps its data on the device.</p></div>
       <article class="featured-project frame" data-scroll-feature aria-labelledby="project-sungkar-title">
         <div class="featured-project-media"><img src={selectedProjects[0].image} alt="Earlier capture of the Sungkar Group tourism homepage" width="1828" height="967" loading="lazy" decoding="async" /></div>
         <div class="featured-project-body"><div><h3 id="project-sungkar-title">{selectedProjects[0].title}</h3><span class="project-type">{selectedProjects[0].type} / {selectedProjects[0].status}</span><p>{selectedProjects[0].description}</p><a class="case-link" href={selectedProjects[0].caseHref}>Read the case study <span aria-hidden="true">↗</span></a></div><div><p>{selectedProjects[0].detail}</p><ul aria-label="Technology">{selectedProjects[0].stack.map(item => <li>{item}</li>)}</ul><a href={selectedProjects[0].href} target="_blank" rel="noreferrer">{selectedProjects[0].linkLabel} <span aria-hidden="true">↗</span></a></div></div>
@@ -49,10 +49,10 @@ import '../styles/work-first.css';
       </div>
     </section>
     <section class="experience-section" id="experience" aria-labelledby="experience-title">
-      <div class="experience-intro frame"><h2 id="experience-title">What I do.</h2><p>From the first screen to the data behind it, I work across the parts that make software useful.</p></div>
+      <div class="experience-intro frame"><h2 id="experience-title">What I work on.</h2><p>I build the interface and the data, permissions, and actions behind each workflow.</p></div>
       <div class="experience-bands">{experienceAreas.map((area) => <article class={`experience-band experience-band-${area.id}`} data-scroll-experience><div class="frame experience-band-inner"><h3>{area.title}</h3><div class="experience-band-copy"><p>{area.description}</p><ul aria-label="Areas of work">{area.details.map(detail => <li>{detail}</li>)}</ul></div></div></article>)}</div>
     </section>
-    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="frame contact-inner"><div><h2 id="contact-title">Let's build something useful.</h2><p>Have a product, interface, or workflow that needs careful engineering? Tell me what you're working on.</p><a class="contact-email" href={`mailto:${portfolio.email}`}>{portfolio.email} <span aria-hidden="true">↗</span></a></div><div class="contact-links"><a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><span>{portfolio.location}</span></div></div></section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="frame contact-inner"><div><h2 id="contact-title">Tell me what you're building.</h2><p>I work on websites, mobile apps, and product workflows. Email me with the problem you want to solve.</p><a class="contact-email" href={`mailto:${portfolio.email}`}>{portfolio.email} <span aria-hidden="true">↗</span></a></div><div class="contact-links"><a href={portfolio.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><span>{portfolio.location}</span></div></div></section>
   </main>
   <footer class="site-footer frame" data-od-id="footer"><span>{portfolio.name}</span><a href="#top">Back to top ↑</a></footer>
 </body>
