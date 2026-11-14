@@ -1,0 +1,117 @@
+---
+import '../styles/sections-lab.css';
+
+const projects = {
+  sungkar: { name: 'Sungkar Group', stage: 'Public client work', role: 'Frontend delivery', stack: 'Astro / TypeScript', summary: 'A multilingual tourism site for Lombok, Sumbawa, and Labuan Bajo.', href: 'https://sungkargroup.com' },
+  rentalin: { name: 'Rentalin', stage: 'In development', role: 'Business operations product', stack: 'Next.js / Convex / Astro', summary: 'Vehicle rental operations software for small businesses in Indonesia.', href: 'https://github.com/ikbakk/rentalin' },
+  courtside: { name: 'Courtside', stage: 'Product build', role: 'Product engineering', stack: 'SvelteKit / Supabase', summary: 'A club helper for attendance, player rotation, results, and session costs.', href: 'https://github.com/ikbakk/badminton-club-helper' },
+  cv: { name: 'CV Builder', stage: 'Local tool', role: 'Frontend product', stack: 'React / Typst', summary: 'A local first resume editor with structured data and PDF preview.', href: 'https://github.com/ikbakk/cv-builder' },
+  ward: { name: 'Ward Monitor', stage: 'Prototype', role: 'Interface prototype', stack: 'Angular / ESP32', summary: 'A nurse station dashboard designed for quick reading of patient and device state.', href: 'https://esp32-ward-monitor.vercel.app/' },
+};
+const proposals = [
+  { id: 'work', number: '01', name: 'Work first', line: 'Lead with proof. Show the strongest public project, then the range of product work.', sequence: 'Intro → Selected work → Experience → Contact', fit: 'Fastest route for recruiters and clients.' },
+  { id: 'decisions', number: '02', name: 'Decisions in context', line: 'Organize the site around three real product problems and the decisions behind them.', sequence: 'Intro → Three stories → Practice → Contact', fit: 'Best when case study depth is the priority.' },
+  { id: 'atlas', number: '03', name: 'Open world atlas', line: 'Turn the portfolio into destinations that match the world map navigation.', sequence: 'Intro → Four destinations → Field notes → Contact', fit: 'Strongest match for the current visual world.' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Three live section and content structures for the full-stack engineer portfolio." />
+  <title>Sections lab | Full-stack engineer</title>
+</head>
+<body>
+  <a class="sl-skip" href="#sl-main">Skip to content</a>
+  <a class="sl-home" href="/" aria-label="Back to portfolio"><span aria-hidden="true">✦</span> Fullstack / Engineer</a>
+  <main id="sl-main">
+    <section class="sl-hero" aria-labelledby="sl-title">
+      <div class="sl-hero-landscape" aria-hidden="true"></div>
+      <div class="sl-wrap sl-hero-inner">
+        <p class="sl-kicker">Portfolio / Content study</p>
+        <h1 id="sl-title">What belongs<br />in this <em>world?</em></h1>
+        <p>Three ways to choose and arrange the sections. Each route below uses project material recovered from the earlier portfolio source.</p>
+        <a href="#compare" class="sl-down">Explore the routes <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="sl-hero-stamp" aria-hidden="true">CONTENT<br />BEFORE<br />CHROME</div>
+    </section>
+
+    <section class="sl-compare" id="compare" aria-labelledby="sl-compare-title">
+      <div class="sl-wrap">
+        <div class="sl-section-head"><p>Section architecture</p><h2 id="sl-compare-title">Choose a route.</h2><span>Pick one to inspect its content and order.</span></div>
+        <div class="sl-choice-grid" role="tablist" aria-label="Section proposals">
+          {proposals.map((proposal, index) => <button type="button" role="tab" id={`tab-${proposal.id}`} aria-controls={`panel-${proposal.id}`} aria-selected={index === 0 ? 'true' : 'false'} tabindex={index === 0 ? '0' : '-1'} data-proposal={proposal.id}>
+            <span class="sl-choice-number">{proposal.number} / {proposal.fit}</span>
+            <strong>{proposal.name}</strong>
+            <span class="sl-choice-line">{proposal.line}</span>
+            <span class="sl-choice-sequence">{proposal.sequence}</span>
+            <span class="sl-choice-action">Inspect route <span aria-hidden="true">↗</span></span>
+          </button>)}
+        </div>
+
+        <div class="sl-panel" id="panel-work" role="tabpanel" aria-labelledby="tab-work" tabindex="0">
+          <div class="sl-panel-title"><p>Route 01 / Work first</p><h3>Show the work.<br />Then the person behind it.</h3><span>Four featured projects, one short experience section, and a direct contact action.</span></div>
+          <ol class="sl-route-list"><li><b>Opening</b><span>Name, role, location, one sentence.</span></li><li><b>Selected work</b><span>Sungkar Group, Rentalin, Courtside, CV Builder.</span></li><li><b>Experience</b><span>Freelance work and apprenticeship in one concise timeline.</span></li><li><b>Contact</b><span>Email, GitHub, LinkedIn, resume.</span></li></ol>
+          <div class="sl-work-feature"><div class="sl-work-image"><img src="/images/sungkargroup-lab.webp" alt="Earlier portfolio capture of the Sungkar Group tourism homepage" width="1828" height="967" loading="lazy" /></div><div><span class="sl-tag">Featured / Public client work</span><h4>Sungkar Group</h4><p>{projects.sungkar.summary}</p><a href={projects.sungkar.href} target="_blank" rel="noreferrer">Visit public site ↗</a><small>Screenshot retained from earlier portfolio; live site may differ.</small></div></div>
+          <div class="sl-project-rows">{[projects.rentalin, projects.courtside, projects.cv].map((project) => <a href={project.href} target="_blank" rel="noreferrer"><strong>{project.name}</strong><span>{project.stage}</span><small>{project.stack}</small><b aria-hidden="true">↗</b></a>)}</div>
+          <div class="sl-panel-bottom"><span>Data cut</span><p>Four featured projects keep the main page focused. Ward Monitor moves to an archive or secondary project page until a fuller case study is ready.</p></div>
+        </div>
+
+        <div class="sl-panel" id="panel-decisions" role="tabpanel" aria-labelledby="tab-decisions" tabindex="0" hidden>
+          <div class="sl-panel-title"><p>Route 02 / Decisions in context</p><h3>Make the thinking<br />the through line.</h3><span>Three stories show a different engineering constraint, followed by a short practice statement.</span></div>
+          <ol class="sl-route-list"><li><b>Opening</b><span>The kind of problems I work on.</span></li><li><b>Discoverability</b><span>Sungkar Group: content, language, speed, and search.</span></li><li><b>Operations</b><span>Rentalin: bookings, access, and operational state.</span></li><li><b>Fairness</b><span>Courtside: recommendations with operator control.</span></li><li><b>Practice & contact</b><span>How I work and how to reach me.</span></li></ol>
+          <div class="sl-story-grid">
+            <article><span>Make it findable</span><h4>Sungkar Group</h4><p>Structured package content, multilingual routes, and static rendering serve travelers before any interface flourish.</p><small>Astro / TypeScript / public client work</small></article>
+            <article><span>Make operations dependable</span><h4>Rentalin</h4><p>Bookings, access, and inspection details stay connected from request through return.</p><small>Next.js / Convex / in development</small></article>
+            <article><span>Keep people in control</span><h4>Courtside</h4><p>Player rotation is a recommendation. The club operator can override it when the session changes.</p><small>SvelteKit / Supabase / product build</small></article>
+          </div>
+          <div class="sl-panel-bottom"><span>Data cut</span><p>CV Builder and Ward Monitor become compact “More work” links. The three lead stories have the clearest documented product decisions.</p></div>
+        </div>
+
+        <div class="sl-panel" id="panel-atlas" role="tabpanel" aria-labelledby="tab-atlas" tabindex="0" hidden>
+          <div class="sl-panel-title"><p>Route 03 / Open world atlas</p><h3>Four destinations.<br />One connected practice.</h3><span>The map becomes a real content model: each destination represents a domain of work.</span></div>
+          <ol class="sl-route-list"><li><b>Opening</b><span>A personal introduction and the world map.</span></li><li><b>Destinations</b><span>Web, Mobile, Tools, and Operations.</span></li><li><b>Field notes</b><span>Short experience and working principles.</span></li><li><b>Contact</b><span>A clear next step, not another metaphor.</span></li></ol>
+          <div class="sl-atlas-grid">
+            <article><span class="sl-atlas-icon" aria-hidden="true">◈</span><small>01 / Web</small><h4>Sungkar Group</h4><p>Public facing sites that make content easy to find and use.</p><b>{projects.sungkar.stage}</b></article>
+            <article><span class="sl-atlas-icon" aria-hidden="true">◉</span><small>02 / Operations</small><h4>Rentalin</h4><p>Connected workflows for rental teams from inquiry through vehicle return.</p><b>{projects.rentalin.stage}</b></article>
+            <article><span class="sl-atlas-icon" aria-hidden="true">▤</span><small>03 / Tools</small><h4>CV Builder</h4><p>Practical tools that keep personal data and editing control close.</p><b>{projects.cv.stage}</b></article>
+            <article><span class="sl-atlas-icon" aria-hidden="true">⌘</span><small>04 / Operations</small><h4>Courtside</h4><p>Systems that help a person make decisions during a live session.</p><b>{projects.courtside.stage}</b></article>
+          </div>
+          <div class="sl-panel-bottom"><span>Data cut</span><p>Ward Monitor sits in an archive as an additional operations example. A destination is only promoted when it has a project, clear status, and a useful story.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sl-data" aria-labelledby="sl-data-title"><div class="sl-wrap sl-data-grid"><div><p class="sl-kicker">Data selection</p><h2 id="sl-data-title">What the source can support.</h2><p>The earlier portfolio records identify Muhammad Iqbal Firdaus as a frontend and mobile engineer in Mataram, Indonesia. They include four project summaries, a freelance experience timeline, public links, and a contact email. This lab treats them as working source material to verify before publishing.</p></div><div class="sl-data-list"><div><strong>Strong enough to lead</strong><p>Sungkar Group has a public site and an existing screenshot. Rentalin, Courtside, and CV Builder have documented problems, decisions, and source links.</p></div><div><strong>Hold for depth</strong><p>Ward Monitor has a prototype and screenshot, but its case study fields are mostly empty in the earlier source.</p></div><div><strong>Still needed</strong><p>Current project screenshots, permission to publish client details, verified release status, and a final contact route.</p></div></div></div></section>
+    <footer class="sl-footer sl-wrap"><span>Sections lab / Working proposal</span><a href="/">Back to portfolio ↗</a></footer>
+  </main>
+  <script>
+    const tabs = [...document.querySelectorAll('[role="tab"][data-proposal]')];
+    function activate(tab, focus = false) {
+      tabs.forEach(candidate => {
+        const selected = candidate === tab;
+        candidate.setAttribute('aria-selected', String(selected));
+        candidate.tabIndex = selected ? 0 : -1;
+        document.getElementById(candidate.getAttribute('aria-controls')).hidden = !selected;
+      });
+      if (focus) tab.focus();
+      history.replaceState(null, '', `${location.pathname}#${tab.dataset.proposal}`);
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('keydown', event => {
+        let next = index;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault(); activate(tabs[next], true);
+      });
+    });
+    const initial = tabs.find(tab => `#${tab.dataset.proposal}` === location.hash);
+    if (initial) activate(initial);
+  </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+---
+import '../styles/navigation-lab.css';
+---
+<!doctype html>
+<html lang="en" data-mode="rail">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Three live navigation directions for a full-stack engineer portfolio." />
+    <title>Navigation lab | Full-stack engineer</title>
+  </head>
+  <body>
+    <a class="lab-skip" href="#lab-main">Skip to content</a>
+    <div class="lab-brand" aria-label="Full-stack engineer portfolio"><span aria-hidden="true">✦</span> FULLSTACK / ENGINEER</div>
+
+    <nav class="nav-rail proposal-nav" aria-label="Section navigation, constellation rail">
+      <span class="rail-caption">Explore the world</span>
+      <a href="#intro" data-section="intro"><i aria-hidden="true"></i><span>Start</span></a>
+      <a href="#work" data-section="work"><i aria-hidden="true"></i><span>Work</span></a>
+      <a href="#approach" data-section="approach"><i aria-hidden="true"></i><span>Approach</span></a>
+      <a href="#contact" data-section="contact"><i aria-hidden="true"></i><span>Contact</span></a>
+      <span class="rail-end" aria-hidden="true">✦</span>
+    </nav>
+
+    <nav class="nav-dock proposal-nav" aria-label="Section navigation, field kit">
+      <span class="dock-title">Field kit <small>Jump to</small></span>
+      <a href="#intro" data-section="intro"><span aria-hidden="true">✦</span><span>Start</span></a>
+      <a href="#work" data-section="work"><span aria-hidden="true">▦</span><span>Work</span></a>
+      <a href="#approach" data-section="approach"><span aria-hidden="true">◇</span><span>Approach</span></a>
+      <a href="#contact" data-section="contact"><span aria-hidden="true">✉</span><span>Contact</span></a>
+    </nav>
+
+    <div class="nav-portal proposal-nav">
+      <button class="portal-trigger" type="button" aria-haspopup="dialog" aria-controls="portal-panel" aria-expanded="false"><span class="portal-glyph" aria-hidden="true">✦</span><span class="portal-current">Start</span><span class="portal-open-label">Open map</span></button>
+      <div id="portal-panel" class="portal-panel" role="dialog" aria-modal="true" aria-label="World map" aria-hidden="true" inert>
+        <button class="portal-close" type="button" aria-label="Close map">Close <span aria-hidden="true">×</span></button>
+        <div class="portal-heading"><span>The world map</span><strong>Choose a place to land.</strong></div>
+        <nav aria-label="World map navigation">
+          <a href="#intro" data-section="intro"><span>Start</span><small>The opening scene</small><b aria-hidden="true">↗</b></a>
+          <a href="#work" data-section="work"><span>Work</span><small>What I build</small><b aria-hidden="true">↗</b></a>
+          <a href="#approach" data-section="approach"><span>Approach</span><small>How I think</small><b aria-hidden="true">↗</b></a>
+          <a href="#contact" data-section="contact"><span>Contact</span><small>Start a conversation</small><b aria-hidden="true">↗</b></a>
+        </nav>
+        <p class="portal-footnote">Design × Code × Curiosity</p>
+      </div>
+    </div>
+
+    <main id="lab-main">
+      <section id="intro" class="lab-hero lab-section" aria-labelledby="lab-title">
+        <img class="lab-landscape" src="/images/hero-cinematic-night.png" alt="" width="1672" height="941" fetchpriority="high" />
+        <div class="lab-stars" aria-hidden="true">✧ <span>✦</span> · ✧</div>
+        <div class="lab-hero-content">
+          <p class="lab-kicker">Portfolio / Interaction study</p>
+          <h1 id="lab-title">Navigation<br /><em>lab.</em></h1>
+          <p class="lab-lede">Three ways to move through this world. Choose a direction, then use it to visit the sections below.</p>
+          <a class="lab-scroll" href="#proposals">See the proposals <span aria-hidden="true">↓</span></a>
+        </div>
+        <span class="lab-hero-side">A WORLD BUILT BETWEEN DESIGN & CODE</span>
+      </section>
+
+      <section id="proposals" class="lab-proposals" aria-labelledby="proposals-title">
+        <div class="lab-wrap">
+          <div class="lab-proposal-heading"><p>Navigation study</p><h2 id="proposals-title">Pick a way through.</h2><span>Each option is live across this page.</span></div>
+          <div class="proposal-grid" role="group" aria-label="Navigation proposals">
+            <button class="proposal-card" type="button" data-select-mode="rail" aria-pressed="true">
+              <span class="proposal-visual rail-visual" aria-hidden="true"><span class="mini-rail">✦<i></i><i></i><i></i><i></i></span><span class="mini-scene"></span></span>
+              <span class="proposal-meta">01 / Spatial</span><strong>Constellation rail</strong><span class="proposal-description">A quiet trail of waypoints stays at the left edge. The current stop glows as you scroll.</span><span class="proposal-select">Try this direction <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="proposal-card" type="button" data-select-mode="dock" aria-pressed="false">
+              <span class="proposal-visual dock-visual" aria-hidden="true"><span class="mini-scene"></span><span class="mini-dock">✦ <i>▦</i> ◇ ✉</span></span>
+              <span class="proposal-meta">02 / Tactile</span><strong>Field kit dock</strong><span class="proposal-description">A compact tool tray lives at the bottom, with every destination always one tap away.</span><span class="proposal-select">Try this direction <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="proposal-card" type="button" data-select-mode="portal" aria-pressed="false">
+              <span class="proposal-visual portal-visual" aria-hidden="true"><span class="mini-scene"></span><span class="mini-portal">✦</span><span class="mini-map">START<br />WORK<br />APPROACH</span></span>
+              <span class="proposal-meta">03 / Cinematic</span><strong>World map portal</strong><span class="proposal-description">A single floating compass opens a full-screen map for a more immersive pause.</span><span class="proposal-select">Try this direction <span aria-hidden="true">↗</span></span>
+            </button>
+          </div>
+          <p class="lab-instruction" id="mode-feedback" aria-live="polite">Constellation rail is active. Scroll to see it track your location.</p>
+        </div>
+      </section>
+
+      <section id="work" class="lab-chapter lab-section chapter-work" aria-labelledby="work-title"><div class="lab-wrap chapter-inner"><span class="chapter-index">Work / 01</span><div><h2 id="work-title">The work behind<br />the screen.</h2><p>Interfaces, systems, and delivery shaped together so the end result feels simple.</p></div><span class="chapter-symbol" aria-hidden="true">▦</span></div></section>
+      <section id="approach" class="lab-chapter lab-section chapter-approach" aria-labelledby="approach-title"><div class="lab-wrap chapter-inner"><span class="chapter-index">Approach / 02</span><div><h2 id="approach-title">Follow a request<br />through.</h2><p>Trace the path from a person’s action to the service, data, and feedback behind it.</p></div><span class="chapter-symbol" aria-hidden="true">◇</span></div></section>
+      <section id="contact" class="lab-chapter lab-section chapter-contact" aria-labelledby="contact-title"><div class="lab-wrap chapter-inner"><span class="chapter-index">Contact / 03</span><div><h2 id="contact-title">Have something<br />to build?</h2><p>This portfolio is ready for real project stories and a direct contact route.</p><a href="#proposals">Revisit the proposals ↑</a></div><span class="chapter-symbol" aria-hidden="true">✦</span></div></section>
+    </main>
+    <script>
+      const root = document.documentElement;
+      const modes = ['rail', 'dock', 'portal'];
+      const names = { rail: 'Constellation rail', dock: 'Field kit dock', portal: 'World map portal' };
+      const sectionNames = { intro: 'Start', work: 'Work', approach: 'Approach', contact: 'Contact' };
+      const cards = [...document.querySelectorAll('[data-select-mode]')];
+      const portal = document.getElementById('portal-panel');
+      const trigger = document.querySelector('.portal-trigger');
+      const closeButton = document.querySelector('.portal-close');
+      let lastFocus;
+      function closePortal(restoreFocus = true) {
+        portal.classList.remove('is-open');
+        portal.setAttribute('aria-hidden', 'true');
+        portal.inert = true;
+        trigger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('portal-open');
+        if (restoreFocus) (lastFocus || trigger).focus();
+      }
+      function setMode(mode) {
+        if (!modes.includes(mode)) return;
+        closePortal(false);
+        root.dataset.mode = mode;
+        cards.forEach(card => card.setAttribute('aria-pressed', String(card.dataset.selectMode === mode)));
+        document.getElementById('mode-feedback').textContent = `${names[mode]} is active. Use it to visit the sections below.`;
+        history.replaceState(null, '', `${location.pathname}?mode=${mode}${location.hash}`);
+      }
+      cards.forEach(card => card.addEventListener('click', () => setMode(card.dataset.selectMode)));
+      const requestedMode = new URLSearchParams(location.search).get('mode');
+      if (modes.includes(requestedMode)) setMode(requestedMode);
+      trigger.addEventListener('click', () => {
+        lastFocus = document.activeElement;
+        portal.inert = false;
+        portal.setAttribute('aria-hidden', 'false');
+        portal.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('portal-open');
+        closeButton.focus();
+      });
+      closeButton.addEventListener('click', () => closePortal());
+      portal.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closePortal(false)));
+      document.addEventListener('keydown', event => {
+        if (!portal.classList.contains('is-open')) return;
+        if (event.key === 'Escape') { event.preventDefault(); closePortal(); }
+        if (event.key === 'Tab') {
+          const focusables = [...portal.querySelectorAll('button, a')];
+          const first = focusables[0], last = focusables.at(-1);
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        }
+      });
+      const sections = [...document.querySelectorAll('.lab-section')];
+      function updateCurrent() {
+        const current = [...sections].reverse().find(section => section.getBoundingClientRect().top <= innerHeight * .46) || sections[0];
+        document.querySelectorAll('.proposal-nav a[data-section]').forEach(link => {
+          if (link.dataset.section === current.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+        document.querySelector('.portal-current').textContent = sectionNames[current.id];
+      }
+      addEventListener('scroll', updateCurrent, { passive: true });
+      addEventListener('resize', updateCurrent);
+      updateCurrent();
+    </script>
+  </body>
+</html>

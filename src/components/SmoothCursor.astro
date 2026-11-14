@@ -1,0 +1,37 @@
+<script>
+  import { AuraCursor } from 'aura-cursor';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  if (!prefersReducedMotion.matches && hasFinePointer.matches) {
+    const cursor = new AuraCursor({
+      color: '#fff',
+      hoverColor: '#fff',
+      centerDotColor: '#fff',
+      centerDotHoverColor: '#fff',
+      size: 28,
+      opacity: 1,
+      speed: 0.22,
+      hideDefaultCursor: true,
+      outlineMode: true,
+      outlineWidth: 2,
+      centerDotSize: 4,
+      hoverEffect: { scale: 1.55, opacity: 1 },
+      trail: { length: 3, fade: 0.22, scale: 0.78 },
+      clickEffect: { scale: 0.72, duration: 150 },
+      mixBlendMode: 'difference',
+      shape: 'square',
+      className: 'portfolio-cursor',
+      excludeSelector: 'input, textarea, select, [contenteditable="true"]',
+    });
+
+    cursor.init();
+
+    prefersReducedMotion.addEventListener('change', (event) => {
+      if (event.matches) {
+        cursor.destroy();
+      }
+    }, { once: true });
+  }
+</script>

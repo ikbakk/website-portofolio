@@ -1,0 +1,173 @@
+{
+  "source": "https://pafolios.com/jaymark-ancheta",
+  "assets": [
+    {
+      "name": "Jaymark Ancheta",
+      "date": "2026-08-13",
+      "source": "https://pafolios.com/portfolio-images/2026-08-13-jaymark-ancheta.jpg",
+      "local": "assets/pafolios/jaymark-ancheta.jpg",
+      "role": "featured portfolio screenshot"
+    },
+    {
+      "name": "Yuvich",
+      "date": "2026-10-04",
+      "source": "https://pafolios.com/portfolio-images/2026-10-04-yuvich.jpg",
+      "local": "assets/pafolios/images/2026-10-04-yuvich.jpg",
+      "role": "related portfolio screenshot"
+    },
+    {
+      "name": "Craig Weiss",
+      "date": "2026-10-30",
+      "source": "https://pafolios.com/portfolio-images/2026-10-30-craig-weiss.jpg",
+      "local": "assets/pafolios/images/2026-10-30-craig-weiss.jpg",
+      "role": "related portfolio screenshot"
+    },
+    {
+      "name": "Nidhi Prajapati",
+      "date": "2026-09-28",
+      "source": "https://pafolios.com/portfolio-images/2026-09-28-nidhi-prajapati.jpg",
+      "local": "assets/pafolios/images/2026-09-28-nidhi-prajapati.jpg",
+      "role": "related portfolio screenshot"
+    },
+    {
+      "name": "Albiona Hoti",
+      "date": "2026-09-24",
+      "source": "https://pafolios.com/portfolio-images/2026-09-24-albiona-hoti.jpg",
+      "local": "assets/pafolios/images/2026-09-24-albiona-hoti.jpg",
+      "role": "related portfolio screenshot"
+    },
+    {
+      "name": "Peter Damrongpiriyapong",
+      "date": "2026-09-08",
+      "source": "https://pafolios.com/portfolio-images/2026-09-08-peter-damrongpiriyapong.jpg",
+      "local": "assets/pafolios/images/2026-09-08-peter-damrongpiriyapong.jpg",
+      "role": "related portfolio screenshot"
+    },
+    {
+      "name": "Noel",
+      "date": "2026-08-22",
+      "source": "https://pafolios.com/portfolio-images/2026-08-22-noel.jpg",
+      "local": "assets/pafolios/images/2026-08-22-noel.jpg",
+      "role": "related portfolio screenshot"
+    },
+    {
+      "name": "Alan Joseph Monichan",
+      "date": "2026-08-14",
+      "source": "https://pafolios.com/portfolio-images/2026-08-14-alan-joseph-monichan.jpg",
+      "local": "assets/pafolios/images/2026-08-14-alan-joseph-monichan.jpg",
+      "role": "related portfolio screenshot"
+    },
+    {
+      "name": "f639721981034f88-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/f639721981034f88-s.woff2",
+      "local": "assets/pafolios/f639721981034f88-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "9766a7e9e2e0ad5a-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/9766a7e9e2e0ad5a-s.woff2",
+      "local": "assets/pafolios/9766a7e9e2e0ad5a-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "b66cf8e69499582a-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/b66cf8e69499582a-s.woff2",
+      "local": "assets/pafolios/b66cf8e69499582a-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "aa016aab0e6d1295-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/aa016aab0e6d1295-s.woff2",
+      "local": "assets/pafolios/aa016aab0e6d1295-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "013b72fa676f92e0-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/013b72fa676f92e0-s.woff2",
+      "local": "assets/pafolios/013b72fa676f92e0-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "b9408752a0c24fb9-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/b9408752a0c24fb9-s.woff2",
+      "local": "assets/pafolios/b9408752a0c24fb9-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "65f03d54ccadf4a8-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/65f03d54ccadf4a8-s.woff2",
+      "local": "assets/pafolios/65f03d54ccadf4a8-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "e038a29029a234f2-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/e038a29029a234f2-s.woff2",
+      "local": "assets/pafolios/e038a29029a234f2-s.woff2",
+      "role": "font subset"
+    },
+    {
+      "name": "2b5b02fc7e511755-s.woff2",
+      "source": "https://pafolios.com/_next/static/media/2b5b02fc7e511755-s.woff2",
+      "local": "assets/pafolios/2b5b02fc7e511755-s.woff2",
+      "role": "font subset"
+    }
+  ],
+  "relatedPortfolios": [
+    {
+      "title": "Yuvich",
+      "date": "2026-10-04",
+      "description": "Systems Engineer & Researcher showcasing technical work and research projects in engineering and systems development.",
+      "websiteUrl": "https://www.yuvich.com/work",
+      "slug": "yuvich",
+      "image": "assets/pafolios/images/2026-10-04-yuvich.jpg"
+    },
+    {
+      "title": "Craig Weiss",
+      "date": "2026-10-30",
+      "description": "Founder and CEO of Rome AI (YC W22), software engineer in San Francisco, previously engineer #20 at Scale AI.",
+      "websiteUrl": "https://craigweiss.dev/",
+      "slug": "craig-weiss",
+      "image": "assets/pafolios/images/2026-10-30-craig-weiss.jpg"
+    },
+    {
+      "title": "Nidhi Prajapati",
+      "date": "2026-09-28",
+      "description": "Bengaluru-based software engineer building AI agents, voice AI and privacy-first web3 tools at Emergent (YC24).",
+      "websiteUrl": "https://www.somehowliving.tech/",
+      "slug": "nidhi-prajapati",
+      "image": "assets/pafolios/images/2026-09-28-nidhi-prajapati.jpg"
+    },
+    {
+      "title": "Albiona Hoti",
+      "date": "2026-09-24",
+      "description": "AI product development for founders and embedded engineering for teams. Explore products, experiments and writing.",
+      "websiteUrl": "https://www.albiona.dev/",
+      "slug": "albiona-hoti",
+      "image": "assets/pafolios/images/2026-09-24-albiona-hoti.jpg"
+    },
+    {
+      "title": "Peter Damrongpiriyapong",
+      "date": "2026-09-08",
+      "description": "Software Engineer at Figma specializing in product development and engineering.",
+      "websiteUrl": "https://www.peterdpong.com/",
+      "slug": "peter-damrongpiriyapong",
+      "image": "assets/pafolios/images/2026-09-08-peter-damrongpiriyapong.jpg"
+    },
+    {
+      "title": "Noel",
+      "date": "2026-08-22",
+      "description": "Software engineer building web and mobile apps from end to end, from database and API to user interfaces.",
+      "websiteUrl": "https://www.nemaas.com/",
+      "slug": "noel",
+      "image": "assets/pafolios/images/2026-08-22-noel.jpg"
+    },
+    {
+      "title": "Alan Joseph Monichan",
+      "date": "2026-08-14",
+      "description": "Portfolio of Alan Joseph Monichan showcasing full-stack development, data analytics, AI/BI solutions, and LLM/RAG pipelines.",
+      "websiteUrl": "https://portfolioalan.web.app/",
+      "slug": "alan-joseph-monichan",
+      "image": "assets/pafolios/images/2026-08-14-alan-joseph-monichan.jpg"
+    }
+  ]
+}

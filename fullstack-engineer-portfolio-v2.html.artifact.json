@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "fullstack-engineer-portfolio-v2.html",
+  "entry": "fullstack-engineer-portfolio-v2.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "createdAt": "2026-11-08T20:48:23.163Z",
+  "updatedAt": "2026-11-08T20:48:23.163Z",
+  "metadata": {
+    "inferred": true,
+    "reconciled": true
+  }
+}

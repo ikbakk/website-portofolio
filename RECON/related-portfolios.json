@@ -1,0 +1,135 @@
+[
+  {
+    "id": "2026-10-04",
+    "title": "Yuvich",
+    "description": "Systems Engineer & Researcher showcasing technical work and research projects in engineering and systems development.",
+    "categories": [
+      "Software Developer"
+    ],
+    "tags": [
+      "Development",
+      "Programming",
+      "Frontend",
+      "Web Development"
+    ],
+    "websiteUrl": "https://www.yuvich.com/work",
+    "imageUrl": "/portfolio-images/2026-10-04-yuvich.jpg",
+    "featured": true,
+    "date": "2026-10-04",
+    "slug": "yuvich"
+  },
+  {
+    "id": "2026-10-30",
+    "title": "Craig Weiss",
+    "description": "Founder and CEO of Rome AI (YC W22), software engineer in San Francisco, previously engineer #20 at Scale AI.",
+    "categories": [
+      "Software Developer"
+    ],
+    "tags": [
+      "Development",
+      "Programming",
+      "Frontend",
+      "Web Development"
+    ],
+    "websiteUrl": "https://craigweiss.dev/",
+    "imageUrl": "/portfolio-images/2026-10-30-craig-weiss.jpg",
+    "featured": false,
+    "date": "2026-10-30",
+    "slug": "craig-weiss"
+  },
+  {
+    "id": "2026-09-28",
+    "title": "Nidhi Prajapati",
+    "description": "Bengaluru-based software engineer building AI agents, voice AI and privacy-first web3 tools at Emergent (YC24).",
+    "categories": [
+      "Software Developer"
+    ],
+    "tags": [
+      "Development",
+      "Programming",
+      "Frontend",
+      "Web Development"
+    ],
+    "websiteUrl": "https://www.somehowliving.tech/",
+    "imageUrl": "/portfolio-images/2026-09-28-nidhi-prajapati.jpg",
+    "featured": false,
+    "date": "2026-09-28",
+    "slug": "nidhi-prajapati"
+  },
+  {
+    "id": "2026-09-24",
+    "title": "Albiona Hoti",
+    "description": "AI product development for founders and embedded engineering for teams. Explore products, experiments and writing.",
+    "categories": [
+      "Software Developer"
+    ],
+    "tags": [
+      "Development",
+      "Programming",
+      "Frontend",
+      "Web Development"
+    ],
+    "websiteUrl": "https://www.albiona.dev/",
+    "imageUrl": "/portfolio-images/2026-09-24-albiona-hoti.jpg",
+    "featured": false,
+    "date": "2026-09-24",
+    "slug": "albiona-hoti"
+  },
+  {
+    "id": "2026-09-08",
+    "title": "Peter Damrongpiriyapong",
+    "description": "Software Engineer at Figma specializing in product development and engineering.",
+    "categories": [
+      "Software Developer"
+    ],
+    "tags": [
+      "Development",
+      "Programming",
+      "Frontend",
+      "Web Development"
+    ],
+    "websiteUrl": "https://www.peterdpong.com/",
+    "imageUrl": "/portfolio-images/2026-09-08-peter-damrongpiriyapong.jpg",
+    "featured": false,
+    "date": "2026-09-08",
+    "slug": "peter-damrongpiriyapong"
+  },
+  {
+    "id": "2026-08-22",
+    "title": "Noel",
+    "description": "Software engineer building web and mobile apps from end to end, from database and API to user interfaces.",
+    "categories": [
+      "Software Developer"
+    ],
+    "tags": [
+      "Development",
+      "Programming",
+      "Frontend",
+      "Web Development"
+    ],
+    "websiteUrl": "https://www.nemaas.com/",
+    "imageUrl": "/portfolio-images/2026-08-22-noel.jpg",
+    "featured": false,
+    "date": "2026-08-22",
+    "slug": "noel"
+  },
+  {
+    "id": "2026-08-14",
+    "title": "Alan Joseph Monichan",
+    "description": "Portfolio of Alan Joseph Monichan showcasing full-stack development, data analytics, AI/BI solutions, and LLM/RAG pipelines.",
+    "categories": [
+      "Software Developer"
+    ],
+    "tags": [
+      "Development",
+      "Programming",
+      "Frontend",
+      "Web Development"
+    ],
+    "websiteUrl": "https://portfolioalan.web.app/",
+    "imageUrl": "/portfolio-images/2026-08-14-alan-joseph-monichan.jpg",
+    "featured": false,
+    "date": "2026-08-14",
+    "slug": "alan-joseph-monichan"
+  }
+]

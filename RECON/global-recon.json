@@ -1,0 +1,38 @@
+{
+  "url": "https://pafolios.com/jaymark-ancheta",
+  "method": "Direct HTTP source retrieval",
+  "browserRecon": "unavailable: no compatible Chrome, Edge, or Chromium executable was present",
+  "sourceEvidence": {
+    "renderedHtml": "index-original.html",
+    "stylesheets": [
+      "assets/pafolios/site-base.css",
+      "assets/pafolios/site-page.css"
+    ],
+    "runtimeEvidence": "Next.js app-router chunk references in the rendered page response; related portfolio ranking logic and data were inspected before the unused chunk copy was removed",
+    "framework": "Next.js App Router with React server rendering and client hydration",
+    "styling": "Tailwind-generated utility CSS",
+    "fonts": ["Geist", "Geist Mono"],
+    "pageTitle": "Jaymark Ancheta - Software Developer Portfolio Inspiration",
+    "featuredDate": "2026-08-13"
+  },
+  "pageStructure": [
+    "Centered category breadcrumb",
+    "Centered name, portfolio date, and external Visit site button",
+    "Featured portfolio screenshot",
+    "Related Software Developer portfolio grid",
+    "Fixed bottom Pafolios navigation",
+    "Footer links and large Pafolios wordmark"
+  ],
+  "interactionEvidence": {
+    "visitSite": "https://www.jmancheta.cloud/",
+    "relatedPortfolios": "Seven related entries selected from the source bundle using its category/tag relevance scoring",
+    "theme": "System light/dark theme supported by source CSS variables",
+    "footer": "Pointer spotlight was present; source also lazy-loads a 3D tile-burst easter egg that is not replicated"
+  },
+  "assets": "RECON/asset-manifest.json",
+  "verificationLimits": [
+    "No reference desktop/tablet/mobile browser screenshots",
+    "No live interaction probe or console capture",
+    "No source repository located in the GitHub repository search"
+  ]
+}

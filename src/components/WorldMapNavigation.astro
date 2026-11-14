@@ -1,0 +1,57 @@
+<div class="world-map-control">
+  <button class="world-map-trigger" type="button" aria-haspopup="dialog" aria-controls="world-map-panel" aria-expanded="false" data-od-id="navigation">
+    <span class="world-map-glyph" aria-hidden="true">✦</span>
+    <span class="world-map-location">Start</span>
+    <span class="world-map-action">Open map</span>
+  </button>
+</div>
+<div id="world-map-panel" class="world-map-panel" role="dialog" aria-modal="true" aria-label="World map" aria-hidden="true" inert>
+  <button class="world-map-close" type="button" aria-label="Close map">Close <span aria-hidden="true">×</span></button>
+  <div class="world-map-heading"><strong>Choose a place to land.</strong></div>
+  <nav aria-label="Main navigation">
+    <a href="#intro"><span>Start</span><small>The opening scene</small><b aria-hidden="true">↗</b></a>
+    <a href="#work"><span>Work</span><small>What I build</small><b aria-hidden="true">↗</b></a>
+    <a href="#experience"><span>Experience</span><small>Where I've worked</small><b aria-hidden="true">↗</b></a>
+    <a href="#contact"><span>Contact</span><small>Start a conversation</small><b aria-hidden="true">↗</b></a>
+  </nav>
+  <p class="world-map-footnote">Design × Code × Curiosity</p>
+</div>
+<script>
+  const trigger = document.querySelector('.world-map-trigger');
+  const panel = document.querySelector('.world-map-panel');
+  const closeButton = document.querySelector('.world-map-close');
+  let returnFocus = trigger;
+
+  function closeMap(restoreFocus = true) {
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    panel.inert = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('world-map-open');
+    document.dispatchEvent(new CustomEvent('world-map-toggle', { detail: { open: false } }));
+    if (restoreFocus) returnFocus.focus();
+  }
+
+  trigger.addEventListener('click', () => {
+    returnFocus = document.activeElement;
+    panel.inert = false;
+    panel.setAttribute('aria-hidden', 'false');
+    panel.classList.add('is-open');
+    trigger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('world-map-open');
+    document.dispatchEvent(new CustomEvent('world-map-toggle', { detail: { open: true } }));
+    closeButton.focus();
+  });
+  closeButton.addEventListener('click', () => closeMap());
+  panel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMap(false)));
+  document.addEventListener('keydown', event => {
+    if (!panel.classList.contains('is-open')) return;
+    if (event.key === 'Escape') { event.preventDefault(); closeMap(); }
+    if (event.key === 'Tab') {
+      const stops = [...panel.querySelectorAll('button, a')];
+      const first = stops[0], last = stops.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+  });
+</script>
