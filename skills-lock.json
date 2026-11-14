@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "skills": {
+    "antislop-copywriting": {
+      "source": "miqdadbadjuber/anti-slop",
+      "sourceType": "github",
+      "skillPath": "skills/antislop-copywriting/SKILL.md",
+      "computedHash": "57a00dcdb416ea8ed4b2a388ef9580f120afbc3d9bf8bfa8cd4e6796443c9a22"
+    }
+  }
+}
